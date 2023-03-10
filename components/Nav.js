@@ -32,8 +32,7 @@ export default function Nav() {
         </div>
       </header>
       <div className="flex item-center justify-between max-w-6xl pt-4 pb-2 px-4 mx-auto lg:max-w-screen-xl">
-        *UPDATE 27/01/23*: Cart counter increases when you add products and it
-        is creating a shopify checkout in the background which you cant see yet!
+        *UPDATE 10/03/23 building API functionality*
       </div>
     </div>
   );
