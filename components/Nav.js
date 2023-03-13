@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { useContext } from "react";
 import { CartContext } from "../context/shopContext";
-import { AccountContext } from "../context/accountContext.js";
+import { AccountContext } from "../context/accountContext";
 import MiniCart from "./MiniCart";
-import AccountMenu from "./AccountMenu.js";
+import AccountMenu from "./AccountMenu";
 export default function Nav() {
   const { cart, cartOpen, setCartOpen } = useContext(CartContext);
   const { getUserInfo } = useContext(AccountContext);
