@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import Layout from "../components/Layout";
 import ShopProvider from "../context/shopContext";
+import ProductProvider from "../context/productContext";
 import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
@@ -10,9 +11,11 @@ function MyApp({ Component, pageProps }) {
     <div>
       <title>Reliked Headless Demo Store</title>
       <ShopProvider>
-        <Layout>
-          <Component {...pageProps} key={router.asPath} />
-        </Layout>
+        <ProductProvider>
+          <Layout>
+            <Component {...pageProps} key={router.asPath} />
+          </Layout>
+        </ProductProvider>
       </ShopProvider>
     </div>
   );
