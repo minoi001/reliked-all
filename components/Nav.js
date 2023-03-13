@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { useContext } from "react";
 import { CartContext } from "../context/shopContext";
+import { AccountContext } from "../context/accountContext";
 import MiniCart from "./MiniCart";
-
+import AccountMenu from "./AccountMenu";
 export default function Nav() {
   const { cart, cartOpen, setCartOpen } = useContext(CartContext);
+  const { getUserInfo } = useContext(AccountContext);
 
   let cartQuantity = 0;
   cart.map((item) => {
@@ -20,15 +22,17 @@ export default function Nav() {
               <span className="text-lg pt-1 font-bold">Reliked</span>
             </div>
           </Link>
-          <a
-            className="text-md font-bold cursor-pointer"
-            onClick={() => {
-              setCartOpen(!cartOpen);
-            }}
-          >
-            Cart ({cartQuantity})
-          </a>
-          <MiniCart cart={cart} />
+          <div className="text-md font-bold cursor-pointer">
+            <AccountMenu account="account info" />
+            <a
+              onClick={() => {
+                setCartOpen(!cartOpen);
+              }}
+            >
+              Cart ({cartQuantity})
+            </a>
+            <MiniCart cart={cart} />
+          </div>
         </div>
       </header>
       <div className="flex item-center justify-between max-w-6xl pt-4 pb-2 px-4 mx-auto lg:max-w-screen-xl">
