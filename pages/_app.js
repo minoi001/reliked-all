@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import Layout from "../components/Layout";
 import ShopProvider from "../context/shopContext";
 import ProductProvider from "../context/productContext";
-import AccountProvider from "../context/accountContext";
+import AccountProvider from "../context/accountContext.js";
 import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
