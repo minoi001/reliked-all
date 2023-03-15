@@ -80,9 +80,9 @@ export default function AccountProvider({ children }) {
     }
   }
 
-  useEffect(() => {
-    sendUserRequest();
-  }, []);
+  // useEffect(() => {
+  //   sendUserRequest();
+  // }, []);
 
   return (
     <AccountContext.Provider
