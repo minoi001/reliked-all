@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { getUserAccessToken, getUserInfo } from "../lib/shopify";
+import { getUserAccessToken, getUserInfo } from "../lib/backup";
 
 const AccountContext = createContext();
 
