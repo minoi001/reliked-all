@@ -27,20 +27,21 @@ export default function Nav() {
                 alt="Reliked"
                 width="135"
                 height="135"
+                className=""
               />
             </div>
           </Link>
           <div className="text-md font-bold cursor-pointer">
-            <div className="inline-block">
+            <div className="inline-flex p-2">
               <Link href="/account">
-                <UserIcon width="20px" />
+                <UserIcon width="35px" className="p-1" />
               </Link>
               <a
                 onClick={() => {
                   setCartOpen(!cartOpen);
                 }}
               >
-                <ShoppingCartIcon width="20px" />
+                <ShoppingCartIcon width="35px" className="p-1" />
               </a>
             </div>
 
