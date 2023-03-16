@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { getProductsInCollection } from "../lib/shopify.js";
+import { getHeaderContent, getProductsInCollection } from "../lib/shopify.js";
 import ProductList from "../components/ProductList";
 
 // type products = [];
@@ -17,7 +17,10 @@ export default function Home({ products }) {
 
 export async function getStaticProps() {
   const products = await getProductsInCollection();
+  const headerContent = await getHeaderContent(
+    "gid://shopify/Metaobject/57180350"
+  );
   return {
-    props: { products },
+    props: { products, headerContent },
   };
 }

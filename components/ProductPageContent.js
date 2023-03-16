@@ -7,7 +7,11 @@ export default function ProductPageContent({ product }) {
       <div className="w-full max-w-md border bg-white rounded-2xl overflow-hidden shadow-lg md:w-1/2">
         <div className="relative h-full w-full p-5">
           <Image
-            src={product.images.edges[0].node.url}
+            src={
+              product.images
+                ? product.images.edges[0].node.url
+                : "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018"
+            }
             alt={product.title}
             height="2000"
             width="1000"

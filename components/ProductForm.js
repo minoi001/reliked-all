@@ -18,7 +18,9 @@ export default function ProductForm({ product }) {
       variantId: variant.node.id,
       title: product.title,
       handle: product.handle,
-      image: variant.node.image?.url,
+      image: variant.node.image
+        ? variant.node.image.url
+        : "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018",
       options: allOptions,
       variantTitle: variant.node.title,
       variantPrice: variant.node.priceV2.amount,

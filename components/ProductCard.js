@@ -19,7 +19,13 @@ const ProductCard = ({ product }) => {
       <div className="group">
         <div className="w-full bg-gray-200 rounded-3xl overflow-hidden">
           <div className="relative group-hover:opacity-75 h-full p-3">
-            <Image src={originalSrc} alt={title} width="500" height="250" />
+            <Image
+              src={originalSrc}
+              alt={title}
+              width="446"
+              height="533"
+              style={{ objectFit: "cover" }}
+            />
           </div>
         </div>
         <h3 className="mt-4 text-lg font-medium text-gray-900">{title}</h3>

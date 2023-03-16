@@ -1,5 +1,9 @@
 import { createContext, useState, useEffect } from "react";
-import { createCheckout, updateCheckout } from "../lib/shopify";
+import {
+  createCheckout,
+  getHeaderContent,
+  updateCheckout,
+} from "../lib/shopify";
 
 const ShopContext = createContext();
 
@@ -12,6 +16,7 @@ export default function ShopProvider({ children }) {
   const [checkoutUrl, setCheckoutUrl] = useState("");
 
   useEffect(() => {
+    sendHeaderContentRequest();
     if (localStorage.checkout_id) {
       const cartObject = JSON.parse(localStorage.checkout_id);
       if (cartObject[0].id) {
@@ -70,7 +75,7 @@ export default function ShopProvider({ children }) {
     bannerBackgroundImagePattern: "",
   });
 
-  function updateUserValue(
+  function updateHeaderContentValue(
     value,
     label,
     value1,
@@ -80,12 +85,25 @@ export default function ShopProvider({ children }) {
     value3,
     label3
   ) {
-    userInfo[label] = value;
-    userInfo[label1] = value1;
-    userInfo[label2] = value2;
-    userInfo[label3] = value3;
+    headerContent[label] = value;
+    headerContent[label1] = value1;
+    headerContent[label2] = value2;
+    headerContent[label3] = value3;
     return value;
   }
+
+  async function sendHeaderContentRequest() {
+    // doesn't work on first page render
+    const headerContentRequest = await getHeaderContent(
+      "gid://shopify/Metaobject/57180350"
+    );
+
+    updateHeaderContentValue(
+      headerContentRequest.metaobject.logo.value,
+      "logo"
+    );
+  }
+
   return (
     <ShopContext.Provider
       value={{
