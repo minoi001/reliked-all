@@ -2,10 +2,10 @@ import { useState, useContext } from "react";
 import { formatter } from "../utils/helpers";
 import ProductList from "./ProductList";
 import ProductOptions from "./ProductOptions";
-import { CartContext } from "../context/shopContext";
+import { ShopContext } from "../context/shopContext";
 
 export default function ProductForm({ product }) {
-  const { addToCart, setCartOpen } = useContext(CartContext);
+  const { addToCart, setCartOpen } = useContext(ShopContext);
 
   const allVariantOptions = product.variants.edges?.map((variant) => {
     const allOptions = {};
