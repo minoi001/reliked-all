@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { getUserAccessToken, getUserInfo } from "../lib/backup";
+import { getUserAccessToken, getUserInfo } from "../lib/shopify";
 
 const AccountContext = createContext();
 
@@ -80,9 +80,9 @@ export default function AccountProvider({ children }) {
     }
   }
 
-  // useEffect(() => {
-  //   sendUserRequest();
-  // }, []);
+  useEffect(() => {
+    sendUserRequest();
+  }, []);
 
   return (
     <AccountContext.Provider

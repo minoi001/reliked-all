@@ -8,7 +8,7 @@ export default function ProductPageContent({ product }) {
         <div className="relative h-full w-full p-5">
           <Image
             src={product.images.edges[0].node.url}
-            alt={product.images.edges[0].node.altText}
+            alt={product.title}
             height="2000"
             width="1000"
           />

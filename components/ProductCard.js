@@ -4,6 +4,7 @@ import { formatter } from "../utils/helpers";
 
 const ProductCard = ({ product }) => {
   const { handle, title } = product.node;
+
   const { altText, originalSrc } = product.node.images.edges[0]
     ? product.node.images.edges[0].node
     : {
