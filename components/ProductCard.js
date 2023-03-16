@@ -15,17 +15,11 @@ const ProductCard = ({ product }) => {
   const price = product.node.priceRange.minVariantPrice.amount;
   // console.log(product);
   return (
-    <Link href={`/products/${handle}`}>
+    <Link href={`/products/${handle}`} className="z-0">
       <div className="group">
         <div className="w-full bg-gray-200 rounded-3xl overflow-hidden">
-          <div className="relative group-hover:opacity-75 h-full p-3">
-            <Image
-              src={originalSrc}
-              alt={title}
-              width="446"
-              height="533"
-              style={{ objectFit: "cover" }}
-            />
+          <div className="relative group-hover:opacity-75 h-full p-3 z-0">
+            <Image src={originalSrc} alt={title} width="446" height="533" />
           </div>
         </div>
         <h3 className="mt-4 text-lg font-medium text-gray-900">{title}</h3>

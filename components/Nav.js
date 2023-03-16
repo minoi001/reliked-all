@@ -5,20 +5,15 @@ import { AccountContext } from "../context/accountContext";
 import MiniCart from "./MiniCart";
 import Image from "next/image";
 import { ShoppingCartIcon, UserIcon } from "@heroicons/react/24/outline";
-
+import MegaMenu from "./MegaMenu";
 export default function Nav() {
   const { cart, cartOpen, setCartOpen, headerContent } =
     useContext(ShopContext);
   const { getUserInfo } = useContext(AccountContext);
 
-  let cartQuantity = 0;
-  cart.map((item) => {
-    return (cartQuantity += item?.variantQuantity);
-  });
-
   return (
     <div>
-      <header className="border-b stick top-0 z-20 bg-white">
+      {/* <header className="border-b stick top-0 z-20 bg-white">
         <div className="flex item-center justify-between max-w-6xl pt-4 pb-2 px-4 mx-auto lg:max-w-screen-xl">
           <Link href="/" passHref>
             <div className="cursor-pointer">
@@ -48,7 +43,10 @@ export default function Nav() {
             <MiniCart cart={cart} />
           </div>
         </div>
-      </header>
+      </header> */}
+      <menu>
+        <MegaMenu />
+      </menu>
     </div>
   );
 }
