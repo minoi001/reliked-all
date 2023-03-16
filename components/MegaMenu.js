@@ -12,6 +12,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 import MiniCart from "./MiniCart";
+import Link from "next/link";
 
 const navigation = {
   categories: [
@@ -352,10 +353,16 @@ export default function MegaMenu() {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                <a href="/">
+                <Link href="/">
                   <span className="sr-only">Your Company</span>
-                  <img className="h-8 w-auto" src={headerContent.logo} alt="" />
-                </a>
+                  <Image
+                    className="h-8 w-auto"
+                    src={headerContent.logo}
+                    alt=""
+                    width="100"
+                    height="100"
+                  />
+                </Link>
               </div>
 
               {/* Flyout menus */}
