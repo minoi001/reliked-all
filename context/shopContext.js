@@ -1,9 +1,11 @@
 import { createContext, useState, useEffect } from "react";
 import { createCheckout, updateCheckout } from "../lib/shopify";
 
-const CartContext = createContext();
+const ShopContext = createContext();
 
 export default function ShopProvider({ children }) {
+  // cart
+
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [checkoutId, setCheckoutId] = useState("");
@@ -60,9 +62,34 @@ export default function ShopProvider({ children }) {
     }
   }
 
+  // header
+  const [headerContent, setHeaderContent] = useState({
+    logo: "https://cdn.shopify.com/s/files/1/2481/5934/files/RELIKEDLOGO_360x.png?v=1657015784",
+    bannerText: "",
+    bannerBackroundColour: "",
+    bannerBackgroundImagePattern: "",
+  });
+
+  function updateUserValue(
+    value,
+    label,
+    value1,
+    label1,
+    value2,
+    label2,
+    value3,
+    label3
+  ) {
+    userInfo[label] = value;
+    userInfo[label1] = value1;
+    userInfo[label2] = value2;
+    userInfo[label3] = value3;
+    return value;
+  }
   return (
-    <CartContext.Provider
+    <ShopContext.Provider
       value={{
+        headerContent,
         cart,
         cartOpen,
         setCartOpen,
@@ -71,10 +98,10 @@ export default function ShopProvider({ children }) {
       }}
     >
       {children}
-    </CartContext.Provider>
+    </ShopContext.Provider>
   );
 }
 
-const ShopConsumer = CartContext.Consumer;
+const ShopConsumer = ShopContext.Consumer;
 
-export { ShopConsumer, CartContext };
+export { ShopConsumer, ShopContext };

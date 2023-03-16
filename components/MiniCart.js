@@ -2,13 +2,13 @@ import { Fragment, useState, useContext, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { CartContext } from "../context/shopContext";
+import { ShopContext } from "../context/shopContext";
 import { formatter } from "../utils/helpers";
 
 export default function MiniCart({ cart }) {
   const cancelButtonRef = useRef();
 
-  const { cartOpen, setCartOpen, checkoutUrl } = useContext(CartContext);
+  const { cartOpen, setCartOpen, checkoutUrl } = useContext(ShopContext);
 
   let cartTotal = 0;
   cart.map((item) => {
