@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { getHeaderContent, getProductsInCollection } from "../lib/shopify.js";
 import ProductList from "../components/ProductList";
+import Nav from "../components/Nav.js";
 
 // type products = [];
 // I need to learn more about typescript
@@ -14,6 +15,15 @@ export default function Home({ products }) {
     </div>
   );
 }
+
+// export function Header({ headerContent }) {
+//   console.log(headerContent);
+//   return (
+//     <div className="">
+//       <Nav headerContent={headerContent} />
+//     </div>
+//   );
+// }
 
 export async function getStaticProps() {
   const products = await getProductsInCollection();

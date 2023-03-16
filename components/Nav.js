@@ -3,8 +3,9 @@ import { useContext } from "react";
 import { ShopContext } from "../context/shopContext";
 import { AccountContext } from "../context/accountContext";
 import MiniCart from "./MiniCart";
-import AccountMenu from "./AccountMenu";
 import Image from "next/image";
+import { ShoppingCartIcon, UserIcon } from "@heroicons/react/24/outline";
+
 export default function Nav() {
   const { cart, cartOpen, setCartOpen, headerContent } =
     useContext(ShopContext);
@@ -30,14 +31,19 @@ export default function Nav() {
             </div>
           </Link>
           <div className="text-md font-bold cursor-pointer">
-            <AccountMenu account="account info" />
-            <a
-              onClick={() => {
-                setCartOpen(!cartOpen);
-              }}
-            >
-              Cart ({cartQuantity})
-            </a>
+            <div className="inline-block">
+              <Link href="/account">
+                <UserIcon width="20px" />
+              </Link>
+              <a
+                onClick={() => {
+                  setCartOpen(!cartOpen);
+                }}
+              >
+                <ShoppingCartIcon width="20px" />
+              </a>
+            </div>
+
             <MiniCart cart={cart} />
           </div>
         </div>
