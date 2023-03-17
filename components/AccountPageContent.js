@@ -11,7 +11,7 @@ export default function AccountPageContent({ account }) {
       {userInfo.loginStatus ? (
         "You are logged in"
       ) : (
-        <div className="w-full max-w-md border bg-white rounded-2xl overflow-hidden shadow-lg md:w-1/2">
+        <div className="w-full max-w-md border bg-white overflow-hidden shadow-lg md:w-1/2">
           <div className="relative h-full w-full">
             <Login />
           </div>

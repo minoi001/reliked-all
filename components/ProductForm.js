@@ -54,7 +54,7 @@ export default function ProductForm({ product }) {
   }
 
   return (
-    <div className="rounded-2xl p-4 shadow-lg flex flex-col w-full md:w-1/3">
+    <div className="p-4 shadow-lg flex flex-col w-full md:w-1/3">
       <h2 className="text-2xl font-bold">{product.title}</h2>
       <span className="pb-6">
         {formatter.format(product.variants.edges[0].node.priceV2.amount)}
@@ -73,7 +73,7 @@ export default function ProductForm({ product }) {
           addToCart(selectedVariant);
           setCartOpen(true);
         }}
-        className="bg-rose rounded-full text-white px-2 py-3 mt-4 hover:bg-gray-800"
+        className="bg-rose text-white px-2 py-3 mt-4 hover:bg-gray-800"
       >
         Add to cart
       </button>

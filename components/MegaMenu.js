@@ -185,7 +185,7 @@ export default function MegaMenu() {
                 <div className="flex px-4 pt-5 pb-2">
                   <button
                     type="button"
-                    className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
+                    className="-m-2 inline-flex items-center justify-center p-2 text-gray-400"
                     onClick={() => setOpen(false)}
                   >
                     <span className="sr-only">Close menu</span>
@@ -226,11 +226,11 @@ export default function MegaMenu() {
                               key={item.name}
                               className="group relative text-sm"
                             >
-                              <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                              <div className="aspect-w-1 aspect-h-1 overflow-hidden bg-gray-100 group-hover:opacity-75">
                                 <Image
                                   src={item.imageSrc}
                                   alt={item.imageAlt}
-                                  className="object-cover object-center"
+                                  className="object-center"
                                 />
                               </div>
                               <a
@@ -344,7 +344,7 @@ export default function MegaMenu() {
             <div className="flex h-16 items-center">
               <button
                 type="button"
-                className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
+                className="bg-white p-2 text-gray-400 lg:hidden"
                 onClick={() => setOpen(true)}
               >
                 <span className="sr-only">Open menu</span>
@@ -410,11 +410,13 @@ export default function MegaMenu() {
                                           key={item.name}
                                           className="group relative text-base sm:text-sm"
                                         >
-                                          <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                            <img
+                                          <div className="aspect-w-1 aspect-h-1 overflow-hidden bg-gray-100 group-hover:opacity-75">
+                                            <Image
                                               src={item.imageSrc}
                                               alt={item.imageAlt}
                                               className="object-cover object-center"
+                                              width="100"
+                                              height="100"
                                             />
                                           </div>
                                           <a

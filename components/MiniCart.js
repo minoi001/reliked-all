@@ -79,7 +79,7 @@ export default function MiniCart({ cart }) {
                           >
                             {cart.map((product) => (
                               <li key={product.id} className="flex py-6">
-                                <div className="relative h-full w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 p-1">
+                                <div className="relative h-full w-24 flex-shrink-0 overflow-hidden border border-gray-200 p-1">
                                   <Image
                                     src={product.image}
                                     alt={product.title}
@@ -138,7 +138,7 @@ export default function MiniCart({ cart }) {
                         <div className="mt-6">
                           <a
                             href={checkoutUrl}
-                            className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                            className="flex items-center justify-center border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                           >
                             Checkout
                           </a>

@@ -25,7 +25,7 @@ export default function ProductOptions({
                 }}
               />
               <div
-                className={`p-2 my-3 text-lg rounded-full block cursor-pointer mr-3 ${
+                className={`p-2 my-3 text-lg block cursor-pointer mr-3 ${
                   checked ? "text-white bg-rose" : "text-gray-600 bg-gray-100"
                 }`}
               >

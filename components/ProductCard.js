@@ -15,19 +15,21 @@ const ProductCard = ({ product }) => {
   const price = product.node.priceRange.minVariantPrice.amount;
   // console.log(product);
   return (
-    <Link href={`/products/${handle}`} className="z-0">
-      <div className="group">
-        <div className="w-full bg-gray-200 rounded-3xl overflow-hidden">
-          <div className="relative group-hover:opacity-75 h-full p-3 z-0">
-            <Image src={originalSrc} alt={title} width="446" height="533" />
+    <div>
+      <Link href={`/products/${handle}`} className="z-0">
+        <div className="group z-0">
+          <div className="w-full bg-gray-200 overflow-hidden z-0">
+            <div className="group-hover:opacity-75 h-full p-3 z-0">
+              <Image src={originalSrc} alt={title} width="446" height="533" />
+            </div>
           </div>
+          <h3 className="mt-4 text-lg font-medium text-gray-900">{title}</h3>
+          <h4 className="mt-4 text-md font-medium text-gray-900">
+            {formatter.format(price)}
+          </h4>
         </div>
-        <h3 className="mt-4 text-lg font-medium text-gray-900">{title}</h3>
-        <h4 className="mt-4 text-md font-medium text-gray-900">
-          {formatter.format(price)}
-        </h4>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 
