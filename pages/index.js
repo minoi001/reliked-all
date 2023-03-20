@@ -10,8 +10,11 @@ import HeroImage from "../components/HeroImage.js";
 export default function Home({ products }) {
   console.log(products);
   return (
-    <div className="">
-      <HeroImage />
+    <div className="bg-offWhite">
+      {/* <div>
+        {" "}
+        <HeroImage />
+      </div> */}
       <ProductList products={products} className="z-0" />
     </div>
   );

@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import MegaMenu from "./MegaMenu";
 
 export default function Layout({ children }) {
@@ -7,7 +8,9 @@ export default function Layout({ children }) {
         <MegaMenu />
       </header>
       <main>{children}</main>
-      <footer>Footer</footer>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }

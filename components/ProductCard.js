@@ -18,9 +18,15 @@ const ProductCard = ({ product }) => {
     <div>
       <Link href={`/products/${handle}`} className="z-0">
         <div className="group z-0">
-          <div className="w-full bg-gray-200 overflow-hidden z-0">
-            <div className="group-hover:opacity-75 h-full p-3 z-0">
-              <Image src={originalSrc} alt={title} width="446" height="533" />
+          <div className="w-full bg-offWhite overflow-hidden z-0">
+            <div className="grid group-hover:opacity-75-20 h-72 p-3 z-0 place-items-center">
+              <Image
+                src={originalSrc}
+                alt={title}
+                width="446"
+                height="533"
+                className="object-contain w-36 max-h-60"
+              />
             </div>
           </div>
           <h3 className="mt-4 text-lg font-medium text-gray-900">{title}</h3>

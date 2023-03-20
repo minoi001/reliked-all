@@ -8,7 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        rose: "#ec516b",
+        rose: "#EC516B",
+        taupe: "#A8918D",
+        almostBlack: "#2D2D2D",
+        cream: "#EFE8DF",
+        mint: "#D8EFDE",
+        offWhite: "#F8F8F7",
       },
     },
   },

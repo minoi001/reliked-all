@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
   return (
-    <div>
+    <div className="bg-offWhite">
       <title>Reliked Headless Demo Store</title>
       <ShopProvider>
         <AccountProvider>
