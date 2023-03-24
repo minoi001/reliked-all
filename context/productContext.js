@@ -40,10 +40,11 @@ export default function ProductProvider({ children }) {
     tags: [],
     description: "",
     SKU: "",
+    title: "Product Title",
   });
 
-  function updateProductValue(value, label) {
-    setProductInfo({ ...productInfo, [productInfo[label]]: value });
+  function updateProductValue(valuesObject) {
+    setProductInfo({ ...productInfo, ...valuesObject });
   }
 
   return (
