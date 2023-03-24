@@ -8,7 +8,9 @@ import {
   Bars3Icon,
   MagnifyingGlassIcon,
   ShoppingBagIcon,
+  UserIcon,
   XMarkIcon,
+  BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
 
 import MiniCart from "./MiniCart";
@@ -294,22 +296,22 @@ export default function MegaMenu() {
                 </div>
 
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
-                  <div className="flow-root">
-                    <a
-                      href="#"
+                  {/* <div className="flow-root">
+                    <Link
+                      href="/account"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
-                      Sign in
-                    </a>
-                  </div>
-                  <div className="flow-root">
+                      My Account
+                    </Link>
+                  </div> */}
+                  {/* <div className="flow-root">
                     <a
                       href="#"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Create account
                     </a>
-                  </div>
+                  </div> */}
                 </div>
                 {/* LANGUAGE/COUNTRY/CURRENCY */}
                 {/* <div className="border-t border-gray-200 py-6 px-4">
@@ -492,21 +494,21 @@ export default function MegaMenu() {
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a
-                    href="#"
+                {/* <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                  <Link
+                    href="/account"
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
-                    Sign in
-                  </a>
+                    My Account
+                  </Link>
                   <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a
+                  {/* <a
                     href="#"
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
                     Create account
                   </a>
-                </div>
+                </div> */}
                 {/* LANGUAGE/COUNTRY/CURRENCY */}
 
                 {/* <div className="hidden lg:ml-8 lg:flex">
@@ -534,7 +536,29 @@ export default function MegaMenu() {
                     />
                   </a>
                 </div>
-
+                {/* Account */}
+                <div className="flex lg:ml-6">
+                  <Link
+                    href="/account"
+                    className="p-2 text-gray-400 hover:text-gray-500"
+                  >
+                    <span className="sr-only">Account</span>
+                    <UserIcon className="h-6 w-6" aria-hidden="true" />
+                  </Link>
+                </div>
+                {/* Selling */}
+                <div className="flex lg:ml-6">
+                  <Link
+                    href="/selling"
+                    className="p-2 text-gray-400 hover:text-gray-500"
+                  >
+                    <span className="sr-only">Storefront</span>
+                    <BuildingStorefrontIcon
+                      className="h-6 w-6"
+                      aria-hidden="true"
+                    />
+                  </Link>
+                </div>
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
                   <a
