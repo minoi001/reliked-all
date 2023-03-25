@@ -31,6 +31,8 @@ export default function AccountProvider({ children }) {
     console.log(localStorage.accountToken);
     if (localStorage.accountToken) {
       await sendUserRequest();
+    } else {
+      updateUserValue({ checkingLogin: false });
     }
   };
 
