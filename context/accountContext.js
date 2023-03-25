@@ -13,6 +13,7 @@ export default function AccountProvider({ children }) {
     errorMessage: "",
     loginStatus: false,
     token: "",
+    checkingLogin: true,
   });
 
   function updateUserValue(valuesObject) {
@@ -26,9 +27,10 @@ export default function AccountProvider({ children }) {
     return valuesObject;
   }
 
-  const checkLoginStatus = () => {
+  const checkLoginStatus = async () => {
+    console.log(localStorage.accountToken);
     if (localStorage.accountToken) {
-      getUserInfo(localStorage.accountToken);
+      await sendUserRequest();
     }
   };
 
@@ -36,46 +38,55 @@ export default function AccountProvider({ children }) {
     if (event) {
       event.preventDefault();
     }
-    // send API req for token
-    const tokenRequest = await getUserAccessToken(
-      userInfo.email,
-      userInfo.password
-    );
-    // if credentials fail to produce token, set error message and login status to false
-    if (!tokenRequest.customerAccessTokenCreate.customerAccessToken) {
-      updateUserValue({
-        errorMessage: "we couldn't log you in with those details",
-        false: "errorMessage",
-      });
-      // if token, update user info with token
-    } else {
-      updateUserValue({
-        token: `${tokenRequest.customerAccessTokenCreate.customerAccessToken.accessToken}`,
-      });
-      // request user info using token
-      const infoRequest = await getUserInfo(
-        tokenRequest.customerAccessTokenCreate.customerAccessToken.accessToken
+    // if no token, get token & user info, otherwise, just get user info
+    if (!localStorage.accountToken) {
+      const tokenRequest = await getUserAccessToken(
+        userInfo.email,
+        userInfo.password
       );
-      // if token value, set user info values
-      if (infoRequest.customer) {
+      // if credentials fail to produce token, set error message and login status to false
+      if (!tokenRequest.customerAccessTokenCreate.customerAccessToken) {
         updateUserValue({
-          userName: `${infoRequest.customer.firstName} ${infoRequest.customer.lastName}`,
-          userType: `${infoRequest.customer.userType.value}`,
-          listerCode: `${infoRequest.customer.userCode.value}`,
-          loginStatus: true,
+          errorMessage: "we couldn't log you in with those details",
+          false: "errorMessage",
+          checkingLogin: false,
         });
-        // token invalid, set error message and login status to false
+        return;
+        // if token, update user info with token
       } else {
         updateUserValue({
-          errorMessage: "your session has expired, please login again",
-          loginStatus: false,
+          token: `${tokenRequest.customerAccessTokenCreate.customerAccessToken.accessToken}`,
         });
+        // store token in local storage
+        localStorage.setItem(
+          "accountToken",
+          `${tokenRequest.customerAccessTokenCreate.customerAccessToken.accessToken}`
+        );
       }
+    }
+    // request user info using token
+    const infoRequest = await getUserInfo(localStorage.accountToken);
+    // if token value, set user info values
+    if (infoRequest.customer) {
+      updateUserValue({
+        userName: `${infoRequest.customer.firstName} ${infoRequest.customer.lastName}`,
+        userType: `${infoRequest.customer.userType.value}`,
+        listerCode: `${infoRequest.customer.userCode.value}`,
+        loginStatus: true,
+        checkingLogin: false,
+      });
+      // token invalid, set error message and login status to false
+    } else {
+      updateUserValue({
+        errorMessage: "your session has expired, please login again",
+        loginStatus: false,
+        checkingLogin: false,
+      });
     }
   }
 
   useEffect(() => {
-    sendUserRequest();
+    checkLoginStatus();
   }, []);
 
   return (
