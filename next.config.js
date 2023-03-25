@@ -9,7 +9,7 @@ module.exports = {
     SHOPIFY_LOCATION_ID: process.env.SHOPIFY_LOCATION_ID,
     SHEETY_URL: process.env.SHEETY_URL,
     SHEETY_BEARER_TOKEN: process.env.SHEETY_BEARER_TOKEN,
-    SHOPIFY_LOCATION_ID: process.env.UPLOADCARE_PUBLIC_KEY,
+    SHOPIFY_LOCATION_ID: process.env.UPLOADCARE_PUBLIC_KEY
   },
   images: {
     domains: [`cdn.shopify.com`],
