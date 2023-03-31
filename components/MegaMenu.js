@@ -233,6 +233,8 @@ export default function MegaMenu() {
                                   src={item.imageSrc}
                                   alt={item.imageAlt}
                                   className="object-center"
+                                  width="500"
+                                  height="500"
                                 />
                               </div>
                               <a
@@ -334,7 +336,7 @@ export default function MegaMenu() {
       </Transition.Root>
 
       <header className="relative bg-white z-100">
-        <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+        <p className="flex h-10 items-center justify-center bg-taupe px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           Get free delivery on orders over $100
         </p>
 
@@ -417,8 +419,8 @@ export default function MegaMenu() {
                                               src={item.imageSrc}
                                               alt={item.imageAlt}
                                               className="object-cover object-center"
-                                              width="100"
-                                              height="100"
+                                              width="500"
+                                              height="500"
                                             />
                                           </div>
                                           <a
@@ -571,7 +573,8 @@ export default function MegaMenu() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+
+                    <span className="text-xs font-medium text-white group-hover:text-white bg-rose rounded-full px-1">
                       {cart.length}
                     </span>
                     <span className="sr-only">items in cart, view bag</span>

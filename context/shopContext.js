@@ -3,6 +3,7 @@ import {
   createCheckout,
   getHeaderContent,
   updateCheckout,
+  getHomepageContent,
 } from "../lib/shopify";
 
 const ShopContext = createContext();
@@ -17,6 +18,7 @@ export default function ShopProvider({ children }) {
 
   useEffect(() => {
     sendHeaderContentRequest();
+    sendHomepageContentRequest();
     if (localStorage.checkout_id) {
       const cartObject = JSON.parse(localStorage.checkout_id);
       if (cartObject[0].id) {
@@ -75,21 +77,15 @@ export default function ShopProvider({ children }) {
     bannerBackgroundImagePattern: "",
   });
 
-  function updateHeaderContentValue(
-    value,
-    label,
-    value1,
-    label1,
-    value2,
-    label2,
-    value3,
-    label3
-  ) {
-    headerContent[label] = value;
-    headerContent[label1] = value1;
-    headerContent[label2] = value2;
-    headerContent[label3] = value3;
-    return value;
+  function updateHeaderContentValue(valuesObject) {
+    // console.log(valuesObject);
+    setHeaderContent({ ...headerContent, ...valuesObject });
+
+    // for (let value in valuesObject) {
+    //   console.log(valuesObject[value]);
+    // }
+
+    return valuesObject;
   }
 
   async function sendHeaderContentRequest() {
@@ -98,16 +94,43 @@ export default function ShopProvider({ children }) {
       "gid://shopify/Metaobject/57180350"
     );
 
-    updateHeaderContentValue(
-      headerContentRequest.metaobject.logo.value,
-      "logo"
+    updateHeaderContentValue({
+      logo: `${headerContentRequest.metaobject.logo.value}`,
+    });
+  }
+
+  // homepage
+  const [homepageContent, setHomepageContent] = useState({
+    heroImage: "",
+  });
+
+  function updateHomepageContentValue(valuesObject) {
+    // console.log(valuesObject);
+    setHomepageContent({ ...homepageContent, ...valuesObject });
+
+    // for (let value in valuesObject) {
+    //   console.log(valuesObject[value]);
+    // }
+
+    return valuesObject;
+  }
+
+  async function sendHomepageContentRequest() {
+    // doesn't work on first page render
+    const homepageContentRequest = await getHomepageContent(
+      "gid://shopify/Metaobject/57147582"
     );
+
+    updateHomepageContentValue({
+      heroImage: `${homepageContentRequest.metaobject.hero_image.value}`,
+    });
   }
 
   return (
     <ShopContext.Provider
       value={{
         headerContent,
+        homepageContent,
         cart,
         cartOpen,
         setCartOpen,
