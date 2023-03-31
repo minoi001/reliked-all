@@ -4,7 +4,11 @@ import Image from "next/image";
 
 const HeroImage = ({ homepageContent }) => {
   return (
-    <div className="max-w-7xl bg-no-repeat bg-center bg-[url('http://localhost:3006/_next/image?url=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F2481%2F5934%2Ffiles%2FHomepage_Design_12.png%3Fv%3D1677844241&w=3840&q=75')]">
+    <div
+      className={
+        "max-w-7xl bg-no-repeat bg-center bg-[url('" + homepageContent + "')"
+      }
+    >
       <div class="py-36 align-bottom">
         {/* <div>
           <div class="hidden sm:mb-8 sm:flex sm:justify-center">
