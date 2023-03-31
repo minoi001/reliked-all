@@ -10,14 +10,14 @@ const Details = ({ products }) => {
       <fieldset className="px-4 border-solid border-2 border-indigo-600 ">
         <legend className="p-1">DETAILS</legend>
         <div className="flex">
-          <input className="mb-4 p-2 inline w-16" placeholder={"Condition"} />
-          <p className="mb-4 py-2 inline">:</p>
-          <input className="mb-4 p-2 inline w-16" placeholder={"Packaging"} />
-          <p className="mb-4 py-2 inline">:</p>
-
-          <input className="mb-4 p-2 inline w-12" placeholder={"Description"} />
-          <p className="mb-4 py-2 inline">:</p>
-          <input className="mb-4 p-2 inline w-16" placeholder={"Faults"} />
+          <div className="block">
+            <input className="mb-4 p-2 inline" placeholder={"Condition"} />
+            <input className="mb-4 p-2 inline" placeholder={"Description"} />
+          </div>
+          <div className="block">
+            <input className="mb-4 p-2 inline" placeholder={"Packaging"} />
+            <input className="mb-4 p-2 inline" placeholder={"Faults"} />
+          </div>
         </div>
       </fieldset>
     </div>

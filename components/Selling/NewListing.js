@@ -9,7 +9,7 @@ import Audience from "./ListingVariables/Audience";
 import Ownership from "./ListingVariables/Ownership";
 import Photos from "./ListingVariables/Photos";
 import Details from "./ListingVariables/Details";
-import Admin from "./ListingVariables/Admin";
+import Staff from "./ListingVariables/Staff";
 
 export default function NewListing({ listing }) {
   const { productInfo } = useContext(ProductContext);
@@ -70,7 +70,7 @@ export default function NewListing({ listing }) {
                   <Details />
                 </div>
                 <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 z-0">
-                  <Admin />
+                  <Staff />
                 </div>
               </div>
             </div>
