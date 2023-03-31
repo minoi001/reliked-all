@@ -18,7 +18,7 @@ export default function ShopProvider({ children }) {
 
   useEffect(() => {
     sendHeaderContentRequest();
-    sendHomepageContentRequest();
+    // sendHomepageContentRequest();
     if (localStorage.checkout_id) {
       const cartObject = JSON.parse(localStorage.checkout_id);
       if (cartObject[0].id) {

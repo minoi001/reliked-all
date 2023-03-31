@@ -6,7 +6,7 @@ export default function Layout({ children }) {
   const { pathname } = useRouter();
 
   return (
-    <div>
+    <div className="bg-offWhite">
       <header>
         <MegaMenu />
       </header>
