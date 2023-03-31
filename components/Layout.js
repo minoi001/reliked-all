@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import Footer from "./Footer";
 import MegaMenu from "./MegaMenu";
+import ShoppingHeader from "./ShoppingHeader";
 
 export default function Layout({ children }) {
   const { pathname } = useRouter();
@@ -13,7 +14,9 @@ export default function Layout({ children }) {
       {pathname?.includes("/selling") ? (
         <subheader>selling subheader</subheader>
       ) : (
-        <subheader>shopping subheader</subheader>
+        <subheader>
+          <ShoppingHeader />
+        </subheader>
       )}
 
       <main>{children}</main>
