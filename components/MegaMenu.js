@@ -355,20 +355,6 @@ export default function MegaMenu() {
                 <Bars3Icon className="h-6 w-6" aria-hidden="true" />
               </button>
 
-              {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
-                <Link href="/">
-                  <span className="sr-only">Your Company</span>
-                  <Image
-                    className="h-8 w-auto"
-                    src={headerContent.logo}
-                    alt=""
-                    width="100"
-                    height="100"
-                  />
-                </Link>
-              </div>
-
               {/* Flyout menus */}
 
               <div className="ml-auto flex items-center">
@@ -405,7 +391,7 @@ export default function MegaMenu() {
                 </div> */}
 
                 {/* Search */}
-                <div className="flex lg:ml-6">
+                <div className="flex lg:ml-6 lg:hidden">
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon
@@ -414,6 +400,7 @@ export default function MegaMenu() {
                     />
                   </a>
                 </div>
+
                 {/* Account */}
                 <div className="flex lg:ml-6">
                   <Link
@@ -458,6 +445,63 @@ export default function MegaMenu() {
                   <MiniCart cart={cart} />
                 </div>
               </div>
+            </div>
+            {/* Logo */}
+            <div className="relative">
+              <div className="items-center justify-center flex">
+                <Link href="/">
+                  <span className="sr-only">Your Company</span>
+                  <Image
+                    className="h-8 w-auto -mt-12"
+                    src={headerContent.logo}
+                    alt=""
+                    width="100"
+                    height="100"
+                  />
+                </Link>
+              </div>
+              <form className="max-lg:hidden">
+                <label
+                  for="default-search"
+                  class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+                >
+                  Search
+                </label>
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg
+                      aria-hidden="true"
+                      class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none ">
+                    <input
+                      type="search"
+                      id="default-search"
+                      class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Search Mockups, Logos..."
+                      required
+                    />
+                    <button
+                      type="submit"
+                      class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      Search
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </nav>
