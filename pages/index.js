@@ -10,6 +10,7 @@ import { useContext, useEffect } from "react";
 import { ShopContext } from "../context/shopContext.js";
 import HeroImage from "../components/Homepage/HeroImage.js";
 import InfluencerSlider from "../components/Homepage/InfluencerSlider.js";
+import FeaturedCollections from "../components/Homepage/FeaturedCollections.js";
 // type products = [];
 // I need to learn more about typescript
 
@@ -28,7 +29,12 @@ export default function Home({ products, headerContent, homepageContent }) {
       <div className="pt-2">
         <InfluencerSlider />
       </div>
-      <ProductList products={products} className="z-0" />
+      <div className="">
+        <FeaturedCollections />
+      </div>
+      <div>
+        <ProductList products={products} className="z-0" />
+      </div>
     </div>
   );
 }

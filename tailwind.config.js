@@ -33,6 +33,9 @@ module.exports = {
       aspectRatio: {
         "4/5": "4 / 5",
       },
+      padding: {
+        "34r": "34rem",
+      },
       colors: {
         rose: "#EC516B",
         taupe: "#A8918D",
