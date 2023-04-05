@@ -18,7 +18,7 @@ export default function ShopProvider({ children }) {
 
   useEffect(() => {
     sendHeaderContentRequest();
-    // sendHomepageContentRequest();
+    sendHomepageContentRequest();
     if (localStorage.checkout_id) {
       const cartObject = JSON.parse(localStorage.checkout_id);
       if (cartObject[0].id) {
@@ -119,10 +119,10 @@ export default function ShopProvider({ children }) {
     // doesn't work on first page render
     const homepageContentRequest = await getHomepageContent(
       "gid://shopify/Metaobject/57147582"
-    );
+    ).then();
 
     updateHomepageContentValue({
-      heroImage: `${homepageContentRequest.metaobject.hero_image.value}`,
+      heroImage: `${homepageContentRequest.metaobject}`,
     });
   }
 

@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import Footer from "./Footer";
-import MegaMenu from "./MegaMenu";
+import MegaMenu from "./Header/MegaMenu";
 import Banner from "./Header/Banner";
-import ShoppingHeader from "./ShoppingHeader";
+import ShoppingSubheader from "./Header/ShoppingSubheader";
 import LogoHeader from "./Header/LogoHeader";
 
 export default function Layout({ children }) {

@@ -1,6 +1,6 @@
 import { PHASE_PRODUCTION_SERVER } from "next/dist/shared/lib/constants";
 import React from "react";
-import ProductCard from "./ProductCard";
+import ProductCard from "../Products/ProductCard";
 
 const ProductList = ({ products }) => {
   return (

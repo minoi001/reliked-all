@@ -5,11 +5,11 @@ import {
   getHomepageContent,
   getProductsInCollection,
 } from "../lib/shopify.js";
-import ProductList from "../components/ProductList";
+import ProductList from "../components/Homepage/ProductList.js";
 import { useContext, useEffect } from "react";
 import { ShopContext } from "../context/shopContext.js";
-import HeroImage from "../components/HeroImage.js";
-
+import HeroImage from "../components/Homepage/HeroImage.js";
+import InfluencerSlider from "../components/Homepage/InfluencerSlider.js";
 // type products = [];
 // I need to learn more about typescript
 
@@ -20,10 +20,13 @@ export default function Home({ products, headerContent, homepageContent }) {
   return (
     <div className="bg-white">
       <div class="text-center">
-        <div className="lg:max-w-7xl mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="lg:max-w-7xl mx-auto max-w-7xl sm:px-6 lg:px-8">
           {" "}
           <HeroImage homepageContent={homepageContent} />
         </div>
+      </div>
+      <div className="pt-2">
+        <InfluencerSlider />
       </div>
       <ProductList products={products} className="z-0" />
     </div>

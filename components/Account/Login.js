@@ -1,7 +1,7 @@
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import { useContext } from "react";
-import { AccountContext } from "../context/accountContext";
+import { AccountContext } from "../../context/accountContext";
 
 export default function Login() {
   const {

@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ShopContext } from "../context/shopContext";
-import { AccountContext } from "../context/accountContext";
+import { ShopContext } from "../../context/shopContext";
+import { AccountContext } from "../../context/accountContext";
 import Image from "next/image";
 import { Fragment, useState } from "react";
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
@@ -13,7 +13,7 @@ import {
   BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
 
-import MiniCart from "./MiniCart";
+import MiniCart from "../Header/MiniCart";
 import Link from "next/link";
 
 const navigation = {

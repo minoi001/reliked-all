@@ -3,11 +3,15 @@ import React from "react";
 import Image from "next/image";
 
 const HeroImage = ({ homepageContent }) => {
+  console.log("heroImage:" + homepageContent);
   return (
     <div
-      className={
-        "max-w-7xl bg-no-repeat bg-center bg-[url('" + homepageContent + "')"
-      }
+      className={`max-w-7xl bg-no-repeat bg-center max-md:max-h-60`}
+      style={{
+        backgroundImage: `url(${homepageContent})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+      }}
     >
       <div class="py-36 align-bottom">
         {/* <div>

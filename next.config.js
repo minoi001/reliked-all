@@ -12,6 +12,10 @@ module.exports = {
     UPLOADCARE_PUBLIC_KEY: process.env.UPLOADCARE_PUBLIC_KEY,
   },
   images: {
-    domains: [`cdn.shopify.com`, `tailwindui.com`],
+    domains: [
+      `cdn.shopify.com`,
+      `tailwindui.com`,
+      `images.hardlyeverwornit.com`,
+    ],
   },
 };

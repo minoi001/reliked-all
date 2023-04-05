@@ -10,13 +10,16 @@ import {
   XMarkIcon,
   BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
-import ShoppingHeader from "../ShoppingHeader";
+import ShoppingHeader from "./ShoppingSubheader";
 import SearchBar from "./SearchBar";
+import MiniCart from "./MiniCart";
 
 const LogoHeader = () => {
   const [open, setOpen] = useState(false);
 
-  const { headerContent } = useContext(ShopContext);
+  const { cart, cartOpen, setCartOpen, headerContent } =
+    useContext(ShopContext);
+
   return (
     <div>
       <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -25,7 +28,6 @@ const LogoHeader = () => {
 
           <div className="relative">
             {/* Logo */}
-
             <div className="items-center justify-center flex">
               <Link href="/">
                 <span className="sr-only">Reliked</span>
@@ -39,7 +41,6 @@ const LogoHeader = () => {
               </Link>
             </div>
             {/* End of Logo */}
-
             {/* DesktopSearch/HamburgerMenu */}
             <div className="float-left -mt-9 text-sm w-60 max-lg:hidden">
               <Link href="/">
@@ -48,13 +49,53 @@ const LogoHeader = () => {
               </Link>
             </div>
             {/* End of DesktopSearch/HamburgerMenu */}
-
             {/* Icons */}
             <div className="float-right -mt-9 text-sm">
-              <Link href="/">
-                <span className="sr-only">Icons</span>
-                Icons Here
-              </Link>
+              <div className="ml-auto flex items-center">
+                {/* Account */}
+                <div className="flex lg:ml-6">
+                  <Link
+                    href="/account"
+                    className="p-2 text-gray-400 hover:text-gray-500"
+                  >
+                    <span className="sr-only">Account</span>
+                    <UserIcon className="h-6 w-6" aria-hidden="true" />
+                  </Link>
+                </div>
+                {/* Selling */}
+                <div className="flex lg:ml-6">
+                  <Link
+                    href="/selling"
+                    className="p-2 text-gray-400 hover:text-gray-500"
+                  >
+                    <span className="sr-only">Storefront</span>
+                    <BuildingStorefrontIcon
+                      className="h-6 w-6"
+                      aria-hidden="true"
+                    />
+                  </Link>
+                </div>
+                {/* Cart */}
+                <div className="ml-4 flow-root lg:ml-6">
+                  <a
+                    className="group -m-2 flex items-center p-2 cursor-pointer"
+                    onClick={() => {
+                      setCartOpen(!cartOpen);
+                    }}
+                  >
+                    <ShoppingBagIcon
+                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+
+                    <span className="text-xs font-medium text-white group-hover:text-white bg-rose rounded-full px-1">
+                      {cart.length}
+                    </span>
+                    <span className="sr-only">items in cart, view bag</span>
+                  </a>
+                  <MiniCart cart={cart} />
+                </div>
+              </div>
             </div>
             {/* End of Icons */}
             {/* Burger Menu Button */}
@@ -70,10 +111,12 @@ const LogoHeader = () => {
             </div>
             {/* End of Burger Menu Button */}
             {/* Navigation */}
-            <ShoppingHeader open={open} setOpen={setOpen} />
+            <div>
+              <ShoppingHeader open={open} setOpen={setOpen} />
+            </div>
             {/* End of Navigation */}
             {/* Mobile Search Bar */}
-            <div className="lg:hidden">
+            <div className="lg:hidden pb-2">
               <SearchBar />
             </div>
             {/* End of Mobile Search Bar */}

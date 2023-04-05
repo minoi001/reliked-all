@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
-import { formatter } from "../utils/helpers";
-import ProductList from "./ProductList";
+import { formatter } from "../../utils/helpers";
+import ProductList from "../Homepage/ProductList";
 import ProductOptions from "./ProductOptions";
-import { ShopContext } from "../context/shopContext";
+import { ShopContext } from "../../context/shopContext";
 
 export default function ProductForm({ product }) {
   const { addToCart, setCartOpen } = useContext(ShopContext);

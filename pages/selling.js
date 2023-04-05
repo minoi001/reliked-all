@@ -3,7 +3,7 @@ import { getAllProducts, getProduct } from "../lib/shopify.js";
 
 import { AccountContext } from "../context/accountContext";
 import { useContext } from "react";
-import Login from "../components/Login";
+import Login from "../components/Account/Login";
 import Link from "next/link";
 
 export default function Selling({ product }) {

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Login from "../Login";
+import Login from "../Account/Login";
 import { useContext } from "react";
 import { ProductContext } from "../../context/productContext";
 import { AccountContext } from "../../context/accountContext";
