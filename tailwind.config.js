@@ -7,6 +7,10 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ["Questrial", "serif"],
+      h: ["Cormorant Garamond", "serif"],
+    },
     screens: {
       xxs: "250px",
       // => @media (min-width: 300px) { ... }

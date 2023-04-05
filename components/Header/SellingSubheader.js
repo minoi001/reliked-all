@@ -212,7 +212,7 @@ export default function SellingSubheader(props) {
                               selected
                                 ? "border-indigo-600 text-indigo-600"
                                 : "border-transparent text-gray-900",
-                              "flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium"
+                              "uppercase flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium"
                             )
                           }
                         >
@@ -292,7 +292,7 @@ export default function SellingSubheader(props) {
                     <div key={page.name} className="flow-root">
                       <a
                         href={page.href}
-                        className="-m-2 block p-2 font-medium text-gray-900"
+                        className="uppercase -m-2 block p-2 font-medium text-gray-900"
                       >
                         {page.name}
                       </a>
@@ -337,14 +337,14 @@ export default function SellingSubheader(props) {
           </div>
         </Dialog>
       </Transition.Root>
-
+      {/* Desktop Menu */}
       <header className="relative max-lg:hidden">
         <nav
           aria-label="Top"
           className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
         >
           <div className="">
-            <div className="flex h-8 items-center justify-center">
+            <div className="flex h-8 items-center justify-center ml-36">
               {/* Flyout menus */}
               <Popover.Group className="hidden lg:block lg:self-stretch">
                 <div className="items-center justify-center flex h-full space-x-8 pb-1">
@@ -358,7 +358,7 @@ export default function SellingSubheader(props) {
                                 open
                                   ? "border-indigo-600 text-indigo-600"
                                   : "border-transparent text-gray-700 hover:text-gray-800",
-                                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
+                                "uppercase relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
                               )}
                             >
                               {category.name}
@@ -460,7 +460,7 @@ export default function SellingSubheader(props) {
                     <a
                       key={page.name}
                       href={page.href}
-                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                      className="uppercase flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                     >
                       {page.name}
                     </a>

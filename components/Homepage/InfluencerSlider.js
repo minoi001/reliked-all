@@ -56,7 +56,7 @@ const InfluencerSlider = () => {
   return (
     <div className="">
       <div className="container  mx-auto py-5 px-2 lg:max-w-7xl sm:px-6 lg:px-8">
-        <h1 className="text-3xl lg:text-4xl py-5 font-bold">
+        <h1 className="font-h text-3xl lg:text-4xl py-5 font-bold">
           Your home of celebrity and influencer closets
         </h1>
         <div

@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <div className="bg-offWhite">
       <title>Reliked Headless Demo Store</title>
-
+      {/* Image Share Link Preview Thumbnail */}
       <meta
         property="og:image"
         content="https://cdn.shopify.com/s/files/1/2481/5934/files/Homepage_Design_24.png?v=1680620417"
