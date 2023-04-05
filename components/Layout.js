@@ -14,11 +14,6 @@ export default function Layout({ children }) {
         <Banner />
         <LogoHeader />
       </header>
-      {pathname?.includes("/selling") ? (
-        <subheader>selling subheader</subheader>
-      ) : (
-        <subheader></subheader>
-      )}
 
       <main>{children}</main>
       <footer>

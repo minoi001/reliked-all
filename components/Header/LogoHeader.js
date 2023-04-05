@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { ShopContext } from "../../context/shopContext";
 import {
   Bars3Icon,
@@ -10,15 +11,17 @@ import {
   XMarkIcon,
   BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
-import ShoppingHeader from "./ShoppingSubheader";
+import ShoppingSubheader from "./ShoppingSubheader";
 import SearchBar from "./SearchBar";
 import MiniCart from "./MiniCart";
+import SellingSubheader from "./SellingSubheader";
 
 const LogoHeader = () => {
   const [open, setOpen] = useState(false);
 
   const { cart, cartOpen, setCartOpen, headerContent } =
     useContext(ShopContext);
+  const { pathname } = useRouter();
 
   return (
     <div>
@@ -111,9 +114,17 @@ const LogoHeader = () => {
             </div>
             {/* End of Burger Menu Button */}
             {/* Navigation */}
-            <div>
-              <ShoppingHeader open={open} setOpen={setOpen} />
-            </div>
+            {pathname?.includes("/selling") ? (
+              <subheader>
+                {" "}
+                <SellingSubheader open={open} setOpen={setOpen} />
+              </subheader>
+            ) : (
+              <subheader>
+                <ShoppingSubheader open={open} setOpen={setOpen} />
+              </subheader>
+            )}
+
             {/* End of Navigation */}
             {/* Mobile Search Bar */}
             <div className="lg:hidden pb-2">
