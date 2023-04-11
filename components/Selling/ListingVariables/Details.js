@@ -11,12 +11,21 @@ const Details = ({ products }) => {
         <legend className="p-1">DETAILS</legend>
         <div className="flex">
           <div className="block">
-            <input className="mb-4 p-2 inline" placeholder={"Condition"} />
-            <input className="mb-4 p-2 inline" placeholder={"Description"} />
+            <input
+              className="mb-4 p-2 inline w-full"
+              placeholder={"Condition"}
+            />
+            <input
+              className="mb-4 p-2 inline w-full"
+              placeholder={"Description"}
+            />
           </div>
           <div className="block">
-            <input className="mb-4 p-2 inline" placeholder={"Packaging"} />
-            <input className="mb-4 p-2 inline" placeholder={"Faults"} />
+            <input
+              className="mb-4 p-2 inline w-full"
+              placeholder={"Packaging"}
+            />
+            <input className="mb-4 p-2 inline w-full" placeholder={"Faults"} />
           </div>
         </div>
       </fieldset>

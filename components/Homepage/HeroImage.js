@@ -8,7 +8,7 @@ const HeroImage = ({ homepageContent }) => {
     <div
       className={`max-w-7xl bg-no-repeat bg-center max-md:max-h-60`}
       style={{
-        backgroundImage: `url(${homepageContent})`,
+        backgroundImage: `url(${homepageContent.hero_image.value})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
       }}

@@ -10,9 +10,9 @@ const Audience = ({ products }) => {
       <fieldset className="px-4 border-solid border-2 border-indigo-600 ">
         <legend className="p-1">{"AUDIENCE"}</legend>
         <div className="flex">
-          <input className="mb-4 p-2 inline w-12" placeholder={"Age"} />
-          <p className="mb-4 py-2 inline">:</p>
-          <input className="mb-4 p-2 inline w-20" placeholder={"Gender"} />
+          <input className="mb-4 p-2 inline w-full" placeholder={"Age"} />
+          {/* <p className="mb-4 py-2 inline">:</p> */}
+          <input className="mb-4 p-2 inline w-full" placeholder={"Category"} />
         </div>
       </fieldset>
     </div>

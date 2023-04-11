@@ -10,21 +10,21 @@ const Title = ({ products }) => {
       <fieldset className="px-4 border-solid border-2 border-indigo-600 ">
         <legend className="p-1">TITLE</legend>
         <div className="flex">
-          <input className="mb-4 p-2 inline w-16" placeholder={"Brand"} />
-          <p className="mb-4 py-2 inline">:</p>
-          <input className="mb-4 p-2 inline w-16" placeholder={"Colour"} />
-          <p className="mb-4 py-2 inline">:</p>
+          <input className="mb-4 p-2 inline w-1/6" placeholder={"Brand"} />
+          {/* <p className="mb-4 py-2 inline">:</p> */}
+          <input className="mb-4 p-2 inline w-1/6" placeholder={"Colour"} />
+          {/* <p className="mb-4 py-2 inline">:</p> */}
 
           <input
-            className="mb-4 p-2 inline w-12"
+            className="mb-4 p-2 inline w-1/2"
             placeholder={
               userInfo.userType === "Customer" || "Influencer"
                 ? "Description"
                 : "Copy & paste product title..."
             }
           />
-          <p className="mb-4 py-2 inline">:</p>
-          <input className="mb-4 p-2 inline w-16" placeholder={"Size"} />
+          {/* <p className="mb-4 py-2 inline">:</p> */}
+          <input className="mb-4 p-2 inline w-1/6" placeholder={"Size"} />
         </div>
       </fieldset>
     </div>

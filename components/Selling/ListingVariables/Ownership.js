@@ -10,9 +10,9 @@ const Ownership = ({ products }) => {
       <fieldset className="px-4 border-solid border-2 border-indigo-600 ">
         <legend className="p-1">{"OWNERSHIP"}</legend>
         <div className="flex">
-          <input className="mb-4 p-2 inline w-24" placeholder={"Influencer"} />
-          <p className="mb-4 py-2 inline">:</p>
-          <input className="mb-4 p-2 inline w-24" placeholder={"Anonymous"} />
+          <input className="mb-4 p-2 inline w-2/3" placeholder={"Influencer"} />
+          {/* <p className="mb-4 py-2 inline">:</p> */}
+          <input className="mb-4 p-2 inline w-1/3" placeholder={"Anonymous"} />
         </div>
       </fieldset>
     </div>

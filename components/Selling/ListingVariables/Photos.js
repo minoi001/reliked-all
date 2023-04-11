@@ -7,17 +7,17 @@ const Photos = ({ products }) => {
 
   return (
     <div>
-      <fieldset className="px-4 border-solid border-2 border-indigo-600">
+      <fieldset className="px-4 border-solid border-2 border-indigo-600 w-full">
         <legend className="p-1">PHOTOS</legend>
         <div className="flex">
           <div className="block">
             <input
-              className="mb-4 p-2 flex-auto w-72"
+              className="mb-4 p-2 flex-auto w-full"
               placeholder={"How is this item being photographed?"}
             />
-            <input className="mb-4 p-2" placeholder={"Upload: Choose"} />
+            <input className="mb-4 p-2 w-1/2" placeholder={"Upload: Choose"} />
 
-            <input className="mb-4 p-2 " placeholder={"Gallery"} />
+            <input className="mb-4 p-2 w-1/2" placeholder={"Gallery"} />
           </div>
         </div>
       </fieldset>

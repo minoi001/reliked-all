@@ -16,7 +16,7 @@ export default function NewListing({ listing }) {
   const { userInfo } = useContext(AccountContext);
 
   return (
-    <div className="flex flex-col justify-center items-center space-y-8 md:flex-row md:items-start md:space-y-0 md:spacex-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto">
+    <div className="flex flex-col justify-center items-center -mt-6 sm:-mt-16 md:flex-row md:items-start md:space-x-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto">
       {userInfo.loginStatus ? (
         //  logged in
         <div>
@@ -31,45 +31,40 @@ export default function NewListing({ listing }) {
                 </h3>
               </div>
             </div>
-            <div className="flex">
-              <div className="inline max-w-2xl mx-auto p-4 sm:px-6 lg:max-w-7xl lg:px-8">
+            <div className="grid md:grid-cols-2">
+              {/* LEFT SIDE OF FORM */}
+              <div className="inline w-full p-4 md:pl-8">
                 <div
                   className={
                     userInfo.userType === "Customer" ||
                     userInfo.userType === "Influencer"
                       ? "hidden "
-                      : "" +
-                        "grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 z-0"
+                      : ""
                   }
                 >
                   <Ownership />
-                </div>
-                <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 z-0">
+
                   <Type />
-                </div>
-                <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 z-0">
+
                   <Audience />
-                </div>
-                <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 z-0">
+
                   <Title />
                 </div>
               </div>
-              <div className="inline max-w-2xl mx-auto p-4 sm:px-6 lg:max-w-7xl lg:px-8">
+              {/* RIGHT SIDE OF FORM */}
+
+              <div className="inline w-full p-4 md:pr-8">
+                <Photos />
+
+                <Details />
                 <div
                   className={
                     userInfo.userType === "Customer" ||
                     userInfo.userType === "Influencer"
                       ? "hidden "
-                      : "" +
-                        "grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 z-0"
+                      : ""
                   }
                 >
-                  <Photos />
-                </div>
-                <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 z-0">
-                  <Details />
-                </div>
-                <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 z-0">
                   <Staff />
                 </div>
               </div>
