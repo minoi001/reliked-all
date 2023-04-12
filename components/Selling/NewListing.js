@@ -10,6 +10,7 @@ import Ownership from "./ListingVariables/Ownership";
 import Photos from "./ListingVariables/Photos";
 import Details from "./ListingVariables/Details";
 import Staff from "./ListingVariables/Staff";
+import Price from "./ListingVariables/Price";
 
 export default function NewListing({ listing }) {
   const { productInfo } = useContext(ProductContext);
@@ -26,14 +27,14 @@ export default function NewListing({ listing }) {
           <div className="bg-white pb-4">
             <div>
               <div className="max-w-2xl mx-auto py-4 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                <h3 className="text-xl font-extrabold text-gray-900 mb-6">
+                <h3 className="text-xl font-extrabold text-gray-900 mb-0">
                   {productInfo.title}
                 </h3>
               </div>
             </div>
             <div className="grid md:grid-cols-2">
               {/* LEFT SIDE OF FORM */}
-              <div className="inline w-full p-4 md:pl-8">
+              <div className="inline w-full p-4 pt-0 md:pl-8">
                 <div
                   className={
                     userInfo.userType === "Customer" ||
@@ -53,21 +54,23 @@ export default function NewListing({ listing }) {
               </div>
               {/* RIGHT SIDE OF FORM */}
 
-              <div className="inline w-full p-4 md:pr-8">
+              <div className="inline w-full p-4 pt-0 md:pr-8">
                 <Photos />
 
                 <Details />
-                <div
-                  className={
-                    userInfo.userType === "Customer" ||
-                    userInfo.userType === "Influencer"
-                      ? "hidden "
-                      : ""
-                  }
-                >
-                  <Staff />
-                </div>
+
+                <Price />
               </div>
+            </div>
+            <div
+              className={
+                userInfo.userType === "Customer" ||
+                userInfo.userType === "Influencer"
+                  ? "hidden "
+                  : "flex-inline px-4 md:px-8 w-full"
+              }
+            >
+              <Staff />
             </div>
           </div>
         </div>

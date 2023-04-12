@@ -17,7 +17,7 @@ const Details = ({ products }) => {
             />
             <input
               className="mb-4 p-2 inline w-full"
-              placeholder={"Description"}
+              placeholder={"More Information"}
             />
           </div>
           <div className="block">

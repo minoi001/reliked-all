@@ -79,11 +79,11 @@ export default function MiniCart({ cart }) {
                           >
                             {cart.map((product) => (
                               <li key={product.id} className="flex py-6">
-                                <div className="relative h-full w-24 flex-shrink-0 overflow-hidden border border-gray-200 p-1">
+                                <div className="relative h-36 w-24 flex-shrink-0 overflow-hidden border border-gray-200 py-4 px-2">
                                   <Image
                                     src={product.image}
                                     alt={product.title}
-                                    className="h-full w-full object-cover object-center"
+                                    className="h-full w-full object-contain object-center"
                                     width="100"
                                     height="100"
                                   />
