@@ -19,24 +19,8 @@ const Title = ({ products }) => {
   }, []);
 
   const brands = listingVariables.brands;
-
-  const colours = [
-    {
-      value: "Pink",
-      label: "Pink",
-      variable: "colour",
-    },
-    { value: "Blue", label: "Blue", variable: "colour" },
-  ];
-
-  const sizes = [
-    {
-      value: "UK S",
-      label: "UK S",
-      variable: "size",
-    },
-    { value: "UK XL", label: "UK XL", variable: "size" },
-  ];
+  const colours = listingVariables.colours;
+  const sizes = listingVariables.sizes;
 
   const handleChange = (event) => {
     console.log(event);
