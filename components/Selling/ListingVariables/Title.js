@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Select from "react-select";
 import Creatable from "react-select/creatable";
 
@@ -6,17 +6,19 @@ import { ProductContext } from "../../../context/productContext";
 import { AccountContext } from "../../../context/accountContext";
 
 const Title = ({ products }) => {
-  const { productInfo, updateProductValue } = useContext(ProductContext);
+  const {
+    productInfo,
+    updateProductValue,
+    listingVariables,
+    getListingVariables,
+  } = useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
 
-  const brands = [
-    {
-      value: "Zara",
-      label: "Zara",
-      variable: "brand",
-    },
-    { value: "H&M", label: "H&M", variable: "brand" },
-  ];
+  useEffect(() => {
+    getListingVariables();
+  }, []);
+
+  const brands = listingVariables.brands;
 
   const colours = [
     {

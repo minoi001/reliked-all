@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { createCheckout, updateCheckout } from "../lib/shopify";
+import { getBrandVariables } from "../lib/relikedAPI";
 
 const ProductContext = createContext();
 
@@ -47,10 +48,23 @@ export default function ProductProvider({ children }) {
     title: "Product Title",
   });
 
-  const [listingVariables, setListingVariables] = useState();
+  const [listingVariables, setListingVariables] = useState({
+    brands: [],
+    influencers: [],
+    types: [],
+  });
 
   function updateProductValue(valuesObject) {
     setProductInfo({ ...productInfo, ...valuesObject });
+  }
+
+  const getListingVariables = async () => {
+    let brandVariables = await getBrandVariables();
+    updateListingVariables({ brands: brandVariables });
+  };
+
+  function updateListingVariables(valuesObject) {
+    setListingVariables({ ...listingVariables, ...valuesObject });
   }
 
   return (
@@ -59,6 +73,9 @@ export default function ProductProvider({ children }) {
         productInfo,
         setProductInfo,
         updateProductValue,
+        listingVariables,
+        setListingVariables,
+        getListingVariables,
       }}
     >
       {children}
