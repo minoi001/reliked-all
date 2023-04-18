@@ -10,6 +10,12 @@ module.exports = {
     SHEETY_URL: process.env.SHEETY_URL,
     SHEETY_BEARER_TOKEN: process.env.SHEETY_BEARER_TOKEN,
     UPLOADCARE_PUBLIC_KEY: process.env.UPLOADCARE_PUBLIC_KEY,
+    PRODUCTS_SPREADSHEET_ID: process.env.PRODUCTS_SPREADSHEET_ID,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_EMAIL: process.env.GOOGLE_CLIENT_EMAIL,
+    GOOGLE_PROJECT_ID: process.env.GOOGLE_PROJECT_ID,
+    GOOGLE_PRIVATE_KEY: process.env.GOOGLE_PRIVATE_KEY,
+    RELIKED_API_KEY: process.env.RELIKED_API_KEY,
   },
   images: {
     domains: [

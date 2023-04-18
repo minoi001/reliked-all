@@ -19,8 +19,12 @@ export default function ProductProvider({ children }) {
     ],
     additionalDetails: "",
     type: "",
-    RRP: "",
-    price: "",
+    availability: null,
+    RRP: 0,
+    salePrice: 0,
+    price: 0,
+    discount: 0.5,
+    multiplier: 1,
     condition: "",
     faults: "",
     packaging: "",
@@ -42,6 +46,8 @@ export default function ProductProvider({ children }) {
     SKU: "",
     title: "Product Title",
   });
+
+  const [listingVariables, setListingVariables] = useState();
 
   function updateProductValue(valuesObject) {
     setProductInfo({ ...productInfo, ...valuesObject });
