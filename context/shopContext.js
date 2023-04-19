@@ -102,6 +102,7 @@ export default function ShopProvider({ children }) {
   // homepage
   const [homepageContent, setHomepageContent] = useState({
     heroImage: "",
+    heroImageMobile: "",
   });
 
   function updateHomepageContentValue(valuesObject) {
@@ -122,7 +123,8 @@ export default function ShopProvider({ children }) {
     ).then();
 
     updateHomepageContentValue({
-      heroImage: `${homepageContentRequest.metaobject}`,
+      heroImage: `${homepageContentRequest.hero_image.value}`,
+      heroImageMobile: `${homepageContentRequest.hero_image_mobile.value}`,
     });
   }
 

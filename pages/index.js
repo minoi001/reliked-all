@@ -21,7 +21,7 @@ export default function Home({ products, headerContent, homepageContent }) {
   return (
     <div className="bg-white">
       <div class="text-center">
-        <div className="lg:max-w-7xl mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="">
           {" "}
           <HeroImage homepageContent={homepageContent} />
         </div>
