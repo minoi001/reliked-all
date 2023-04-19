@@ -40,7 +40,8 @@ module.exports = {
       padding: {
         "28r": "28rem",
         "34r": "34rem",
-        "68r": "54rem",
+        "44r": "44rem",
+        "54r": "54rem",
       },
       colors: {
         rose: "#EC516B",

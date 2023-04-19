@@ -55,17 +55,14 @@ const InfluencerSlider = () => {
   ];
   return (
     <div className="">
-      <div className="container  mx-auto py-5 px-2 lg:max-w-7xl sm:px-6 lg:px-8">
+      <div className="container w-full ml-6 -px-2 py-5 lg:max-w-7xl lg:px-8">
         <h1 className="font-h text-3xl lg:text-4xl py-5 font-bold">
           Your home of celebrity and influencer closets
         </h1>
-        <div
-          className="flex space-x-2  overflow-x-scroll"
-          style={{ overflowX: "acroll" }}
-        >
+        <div className="flex overflow-x-scroll">
           {products.map((product, index) => (
             <Link key={index} href={"/products"}>
-              <div className="flex-col p-1  cursor-pointer">
+              <div className="flex-col cursor-pointer">
                 <div className=" bg-white flex items-center justify-center shadow-sm hover:shadow-md h-48 w-36 ">
                   <Image
                     className="w-100"

@@ -26,7 +26,7 @@ export default function Home({ products, headerContent, homepageContent }) {
           <HeroImage homepageContent={homepageContent} />
         </div>
       </div>
-      <div className="pt-2">
+      <div className="">
         <InfluencerSlider />
       </div>
       <div className="">
