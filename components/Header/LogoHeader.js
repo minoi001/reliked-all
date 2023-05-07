@@ -5,16 +5,13 @@ import { useRouter } from 'next/router';
 import { ShopContext } from '../../context/shopContext';
 import {
   Bars3Icon,
-  MagnifyingGlassIcon,
   ShoppingBagIcon,
   UserIcon,
-  XMarkIcon,
   BuildingStorefrontIcon,
 } from '@heroicons/react/24/outline';
 import ShoppingSubheader from './ShoppingSubheader';
 import MiniCart from './MiniCart';
 import SellingSubheader from './SellingSubheader';
-import { SearchBox, Hits } from 'react-instantsearch-dom';
 
 const LogoHeader = () => {
   const [open, setOpen] = useState(false);
@@ -114,6 +111,7 @@ const LogoHeader = () => {
             {/* Navigation */}
             {pathname?.includes('/selling') ? (
               <subheader>
+                {' '}
                 <SellingSubheader open={open} setOpen={setOpen} />
               </subheader>
             ) : (
