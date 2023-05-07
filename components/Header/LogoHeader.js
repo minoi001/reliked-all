@@ -112,7 +112,6 @@ const LogoHeader = () => {
             {/* Navigation */}
             {pathname?.includes('/selling') ? (
               <subheader>
-                {' '}
                 <SellingSubheader open={open} setOpen={setOpen} />
               </subheader>
             ) : (

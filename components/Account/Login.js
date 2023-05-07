@@ -33,7 +33,7 @@ export default function Login() {
                 Sign in to your account
               </h2>
               <p className="mt-2 text-center text-sm text-gray-600">
-                Or{' '}
+                Or
                 <a
                   href="#"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
