@@ -23,7 +23,7 @@ const LogoHeader = () => {
   return (
     <div>
       <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="">
+        <div>
           <div className="flex h-12 items-center"></div>
           <div className="relative">
             {/* Logo */}

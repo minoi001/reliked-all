@@ -16,20 +16,10 @@ export default function Home({ products, headerContent, homepageContent }) {
 
   return (
     <div className="bg-white">
-      <div class="text-center">
-        <div className="">
-          <HeroImage homepageContent={homepageContent} />
-        </div>
-      </div>
-      <div className="">
-        <InfluencerSlider />
-      </div>
-      <div className="">
-        <FeaturedCollections />
-      </div>
-      <div>
-        <ProductList className="z-0" />
-      </div>
+      <HeroImage homepageContent={homepageContent} />
+      <InfluencerSlider />
+      <FeaturedCollections />
+      <ProductList className="z-0" />
     </div>
   );
 }
@@ -37,7 +27,7 @@ export default function Home({ products, headerContent, homepageContent }) {
 // export function Header({ headerContent }) {
 //   console.log(headerContent);
 //   return (
-//     <div className="">
+//     <div >
 //       <Nav headerContent={headerContent} />
 //     </div>
 //   );

@@ -5,7 +5,7 @@ import Image from 'next/image';
 const HeroImage = ({ homepageContent }) => {
   console.log('heroImage:' + homepageContent);
   return (
-    <div className="">
+    <div>
       {/* <Image alt="hero" src={homepageContent.hero_image.value} fill /> */}
       <Image
         src={homepageContent.hero_image.value}

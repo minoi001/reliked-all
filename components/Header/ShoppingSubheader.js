@@ -157,7 +157,7 @@ function classNames(...classes) {
 
 export default function ShoppingSubheader(props) {
   return (
-    <div className="">
+    <div>
       {/* Mobile menu */}
       <Transition.Root show={props.open} as={Fragment}>
         <Dialog
@@ -342,7 +342,7 @@ export default function ShoppingSubheader(props) {
           aria-label="Top"
           className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
         >
-          <div className="">
+          <div>
             <div className="flex h-8 items-center justify-center ml-36">
               {/* Flyout menus */}
               <Popover.Group className="hidden lg:block lg:self-stretch">
