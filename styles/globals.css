@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ais-SearchBox {
+  margin: 1em 0;
+}
+
+.ais-Hits-list {
+  @apply grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 z-0;
+}
+
+.ais-Pagination-list {
+  @apply flex justify-center items-center gap-x-6;
+}
+
+.ais-SearchBox-form {
+  @apply flex space-x-2;
+}

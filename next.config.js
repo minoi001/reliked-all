@@ -16,6 +16,8 @@ module.exports = {
     GOOGLE_PROJECT_ID: process.env.GOOGLE_PROJECT_ID,
     GOOGLE_PRIVATE_KEY: process.env.GOOGLE_PRIVATE_KEY,
     RELIKED_API_KEY: process.env.RELIKED_API_KEY,
+    ALGOLIA_APP_ID: process.env.ALGOLIA_APP_ID,
+    ALGOLIA_API_KEY: process.env.ALGOLIA_API_KEY,
   },
   images: {
     domains: [
