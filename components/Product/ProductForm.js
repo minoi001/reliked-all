@@ -54,9 +54,9 @@ export default function ProductForm({ product }) {
   }
 
   return (
-    <div className="p-2 shadow-lg flex flex-col w-full aspect-4/5 md:w-1/3 bg-white">
-      <h2 className="text-2xl font-bold">{product.title}</h2>
-      <span className="pb-6">
+    <div className='p-2 shadow-lg flex flex-col w-full aspect-4/5 md:w-1/3 bg-white'>
+      <h2 className='text-2xl font-bold'>{product.title}</h2>
+      <span className='pb-6'>
         {formatter.format(product.variants.edges[0].node.priceV2.amount)}
       </span>
       {product.options.map(({ name, values }) => (
@@ -73,7 +73,7 @@ export default function ProductForm({ product }) {
           addToCart(selectedVariant);
           setCartOpen(true);
         }}
-        className="bg-rose text-white px-2 py-3 mt-4 hover:bg-gray-800"
+        className='bg-rose text-white px-2 py-3 mt-4 hover:bg-gray-800'
       >
         Add to cart
       </button>

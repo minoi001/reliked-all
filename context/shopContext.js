@@ -35,10 +35,7 @@ export default function ShopProvider({ children }) {
   async function addToCart(newItem) {
     if (cart.length === 0) {
       setCart([newItem]);
-      const checkout = await createCheckout(
-        newItem.variantId,
-        newItem.variantQuantity
-      );
+      const checkout = await createCheckout(newItem.variantId, newItem.variantQuantity);
 
       setCheckoutId(checkout.id);
       setCheckoutUrl(checkout.webUrl);
@@ -62,10 +59,7 @@ export default function ShopProvider({ children }) {
 
       setCart(newCart);
       const newCheckout = await updateCheckout(checkoutId, newCart);
-      localStorage.setItem(
-        "checkout_id",
-        JSON.stringify([newCart, newCheckout])
-      );
+      localStorage.setItem("checkout_id", JSON.stringify([newCart, newCheckout]));
     }
   }
 
@@ -90,9 +84,7 @@ export default function ShopProvider({ children }) {
 
   async function sendHeaderContentRequest() {
     // doesn't work on first page render
-    const headerContentRequest = await getHeaderContent(
-      "gid://shopify/Metaobject/57180350"
-    );
+    const headerContentRequest = await getHeaderContent("gid://shopify/Metaobject/57180350");
 
     updateHeaderContentValue({
       logo: `${headerContentRequest.metaobject.logo.value}`,
@@ -119,7 +111,7 @@ export default function ShopProvider({ children }) {
   async function sendHomepageContentRequest() {
     // doesn't work on first page render
     const homepageContentRequest = await getHomepageContent(
-      "gid://shopify/Metaobject/57147582"
+      "gid://shopify/Metaobject/57147582",
     ).then();
 
     updateHomepageContentValue({

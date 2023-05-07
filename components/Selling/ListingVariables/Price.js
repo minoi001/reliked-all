@@ -33,67 +33,61 @@ const Price = ({ products }) => {
       updateProductValue({
         [variable]: Number(event.target.value),
         salePrice: 0,
-        price: Number(
-          event.target.value * productInfo.discount * productInfo.multiplier
-        ),
+        price: Number(event.target.value * productInfo.discount * productInfo.multiplier),
       });
     } else if (event.target.value > productInfo.RRP) {
       alert("RRP cleared as you entered a higher sale price");
       updateProductValue({
         [variable]: Number(event.target.value),
-        price: Number(
-          event.target.value * productInfo.discount * productInfo.multiplier
-        ),
+        price: Number(event.target.value * productInfo.discount * productInfo.multiplier),
         RRP: 0,
       });
     } else {
       updateProductValue({
         [variable]: Number(event.target.value),
-        price: Number(
-          event.target.value * productInfo.discount * productInfo.multiplier
-        ),
+        price: Number(event.target.value * productInfo.discount * productInfo.multiplier),
       });
     }
   };
 
   return (
     <div>
-      <fieldset className="px-4 border-solid border-2 border-indigo-600 ">
-        <legend className="p-1">PRICE</legend>
-        <div className="flex">
+      <fieldset className='px-4 border-solid border-2 border-indigo-600 '>
+        <legend className='p-1'>PRICE</legend>
+        <div className='flex'>
           <Select
-            className="mb-4 p-2 pr-4 inline w-1/2"
-            id="anonymous"
-            type="text"
+            className='mb-4 p-2 pr-4 inline w-1/2'
+            id='anonymous'
+            type='text'
             options={availabilities}
-            placeholder="Availability"
+            placeholder='Availability'
             onChange={handleChange}
           />
-          <span className="py-4 inline w-1/12">£</span>
+          <span className='py-4 inline w-1/12'>£</span>
 
           <input
-            id="RRP"
-            name="RRP"
-            className="mb-4 inline w-1/6 "
+            id='RRP'
+            name='RRP'
+            className='mb-4 inline w-1/6 '
             placeholder={"RRP"}
             onChange={handlePriceChange("RRP")}
             value={productInfo.RRP}
           />
           {/* <p className="mb-4 py-2 inline">:</p> */}
-          <span className="py-4 inline w-1/12">£</span>
+          <span className='py-4 inline w-1/12'>£</span>
 
           <input
-            id="SalePrice"
-            className="mb-4 p-2 inline w-1/4"
+            id='SalePrice'
+            className='mb-4 p-2 inline w-1/4'
             placeholder={"Sale Price"}
             onChange={handlePriceChange("salePrice")}
             value={productInfo.salePrice}
           />
           {/* <p className="mb-4 py-2 inline">:</p> */}
           {/* <p className="mb-4 py-2 inline">:</p> */}
-          <span className="py-4 inline w-1/12">£</span>
+          <span className='py-4 inline w-1/12'>£</span>
           <input
-            className="mb-4 p-2 inline w-1/6"
+            className='mb-4 p-2 inline w-1/6'
             placeholder={"Price"}
             disabled={true}
             value={productInfo.price}

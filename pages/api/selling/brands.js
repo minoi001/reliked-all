@@ -7,9 +7,7 @@ export default async function handler(req, res) {
     client_id: process.env.GOOGLE_CLIENT_ID,
     client_email: process.env.GOOGLE_CLIENT_EMAIL,
     project_id: process.env.GOOGLE_PROJECT_ID,
-    private_key: process.env.GOOGLE_PRIVATE_KEY.split(String.raw`\n`).join(
-      "\n"
-    ),
+    private_key: process.env.GOOGLE_PRIVATE_KEY.split(String.raw`\n`).join("\n"),
   };
 
   const auth = new google.auth.GoogleAuth({

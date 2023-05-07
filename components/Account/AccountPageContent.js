@@ -7,12 +7,12 @@ export default function AccountPageContent({ account }) {
   const { userInfo } = useContext(AccountContext);
 
   return (
-    <div className="flex flex-col justify-center items-center space-y-8 md:flex-row md:items-start md:space-y-0 md:spacex-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto">
+    <div className='flex flex-col justify-center items-center space-y-8 md:flex-row md:items-start md:space-y-0 md:spacex-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto'>
       {userInfo.loginStatus ? (
         <div>You are logged in as {userInfo.userType}</div>
       ) : (
-        <div className="w-full max-w-md border bg-white overflow-hidden shadow-lg md:w-1/2">
-          <div className="relative h-full w-full">
+        <div className='w-full max-w-md border bg-white overflow-hidden shadow-lg md:w-1/2'>
+          <div className='relative h-full w-full'>
             <Login />
           </div>
         </div>

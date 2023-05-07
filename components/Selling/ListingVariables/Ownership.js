@@ -40,25 +40,25 @@ const Ownership = ({ products }) => {
 
   return (
     <div>
-      <fieldset className="px-4 border-solid border-2 border-indigo-600 ">
-        <legend className="p-1">{"OWNERSHIP"}</legend>
-        <div className="flex">
+      <fieldset className='px-4 border-solid border-2 border-indigo-600 '>
+        <legend className='p-1'>{"OWNERSHIP"}</legend>
+        <div className='flex'>
           <Select
-            className="mb-4 p-2 inline w-2/3"
-            id="influencer"
-            type="text"
+            className='mb-4 p-2 inline w-2/3'
+            id='influencer'
+            type='text'
             options={influencers}
-            placeholder="Influencer"
+            placeholder='Influencer'
             onChange={handleChange}
           />
           {/* <input className="mb-4 p-2 inline w-2/3" placeholder={"Influencer"} /> */}
           {/* <p className="mb-4 py-2 inline">:</p> */}
           <Select
-            className="mb-4 p-2 inline w-1/3"
-            id="anonymous"
-            type="text"
+            className='mb-4 p-2 inline w-1/3'
+            id='anonymous'
+            type='text'
             options={anonymous}
-            placeholder="Anonymity"
+            placeholder='Anonymity'
             onChange={handleChange}
           />
         </div>

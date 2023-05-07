@@ -7,25 +7,16 @@ const Details = ({ products }) => {
 
   return (
     <div>
-      <fieldset className="px-4 border-solid border-2 border-indigo-600 ">
-        <legend className="p-1">DETAILS</legend>
-        <div className="flex">
-          <div className="block">
-            <input
-              className="mb-4 p-2 inline w-full"
-              placeholder={"Condition"}
-            />
-            <input
-              className="mb-4 p-2 inline w-full"
-              placeholder={"More Information"}
-            />
+      <fieldset className='px-4 border-solid border-2 border-indigo-600 '>
+        <legend className='p-1'>DETAILS</legend>
+        <div className='flex'>
+          <div className='block'>
+            <input className='mb-4 p-2 inline w-full' placeholder={"Condition"} />
+            <input className='mb-4 p-2 inline w-full' placeholder={"More Information"} />
           </div>
-          <div className="block">
-            <input
-              className="mb-4 p-2 inline w-full"
-              placeholder={"Packaging"}
-            />
-            <input className="mb-4 p-2 inline w-full" placeholder={"Faults"} />
+          <div className='block'>
+            <input className='mb-4 p-2 inline w-full' placeholder={"Packaging"} />
+            <input className='mb-4 p-2 inline w-full' placeholder={"Faults"} />
           </div>
         </div>
       </fieldset>

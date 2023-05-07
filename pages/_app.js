@@ -1,13 +1,13 @@
-import '../styles/globals.css';
-import Layout from '../components/Layout';
-import ShopProvider from '../context/shopContext';
-import ProductProvider from '../context/productContext';
-import AccountProvider from '../context/accountContext';
-import { useRouter } from 'next/router';
-import algoliasearch from 'algoliasearch/lite';
-import { InstantSearch } from 'react-instantsearch-dom';
+import "../styles/globals.css";
+import Layout from "../components/Layout";
+import ShopProvider from "../context/shopContext";
+import ProductProvider from "../context/productContext";
+import AccountProvider from "../context/accountContext";
+import { useRouter } from "next/router";
+import algoliasearch from "algoliasearch/lite";
+import { InstantSearch } from "react-instantsearch-dom";
 
-const searchClient = algoliasearch('ARCLMPUS6N', '980cd316c6d6e85dd5c8f6e576595196');
+const searchClient = algoliasearch("ARCLMPUS6N", "980cd316c6d6e85dd5c8f6e576595196");
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

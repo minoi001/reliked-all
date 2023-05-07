@@ -147,7 +147,7 @@ export const SKU = (product, user) => {
     SKUlister,
     SKUnum,
     SKUcon,
-    SKUpack
+    SKUpack,
   );
   return SKUarray;
 };

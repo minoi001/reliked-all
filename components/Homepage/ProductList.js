@@ -1,7 +1,7 @@
-import { PHASE_PRODUCTION_SERVER } from 'next/dist/shared/lib/constants';
-import React from 'react';
-import ProductCard from '../Products/ProductCard';
-import { Hits } from 'react-instantsearch-dom';
+import { PHASE_PRODUCTION_SERVER } from "next/dist/shared/lib/constants";
+import React from "react";
+import ProductCard from "../Products/ProductCard";
+import { Hits } from "react-instantsearch-dom";
 
 const ProductList = ({ products }) => {
   return (

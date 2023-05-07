@@ -8,9 +8,9 @@ const SearchBar = ({ keyword, onChange }) => {
   };
   return (
     <input
-      className="w-full text-sm"
+      className='w-full text-sm'
       style={BarStyle}
-      key="search-bar"
+      key='search-bar'
       value={keyword}
       placeholder={"Search our preowned pieces..."}
       onChange={(e) => onChange(e.target.value)}

@@ -12,8 +12,8 @@ export default function Selling({ product }) {
     <div>
       {userInfo.loginStatus ? (
         <div>
-          <div className="minh-screen py-12 sm:pt-20">selling page</div>
-          <Link href="/selling/add-listing">Add listing</Link>
+          <div className='minh-screen py-12 sm:pt-20'>selling page</div>
+          <Link href='/selling/add-listing'>Add listing</Link>
         </div>
       ) : (
         <Login />

@@ -28,15 +28,15 @@ const Type = ({ products }) => {
 
   return (
     <div>
-      <fieldset className="px-4 border-solid border-2 border-indigo-600 ">
-        <legend className="p-1">TYPE</legend>
-        <div className="flex">
+      <fieldset className='px-4 border-solid border-2 border-indigo-600 '>
+        <legend className='p-1'>TYPE</legend>
+        <div className='flex'>
           <Select
-            className="mb-4 p-2 inline w-full"
-            id="type"
-            type="text"
+            className='mb-4 p-2 inline w-full'
+            id='type'
+            type='text'
             options={types}
-            placeholder="What are you listing?"
+            placeholder='What are you listing?'
             onChange={handleChange}
           />
         </div>

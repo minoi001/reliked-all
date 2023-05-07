@@ -42,10 +42,7 @@ export default function AccountProvider({ children }) {
     }
     // if no token, get token & user info, otherwise, just get user info
     if (!localStorage.accountToken) {
-      const tokenRequest = await getUserAccessToken(
-        userInfo.email,
-        userInfo.password
-      );
+      const tokenRequest = await getUserAccessToken(userInfo.email, userInfo.password);
       // if credentials fail to produce token, set error message and login status to false
       if (!tokenRequest.customerAccessTokenCreate.customerAccessToken) {
         updateUserValue({
@@ -62,7 +59,7 @@ export default function AccountProvider({ children }) {
         // store token in local storage
         localStorage.setItem(
           "accountToken",
-          `${tokenRequest.customerAccessTokenCreate.customerAccessToken.accessToken}`
+          `${tokenRequest.customerAccessTokenCreate.customerAccessToken.accessToken}`,
         );
       }
     }
