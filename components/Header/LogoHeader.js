@@ -125,7 +125,6 @@ const LogoHeader = () => {
             {/* Mobile Search Bar */}
             <div className="lg:hidden pb-2">
               <SearchBox />
-              {/*<Hits />*/}
             </div>
             {/* End of Mobile Search Bar */}
           </div>
