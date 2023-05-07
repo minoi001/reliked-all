@@ -28,7 +28,7 @@ export default function Home({ products, headerContent, homepageContent }) {
         <FeaturedCollections />
       </div>
       <div>
-        <ProductList products={products} className="z-0" />
+        <ProductList className="z-0" />
       </div>
     </div>
   );

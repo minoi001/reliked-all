@@ -12,6 +12,7 @@ import {
 import ShoppingSubheader from './ShoppingSubheader';
 import MiniCart from './MiniCart';
 import SellingSubheader from './SellingSubheader';
+import { SearchBox } from 'react-instantsearch-dom';
 
 const LogoHeader = () => {
   const [open, setOpen] = useState(false);

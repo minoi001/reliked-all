@@ -9,8 +9,6 @@ const ProductCard = ({ hit }) => {
     : 'https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018';
   const altText = hit.body_html_safe ? hit.body_html_safe : 'image';
 
-  console.log(hit);
-
   const price = hit.price;
   return (
     <div>
