@@ -1,7 +1,7 @@
-import { LockClosedIcon } from '@heroicons/react/20/solid';
-import Image from 'next/image';
-import { useContext } from 'react';
-import { AccountContext } from '../../context/accountContext';
+import { LockClosedIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
+import { useContext } from "react";
+import { AccountContext } from "../../context/accountContext";
 
 export default function Login() {
   const {
@@ -22,7 +22,7 @@ export default function Login() {
   return (
     <>
       {userInfo.checkingLogin ? (
-        'Loading'
+        "Loading"
       ) : userInfo.loginStatus ? (
         <div>You are logged in as {userInfo.userType}</div>
       ) : (
@@ -33,7 +33,7 @@ export default function Login() {
                 Sign in to your account
               </h2>
               <p className="mt-2 text-center text-sm text-gray-600">
-                Or{' '}
+                Or{" "}
                 <a
                   href="#"
                   className="font-medium text-indigo-600 hover:text-indigo-500"

@@ -1,16 +1,16 @@
-import Image from 'next/image';
-import Login from '../Account/Login';
-import { useContext } from 'react';
-import { ProductContext } from '../../context/productContext';
-import { AccountContext } from '../../context/accountContext';
-import Title from './ListingVariables/Title';
-import Type from './ListingVariables/Type';
-import Audience from './ListingVariables/Audience';
-import Ownership from './ListingVariables/Ownership';
-import Photos from './ListingVariables/Photos';
-import Details from './ListingVariables/Details';
-import Staff from './ListingVariables/Staff';
-import Price from './ListingVariables/Price';
+import Image from "next/image";
+import Login from "../Account/Login";
+import { useContext } from "react";
+import { ProductContext } from "../../context/productContext";
+import { AccountContext } from "../../context/accountContext";
+import Title from "./ListingVariables/Title";
+import Type from "./ListingVariables/Type";
+import Audience from "./ListingVariables/Audience";
+import Ownership from "./ListingVariables/Ownership";
+import Photos from "./ListingVariables/Photos";
+import Details from "./ListingVariables/Details";
+import Staff from "./ListingVariables/Staff";
+import Price from "./ListingVariables/Price";
 
 export default function NewListing({ listing }) {
   const { productInfo } = useContext(ProductContext);
@@ -37,10 +37,10 @@ export default function NewListing({ listing }) {
               <div className="inline w-full p-4 pt-0 md:pl-8">
                 <div
                   className={
-                    userInfo.userType === 'Customer' ||
-                    userInfo.userType === 'Influencer'
-                      ? 'hidden '
-                      : ''
+                    userInfo.userType === "Customer" ||
+                    userInfo.userType === "Influencer"
+                      ? "hidden "
+                      : ""
                   }
                 >
                   <Ownership />
@@ -64,10 +64,10 @@ export default function NewListing({ listing }) {
             </div>
             <div
               className={
-                userInfo.userType === 'Customer' ||
-                userInfo.userType === 'Influencer'
-                  ? 'hidden '
-                  : 'flex-inline px-4 md:px-8 w-full'
+                userInfo.userType === "Customer" ||
+                userInfo.userType === "Influencer"
+                  ? "hidden "
+                  : "flex-inline px-4 md:px-8 w-full"
               }
             >
               <Staff />

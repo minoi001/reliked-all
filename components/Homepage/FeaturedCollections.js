@@ -1,4 +1,4 @@
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 const FeaturedCollections = () => {
   return (
@@ -16,7 +16,7 @@ const FeaturedCollections = () => {
               alt=""
             />
             <button className="absolute p-2 px-4 bg-mint white -bottom-6 flex items-center text-almostBlack font-semibold text-sm transition duration-1000 hover:scale-x-105 hover:outline outline-pink hover:outline-offset-2">
-              Shop Now <ArrowRightIcon className="text-2xl ml-2" />{' '}
+              Shop Now <ArrowRightIcon className="text-2xl ml-2" />{" "}
             </button>
           </div>
         </div>
@@ -32,7 +32,7 @@ const FeaturedCollections = () => {
               alt=""
             />
             <button className="absolute p-2 px-4 bg-mint white -bottom-6 flex items-center text-almostBlack font-semibold text-sm transition duration-1000 hover:scale-x-105 hover:outline outline-pink hover:outline-offset-2">
-              Shop Now <ArrowRightIcon className="text-2xl ml-2" />{' '}
+              Shop Now <ArrowRightIcon className="text-2xl ml-2" />{" "}
             </button>
           </div>
         </div>

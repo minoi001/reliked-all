@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
-import Select from 'react-select';
-import { ProductContext } from '../../../context/productContext';
-import { AccountContext } from '../../../context/accountContext';
+import React, { useContext, useState } from "react";
+import Select from "react-select";
+import { ProductContext } from "../../../context/productContext";
+import { AccountContext } from "../../../context/accountContext";
 const Price = ({ products }) => {
   const { productInfo, updateProductValue } = useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
@@ -9,13 +9,13 @@ const Price = ({ products }) => {
   const availabilities = [
     {
       value: true,
-      label: 'In Stock',
-      variable: 'availability',
+      label: "In Stock",
+      variable: "availability",
     },
     {
       value: false,
-      label: 'Sold Out',
-      variable: 'availability',
+      label: "Sold Out",
+      variable: "availability",
     },
   ];
   const handleChange = (event) => {
@@ -26,9 +26,9 @@ const Price = ({ products }) => {
   const handlePriceChange = (variable) => (event) => {
     // logic around higher/lower prices not working
     console.log(event.target.value, variable);
-    if (variable === 'RRP') {
+    if (variable === "RRP") {
       if (productInfo.salePrice > 0) {
-        alert('Sale price has been cleared as you entered a new RRP');
+        alert("Sale price has been cleared as you entered a new RRP");
       }
       updateProductValue({
         [variable]: Number(event.target.value),
@@ -38,7 +38,7 @@ const Price = ({ products }) => {
         ),
       });
     } else if (event.target.value > productInfo.RRP) {
-      alert('RRP cleared as you entered a higher sale price');
+      alert("RRP cleared as you entered a higher sale price");
       updateProductValue({
         [variable]: Number(event.target.value),
         price: Number(
@@ -75,8 +75,8 @@ const Price = ({ products }) => {
             id="RRP"
             name="RRP"
             className="mb-4 inline w-1/6 "
-            placeholder={'RRP'}
-            onChange={handlePriceChange('RRP')}
+            placeholder={"RRP"}
+            onChange={handlePriceChange("RRP")}
             value={productInfo.RRP}
           />
           {/* <p className="mb-4 py-2 inline">:</p> */}
@@ -85,8 +85,8 @@ const Price = ({ products }) => {
           <input
             id="SalePrice"
             className="mb-4 p-2 inline w-1/4"
-            placeholder={'Sale Price'}
-            onChange={handlePriceChange('salePrice')}
+            placeholder={"Sale Price"}
+            onChange={handlePriceChange("salePrice")}
             value={productInfo.salePrice}
           />
           {/* <p className="mb-4 py-2 inline">:</p> */}
@@ -94,7 +94,7 @@ const Price = ({ products }) => {
           <span className="py-4 inline w-1/12">£</span>
           <input
             className="mb-4 p-2 inline w-1/6"
-            placeholder={'Price'}
+            placeholder={"Price"}
             disabled={true}
             value={productInfo.price}
           />

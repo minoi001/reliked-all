@@ -1,10 +1,10 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from "react";
 import {
   createCheckout,
   getHeaderContent,
   updateCheckout,
   getHomepageContent,
-} from '../lib/shopify';
+} from "../lib/shopify";
 
 const ShopContext = createContext();
 
@@ -13,8 +13,8 @@ export default function ShopProvider({ children }) {
 
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
-  const [checkoutId, setCheckoutId] = useState('');
-  const [checkoutUrl, setCheckoutUrl] = useState('');
+  const [checkoutId, setCheckoutId] = useState("");
+  const [checkoutUrl, setCheckoutUrl] = useState("");
 
   useEffect(() => {
     sendHeaderContentRequest();
@@ -43,7 +43,7 @@ export default function ShopProvider({ children }) {
       setCheckoutId(checkout.id);
       setCheckoutUrl(checkout.webUrl);
 
-      localStorage.setItem('checkout_id', JSON.stringify([newItem, checkout]));
+      localStorage.setItem("checkout_id", JSON.stringify([newItem, checkout]));
     } else {
       let newCart = [];
       let added = false;
@@ -63,7 +63,7 @@ export default function ShopProvider({ children }) {
       setCart(newCart);
       const newCheckout = await updateCheckout(checkoutId, newCart);
       localStorage.setItem(
-        'checkout_id',
+        "checkout_id",
         JSON.stringify([newCart, newCheckout])
       );
     }
@@ -71,10 +71,10 @@ export default function ShopProvider({ children }) {
 
   // header
   const [headerContent, setHeaderContent] = useState({
-    logo: 'https://cdn.shopify.com/s/files/1/2481/5934/files/RELIKEDLOGO_360x.png?v=1657015784',
-    bannerText: '',
-    bannerBackroundColour: '',
-    bannerBackgroundImagePattern: '',
+    logo: "https://cdn.shopify.com/s/files/1/2481/5934/files/RELIKEDLOGO_360x.png?v=1657015784",
+    bannerText: "",
+    bannerBackroundColour: "",
+    bannerBackgroundImagePattern: "",
   });
 
   function updateHeaderContentValue(valuesObject) {
@@ -91,7 +91,7 @@ export default function ShopProvider({ children }) {
   async function sendHeaderContentRequest() {
     // doesn't work on first page render
     const headerContentRequest = await getHeaderContent(
-      'gid://shopify/Metaobject/57180350'
+      "gid://shopify/Metaobject/57180350"
     );
 
     updateHeaderContentValue({
@@ -101,8 +101,8 @@ export default function ShopProvider({ children }) {
 
   // homepage
   const [homepageContent, setHomepageContent] = useState({
-    heroImage: '',
-    heroImageMobile: '',
+    heroImage: "",
+    heroImageMobile: "",
   });
 
   function updateHomepageContentValue(valuesObject) {
@@ -119,7 +119,7 @@ export default function ShopProvider({ children }) {
   async function sendHomepageContentRequest() {
     // doesn't work on first page render
     const homepageContentRequest = await getHomepageContent(
-      'gid://shopify/Metaobject/57147582'
+      "gid://shopify/Metaobject/57147582"
     ).then();
 
     updateHomepageContentValue({

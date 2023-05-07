@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { formatter } from '../../utils/helpers';
+import Link from "next/link";
+import Image from "next/image";
+import { formatter } from "../../utils/helpers";
 
 const ProductCard = ({ product }) => {
   const { handle, title } = product.node;
@@ -9,8 +9,8 @@ const ProductCard = ({ product }) => {
     ? product.node.images.edges[0].node
     : {
         originalSrc:
-          'https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018',
-        altText: 'placeholder',
+          "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018",
+        altText: "placeholder",
       };
   const price = product.node.priceRange.minVariantPrice.amount;
   // console.log(product);
