@@ -42,10 +42,7 @@ const LogoHeader = () => {
             {/* End of Logo */}
             {/* DesktopSearch/HamburgerMenu */}
             <div className="float-left -mt-9 text-sm w-60 max-lg:hidden">
-              <Link href="/">
-                <span className="sr-only">Search</span>
                 <SearchBox />
-              </Link>
             </div>
             {/* End of DesktopSearch/HamburgerMenu */}
             {/* Icons */}
