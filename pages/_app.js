@@ -7,9 +7,12 @@ import { useRouter } from "next/router";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch } from "react-instantsearch-dom";
 
+const appId = process.env.ALGOLIA_APP_ID;
+const apiKey = process.env.ALGOLIA_API_KEY;
+
 const searchClient = algoliasearch(
-  "ARCLMPUS6N",
-  "980cd316c6d6e85dd5c8f6e576595196"
+  appId,
+  apiKey
 );
 
 function MyApp({ Component, pageProps }) {
