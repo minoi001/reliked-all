@@ -26,7 +26,7 @@ export default function ProductOptions({
               />
               <div
                 className={`p-2 my-3 text-lg block cursor-pointer mr-3 ${
-                  checked ? 'text-white bg-rose' : 'text-gray-600 bg-gray-100'
+                  checked ? "text-white bg-rose" : "text-gray-600 bg-gray-100"
                 }`}
               >
                 <span className="px-2">{value}</span>

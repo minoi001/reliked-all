@@ -2,11 +2,11 @@ import {
   getHeaderContent,
   getHomepageContent,
   getProductsInCollection,
-} from '../lib/shopify.js';
-import ProductList from '../components/Homepage/ProductList.js';
-import HeroImage from '../components/Homepage/HeroImage.js';
-import InfluencerSlider from '../components/Homepage/InfluencerSlider.js';
-import FeaturedCollections from '../components/Homepage/FeaturedCollections.js';
+} from "../lib/shopify.js";
+import ProductList from "../components/Homepage/ProductList.js";
+import HeroImage from "../components/Homepage/HeroImage.js";
+import InfluencerSlider from "../components/Homepage/InfluencerSlider.js";
+import FeaturedCollections from "../components/Homepage/FeaturedCollections.js";
 
 // type products = [];
 // I need to learn more about typescript
@@ -36,7 +36,7 @@ export default function Home({ products, headerContent, homepageContent }) {
 export async function getStaticProps() {
   const products = await getProductsInCollection();
   const headerContent = await getHeaderContent(
-    'gid://shopify/Metaobject/57180350'
+    "gid://shopify/Metaobject/57180350"
   );
   const homepageContent = await getHomepageContent();
   return {

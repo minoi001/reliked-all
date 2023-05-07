@@ -1,9 +1,9 @@
-import { PHASE_PRODUCTION_SERVER } from 'next/dist/shared/lib/constants';
-import React from 'react';
-import Image from 'next/image';
+import { PHASE_PRODUCTION_SERVER } from "next/dist/shared/lib/constants";
+import React from "react";
+import Image from "next/image";
 
 const HeroImage = ({ homepageContent }) => {
-  console.log('heroImage:' + homepageContent);
+  console.log("heroImage:" + homepageContent);
   return (
     <div>
       {/* <Image alt="hero" src={homepageContent.hero_image.value} fill /> */}

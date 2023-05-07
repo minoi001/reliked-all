@@ -1,5 +1,5 @@
-import ProductCard from '../Products/ProductCard';
-import { Hits, Pagination, connectStateResults } from 'react-instantsearch-dom';
+import ProductCard from "../Products/ProductCard";
+import { Hits, Pagination, connectStateResults } from "react-instantsearch-dom";
 
 const ProductList = () => {
   return (

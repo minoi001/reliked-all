@@ -1,9 +1,9 @@
-import { Fragment, useState, useContext, useRef } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import Image from 'next/image';
-import { ShopContext } from '../../context/shopContext';
-import { formatter } from '../../utils/helpers';
+import { Fragment, useState, useContext, useRef } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
+import { ShopContext } from "../../context/shopContext";
+import { formatter } from "../../utils/helpers";
 
 export default function MiniCart({ cart }) {
   const cancelButtonRef = useRef();

@@ -1,18 +1,18 @@
-import React, { useContext, useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { ShopContext } from '../../context/shopContext';
+import React, { useContext, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { ShopContext } from "../../context/shopContext";
 import {
   Bars3Icon,
   ShoppingBagIcon,
   UserIcon,
   BuildingStorefrontIcon,
-} from '@heroicons/react/24/outline';
-import ShoppingSubheader from './ShoppingSubheader';
-import MiniCart from './MiniCart';
-import SellingSubheader from './SellingSubheader';
-import { SearchBox } from 'react-instantsearch-dom';
+} from "@heroicons/react/24/outline";
+import ShoppingSubheader from "./ShoppingSubheader";
+import MiniCart from "./MiniCart";
+import SellingSubheader from "./SellingSubheader";
+import { SearchBox } from "react-instantsearch-dom";
 
 const LogoHeader = () => {
   const [open, setOpen] = useState(false);
@@ -110,7 +110,7 @@ const LogoHeader = () => {
             </div>
             {/* End of Burger Menu Button */}
             {/* Navigation */}
-            {pathname?.includes('/selling') ? (
+            {pathname?.includes("/selling") ? (
               <subheader>
                 <SellingSubheader open={open} setOpen={setOpen} />
               </subheader>

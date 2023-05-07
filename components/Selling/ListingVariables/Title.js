@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react';
-import Select from 'react-select';
-import Creatable from 'react-select/creatable';
+import React, { useContext, useEffect } from "react";
+import Select from "react-select";
+import Creatable from "react-select/creatable";
 
-import { ProductContext } from '../../../context/productContext';
-import { AccountContext } from '../../../context/accountContext';
+import { ProductContext } from "../../../context/productContext";
+import { AccountContext } from "../../../context/accountContext";
 
 const Title = ({ products }) => {
   const {
@@ -56,9 +56,9 @@ const Title = ({ products }) => {
             id="type"
             type="text"
             placeholder={
-              userInfo.userType === 'Customer' || 'Influencer'
-                ? 'Description'
-                : 'Copy & paste product title...'
+              userInfo.userType === "Customer" || "Influencer"
+                ? "Description"
+                : "Copy & paste product title..."
             }
             isCreat
             onChange={handleChange}
