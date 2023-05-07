@@ -35,3 +35,4 @@ credentials.json
 # vercel
 .vercel
 
+.idea
