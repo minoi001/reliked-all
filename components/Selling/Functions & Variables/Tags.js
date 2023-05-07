@@ -1,18 +1,18 @@
 let photographyTags = [];
 
-if (props.photography === "Stock") {
-  photographyTags = ["StockPhoto", "AppExclusive", "MakeLive"];
-} else if (props.photography === "Desk") {
-  photographyTags = ["DeskPhoto", "Photographed", "MakeLive"];
+if (props.photography === 'Stock') {
+  photographyTags = ['StockPhoto', 'AppExclusive', 'MakeLive'];
+} else if (props.photography === 'Desk') {
+  photographyTags = ['DeskPhoto', 'Photographed', 'MakeLive'];
 } else {
-  photographyTags = ["MachinePhoto"];
+  photographyTags = ['MachinePhoto'];
 }
 
 let discountTags = [];
-if (!props.tags.includes("NoDiscount")) {
-  discountTags = ["Eligible"];
+if (!props.tags.includes('NoDiscount')) {
+  discountTags = ['Eligible'];
 } else {
-  discountTags = ["NoDiscount"];
+  discountTags = ['NoDiscount'];
 }
 
 // Tags

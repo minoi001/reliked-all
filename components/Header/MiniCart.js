@@ -1,9 +1,9 @@
-import { Fragment, useState, useContext, useRef } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
-import { ShopContext } from "../../context/shopContext";
-import { formatter } from "../../utils/helpers";
+import { Fragment, useState, useContext, useRef } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
+import { ShopContext } from '../../context/shopContext';
+import { formatter } from '../../utils/helpers';
 
 export default function MiniCart({ cart }) {
   const cancelButtonRef = useRef();
@@ -145,7 +145,7 @@ export default function MiniCart({ cart }) {
                         </div>
                         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                           <p>
-                            or{" "}
+                            or{' '}
                             <button
                               type="button"
                               className="font-medium text-rose hover:text-almostBlack"
@@ -155,7 +155,7 @@ export default function MiniCart({ cart }) {
                               <span aria-hidden="true"> &rarr;</span>
                             </button>
                           </p>
-                        </div>{" "}
+                        </div>{' '}
                       </div>
                     ) : null}
                   </div>

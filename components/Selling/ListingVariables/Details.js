@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { ProductContext } from "../../../context/productContext";
-import { AccountContext } from "../../../context/accountContext";
+import React, { useContext } from 'react';
+import { ProductContext } from '../../../context/productContext';
+import { AccountContext } from '../../../context/accountContext';
 const Details = ({ products }) => {
   const { productInfo } = useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
@@ -13,19 +13,19 @@ const Details = ({ products }) => {
           <div className="block">
             <input
               className="mb-4 p-2 inline w-full"
-              placeholder={"Condition"}
+              placeholder={'Condition'}
             />
             <input
               className="mb-4 p-2 inline w-full"
-              placeholder={"More Information"}
+              placeholder={'More Information'}
             />
           </div>
           <div className="block">
             <input
               className="mb-4 p-2 inline w-full"
-              placeholder={"Packaging"}
+              placeholder={'Packaging'}
             />
-            <input className="mb-4 p-2 inline w-full" placeholder={"Faults"} />
+            <input className="mb-4 p-2 inline w-full" placeholder={'Faults'} />
           </div>
         </div>
       </fieldset>

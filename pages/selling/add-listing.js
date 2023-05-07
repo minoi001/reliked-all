@@ -1,5 +1,5 @@
-import NewListing from "../../components/Selling/NewListing";
-import { getAllProducts, getProduct } from "../../lib/shopify.js";
+import NewListing from '../../components/Selling/NewListing';
+import { getAllProducts, getProduct } from '../../lib/shopify.js';
 
 export default function AddListing({ product }) {
   return (

@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { ProductContext } from "../../../context/productContext";
-import { AccountContext } from "../../../context/accountContext";
-import { Widget } from "@uploadcare/react-widget";
-import Effects from "uploadcare-widget-tab-effects";
+import React, { useContext } from 'react';
+import { ProductContext } from '../../../context/productContext';
+import { AccountContext } from '../../../context/accountContext';
+import { Widget } from '@uploadcare/react-widget';
+import Effects from 'uploadcare-widget-tab-effects';
 
 const Photos = ({ products }) => {
   const { productInfo } = useContext(ProductContext);
@@ -15,7 +15,7 @@ const Photos = ({ products }) => {
         <div className="flex">
           <input
             className="mb-4 p-2 flex-auto w-full"
-            placeholder={"How is this item being photographed?"}
+            placeholder={'How is this item being photographed?'}
           />
         </div>
         <div className="flex">

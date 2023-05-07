@@ -1,8 +1,8 @@
 // Title
-let ourTitle = "";
+let ourTitle = '';
 let ourStyleName = ` ${props.styleName} `;
-if (props.colour === "No Shade") {
-  if (props.brand === "Unbranded") {
+if (props.colour === 'No Shade') {
+  if (props.brand === 'Unbranded') {
     if (titleCase(ourStyleName).includes(` ${props.colour} `)) {
       ourTitle = `${titleCase(props.styleName.trim())} ${props.size.trim()}`;
     } else {
@@ -20,7 +20,7 @@ if (props.colour === "No Shade") {
     }
   }
 } else {
-  if (props.brand === "Unbranded") {
+  if (props.brand === 'Unbranded') {
     if (titleCase(ourStyleName).includes(` ${props.colour} `)) {
       ourTitle = `${titleCase(props.styleName.trim())} ${props.size.trim()}`;
     } else {
