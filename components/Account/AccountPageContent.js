@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Login from "./Login";
-import { useContext } from "react";
-import { AccountContext } from "../../context/accountContext";
+import Image from 'next/image';
+import Login from './Login';
+import { useContext } from 'react';
+import { AccountContext } from '../../context/accountContext';
 
 export default function AccountPageContent({ account }) {
   const { userInfo } = useContext(AccountContext);

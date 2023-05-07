@@ -1,22 +1,16 @@
-import { useContext } from "react";
-import { ShopContext } from "../context/shopContext";
-import { AccountContext } from "../context/accountContext";
-import Image from "next/image";
-import { Fragment, useState } from "react";
-import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-  MagnifyingGlassIcon,
-  ShoppingBagIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { useContext } from 'react';
+import { ShopContext } from '../context/shopContext';
+import { AccountContext } from '../context/accountContext';
+import Image from 'next/image';
+import { Fragment, useState } from 'react';
+import { Dialog, Popover, Tab, Transition } from '@headlessui/react';
+import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
-import MiniCart from "./Header/MiniCart";
-import Link from "next/link";
+import MiniCart from './Header/MiniCart';
+import Link from 'next/link';
 
 export default function Footer() {
-  const { cart, cartOpen, setCartOpen, headerContent } =
-    useContext(ShopContext);
+  const { cart, cartOpen, setCartOpen, headerContent } = useContext(ShopContext);
 
   const [open, setOpen] = useState(false);
 
@@ -40,24 +34,14 @@ export default function Footer() {
               height="100"
             />
           </div>
-          <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">
-            Copyright © 2021 Luxe
-          </p>
-          <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">
-            All rights reserved
-          </p>
+          <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">Copyright © 2021 Luxe</p>
+          <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">All rights reserved</p>
           <div class="flex items-center gap-x-4 mt-12">
             <button
               aria-label="instagram"
               class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
             >
-              <svg
-                width="18"
-                height="17"
-                viewBox="0 0 18 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
@@ -70,13 +54,7 @@ export default function Footer() {
               aria-label="linked-in"
               class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
             >
-              <svg
-                width="18"
-                height="17"
-                viewBox="0 0 18 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
@@ -89,13 +67,7 @@ export default function Footer() {
               aria-label="twitter"
               class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
             >
-              <svg
-                width="16"
-                height="13"
-                viewBox="0 0 16 13"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
@@ -108,13 +80,7 @@ export default function Footer() {
               aria-label="youtube"
               class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
             >
-              <svg
-                width="18"
-                height="13"
-                viewBox="0 0 18 13"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
@@ -126,9 +92,7 @@ export default function Footer() {
           </div>
         </div>
         <div class="sm:ml-0 ml-8 flex flex-col">
-          <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">
-            Company
-          </h2>
+          <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">Company</h2>
           <a
             href="javascript:void(0)"
             class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
@@ -161,9 +125,7 @@ export default function Footer() {
           </a>
         </div>
         <div class="flex flex-col">
-          <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">
-            Support
-          </h2>
+          <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">Support</h2>
           <a
             href="javascript:void(0)"
             class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
@@ -190,9 +152,7 @@ export default function Footer() {
           </a>
         </div>
         <div class="mt-10 lg:block hidden">
-          <label class="text-xl font-medium leading-5 text-gray-800 dark:text-white">
-            Get updates
-          </label>
+          <label class="text-xl font-medium leading-5 text-gray-800 dark:text-white">Get updates</label>
           <div class="cursor-pointer flex items-center justify-between border border-gray-800 dark:border-white mt-4">
             <input
               type="text"
@@ -221,9 +181,7 @@ export default function Footer() {
         </div>
       </div>
       <div class="mt-10 lg:hidden">
-        <label class="text-xl font-medium leading-5 text-gray-800 dark:text-white">
-          Get updates
-        </label>
+        <label class="text-xl font-medium leading-5 text-gray-800 dark:text-white">Get updates</label>
         <div class="flex items-center justify-between border border-gray-800 dark:border-white mt-4">
           <input
             type="text"

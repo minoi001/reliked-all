@@ -1,8 +1,8 @@
-import { useState, useContext } from "react";
-import { formatter } from "../../utils/helpers";
-import ProductList from "../Homepage/ProductList";
-import ProductOptions from "./ProductOptions";
-import { ShopContext } from "../../context/shopContext";
+import { useState, useContext } from 'react';
+import { formatter } from '../../utils/helpers';
+import ProductList from '../Homepage/ProductList';
+import ProductOptions from './ProductOptions';
+import { ShopContext } from '../../context/shopContext';
 
 export default function ProductForm({ product }) {
   const { addToCart, setCartOpen } = useContext(ShopContext);
@@ -20,7 +20,7 @@ export default function ProductForm({ product }) {
       handle: product.handle,
       image: variant.node.image
         ? variant.node.image.url
-        : "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018",
+        : 'https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018',
       options: allOptions,
       variantTitle: variant.node.title,
       variantPrice: variant.node.priceV2.amount,
@@ -56,9 +56,7 @@ export default function ProductForm({ product }) {
   return (
     <div className="p-2 shadow-lg flex flex-col w-full aspect-4/5 md:w-1/3 bg-white">
       <h2 className="text-2xl font-bold">{product.title}</h2>
-      <span className="pb-6">
-        {formatter.format(product.variants.edges[0].node.priceV2.amount)}
-      </span>
+      <span className="pb-6">{formatter.format(product.variants.edges[0].node.priceV2.amount)}</span>
       {product.options.map(({ name, values }) => (
         <ProductOptions
           key={`key-${name}`}

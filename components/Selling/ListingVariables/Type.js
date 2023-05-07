@@ -1,23 +1,23 @@
-import React, { useContext } from "react";
-import Select from "react-select";
+import React, { useContext } from 'react';
+import Select from 'react-select';
 
-import { ProductContext } from "../../../context/productContext";
-import { AccountContext } from "../../../context/accountContext";
+import { ProductContext } from '../../../context/productContext';
+import { AccountContext } from '../../../context/accountContext';
 const Type = ({ products }) => {
   const { productInfo, updateProductValue } = useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
 
   const types = [
     {
-      value: "Shoes",
-      label: "Shoes",
-      variable: "type",
+      value: 'Shoes',
+      label: 'Shoes',
+      variable: 'type',
     },
-    { value: "Coat", label: "Coat", variable: "type" },
+    { value: 'Coat', label: 'Coat', variable: 'type' },
     {
-      value: "Dress",
-      label: "Dress",
-      variable: "type",
+      value: 'Dress',
+      label: 'Dress',
+      variable: 'type',
     },
   ];
 

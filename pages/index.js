@@ -1,16 +1,12 @@
-import Head from "next/head";
-import Image from "next/image";
-import {
-  getHeaderContent,
-  getHomepageContent,
-  getProductsInCollection,
-} from "../lib/shopify.js";
-import ProductList from "../components/Homepage/ProductList.js";
-import { useContext, useEffect } from "react";
-import { ShopContext } from "../context/shopContext.js";
-import HeroImage from "../components/Homepage/HeroImage.js";
-import InfluencerSlider from "../components/Homepage/InfluencerSlider.js";
-import FeaturedCollections from "../components/Homepage/FeaturedCollections.js";
+import Head from 'next/head';
+import Image from 'next/image';
+import { getHeaderContent, getHomepageContent, getProductsInCollection } from '../lib/shopify.js';
+import ProductList from '../components/Homepage/ProductList.js';
+import { useContext, useEffect } from 'react';
+import { ShopContext } from '../context/shopContext.js';
+import HeroImage from '../components/Homepage/HeroImage.js';
+import InfluencerSlider from '../components/Homepage/InfluencerSlider.js';
+import FeaturedCollections from '../components/Homepage/FeaturedCollections.js';
 // type products = [];
 // I need to learn more about typescript
 
@@ -22,7 +18,7 @@ export default function Home({ products, headerContent, homepageContent }) {
     <div className="bg-white">
       <div class="text-center">
         <div className="">
-          {" "}
+          {' '}
           <HeroImage homepageContent={homepageContent} />
         </div>
       </div>
@@ -50,9 +46,7 @@ export default function Home({ products, headerContent, homepageContent }) {
 
 export async function getStaticProps() {
   const products = await getProductsInCollection();
-  const headerContent = await getHeaderContent(
-    "gid://shopify/Metaobject/57180350"
-  );
+  const headerContent = await getHeaderContent('gid://shopify/Metaobject/57180350');
   const homepageContent = await getHomepageContent();
   return {
     props: { products, headerContent, homepageContent },

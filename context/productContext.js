@@ -1,57 +1,57 @@
-import { createContext, useState, useEffect } from "react";
-import { createCheckout, updateCheckout } from "../lib/shopify";
+import { createContext, useState, useEffect } from 'react';
+import { createCheckout, updateCheckout } from '../lib/shopify';
 import {
   getBrandVariables,
   getColourVariables,
   getInfluencerVariables,
   getSizeVariables,
   getTypeVariables,
-} from "../lib/relikedAPI";
+} from '../lib/relikedAPI';
 
 const ProductContext = createContext();
 
 export default function ProductProvider({ children }) {
   const [productInfo, setProductInfo] = useState({
-    barcode: "",
-    barcodeURL: "",
-    variantID: "",
-    photography: "",
-    styleName: "",
+    barcode: '',
+    barcodeURL: '',
+    variantID: '',
+    photography: '',
+    styleName: '',
     photosCount: 0,
-    cdnLink: "",
+    cdnLink: '',
     imageVariables: [
       {
-        src: "",
+        src: '',
       },
     ],
-    additionalDetails: "",
-    type: "",
+    additionalDetails: '',
+    type: '',
     availability: null,
     RRP: 0,
     salePrice: 0,
     price: 0,
     discount: 0.5,
     multiplier: 1,
-    condition: "",
-    faults: "",
-    packaging: "",
-    age: "",
-    influencer: "",
-    anonymous: "No",
-    gender: "",
-    brand: "",
-    colour: "",
-    size: "",
+    condition: '',
+    faults: '',
+    packaging: '',
+    age: '',
+    influencer: '',
+    anonymous: 'No',
+    gender: '',
+    brand: '',
+    colour: '',
+    size: '',
     occasion: [],
-    sleeveLength: "",
-    dressType: "",
-    trouserFit: "",
-    bottomsRise: "",
+    sleeveLength: '',
+    dressType: '',
+    trouserFit: '',
+    bottomsRise: '',
     bagType: [],
     tags: [],
-    description: "",
-    SKU: "",
-    title: "Product Title",
+    description: '',
+    SKU: '',
+    title: 'Product Title',
   });
 
   function updateProductValue(valuesObject) {

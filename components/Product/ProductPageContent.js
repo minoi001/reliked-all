@@ -1,5 +1,5 @@
-import Image from "next/image";
-import ProductForm from "./ProductForm";
+import Image from 'next/image';
+import ProductForm from './ProductForm';
 export default function ProductPageContent({ product }) {
   return (
     <div>
@@ -11,7 +11,7 @@ export default function ProductPageContent({ product }) {
               src={
                 product.images
                   ? product.images.edges[0].node.url
-                  : "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018"
+                  : 'https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018'
               }
               alt={product.title}
               height="2000"
