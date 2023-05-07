@@ -138,6 +138,16 @@ export const SKU = (product, user) => {
   SKUlister = `${user.listerCode}-`;
   SKUnum = `${product.itemCode}-`;
   SKUwkyr = `${product.wkYr}-`;
-  SKUarray.push(SKUzone, SKUaisle, SKUbay, SKUwkyr, SKUinfluencer, SKUlister, SKUnum, SKUcon, SKUpack);
+  SKUarray.push(
+    SKUzone,
+    SKUaisle,
+    SKUbay,
+    SKUwkyr,
+    SKUinfluencer,
+    SKUlister,
+    SKUnum,
+    SKUcon,
+    SKUpack
+  );
   return SKUarray;
 };

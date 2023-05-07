@@ -10,9 +10,13 @@ if (props.colour === 'No Shade') {
     }
   } else {
     if (titleCase(ourStyleName).includes(` ${props.colour} `)) {
-      ourTitle = `${props.brand.trim()} ${titleCase(props.styleName.trim())} ${props.size.trim()}`;
+      ourTitle = `${props.brand.trim()} ${titleCase(
+        props.styleName.trim()
+      )} ${props.size.trim()}`;
     } else {
-      ourTitle = `${props.brand.trim()} ${titleCase(props.styleName.trim())} ${props.size.trim()}`;
+      ourTitle = `${props.brand.trim()} ${titleCase(
+        props.styleName.trim()
+      )} ${props.size.trim()}`;
     }
   }
 } else {
@@ -20,15 +24,19 @@ if (props.colour === 'No Shade') {
     if (titleCase(ourStyleName).includes(` ${props.colour} `)) {
       ourTitle = `${titleCase(props.styleName.trim())} ${props.size.trim()}`;
     } else {
-      ourTitle = `${titleCase(props.colour.trim())} ${titleCase(props.styleName.trim())} ${props.size.trim()}`;
+      ourTitle = `${titleCase(props.colour.trim())} ${titleCase(
+        props.styleName.trim()
+      )} ${props.size.trim()}`;
     }
   } else {
     if (titleCase(ourStyleName).includes(` ${props.colour} `)) {
-      ourTitle = `${props.brand.trim()} ${titleCase(props.styleName.trim())} ${props.size.trim()}`;
-    } else {
-      ourTitle = `${props.brand.trim()} ${titleCase(props.colour.trim())} ${titleCase(
+      ourTitle = `${props.brand.trim()} ${titleCase(
         props.styleName.trim()
       )} ${props.size.trim()}`;
+    } else {
+      ourTitle = `${props.brand.trim()} ${titleCase(
+        props.colour.trim()
+      )} ${titleCase(props.styleName.trim())} ${props.size.trim()}`;
     }
   }
 }

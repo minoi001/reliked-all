@@ -6,7 +6,9 @@ const FeaturedCollections = () => {
       <div className="container h-full left-0  ml-0 absolute z-0 bg-cream"></div>
       <div className=" max-w-7xl container z-10 h-full my-8 static p-0 py-0  mx-auto flex flex-col justify-around lg:flex-row">
         <div className="w-full lg:w-5/12 flex-col  p-2 lg:p-2 ">
-          <h2 className="font-h text-2xl lg:text-4xl p-2 lg:p-5 text-almostBlack font-semibold">Scarves</h2>
+          <h2 className="font-h text-2xl lg:text-4xl p-2 lg:p-5 text-almostBlack font-semibold">
+            Scarves
+          </h2>
           <div className="relative w-full shadow-sm">
             <img
               className="w-full object-cover "
@@ -20,7 +22,9 @@ const FeaturedCollections = () => {
         </div>
 
         <div className="w-full lg:w-5/12 flex-col  p-2 lg:p-2 ">
-          <h2 className="font-h text-2xl lg:text-4xl p-2 lg:p-4 text-almostBlack font-semibold">Hats</h2>
+          <h2 className="font-h text-2xl lg:text-4xl p-2 lg:p-4 text-almostBlack font-semibold">
+            Hats
+          </h2>
           <div className="relative w-full shadow-sm">
             <img
               className="w-full object-cover "

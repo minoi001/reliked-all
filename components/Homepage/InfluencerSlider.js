@@ -56,13 +56,21 @@ const InfluencerSlider = () => {
   return (
     <div className="">
       <div className="container w-full ml-6 -px-2 py-5 lg:max-w-7xl lg:px-8">
-        <h1 className="font-h text-3xl lg:text-4xl py-5 font-bold">Your home of celebrity and influencer closets</h1>
+        <h1 className="font-h text-3xl lg:text-4xl py-5 font-bold">
+          Your home of celebrity and influencer closets
+        </h1>
         <div className="flex overflow-x-scroll">
           {products.map((product, index) => (
             <Link key={index} href={'/products'}>
               <div className="flex-col cursor-pointer">
                 <div className=" bg-white flex items-center justify-center shadow-sm hover:shadow-md h-48 w-36 ">
-                  <Image className="w-100" width="100" height="100" src={product.img} alt="" />
+                  <Image
+                    className="w-100"
+                    width="100"
+                    height="100"
+                    src={product.img}
+                    alt=""
+                  />
                 </div>
                 <p className="text-sm p-1 font-semibold">{product.title} </p>
               </div>

@@ -13,7 +13,10 @@ const Photos = ({ products }) => {
       <fieldset className="px-4 border-solid border-2 border-indigo-600 w-full">
         <legend className="p-1">PHOTOS</legend>
         <div className="flex">
-          <input className="mb-4 p-2 flex-auto w-full" placeholder={'How is this item being photographed?'} />
+          <input
+            className="mb-4 p-2 flex-auto w-full"
+            placeholder={'How is this item being photographed?'}
+          />
         </div>
         <div className="flex">
           <div className="mb-4 p-2 -mt-2 w-full text-black bg-indigo-600">

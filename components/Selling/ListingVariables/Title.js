@@ -6,7 +6,12 @@ import { ProductContext } from '../../../context/productContext';
 import { AccountContext } from '../../../context/accountContext';
 
 const Title = ({ products }) => {
-  const { productInfo, updateProductValue, listingVariables, getListingVariables } = useContext(ProductContext);
+  const {
+    productInfo,
+    updateProductValue,
+    listingVariables,
+    getListingVariables,
+  } = useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
 
   useEffect(() => {
@@ -51,7 +56,9 @@ const Title = ({ products }) => {
             id="type"
             type="text"
             placeholder={
-              userInfo.userType === 'Customer' || 'Influencer' ? 'Description' : 'Copy & paste product title...'
+              userInfo.userType === 'Customer' || 'Influencer'
+                ? 'Description'
+                : 'Copy & paste product title...'
             }
             isCreat
             onChange={handleChange}

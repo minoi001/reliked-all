@@ -1,6 +1,10 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { getHeaderContent, getHomepageContent, getProductsInCollection } from '../lib/shopify.js';
+import {
+  getHeaderContent,
+  getHomepageContent,
+  getProductsInCollection,
+} from '../lib/shopify.js';
 import ProductList from '../components/Homepage/ProductList.js';
 import { useContext, useEffect } from 'react';
 import { ShopContext } from '../context/shopContext.js';
@@ -46,7 +50,9 @@ export default function Home({ products, headerContent, homepageContent }) {
 
 export async function getStaticProps() {
   const products = await getProductsInCollection();
-  const headerContent = await getHeaderContent('gid://shopify/Metaobject/57180350');
+  const headerContent = await getHeaderContent(
+    'gid://shopify/Metaobject/57180350'
+  );
   const homepageContent = await getHomepageContent();
   return {
     props: { products, headerContent, homepageContent },

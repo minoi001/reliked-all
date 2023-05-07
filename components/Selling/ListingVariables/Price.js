@@ -33,19 +33,25 @@ const Price = ({ products }) => {
       updateProductValue({
         [variable]: Number(event.target.value),
         salePrice: 0,
-        price: Number(event.target.value * productInfo.discount * productInfo.multiplier),
+        price: Number(
+          event.target.value * productInfo.discount * productInfo.multiplier
+        ),
       });
     } else if (event.target.value > productInfo.RRP) {
       alert('RRP cleared as you entered a higher sale price');
       updateProductValue({
         [variable]: Number(event.target.value),
-        price: Number(event.target.value * productInfo.discount * productInfo.multiplier),
+        price: Number(
+          event.target.value * productInfo.discount * productInfo.multiplier
+        ),
         RRP: 0,
       });
     } else {
       updateProductValue({
         [variable]: Number(event.target.value),
-        price: Number(event.target.value * productInfo.discount * productInfo.multiplier),
+        price: Number(
+          event.target.value * productInfo.discount * productInfo.multiplier
+        ),
       });
     }
   };
@@ -86,7 +92,12 @@ const Price = ({ products }) => {
           {/* <p className="mb-4 py-2 inline">:</p> */}
           {/* <p className="mb-4 py-2 inline">:</p> */}
           <span className="py-4 inline w-1/12">£</span>
-          <input className="mb-4 p-2 inline w-1/6" placeholder={'Price'} disabled={true} value={productInfo.price} />
+          <input
+            className="mb-4 p-2 inline w-1/6"
+            placeholder={'Price'}
+            disabled={true}
+            value={productInfo.price}
+          />
         </div>
       </fieldset>
     </div>

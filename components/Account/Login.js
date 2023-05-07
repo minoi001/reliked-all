@@ -4,7 +4,13 @@ import { useContext } from 'react';
 import { AccountContext } from '../../context/accountContext';
 
 export default function Login() {
-  const { userInfo, setUserInfo, getUserInfo, sendUserRequest, updateUserValue } = useContext(AccountContext);
+  const {
+    userInfo,
+    setUserInfo,
+    getUserInfo,
+    sendUserRequest,
+    updateUserValue,
+  } = useContext(AccountContext);
 
   const formInput = async (event) => {
     // console.log(event);
@@ -28,7 +34,10 @@ export default function Login() {
               </h2>
               <p className="mt-2 text-center text-sm text-gray-600">
                 Or{' '}
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                <a
+                  href="#"
+                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                >
                   start your 14-day free trial
                 </a>
               </p>
@@ -76,13 +85,19 @@ export default function Login() {
                     type="checkbox"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
-                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                  <label
+                    htmlFor="remember-me"
+                    className="ml-2 block text-sm text-gray-900"
+                  >
                     Remember me
                   </label>
                 </div>
 
                 <div className="text-sm">
-                  <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                  <a
+                    href="#"
+                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                  >
                     Forgot your password?
                   </a>
                 </div>

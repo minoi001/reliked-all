@@ -19,7 +19,8 @@ import SellingSubheader from './SellingSubheader';
 const LogoHeader = () => {
   const [open, setOpen] = useState(false);
 
-  const { cart, cartOpen, setCartOpen, headerContent } = useContext(ShopContext);
+  const { cart, cartOpen, setCartOpen, headerContent } =
+    useContext(ShopContext);
   const { pathname } = useRouter();
 
   return (
@@ -33,7 +34,13 @@ const LogoHeader = () => {
             <div className="items-center justify-center flex">
               <Link href="/">
                 <span className="sr-only">Reliked</span>
-                <Image className="h-8 w-auto -mt-10" src={headerContent.logo} alt="" width="100" height="100" />
+                <Image
+                  className="h-8 w-auto -mt-10"
+                  src={headerContent.logo}
+                  alt=""
+                  width="100"
+                  height="100"
+                />
               </Link>
             </div>
             {/* End of Logo */}
@@ -50,16 +57,25 @@ const LogoHeader = () => {
               <div className="ml-auto flex items-center">
                 {/* Account */}
                 <div className="flex lg:ml-6">
-                  <Link href="/account" className="p-2 text-gray-400 hover:text-gray-500">
+                  <Link
+                    href="/account"
+                    className="p-2 text-gray-400 hover:text-gray-500"
+                  >
                     <span className="sr-only">Account</span>
                     <UserIcon className="h-6 w-6" aria-hidden="true" />
                   </Link>
                 </div>
                 {/* Selling */}
                 <div className="flex lg:ml-6">
-                  <Link href="/selling" className="p-2 text-gray-400 hover:text-gray-500">
+                  <Link
+                    href="/selling"
+                    className="p-2 text-gray-400 hover:text-gray-500"
+                  >
                     <span className="sr-only">Storefront</span>
-                    <BuildingStorefrontIcon className="h-6 w-6" aria-hidden="true" />
+                    <BuildingStorefrontIcon
+                      className="h-6 w-6"
+                      aria-hidden="true"
+                    />
                   </Link>
                 </div>
                 {/* Cart */}
@@ -87,7 +103,11 @@ const LogoHeader = () => {
             {/* End of Icons */}
             {/* Burger Menu Button */}
             <div className="float-left -mt-11 text-sm">
-              <button type="button" className="rounded-md  p-2 text-gray-400 lg:hidden" onClick={() => setOpen(true)}>
+              <button
+                type="button"
+                className="rounded-md  p-2 text-gray-400 lg:hidden"
+                onClick={() => setOpen(true)}
+              >
                 <span className="sr-only">Open menu</span>
                 <Bars3Icon className="h-6 w-6" aria-hidden="true" />
               </button>

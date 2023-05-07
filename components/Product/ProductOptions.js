@@ -1,4 +1,9 @@
-export default function ProductOptions({ name, values, selectedOptions, setOptions }) {
+export default function ProductOptions({
+  name,
+  values,
+  selectedOptions,
+  setOptions,
+}) {
   return (
     <fieldset>
       <legend className="text-xl font-semibold">{name}</legend>

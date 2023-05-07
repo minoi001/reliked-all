@@ -30,7 +30,9 @@ const ProductCard = ({ product }) => {
             </div>
           </div>
           <h3 className="mt-4 text-lg font-medium text-gray-900">{title}</h3>
-          <h4 className="mt-4 text-md font-medium text-gray-900">{formatter.format(price)}</h4>
+          <h4 className="mt-4 text-md font-medium text-gray-900">
+            {formatter.format(price)}
+          </h4>
         </div>
       </Link>
     </div>
