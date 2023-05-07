@@ -1,10 +1,10 @@
-import NewListing from "../components/Selling/NewListing";
-import { getAllProducts, getProduct } from "../lib/shopify.js";
+import NewListing from '../components/Selling/NewListing';
+import { getAllProducts, getProduct } from '../lib/shopify.js';
 
-import { AccountContext } from "../context/accountContext";
-import { useContext } from "react";
-import Login from "../components/Account/Login";
-import Link from "next/link";
+import { AccountContext } from '../context/accountContext';
+import { useContext } from 'react';
+import Login from '../components/Account/Login';
+import Link from 'next/link';
 
 export default function Selling({ product }) {
   const { userInfo } = useContext(AccountContext);
@@ -12,8 +12,8 @@ export default function Selling({ product }) {
     <div>
       {userInfo.loginStatus ? (
         <div>
-          <div className='minh-screen py-12 sm:pt-20'>selling page</div>
-          <Link href='/selling/add-listing'>Add listing</Link>
+          <div className="minh-screen py-12 sm:pt-20">selling page</div>
+          <Link href="/selling/add-listing">Add listing</Link>
         </div>
       ) : (
         <Login />

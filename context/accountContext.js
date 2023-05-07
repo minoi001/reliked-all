@@ -1,18 +1,18 @@
-import { createContext, useState, useEffect } from "react";
-import { getUserAccessToken, getUserInfo } from "../lib/shopify";
+import { createContext, useState, useEffect } from 'react';
+import { getUserAccessToken, getUserInfo } from '../lib/shopify';
 
 const AccountContext = createContext();
 
 export default function AccountProvider({ children }) {
   const [userInfo, setUserInfo] = useState({
-    userType: "",
-    userName: "",
-    listerCode: "",
-    email: "",
-    password: "",
-    errorMessage: "",
+    userType: '',
+    userName: '',
+    listerCode: '',
+    email: '',
+    password: '',
+    errorMessage: '',
     loginStatus: false,
-    token: "",
+    token: '',
     checkingLogin: true,
   });
 
@@ -42,12 +42,15 @@ export default function AccountProvider({ children }) {
     }
     // if no token, get token & user info, otherwise, just get user info
     if (!localStorage.accountToken) {
-      const tokenRequest = await getUserAccessToken(userInfo.email, userInfo.password);
+      const tokenRequest = await getUserAccessToken(
+        userInfo.email,
+        userInfo.password
+      );
       // if credentials fail to produce token, set error message and login status to false
       if (!tokenRequest.customerAccessTokenCreate.customerAccessToken) {
         updateUserValue({
           errorMessage: "we couldn't log you in with those details",
-          false: "errorMessage",
+          false: 'errorMessage',
           checkingLogin: false,
         });
         return;
@@ -58,8 +61,8 @@ export default function AccountProvider({ children }) {
         });
         // store token in local storage
         localStorage.setItem(
-          "accountToken",
-          `${tokenRequest.customerAccessTokenCreate.customerAccessToken.accessToken}`,
+          'accountToken',
+          `${tokenRequest.customerAccessTokenCreate.customerAccessToken.accessToken}`
         );
       }
     }
@@ -77,7 +80,7 @@ export default function AccountProvider({ children }) {
       // token invalid, set error message and login status to false
     } else {
       updateUserValue({
-        errorMessage: "your session has expired, please login again",
+        errorMessage: 'your session has expired, please login again',
         loginStatus: false,
         checkingLogin: false,
       });

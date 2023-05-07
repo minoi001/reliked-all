@@ -1,9 +1,9 @@
-import NewListing from "../../components/Selling/NewListing";
-import { getAllProducts, getProduct } from "../../lib/shopify.js";
+import NewListing from '../../components/Selling/NewListing';
+import { getAllProducts, getProduct } from '../../lib/shopify.js';
 
 export default function AddListing({ product }) {
   return (
-    <div className='minh-screen py-12 sm:pt-20'>
+    <div className="minh-screen py-12 sm:pt-20">
       <NewListing product={product} />
     </div>
   );
