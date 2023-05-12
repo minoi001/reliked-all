@@ -6,13 +6,11 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3006](http://localhost:3006) with your browser to see the result.
+
+Edit the .env file to add the `SHOPIFY_STOREFRONT_ACCESSTOKEN` from Shopify develop app called Reliked Headless (make sure you use the Shopify storefront token)
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 

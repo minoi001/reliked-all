@@ -5,20 +5,17 @@ import { useRouter } from "next/router";
 import { ShopContext } from "../../context/shopContext";
 import {
   Bars3Icon,
-  MagnifyingGlassIcon,
   ShoppingBagIcon,
   UserIcon,
-  XMarkIcon,
   BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
 import ShoppingSubheader from "./ShoppingSubheader";
-import SearchBar from "./SearchBar";
 import MiniCart from "./MiniCart";
 import SellingSubheader from "./SellingSubheader";
+import { SearchBox } from "react-instantsearch-dom";
 
 const LogoHeader = () => {
   const [open, setOpen] = useState(false);
-
   const { cart, cartOpen, setCartOpen, headerContent } =
     useContext(ShopContext);
   const { pathname } = useRouter();
@@ -26,9 +23,8 @@ const LogoHeader = () => {
   return (
     <div>
       <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="">
+        <div>
           <div className="flex h-12 items-center"></div>
-
           <div className="relative">
             {/* Logo */}
             <div className="items-center justify-center flex">
@@ -46,10 +42,7 @@ const LogoHeader = () => {
             {/* End of Logo */}
             {/* DesktopSearch/HamburgerMenu */}
             <div className="float-left -mt-9 text-sm w-60 max-lg:hidden">
-              <Link href="/">
-                <span className="sr-only">Search</span>
-                <SearchBar />
-              </Link>
+                <SearchBox />
             </div>
             {/* End of DesktopSearch/HamburgerMenu */}
             {/* Icons */}
@@ -116,7 +109,6 @@ const LogoHeader = () => {
             {/* Navigation */}
             {pathname?.includes("/selling") ? (
               <subheader>
-                {" "}
                 <SellingSubheader open={open} setOpen={setOpen} />
               </subheader>
             ) : (
@@ -128,7 +120,7 @@ const LogoHeader = () => {
             {/* End of Navigation */}
             {/* Mobile Search Bar */}
             <div className="lg:hidden pb-2">
-              <SearchBar />
+              <SearchBox />
             </div>
             {/* End of Mobile Search Bar */}
           </div>

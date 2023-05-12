@@ -4,6 +4,16 @@ import ShopProvider from "../context/shopContext";
 import ProductProvider from "../context/productContext";
 import AccountProvider from "../context/accountContext";
 import { useRouter } from "next/router";
+import algoliasearch from "algoliasearch/lite";
+import { InstantSearch } from "react-instantsearch-dom";
+
+const appId = process.env.ALGOLIA_APP_ID;
+const apiKey = process.env.ALGOLIA_API_KEY;
+
+const searchClient = algoliasearch(
+  appId,
+  apiKey
+);
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -16,15 +26,17 @@ function MyApp({ Component, pageProps }) {
         property="og:image"
         content="https://cdn.shopify.com/s/files/1/2481/5934/files/Homepage_Design_24.png?v=1680620417"
       />
-      <ShopProvider>
-        <AccountProvider>
-          <ProductProvider>
-            <Layout>
-              <Component {...pageProps} key={router.asPath} />
-            </Layout>
-          </ProductProvider>
-        </AccountProvider>
-      </ShopProvider>
+      <InstantSearch searchClient={searchClient} indexName="shopify_products">
+        <ShopProvider>
+          <AccountProvider>
+            <ProductProvider>
+              <Layout>
+                <Component {...pageProps} key={router.asPath} />
+              </Layout>
+            </ProductProvider>
+          </AccountProvider>
+        </ShopProvider>
+      </InstantSearch>
     </div>
   );
 }
