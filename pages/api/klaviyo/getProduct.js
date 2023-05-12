@@ -6,6 +6,6 @@ export default async function handler(req, res) {
   console.log(req.body)
   let apiRes = await getProduct(req.body.id);
   // res.status(200).json({ createdAt: apiRes.createdAt });
-  res.status(200).json(apiRes);
+  res.status(200).json(req.body);
 
 }
