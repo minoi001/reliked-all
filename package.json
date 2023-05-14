@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@algolia/autocomplete-js": "^1.9.2",
     "@google-cloud/local-auth": "^2.1.0",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.16",
