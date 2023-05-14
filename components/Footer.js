@@ -21,35 +21,35 @@ export default function Footer() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div class="max-w-7xl mx-auto container py-20 xl:px-24 lg:px-12 sm:px-6 px-4">
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 gap-4">
-        <div class="flex flex-col flex-shrink-0">
-          <div class="dark:text-white">
+    <div className="max-w-7xl mx-auto container py-20 xl:px-24 lg:px-12 sm:px-6 px-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 gap-4">
+        <div className="flex flex-col flex-shrink-0">
+          <div className="dark:text-white">
             <Image
-              class="dark:hidden"
+              className="dark:hidden"
               src="https://tuk-cdn.s3.amazonaws.com/can-uploader/footer-I-svg1.svg"
               alt="icon"
               width="100"
               height="100"
             />
             <Image
-              class="hidden dark:block"
+              className="hidden dark:block"
               src="https://tuk-cdn.s3.amazonaws.com/can-uploader/footer-I-svg1dark.svg"
               alt="icon"
               width="100"
               height="100"
             />
           </div>
-          <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">
+          <p className="text-sm leading-none text-gray-800 mt-4 dark:text-white">
             Copyright © 2021 Luxe
           </p>
-          <p class="text-sm leading-none text-gray-800 mt-4 dark:text-white">
+          <p className="text-sm leading-none text-gray-800 mt-4 dark:text-white">
             All rights reserved
           </p>
-          <div class="flex items-center gap-x-4 mt-12">
+          <div className="flex items-center gap-x-4 mt-12">
             <button
               aria-label="instagram"
-              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
+              className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
             >
               <svg
                 width="18"
@@ -68,7 +68,7 @@ export default function Footer() {
             </button>
             <button
               aria-label="linked-in"
-              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
+              className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
             >
               <svg
                 width="18"
@@ -87,7 +87,7 @@ export default function Footer() {
             </button>
             <button
               aria-label="twitter"
-              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
+              className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
             >
               <svg
                 width="16"
@@ -106,7 +106,7 @@ export default function Footer() {
             </button>
             <button
               aria-label="youtube"
-              class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
+              className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
             >
               <svg
                 width="18"
@@ -125,86 +125,86 @@ export default function Footer() {
             </button>
           </div>
         </div>
-        <div class="sm:ml-0 ml-8 flex flex-col">
-          <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">
+        <div className="sm:ml-0 ml-8 flex flex-col">
+          <h2 className="text-base font-semibold leading-4 text-gray-800 dark:text-white">
             Company
           </h2>
           <a
             href="javascript:void(0)"
-            class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
+            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
           >
             Blog
           </a>
           <a
             href="javascript:void(0)"
-            class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
+            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
           >
             Pricing
           </a>
           <a
             href="javascript:void(0)"
-            class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
+            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
           >
             About Us
           </a>
           <a
             href="javascript:void(0)"
-            class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
+            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
           >
             Contact us
           </a>
           <a
             href="javascript:void(0)"
-            class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
+            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
           >
             Testimonials
           </a>
         </div>
-        <div class="flex flex-col">
-          <h2 class="text-base font-semibold leading-4 text-gray-800 dark:text-white">
+        <div className="flex flex-col">
+          <h2 className="text-base font-semibold leading-4 text-gray-800 dark:text-white">
             Support
           </h2>
           <a
             href="javascript:void(0)"
-            class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
+            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
           >
             Legal policy
           </a>
           <a
             href="javascript:void(0)"
-            class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
+            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
           >
             Status policy
           </a>
           <a
             href="javascript:void(0)"
-            class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
+            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
           >
             Privacy policy
           </a>
           <a
             href="javascript:void(0)"
-            class="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
+            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
           >
             Terms of service
           </a>
         </div>
-        <div class="mt-10 lg:block hidden">
-          <label class="text-xl font-medium leading-5 text-gray-800 dark:text-white">
+        <div className="mt-10 lg:block hidden">
+          <label className="text-xl font-medium leading-5 text-gray-800 dark:text-white">
             Get updates
           </label>
-          <div class="cursor-pointer flex items-center justify-between border border-gray-800 dark:border-white mt-4">
+          <div className="cursor-pointer flex items-center justify-between border border-gray-800 dark:border-white mt-4">
             <input
               type="text"
-              class="text-base leading-4 p-4 w-full focus:outline-none text-gray-800 dark:text-white dark:placeholder-white dark:bg-gray-900 dark:border-white placeholder-gray-800"
+              className="text-base leading-4 p-4 w-full focus:outline-none text-gray-800 dark:text-white dark:placeholder-white dark:bg-gray-900 dark:border-white placeholder-gray-800"
               placeholder="Enter your email"
             />
             <button
               aria-label="send"
-              class="mr-4 fill-current text-gray-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800"
+              className="mr-4 fill-current text-gray-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800"
             >
               <svg
-                class="dark:text-white dark:hover:text-gray-200"
+                className="dark:text-white dark:hover:text-gray-200"
                 width="16"
                 height="17"
                 viewBox="0 0 16 17"
@@ -220,22 +220,22 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div class="mt-10 lg:hidden">
-        <label class="text-xl font-medium leading-5 text-gray-800 dark:text-white">
+      <div className="mt-10 lg:hidden">
+        <label className="text-xl font-medium leading-5 text-gray-800 dark:text-white">
           Get updates
         </label>
-        <div class="flex items-center justify-between border border-gray-800 dark:border-white mt-4">
+        <div className="flex items-center justify-between border border-gray-800 dark:border-white mt-4">
           <input
             type="text"
-            class="text-base leading-4 p-4 relative z-0 w-full focus:outline-none text-gray-800 placeholder-gray-800 dark:text-white dark:placeholder-white dark:border-white dark:bg-gray-900"
+            className="text-base leading-4 p-4 relative z-0 w-full focus:outline-none text-gray-800 placeholder-gray-800 dark:text-white dark:placeholder-white dark:border-white dark:bg-gray-900"
             placeholder="Enter your email"
           />
           <button
             aria-label="send"
-            class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer mr-4 cursor-pointer relative z-40"
+            className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer mr-4 cursor-pointer relative z-40"
           >
             <svg
-              class="fill-current text-gray-800 hover:text-gray-500 dark:text-white dark:hover:text-gray-200"
+              className="fill-current text-gray-800 hover:text-gray-500 dark:text-white dark:hover:text-gray-200"
               width="16"
               height="17"
               viewBox="0 0 16 17"
