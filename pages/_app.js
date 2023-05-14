@@ -10,10 +10,7 @@ import { InstantSearch } from "react-instantsearch-dom";
 const appId = process.env.ALGOLIA_APP_ID;
 const apiKey = process.env.ALGOLIA_API_KEY;
 
-const searchClient = algoliasearch(
-  appId,
-  apiKey
-);
+const searchClient = algoliasearch(appId, apiKey);
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
