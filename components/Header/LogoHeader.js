@@ -5,14 +5,14 @@ import { useRouter } from "next/router";
 import { ShopContext } from "../../context/shopContext";
 import {
   Bars3Icon,
+  BuildingStorefrontIcon,
   ShoppingBagIcon,
   UserIcon,
-  BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
 import ShoppingSubheader from "./ShoppingSubheader";
 import MiniCart from "./MiniCart";
 import SellingSubheader from "./SellingSubheader";
-import { SearchBox } from "react-instantsearch-dom";
+import { Search } from "./Search";
 
 const LogoHeader = () => {
   const [open, setOpen] = useState(false);
@@ -42,7 +42,7 @@ const LogoHeader = () => {
             {/* End of Logo */}
             {/* DesktopSearch/HamburgerMenu */}
             <div className="float-left -mt-9 text-sm w-60 max-lg:hidden">
-                <SearchBox />
+              <Search />
             </div>
             {/* End of DesktopSearch/HamburgerMenu */}
             {/* Icons */}
@@ -120,7 +120,7 @@ const LogoHeader = () => {
             {/* End of Navigation */}
             {/* Mobile Search Bar */}
             <div className="lg:hidden pb-2">
-              <SearchBox />
+              <Search />
             </div>
             {/* End of Mobile Search Bar */}
           </div>
