@@ -17,3 +17,7 @@
 .ais-SearchBox-form {
   @apply flex space-x-2;
 }
+
+.ais-RefinementList-count {
+  @apply bg-gray-200
+}
