@@ -9,23 +9,8 @@ export default function ProductPage({ product }) {
     </div>
   );
 }
-
-export async function getStaticPaths() {
-  const products = await getAllProducts();
-  const paths = products.map((item) => {
-    const handle = String(item.node.handle);
-
-    return {
-      params: { product: handle },
-    };
-  });
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
+  // Fetch data based on the slug parameter
   const product = await getProduct(params.product);
 
   return {

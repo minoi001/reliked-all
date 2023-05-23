@@ -1,5 +1,5 @@
 import NewListing from "../components/Selling/NewListing";
-import { getAllProducts, getProduct } from "../lib/shopify.js";
+import { getNewInProducts, getProduct } from "../lib/shopify.js";
 
 import { AccountContext } from "../context/accountContext";
 import { useContext } from "react";
@@ -23,7 +23,7 @@ export default function Selling({ product }) {
 }
 
 // export async function getStaticPaths() {
-//   const products = await getAllProducts();
+//   const products = await getNewInProducts();
 //   const paths = products.map((item) => {
 //     const handle = String(item.node.handle);
 

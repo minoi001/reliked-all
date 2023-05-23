@@ -1,5 +1,5 @@
 import AccountPageContent from "../components/Account/AccountPageContent.js";
-import { getAllProducts, getProduct } from "../lib/shopify.js";
+import { getNewInProducts, getProduct } from "../lib/shopify.js";
 
 export default function AccountPage({ account }) {
   return (
@@ -10,7 +10,7 @@ export default function AccountPage({ account }) {
 }
 
 // export async function getStaticPaths() {
-//   // const products = await getAllProducts();
+//   // const products = await getNewInProducts();
 //   // const paths = products.map((item) => {
 //   //   const handle = String(item.node.handle);
 //   //   return {
