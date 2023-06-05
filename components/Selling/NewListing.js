@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Login from "../Account/Login";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ProductContext } from "../../context/productContext";
 import { AccountContext } from "../../context/accountContext";
 import Title from "./ListingVariables/Title";
@@ -13,8 +13,13 @@ import Staff from "./ListingVariables/Staff";
 import Price from "./ListingVariables/Price";
 
 export default function NewListing({ listing }) {
-  const { productInfo } = useContext(ProductContext);
+  const { productInfo, resetProductInfo } = useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
+
+  useEffect(() => {
+    // console.log("refresh");
+    resetProductInfo();
+  }, []);
 
   return (
     <div className="flex flex-col justify-center items-center -mt-6 sm:-mt-16 md:flex-row md:items-start md:space-x-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto">
