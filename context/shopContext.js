@@ -17,6 +17,7 @@ export default function ShopProvider({ children }) {
   const [cartOpen, setCartOpen] = useState(false);
   const [checkoutId, setCheckoutId] = useState("");
   const [checkoutUrl, setCheckoutUrl] = useState("");
+  const [cartLoading, setCartLoading] = useState(false);
 
   useEffect(() => {
     sendHeaderContentRequest();
@@ -69,6 +70,25 @@ export default function ShopProvider({ children }) {
         "checkout_id",
         JSON.stringify([newCart, newCheckout])
       );
+    }
+  }
+
+  async function removeCartItem(itemToRemove) {
+    const updatedCart = cart.filter((item) => item.id !== itemToRemove);
+    setCartLoading(true);
+
+    setCart(updatedCart);
+
+    const newCheckout = await updateCheckout(checkoutId, updatedCart);
+
+    localStorage.setItem(
+      "checkout_id",
+      JSON.stringify([updatedCart, newCheckout])
+    );
+    setCartLoading(false);
+
+    if (cart.length === 1) {
+      setCartOpen(false);
     }
   }
 
@@ -154,6 +174,7 @@ export default function ShopProvider({ children }) {
         addToCart,
         checkoutUrl,
         navigation,
+        removeCartItem,
       }}
     >
       {children}

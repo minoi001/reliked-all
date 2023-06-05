@@ -5,7 +5,16 @@ import ProductOptions from "./ProductOptions";
 import { ShopContext } from "../../context/shopContext";
 
 export default function ProductForm({ product }) {
-  const { addToCart, setCartOpen } = useContext(ShopContext);
+  const {
+    cartOpen,
+    setCartOpen,
+    checkoutUrl,
+    removeCartItem,
+    clearCart,
+    cartLoading,
+    incrementCartItem,
+    decrementCartItem,
+  } = useContext(ShopContext);
 
   const allVariantOptions = product.variants.edges?.map((variant) => {
     const allOptions = {};
