@@ -7,6 +7,7 @@ import { ShopContext } from "../../context/shopContext";
 export default function ProductForm({ product }) {
   const {
     cartOpen,
+    addToCart,
     setCartOpen,
     checkoutUrl,
     removeCartItem,
