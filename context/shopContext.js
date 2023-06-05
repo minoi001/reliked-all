@@ -4,6 +4,7 @@ import {
   getHeaderContent,
   updateCheckout,
   getHomepageContent,
+  getNavigation,
 } from "../lib/shopify";
 
 const ShopContext = createContext();
@@ -18,6 +19,7 @@ export default function ShopProvider({ children }) {
 
   useEffect(() => {
     sendHeaderContentRequest();
+    sendNavigationRequest();
     sendHomepageContentRequest();
     if (localStorage.checkout_id) {
       const cartObject = JSON.parse(localStorage.checkout_id);
@@ -128,6 +130,15 @@ export default function ShopProvider({ children }) {
     });
   }
 
+  const [navigation, setNavigation] = useState({});
+
+  async function sendNavigationRequest() {
+    // doesn't work on first page render
+    const navigationRequest = await getNavigation().then();
+
+    setNavigation(navigationRequest);
+  }
+
   return (
     <ShopContext.Provider
       value={{
@@ -138,6 +149,7 @@ export default function ShopProvider({ children }) {
         setCartOpen,
         addToCart,
         checkoutUrl,
+        navigation,
       }}
     >
       {children}

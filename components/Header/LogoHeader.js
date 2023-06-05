@@ -13,6 +13,7 @@ import ShoppingSubheader from "./ShoppingSubheader";
 import MiniCart from "./MiniCart";
 import SellingSubheader from "./SellingSubheader";
 import { Search } from "./Search";
+import { getNavigation } from "../../lib/shopify";
 
 const LogoHeader = () => {
   const [open, setOpen] = useState(false);
@@ -109,7 +110,11 @@ const LogoHeader = () => {
             {/* Navigation */}
             {pathname?.includes("/selling") ? (
               <subheader>
-                <SellingSubheader open={open} setOpen={setOpen} />
+                <SellingSubheader
+                  open={open}
+                  setOpen={setOpen}
+                  navigation={navigation}
+                />
               </subheader>
             ) : (
               <subheader>
@@ -129,5 +134,13 @@ const LogoHeader = () => {
     </div>
   );
 };
+
+export async function getStaticProps() {
+  const navigation = await getNavigation();
+
+  return {
+    props: { navigation },
+  };
+}
 
 export default LogoHeader;

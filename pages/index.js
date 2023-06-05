@@ -2,6 +2,7 @@ import {
   getHeaderContent,
   getHomepageContent,
   getProductsInCollection,
+  getNavigation,
 } from "../lib/shopify.js";
 import HeroImage from "../components/Homepage/HeroImage.js";
 import InfluencerSlider from "../components/Homepage/InfluencerSlider.js";
@@ -39,7 +40,9 @@ export async function getStaticProps() {
     "gid://shopify/Metaobject/57180350"
   );
   const homepageContent = await getHomepageContent();
+  const navigation = await getNavigation();
+
   return {
-    props: { products, headerContent, homepageContent },
+    props: { products, headerContent, homepageContent, navigation },
   };
 }
