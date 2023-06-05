@@ -3,22 +3,11 @@ import Select from "react-select";
 import { ProductContext } from "../../../context/productContext";
 import { AccountContext } from "../../../context/accountContext";
 const Ownership = ({ products }) => {
-  const { productInfo, updateProductValue } = useContext(ProductContext);
+  const { productInfo, updateProductValue, listingVariables } =
+    useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
 
-  const influencers = [
-    {
-      value: "Imogen Minoli",
-      label: "Imogen Minoli",
-      variable: "influencer",
-    },
-    { value: "Lisa Minoli", label: "Lisa Minoli", variable: "influencer" },
-    {
-      value: "Liberty Minoli",
-      label: "Liberty Minoli",
-      variable: "influencer",
-    },
-  ];
+  const influencers = listingVariables.influencers;
 
   const anonymous = [
     {

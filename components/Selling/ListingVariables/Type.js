@@ -4,22 +4,15 @@ import Select from "react-select";
 import { ProductContext } from "../../../context/productContext";
 import { AccountContext } from "../../../context/accountContext";
 const Type = ({ products }) => {
-  const { productInfo, updateProductValue } = useContext(ProductContext);
+  const {
+    productInfo,
+    updateProductValue,
+    listingVariables,
+    getListingVariables,
+  } = useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
 
-  const types = [
-    {
-      value: "Shoes",
-      label: "Shoes",
-      variable: "type",
-    },
-    { value: "Coat", label: "Coat", variable: "type" },
-    {
-      value: "Dress",
-      label: "Dress",
-      variable: "type",
-    },
-  ];
+  const types = listingVariables.types;
 
   const handleChange = (event) => {
     console.log(event);

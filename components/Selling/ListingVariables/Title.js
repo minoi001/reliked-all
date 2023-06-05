@@ -14,9 +14,9 @@ const Title = ({ products }) => {
   } = useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
 
-  useEffect(() => {
-    getListingVariables();
-  }, []);
+  // useEffect(() => {
+  //   getListingVariables();
+  // }, []);
 
   const brands = listingVariables.brands;
   const colours = listingVariables.colours;

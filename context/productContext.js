@@ -11,6 +11,10 @@ import {
 const ProductContext = createContext();
 
 export default function ProductProvider({ children }) {
+  useEffect(() => {
+    getListingVariables();
+  }, []);
+
   const [productInfo, setProductInfo] = useState({
     barcode: "",
     barcodeURL: "",
