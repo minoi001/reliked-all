@@ -65,8 +65,8 @@ const ChevronDown = () => (
     className="w-4 h-4 self-center"
   >
     <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       d="M19.5 8.25l-7.5 7.5-7.5-7.5"
     />
   </svg>

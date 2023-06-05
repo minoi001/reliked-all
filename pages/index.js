@@ -3,7 +3,6 @@ import {
   getHomepageContent,
   getProductsInCollection,
 } from "../lib/shopify.js";
-import ProductList from "../components/Homepage/ProductList.js";
 import HeroImage from "../components/Homepage/HeroImage.js";
 import InfluencerSlider from "../components/Homepage/InfluencerSlider.js";
 import FeaturedCollections from "../components/Homepage/FeaturedCollections.js";
