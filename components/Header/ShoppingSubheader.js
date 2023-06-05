@@ -145,6 +145,8 @@ function classNames(...classes) {
 export default function ShoppingSubheader(props) {
   const { navigation } = useContext(ShopContext);
 
+  let { menuItemsShow, setMenuItemsShow } = useState(false);
+
   return (
     <div>
       {navigation.items ? (
@@ -200,7 +202,7 @@ export default function ShoppingSubheader(props) {
                               className={({ selected }) =>
                                 classNames(
                                   selected
-                                    ? "border-indigo-600 text-indigo-600"
+                                    ? "border-taupe text-indigo-600"
                                     : "border-transparent text-gray-900",
                                   "uppercase flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium"
                                 )
@@ -356,7 +358,7 @@ export default function ShoppingSubheader(props) {
                                 <Popover.Button
                                   className={classNames(
                                     open
-                                      ? "border-indigo-600 text-indigo-600"
+                                      ? "border-taupe text-indigo-600"
                                       : "border-transparent text-gray-700 hover:text-gray-800",
                                     "uppercase relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
                                   )}
@@ -436,7 +438,7 @@ export default function ShoppingSubheader(props) {
                                                 aria-labelledby={`${section.name}-heading`}
                                                 className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
                                               >
-                                                {section.items.map((item) => (
+                                                {/* {section.items.map((item) => (
                                                   <li
                                                     key={item.name}
                                                     className="flex"
@@ -451,7 +453,7 @@ export default function ShoppingSubheader(props) {
                                                       {item.name}
                                                     </a>
                                                   </li>
-                                                ))}
+                                                ))} */}
                                               </ul>
                                             </div>
                                           ))}

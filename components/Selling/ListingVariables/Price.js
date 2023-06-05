@@ -58,7 +58,7 @@ const Price = ({ products }) => {
 
   return (
     <div>
-      <fieldset className="px-4 border-solid border-2 border-indigo-600 ">
+      <fieldset className="px-4 border-solid border-2 border-taupe ">
         <legend className="p-1">PRICE</legend>
         <div className="flex">
           <Select

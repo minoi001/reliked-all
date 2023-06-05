@@ -7,7 +7,7 @@ const Staff = ({ products }) => {
 
   return (
     <div>
-      <fieldset className="px-4 border-solid border-2 border-indigo-600 ">
+      <fieldset className="px-4 border-solid border-2 border-taupe ">
         <legend className="p-1">STAFF</legend>
         <input className="mb-4 p-2" placeholder={"Tags"} />
       </fieldset>

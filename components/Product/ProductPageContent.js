@@ -11,13 +11,25 @@ export default function ProductPageContent({ product }) {
               src={
                 product.images
                   ? product.images.edges[0].node.url
+                      .replace(".png", "_1000x1000.png")
+                      .replace(".jpg", "_1000x1000.jpg")
                   : "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018"
               }
               alt={product.title}
               height="1000"
               width="1000"
               className="z-0 object-contain center max-h-96"
+              priority={true}
             />
+            {/* <img
+              src={
+                product.images
+                  ? product.images.edges[0].node.url
+                      .replace(".png", "_1000x1000.png")
+                      .replace(".jpg", "_1000x1000.jpg")
+                  : "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018"
+              }
+            ></img> */}
           </div>
         </div>
         <ProductForm product={product} />

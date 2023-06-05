@@ -49,7 +49,7 @@ export default function AccountProvider({ children }) {
       // if credentials fail to produce token, set error message and login status to false
       if (!tokenRequest.customerAccessTokenCreate.customerAccessToken) {
         updateUserValue({
-          errorMessage: "we couldn't log you in with those details",
+          errorMessage: "Sorry, we couldn't log you in with those details.",
           false: "errorMessage",
           checkingLogin: false,
         });
@@ -69,23 +69,41 @@ export default function AccountProvider({ children }) {
     // request user info using token
     const infoRequest = await getUserInfo(localStorage.accountToken);
     // if token value, set user info values
-    if (infoRequest.customer) {
+    if (infoRequest.customer != null) {
       updateUserValue({
         userName: `${infoRequest.customer.firstName} ${infoRequest.customer.lastName}`,
         userType: `${infoRequest.customer.userType.value}`,
         listerCode: `${infoRequest.customer.userCode.value}`,
         loginStatus: true,
         checkingLogin: false,
+        errorMessage: null,
       });
       // token invalid, set error message and login status to false
     } else {
       updateUserValue({
-        errorMessage: "your session has expired, please login again",
+        errorMessage: "Your session has expired, please login again.",
         loginStatus: false,
         checkingLogin: false,
       });
+      localStorage.removeItem("accountToken");
     }
   }
+
+  const logout = async () => {
+    localStorage.removeItem("accountToken");
+
+    setUserInfo({
+      userType: "",
+      userName: "",
+      listerCode: "",
+      email: "",
+      password: "",
+      errorMessage: "",
+      loginStatus: false,
+      token: "",
+      checkingLogin: false,
+    });
+  };
 
   useEffect(() => {
     checkLoginStatus();
@@ -99,6 +117,7 @@ export default function AccountProvider({ children }) {
         getUserInfo,
         sendUserRequest,
         updateUserValue,
+        logout,
       }}
     >
       {children}

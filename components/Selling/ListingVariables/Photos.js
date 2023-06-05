@@ -10,7 +10,7 @@ const Photos = ({ products }) => {
 
   return (
     <div>
-      <fieldset className="px-4 border-solid border-2 border-indigo-600 w-full">
+      <fieldset className="px-4 border-solid border-2 border-taupe w-full">
         <legend className="p-1">PHOTOS</legend>
         <div className="flex">
           <input
@@ -19,7 +19,7 @@ const Photos = ({ products }) => {
           />
         </div>
         <div className="flex">
-          <div className="mb-4 p-2 -mt-2 w-full text-black bg-indigo-600">
+          <div className="mb-4 p-2 -mt-2 w-full text-black bg-taupe">
             <Widget
               previewStep
               publicKey={process.env.UPLOADCARE_PUBLIC_KEY}

@@ -11,12 +11,25 @@ export default function Selling({ product }) {
   return (
     <div>
       {userInfo.loginStatus ? (
-        <div>
-          <div className="minh-screen py-12 sm:pt-20">selling page</div>
-          <Link href="/selling/add-listing">Add listing</Link>
+        <div className="flex flex-col justify-center items-center space-y-8 md:flex-row md:items-start md:space-y-0 md:spacex-4 lg:space-x-8 max-w-6xl w-full mx-auto z-0">
+          <div className="p-2 shadow-lg flex flex-col w-full md:w-1/3 bg-white">
+            <h1 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+              Sell With Us
+            </h1>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Link
+                href="/selling/add-listing"
+                className="rounded-md bg-cream px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-taupe hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Upload an item
+              </Link>
+            </div>
+          </div>
         </div>
       ) : (
-        <Login />
+        <div className="minh-screen py-12 sm:pt-20">
+          <Login />
+        </div>
       )}
     </div>
   );

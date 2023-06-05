@@ -35,7 +35,7 @@ export default async function handler(req, res) {
   const getData = await googleSheets.spreadsheets.values.get({
     auth,
     spreadsheetId,
-    range: "Colours!A2:D",
+    range: "Colours!A2:E",
   });
 
   const coloursObject = getData.data.values.map((x) => ({
@@ -43,6 +43,7 @@ export default async function handler(req, res) {
     Code: x[1],
     value: x[2],
     label: x[3],
+    variable: x[4],
   }));
 
   res.send(coloursObject);

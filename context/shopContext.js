@@ -5,6 +5,7 @@ import {
   updateCheckout,
   getHomepageContent,
   getNavigation,
+  getCollection,
 } from "../lib/shopify";
 
 const ShopContext = createContext();
@@ -118,16 +119,19 @@ export default function ShopProvider({ children }) {
     return valuesObject;
   }
 
+  let [collection1, setcollection1] = useState({
+    title: "",
+    handle: "",
+    href: "",
+  });
+
   async function sendHomepageContentRequest() {
     // doesn't work on first page render
     const homepageContentRequest = await getHomepageContent(
       "gid://shopify/Metaobject/57147582"
-    ).then();
+    ).then((collection1 = await getCollection()));
 
-    updateHomepageContentValue({
-      heroImage: `${homepageContentRequest.hero_image.value}`,
-      heroImageMobile: `${homepageContentRequest.hero_image_mobile.value}`,
-    });
+    setcollection1(collection1);
   }
 
   const [navigation, setNavigation] = useState({});
