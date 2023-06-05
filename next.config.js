@@ -26,4 +26,13 @@ module.exports = {
       `images.hardlyeverwornit.com`,
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/collectionss",
+        destination: "/collections",
+        permanent: true,
+      },
+    ];
+  },
 };

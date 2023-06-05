@@ -287,7 +287,7 @@ export default function ShoppingSubheader(props) {
                       </Tab.Panels>
                     </Tab.Group>
 
-                    <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+                    {/* <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                       {TWnav.pages.map((page) => (
                         <div key={page.name} className="flow-root">
                           <a
@@ -298,7 +298,7 @@ export default function ShoppingSubheader(props) {
                           </a>
                         </div>
                       ))}
-                    </div>
+                    </div> */}
 
                     <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                       <div className="flow-root">
@@ -466,7 +466,7 @@ export default function ShoppingSubheader(props) {
                         </Popover>
                       ))}
 
-                      {TWnav.pages.map((page) => (
+                      {/* {TWnav.pages.map((page) => (
                         <a
                           key={page.name}
                           href={page.href}
@@ -474,7 +474,7 @@ export default function ShoppingSubheader(props) {
                         >
                           {page.name}
                         </a>
-                      ))}
+                      ))} */}
                     </div>
                   </Popover.Group>
                 </div>
