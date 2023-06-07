@@ -15,6 +15,7 @@ import {
 
 import MiniCart from "../Header/MiniCart";
 import Link from "next/link";
+import AccountMenu from "./AccountMenu";
 
 const navigation = {
   categories: [
@@ -402,7 +403,8 @@ export default function MegaMenu() {
                 </div>
 
                 {/* Account */}
-                <div className="flex lg:ml-6">
+                <AccountMenu />
+                {/* <div className="flex lg:ml-6">
                   <Link
                     href="/account"
                     className="p-2 text-gray-400 hover:text-gray-500"
@@ -410,9 +412,9 @@ export default function MegaMenu() {
                     <span className="sr-only">Account</span>
                     <UserIcon className="h-6 w-6" aria-hidden="true" />
                   </Link>
-                </div>
+                </div> */}
                 {/* Selling */}
-                <div className="flex lg:ml-6">
+                {/* <div className="flex lg:ml-6">
                   <Link
                     href="/selling"
                     className="p-2 text-gray-400 hover:text-gray-500"
@@ -423,7 +425,7 @@ export default function MegaMenu() {
                       aria-hidden="true"
                     />
                   </Link>
-                </div>
+                </div> */}
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
                   <a

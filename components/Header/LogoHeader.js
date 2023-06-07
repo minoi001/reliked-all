@@ -13,6 +13,7 @@ import ShoppingSubheader from "./ShoppingSubheader";
 import MiniCart from "./MiniCart";
 import SellingSubheader from "./SellingSubheader";
 import { Search } from "./Search";
+import AccountMenu from "./AccountMenu";
 
 const LogoHeader = () => {
   const [open, setOpen] = useState(false);
@@ -49,7 +50,8 @@ const LogoHeader = () => {
             <div className="float-right -mt-9 text-sm">
               <div className="ml-auto flex items-center">
                 {/* Account */}
-                <div className="flex lg:ml-6">
+                <AccountMenu />
+                {/* <div className="flex lg:ml-6">
                   <Link
                     href="/account"
                     className="p-2 text-gray-400 hover:text-gray-500"
@@ -57,9 +59,9 @@ const LogoHeader = () => {
                     <span className="sr-only">Account</span>
                     <UserIcon className="h-6 w-6" aria-hidden="true" />
                   </Link>
-                </div>
+                </div> */}
                 {/* Selling */}
-                <div className="flex lg:ml-6">
+                {/* <div className="flex lg:ml-6">
                   <Link
                     href="/selling"
                     className="p-2 text-gray-400 hover:text-gray-500"
@@ -70,7 +72,7 @@ const LogoHeader = () => {
                       aria-hidden="true"
                     />
                   </Link>
-                </div>
+                </div> */}
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
                   <a
