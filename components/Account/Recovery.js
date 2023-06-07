@@ -4,12 +4,12 @@ import { useContext } from "react";
 import { AccountContext } from "../../context/accountContext";
 import Link from "next/link";
 
-export default function Login() {
+export default function Recovery() {
   const {
     userInfo,
     setUserInfo,
     getUserInfo,
-    sendUserRequest,
+    sendRecoveryRequest,
     updateUserValue,
   } = useContext(AccountContext);
 
@@ -24,12 +24,12 @@ export default function Login() {
   const buttonClick = async (event) => {
     event.preventDefault();
 
-    if (!userInfo.email || !userInfo.password) {
+    if (!userInfo.email) {
       updateUserValue({
-        errorMessage: `Please enter a valid email address and password.`,
+        errorMessage: `Please enter a valid email address.`,
       });
     } else {
-      sendUserRequest();
+      sendRecoveryRequest();
     }
   };
 
@@ -44,7 +44,7 @@ export default function Login() {
           <div className="w-full max-w-md space-y-8">
             <div>
               <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-                Sign in to your account
+                Account Recovery
               </h2>
               {/* <p className="mt-2 text-center text-sm text-gray-600">
                 Or
@@ -58,6 +58,13 @@ export default function Login() {
               {userInfo.errorMessage ? (
                 <h4 className="mt-6 text-center text-1xl font-bold tracking-tight text-gray-900 bg-red-300 text-red-700">
                   {userInfo.errorMessage}
+                </h4>
+              ) : (
+                ""
+              )}
+              {userInfo.successMessage ? (
+                <h4 className="mt-6 text-center text-1xl font-bold tracking-tight text-gray-900 bg-green-300 text-green-700">
+                  {userInfo.successMessage}
                 </h4>
               ) : (
                 ""
@@ -81,23 +88,7 @@ export default function Login() {
                     onChange={formInput}
                   />
                 </div>
-                <div>
-                  <label htmlFor="password" className="sr-only">
-                    Password
-                  </label>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    required
-                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-taupe sm:text-sm sm:leading-6"
-                    placeholder="Password"
-                    onChange={formInput}
-                  />
-                </div>
               </div>
-
               {/* <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <input
@@ -114,7 +105,6 @@ export default function Login() {
                   </label>
                 </div>
               </div> */}
-
               <div>
                 <button
                   type="submit"
@@ -127,15 +117,15 @@ export default function Login() {
                       aria-hidden="true"
                     />
                   </span>
-                  Sign in
+                  Reset Password
                 </button>
                 <center>
                   <div className="text-sm p-2">
                     <Link
-                      href="/account/recovery"
+                      href="/account/login"
                       className="font-medium text-taupe hover:text-almostBlack"
                     >
-                      Forgot your password?
+                      Know your details?
                     </Link>
                   </div>
                 </center>

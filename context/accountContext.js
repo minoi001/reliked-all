@@ -1,5 +1,9 @@
 import { createContext, useState, useEffect } from "react";
-import { getUserAccessToken, getUserInfo } from "../lib/shopify";
+import {
+  getUserAccessToken,
+  getUserInfo,
+  recoverUserAccount,
+} from "../lib/shopify";
 
 const AccountContext = createContext();
 
@@ -14,6 +18,7 @@ export default function AccountProvider({ children }) {
     loginStatus: false,
     token: "",
     checkingLogin: true,
+    successMessage: "",
   });
 
   function updateUserValue(valuesObject) {
@@ -35,6 +40,26 @@ export default function AccountProvider({ children }) {
       updateUserValue({ checkingLogin: false });
     }
   };
+
+  async function sendRecoveryRequest(event) {
+    if (event) {
+      event.preventDefault();
+    }
+    let response = await recoverUserAccount(userInfo.email);
+    if (!response.customerRecover.customerUserErrors) {
+      updateUserValue({
+        successMessage:
+          "You should receive an email to reset your password ASAP.",
+        errorMessage: "",
+      });
+    } else {
+      updateUserValue({
+        errorMessage:
+          "We couldn't find a customer account with that email address.",
+        successMessage: "",
+      });
+    }
+  }
 
   async function sendUserRequest(event) {
     if (event) {
@@ -116,6 +141,7 @@ export default function AccountProvider({ children }) {
         setUserInfo,
         getUserInfo,
         sendUserRequest,
+        sendRecoveryRequest,
         updateUserValue,
         logout,
       }}

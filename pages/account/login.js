@@ -1,7 +1,7 @@
-import AccountPageContent from "../components/Account/AccountPageContent.js";
-import { getNewInProducts, getProduct } from "../lib/shopify.js";
+import AccountPageContent from "../../components/Account/AccountPageContent.js";
+import { getNewInProducts, getProduct } from "../../lib/shopify.js";
 
-export default function AccountPage({ account }) {
+export default function LoginPage({ account }) {
   return (
     <div className="minh-screen py-12 sm:pt-20">
       <AccountPageContent account={account} />
