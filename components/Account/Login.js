@@ -3,8 +3,11 @@ import Image from "next/image";
 import { useContext } from "react";
 import { AccountContext } from "../../context/accountContext";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+  const { push } = useRouter();
+
   const {
     userInfo,
     setUserInfo,
@@ -29,7 +32,10 @@ export default function Login() {
         errorMessage: `Please enter a valid email address and password.`,
       });
     } else {
-      sendUserRequest();
+      let response = await sendUserRequest();
+      if (userInfo.loginStatus) {
+        push("/account");
+      }
     }
   };
 
