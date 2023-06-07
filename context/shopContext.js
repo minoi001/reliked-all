@@ -147,9 +147,9 @@ export default function ShopProvider({ children }) {
 
   async function sendHomepageContentRequest() {
     // doesn't work on first page render
-    const homepageContentRequest = await getHomepageContent(
-      "gid://shopify/Metaobject/57147582"
-    ).then((collection1 = await getCollection()));
+    // const homepageContentRequest = await getHomepageContent(
+    //   "gid://shopify/Metaobject/57147582"
+    // ).then((collection1 = await getCollection()));
 
     setcollection1(collection1);
   }

@@ -11,6 +11,7 @@ export default function ProductPage({ product }) {
 }
 export async function getServerSideProps({ params }) {
   // Fetch data based on the slug parameter
+  console.log("Product?", params);
   const product = await getProduct(params.product);
 
   return {
