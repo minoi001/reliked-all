@@ -144,7 +144,7 @@ export default function ProductProvider({ children }) {
         listingVariables,
         setListingVariables,
         getListingVariables,
-        resetProductInfo,
+        resetProductInfo, 
       }}
     >
       {children}
