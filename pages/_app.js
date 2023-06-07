@@ -6,6 +6,7 @@ import AccountProvider from "../context/accountContext";
 import { useRouter } from "next/router";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch } from "react-instantsearch-dom";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 const appId = process.env.ALGOLIA_APP_ID;
 const apiKey = process.env.ALGOLIA_API_KEY;
@@ -28,7 +29,9 @@ function MyApp({ Component, pageProps }) {
           <AccountProvider>
             <ProductProvider>
               <Layout>
-                <Component {...pageProps} key={router.asPath} />
+                <ErrorBoundary>
+                  <Component {...pageProps} key={router.asPath} />
+                </ErrorBoundary>
               </Layout>
             </ProductProvider>
           </AccountProvider>
