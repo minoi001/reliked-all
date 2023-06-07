@@ -1,12 +1,17 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { UserIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { useContext, useEffect } from "react";
+import { AccountContext } from "../../context/accountContext";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function AccountMenu() {
+  const { userInfo, logout } = useContext(AccountContext);
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -28,58 +33,63 @@ export default function AccountMenu() {
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
+                <Link
+                  href="/account"
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm"
                   )}
                 >
-                  Account settings
-                </a>
+                  My Account
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
+                <Link
+                  href="/account/wishlist"
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm"
                   )}
                 >
-                  Support
-                </a>
+                  Wishlist
+                </Link>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
+                <Link
+                  href="/selling"
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm"
                   )}
                 >
-                  License
-                </a>
+                  Sellers Dashboard
+                </Link>
               )}
             </Menu.Item>
-            <form method="POST" action="#">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="submit"
-                    className={classNames(
-                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                      "block w-full px-4 py-2 text-left text-sm"
-                    )}
-                  >
-                    Sign out
-                  </button>
-                )}
-              </Menu.Item>
-            </form>
+            {userInfo.loginStatus ? (
+              <form method="POST" action="#">
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      type="submit"
+                      className={classNames(
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "block w-full px-4 py-2 text-left text-sm"
+                      )}
+                      onClick={logout}
+                    >
+                      Logout
+                    </button>
+                  )}
+                </Menu.Item>
+              </form>
+            ) : (
+              <div></div>
+            )}
           </div>
         </Menu.Items>
       </Transition>

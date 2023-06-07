@@ -1,4 +1,3 @@
-import AccountRecoveryPageContent from "../../components/Account/AccountPageContent.js";
 import Recovery from "../../components/Account/Recovery.js";
 import { getNewInProducts, getProduct } from "../../lib/shopify.js";
 

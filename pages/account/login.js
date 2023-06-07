@@ -1,9 +1,9 @@
-import AccountPageContent from "../../components/Account/AccountPageContent.js";
 import { getNewInProducts, getProduct } from "../../lib/shopify.js";
 import { useRouter } from "next/navigation.js";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { AccountContext } from "../../context/accountContext";
+import Login from "../../components/Account/Login.js";
 
 export default function LoginPage({ account }) {
   const { push } = useRouter();
@@ -17,14 +17,15 @@ export default function LoginPage({ account }) {
   } = useContext(AccountContext);
 
   useEffect(() => {
-    if (!userInfo.loginStatus) {
+    // why is this redirect not working
+    if (userInfo.loginStatus) {
       push("/account");
     }
   }, []);
 
   return (
     <div className="minh-screen py-12 sm:pt-20">
-      <AccountPageContent account={account} />
+      <Login />
     </div>
   );
 }

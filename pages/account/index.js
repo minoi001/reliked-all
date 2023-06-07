@@ -5,7 +5,7 @@ import { AccountContext } from "../../context/accountContext";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage({ account }) {
-  const { userInfo } = useContext(AccountContext);
+  const { userInfo, logout } = useContext(AccountContext);
   const { push } = useRouter();
 
   useEffect(() => {
@@ -17,7 +17,10 @@ export default function LoginPage({ account }) {
   return (
     <div>
       {userInfo.loginStatus ? (
-        <div className="minh-screen py-12 sm:pt-20">Account Home Page </div>
+        <div>
+          <div className="minh-screen py-12 sm:pt-20">Account Home Page </div>
+          <button onClick={logout}>Logout</button>
+        </div>
       ) : (
         <div></div>
       )}
