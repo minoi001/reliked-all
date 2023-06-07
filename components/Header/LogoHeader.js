@@ -49,8 +49,6 @@ const LogoHeader = () => {
             {/* Icons */}
             <div className="float-right -mt-9 text-sm">
               <div className="ml-auto flex items-center">
-                {/* Account */}
-                <AccountMenu />
                 {/* <div className="flex lg:ml-6">
                   <Link
                     href="/account"
@@ -74,7 +72,7 @@ const LogoHeader = () => {
                   </Link>
                 </div> */}
                 {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
+                <div className="ml-4 flow-root lg:ml-6 pr-2">
                   <a
                     className="group -m-2 flex items-center p-2 cursor-pointer"
                     onClick={() => {
@@ -93,6 +91,8 @@ const LogoHeader = () => {
                   </a>
                   <MiniCart cart={cart} />
                 </div>
+                {/* Account */}
+                <AccountMenu />
               </div>
             </div>
             {/* End of Icons */}
