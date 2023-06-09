@@ -23,7 +23,6 @@ export default function Collections({ collections }) {
 
 export async function getStaticProps() {
   const collections = await getCollections();
-  console.log("//collec", collections);
   return {
     props: { collections },
   };
