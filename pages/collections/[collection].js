@@ -1,4 +1,9 @@
-import { Configure, Hits, RangeInput } from "react-instantsearch-dom";
+import {
+  Configure,
+  Hits,
+  Pagination,
+  RangeInput,
+} from "react-instantsearch-dom";
 import ProductCard from "../../components/Products/ProductCard";
 
 export default function CollectionPage({ collection }) {
@@ -16,6 +21,7 @@ export default function CollectionPage({ collection }) {
       <Configure {...searchParameters} />
       <RangeInput attribute={"price"} />
       <Hits hitComponent={ProductCard} />
+      <Pagination />
     </div>
   );
 }

@@ -10,8 +10,18 @@
   @apply grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 z-0;
 }
 
+
 .ais-Pagination-list {
-  @apply flex justify-center items-center gap-x-6;
+  @apply flex justify-center items-center gap-x-6 w-80 mx-auto;
+
+}
+
+.ais-Pagination-list .ais-Pagination-item {
+  @apply flex justify-center items-center border border-black rounded-full p-1 w-8 h-8 border-opacity-50
+}
+
+.ais-Pagination-list .ais-Pagination-item--selected {
+  @apply bg-pink-500 text-black;
 }
 
 .ais-SearchBox-form {
