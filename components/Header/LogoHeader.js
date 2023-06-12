@@ -29,7 +29,7 @@ const LogoHeader = () => {
           <div className="relative">
             {/* Logo */}
             <div className="items-center justify-center flex">
-              <Link href="/">
+              <Link href="/collections">
                 <span className="sr-only">Reliked</span>
                 <Image
                   className="h-8 w-auto -mt-10"
