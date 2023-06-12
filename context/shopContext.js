@@ -126,6 +126,7 @@ export default function ShopProvider({ children }) {
   const [homepageContent, setHomepageContent] = useState({
     heroImage: "",
     heroImageMobile: "",
+    featured_influencers: "",
   });
 
   function updateHomepageContentValue(valuesObject) {
@@ -149,9 +150,9 @@ export default function ShopProvider({ children }) {
     // doesn't work on first page render
     const homepageContentRequest = await getHomepageContent(
       "gid://shopify/Metaobject/57147582"
-    ).then((collection1 = await getCollection()));
+    );
 
-    setcollection1(collection1);
+    updateHomepageContentValue(homepageContentRequest);
   }
 
   const [navigation, setNavigation] = useState({});

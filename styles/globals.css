@@ -15,9 +15,21 @@
 }
 
 .ais-SearchBox-form {
-  @apply flex space-x-2;
+  @apply grid grid-cols-1 -mt-1 justify-end;
+}
+
+.ais-SearchBox-submit {
+  @apply invisible absolute mt-4;
+}
+
+.ais-SearchBox-reset {
+  @apply absolute mt-4 ml-2;
+}
+
+.ais-SearchBox-input {
+  @apply pb-2 pl-6;
 }
 
 .ais-RefinementList-count {
-  @apply bg-gray-200
+  @apply bg-gray-200;
 }
