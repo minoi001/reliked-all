@@ -1,30 +1,92 @@
 import { getCollections } from "../../lib/shopify";
 import Link from "next/link";
+import { useEffect } from "react";
 import { useState } from "react";
 
 export default function Collections({ vendorsCollections }) {
+  const [vendorCollections, setVendorCollections] = useState([]);
+  const [brandCollections, setBrandCollections] = useState([]);
+  const [sizeCollections, setSizeCollections] = useState([]);
+  const [collectionsTypeDisplayed, setCollectionsTypeDisplayed] =
+    useState("Vendor");
   // Filters: all, women, men, beauty, luxury ... metafields
   const [collectionsDisplayed, setCollectionDisplayed] =
     useState(vendorsCollections);
+
   async function updateCollections(collectionType) {
+    setCollectionsTypeDisplayed(collectionType);
+    if (collectionType === "Vendor") {
+      setCollectionDisplayed(vendorCollections);
+    } else if (collectionType === "Brand") {
+      setCollectionDisplayed(brandCollections);
+    } else if (collectionType === "Size") {
+      setCollectionDisplayed(sizeCollections);
+    }
     const collectionsByType = await getCollections(collectionType);
     setCollectionDisplayed(collectionsByType);
   }
 
+  useEffect(() => {
+    async function getAllCollections() {
+      const vendorCollectionsReq = await getCollections("Vendor");
+      setVendorCollections(vendorCollectionsReq);
+      const brandCollectionsReq = await getCollections("Brand");
+      setBrandCollections(brandCollectionsReq);
+      const sizeCollectionsReq = await getCollections("Size");
+      setSizeCollections(sizeCollectionsReq);
+    }
+    getAllCollections();
+  }, []);
+
   return (
-    <>
-      <Dropdown updateCollections={updateCollections} />
-      <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 z-0">
-        {collectionsDisplayed.map((collection, i) => {
-          return (
-            <Link key={i} href={`collections/${collection.node.handle}`}>
-              <img src={collection?.node?.image?.src} />
-              <p>{collection?.node?.title}</p>
-            </Link>
-          );
-        })}
+    <div className="shadow-lg mx-4 my-1 lg:mx-12 lg:my-6">
+      <div className="grid px-6 sm:px-12 place-items-center align-middle p-2 w-full bg-white">
+        <h1 className="p-2">Shop by</h1>
+        <div className="inline pb-4">
+          <button
+            className={
+              collectionsTypeDisplayed === "Vendor"
+                ? "m-1 text-white bg-almostBlack hover:bg-black font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+                : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+            }
+            onClick={() => updateCollections("Vendor")}
+          >
+            Influencers
+          </button>
+          <button
+            className={
+              collectionsTypeDisplayed === "Brand"
+                ? "m-1 text-white bg-almostBlack hover:bg-black font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+                : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+            }
+            onClick={() => updateCollections("Brand")}
+          >
+            Brands
+          </button>
+          <button
+            className={
+              collectionsTypeDisplayed === "Size"
+                ? "m-1 text-white bg-almostBlack hover:bg-black font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+                : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+            }
+            onClick={() => updateCollections("Size")}
+          >
+            Sizes
+          </button>
+        </div>
+        {/* <Dropdown className="pb-12" updateCollections={updateCollections} /> */}
+        <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-6 xl:gap-x-8 z-0">
+          {collectionsDisplayed.map((collection, i) => {
+            return (
+              <Link key={i} href={`collections/${collection.node.handle}`}>
+                <img src={collection?.node?.image?.src} />
+                <p>{collection?.node?.title}</p>
+              </Link>
+            );
+          })}
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

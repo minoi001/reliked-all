@@ -346,7 +346,7 @@ export default function ShoppingSubheader(props) {
               className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
             >
               <div>
-                <div className="flex h-8 items-center justify-center ml-36">
+                <div className="flex h-8 items-center justify-center">
                   {/* Flyout menus */}
                   <Popover.Group className="hidden lg:block lg:self-stretch">
                     <div className="items-center justify-center flex h-full space-x-8 pb-1">
