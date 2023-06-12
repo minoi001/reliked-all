@@ -2,34 +2,39 @@ import { getCollections } from "../../lib/shopify";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useState } from "react";
+import Image from "next/image";
 
-export default function Collections({ vendorsCollections }) {
-  const [vendorCollections, setVendorCollections] = useState([]);
+export default function Collections({ influencersCollections }) {
+  const [influencerCollections, setInfluencerCollections] = useState([]);
   const [brandCollections, setBrandCollections] = useState([]);
   const [sizeCollections, setSizeCollections] = useState([]);
   const [collectionsTypeDisplayed, setCollectionsTypeDisplayed] =
-    useState("Vendor");
+    useState("Influencer");
   // Filters: all, women, men, beauty, luxury ... metafields
-  const [collectionsDisplayed, setCollectionDisplayed] =
-    useState(vendorsCollections);
+  const [collectionsDisplayed, setCollectionDisplayed] = useState(
+    influencersCollections
+  );
 
   async function updateCollections(collectionType) {
     setCollectionsTypeDisplayed(collectionType);
-    if (collectionType === "Vendor") {
-      setCollectionDisplayed(vendorCollections);
+    let collectionsByType = "";
+    if (collectionType === "Influencer") {
+      setCollectionDisplayed(influencerCollections);
+      collectionsByType = await getCollections("Vendor");
     } else if (collectionType === "Brand") {
       setCollectionDisplayed(brandCollections);
+      collectionsByType = await getCollections("Brand");
     } else if (collectionType === "Size") {
       setCollectionDisplayed(sizeCollections);
+      collectionsByType = await getCollections("Size");
     }
-    const collectionsByType = await getCollections(collectionType);
     setCollectionDisplayed(collectionsByType);
   }
 
   useEffect(() => {
     async function getAllCollections() {
-      const vendorCollectionsReq = await getCollections("Vendor");
-      setVendorCollections(vendorCollectionsReq);
+      const influencerCollectionsReq = await getCollections("Vendor");
+      setInfluencerCollections(influencerCollectionsReq);
       const brandCollectionsReq = await getCollections("Brand");
       setBrandCollections(brandCollectionsReq);
       const sizeCollectionsReq = await getCollections("Size");
@@ -41,15 +46,15 @@ export default function Collections({ vendorsCollections }) {
   return (
     <div className="shadow-lg mx-4 my-1 lg:mx-12 lg:my-6">
       <div className="grid px-6 sm:px-12 place-items-center align-middle p-2 w-full bg-white">
-        <h1 className="p-2">Shop by</h1>
+        <h1 className="p-4 text-3xl">Shop by {collectionsTypeDisplayed}</h1>
         <div className="inline pb-4">
           <button
             className={
-              collectionsTypeDisplayed === "Vendor"
+              collectionsTypeDisplayed === "Influencer"
                 ? "m-1 text-white bg-almostBlack hover:bg-black font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
                 : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
             }
-            onClick={() => updateCollections("Vendor")}
+            onClick={() => updateCollections("Influencer")}
           >
             Influencers
           </button>
@@ -73,13 +78,72 @@ export default function Collections({ vendorsCollections }) {
           >
             Sizes
           </button>
+          <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center">
+            Category
+            <svg
+              className="w-4 h-4 ml-2"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center">
+            Type
+            <svg
+              className="w-4 h-4 ml-2"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center">
+            Sort by
+            <svg
+              className="w-4 h-4 ml-2"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
         </div>
         {/* <Dropdown className="pb-12" updateCollections={updateCollections} /> */}
         <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-6 xl:gap-x-8 z-0">
           {collectionsDisplayed.map((collection, i) => {
             return (
               <Link key={i} href={`collections/${collection.node.handle}`}>
-                <img src={collection?.node?.image?.src} />
+                <Image
+                  src={collection?.node?.image?.src}
+                  width="600"
+                  height="600"
+                  alt={collection?.node?.title}
+                />
                 <p>{collection?.node?.title}</p>
               </Link>
             );
@@ -91,9 +155,9 @@ export default function Collections({ vendorsCollections }) {
 }
 
 export async function getStaticProps() {
-  const vendorsCollections = await getCollections("Vendor");
+  const influencersCollections = await getCollections("Vendor");
   return {
-    props: { vendorsCollections },
+    props: { influencersCollections },
   };
 }
 
@@ -137,7 +201,7 @@ function Dropdown({ updateCollections }) {
           <li className="hover:bg-gray-600">
             <button
               className=" px-4 py-2 text-left w-full"
-              onClick={() => updateCollections("Vendor")}
+              onClick={() => updateCollections("Influencer")}
             >
               Influencer
             </button>
