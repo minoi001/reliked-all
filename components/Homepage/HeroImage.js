@@ -6,8 +6,8 @@ import Link from "next/link";
 const HeroImage = ({ homepageContent }) => {
   console.log("heroImage:" + homepageContent);
   return (
-    <Link href="/collections">
-      <div>
+    <div>
+      <Link href="/collections">
         <Image
           src={homepageContent.hero_image.value}
           height="2000"
@@ -30,16 +30,13 @@ const HeroImage = ({ homepageContent }) => {
             Gorgeous pieces from your favourite influencers & celebs.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a
-              href="#"
-              className="rounded-md bg-cream px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-taupe hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
+            <div className="rounded-md bg-cream px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-taupe hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
               Shop by Influencer
-            </a>
+            </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

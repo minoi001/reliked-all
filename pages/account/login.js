@@ -20,6 +20,7 @@ export default function LoginPage({ account }) {
     // why is this redirect not working
     if (userInfo.loginStatus) {
       push("/account");
+      // redirect to account page after login
     }
   }, []);
 
