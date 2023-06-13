@@ -82,7 +82,7 @@ export default function Login() {
                     type="email"
                     autoComplete="email"
                     required
-                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-taupe sm:text-sm sm:leading-6"
+                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-taupe sm:text-sm sm:leading-6"
                     placeholder="Email address"
                     onChange={formInput}
                   />
@@ -97,7 +97,7 @@ export default function Login() {
                     type="password"
                     autoComplete="current-password"
                     required
-                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-taupe sm:text-sm sm:leading-6"
+                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-taupe sm:text-sm sm:leading-6"
                     placeholder="Password"
                     onChange={formInput}
                   />

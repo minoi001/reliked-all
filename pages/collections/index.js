@@ -44,8 +44,8 @@ export default function Collections({ influencersCollections }) {
   }, []);
 
   return (
-    <div className="shadow-lg mx-4 my-1 lg:mx-12 lg:my-6">
-      <div className="grid px-6 sm:px-12 place-items-center align-middle p-2 w-full bg-white">
+    <div className="mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="grid px-6 sm:px-12 place-items-center align-middle p-2 w-full bg-white shadow-lg">
         <h1 className="p-4 text-3xl">Shop by {collectionsTypeDisplayed}</h1>
         <div className="inline pb-4">
           <button
@@ -134,11 +134,12 @@ export default function Collections({ influencersCollections }) {
           </button>
         </div>
         {/* <Dropdown className="pb-12" updateCollections={updateCollections} /> */}
-        <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-6 xl:gap-x-8 z-0">
+        <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-6 xl:gap-x-8 static">
           {collectionsDisplayed.map((collection, i) => {
             return (
               <Link key={i} href={`collections/${collection.node.handle}`}>
                 <Image
+                  className="static object-cover"
                   src={collection?.node?.image?.src}
                   width="600"
                   height="600"
@@ -192,7 +193,7 @@ function Dropdown({ updateCollections }) {
       </button>
       <div
         id="dropdown"
-        className="z-10 hidden bg-white divide-y divide-gray-100 shadow w-44 dark:bg-gray-700"
+        className="hidden bg-white divide-y divide-gray-100 shadow w-44 dark:bg-gray-700"
       >
         <ul
           className="py-2 text-sm text-gray-700 dark:text-gray-200"

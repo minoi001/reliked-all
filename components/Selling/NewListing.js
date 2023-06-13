@@ -26,15 +26,13 @@ export default function NewListing({ listing }) {
       {userInfo.loginStatus ? (
         //  logged in
         <div>
-          <h2 className="text-2xl font-extrabold text-gray-900 mb-6">
-            Add Listing
-          </h2>
           <div className="bg-white pb-4">
             <div>
               <div className="max-w-2xl mx-auto py-4 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                <h3 className="text-xl font-extrabold text-gray-900 mb-0">
-                  {productInfo.title}
-                </h3>
+                <h1 className="text-3xl font-extrabold text-almostBlack mb-0 ">
+                  {/* {productInfo.title} */}
+                  <center>Add Listing</center>
+                </h1>
               </div>
             </div>
             <div className="grid md:grid-cols-2">

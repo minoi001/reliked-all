@@ -161,7 +161,7 @@ export default function MegaMenu() {
     <div className="bg-white">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
+        <Dialog as="div" className="relative lg:hidden" onClose={setOpen}>
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -174,7 +174,7 @@ export default function MegaMenu() {
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
-          <div className="fixed inset-0 z-40 flex">
+          <div className="fixed inset-0 flex">
             <Transition.Child
               as={Fragment}
               enter="transition ease-in-out duration-300 transform"
@@ -243,7 +243,7 @@ export default function MegaMenu() {
                                 className="mt-6 block font-medium text-gray-900"
                               >
                                 <span
-                                  className="absolute inset-0 z-100"
+                                  className="absolute inset-0"
                                   aria-hidden="true"
                                 />
                                 {item.name}
@@ -336,7 +336,7 @@ export default function MegaMenu() {
         </Dialog>
       </Transition.Root>
 
-      <header className="relative bg-white z-100">
+      <header className="relative bg-white">
         <p className="flex h-7 items-center justify-center bg-taupe px-4 text-xs font-medium text-white sm:px-6 lg:px-8">
           Get free delivery on orders over £100
         </p>

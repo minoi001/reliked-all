@@ -31,7 +31,7 @@ export default function MiniCart({ cart }) {
       <Dialog
         initialFocus={cancelButtonRef}
         as="div"
-        className="relative z-10"
+        className="relative"
         onClose={() => {
           setCartOpen(!cartOpen);
         }}

@@ -1,13 +1,18 @@
 import { Fragment, useState } from "react";
-import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
+import { Dialog, Popover, Tab, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
   ShoppingBagIcon,
+  TvIcon,
   XMarkIcon,
+  PlusSmallIcon,
+  UserIcon,
 } from "@heroicons/react/24/outline";
 import { ShopContext } from "../../context/shopContext";
+import { AccountContext } from "../../context/accountContext";
 import { useContext } from "react";
+import Link from "next/link";
 const TWnav = {
   categories: [
     {
@@ -144,18 +149,18 @@ function classNames(...classes) {
 
 export default function ShoppingSubheader(props) {
   const { navigation } = useContext(ShopContext);
-
+  const { userInfo } = useContext(AccountContext);
   let { menuItemsShow, setMenuItemsShow } = useState(false);
 
   return (
     <div>
       {navigation.items ? (
-        <div>
+        <div className="object-cover">
           {/* Mobile menu */}
           <Transition.Root show={props.open} as={Fragment}>
             <Dialog
               as="div"
-              className="relative z-40 lg:hidden"
+              className="relative lg:hidden"
               onClose={props.setOpen}
             >
               <Transition.Child
@@ -170,7 +175,7 @@ export default function ShoppingSubheader(props) {
                 <div className="fixed inset-0 bg-black bg-opacity-25" />
               </Transition.Child>
 
-              <div className="fixed inset-0 z-40 flex">
+              <div className="fixed inset-0 flex">
                 <Transition.Child
                   as={Fragment}
                   enter="transition ease-in-out duration-300 transform"
@@ -202,9 +207,9 @@ export default function ShoppingSubheader(props) {
                               className={({ selected }) =>
                                 classNames(
                                   selected
-                                    ? "border-taupe text-indigo-600"
+                                    ? "border-taupe text-taupe"
                                     : "border-transparent text-gray-900",
-                                  "uppercase flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium"
+                                  "uppercase flex-1 px-1 py-1 text-base font-medium"
                                 )
                               }
                             >
@@ -237,7 +242,7 @@ export default function ShoppingSubheader(props) {
                                 className="mt-6 block font-medium text-gray-900"
                               >
                                 <span
-                                  className="absolute inset-0 z-10"
+                                  className="absolute inset-0 "
                                   aria-hidden="true"
                                 />
                                 {item.name}
@@ -358,9 +363,9 @@ export default function ShoppingSubheader(props) {
                                 <Popover.Button
                                   className={classNames(
                                     open
-                                      ? "border-taupe text-indigo-600"
+                                      ? "border-taupe text-taupe"
                                       : "border-transparent text-gray-700 hover:text-gray-800",
-                                    "uppercase relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
+                                    "uppercase relative -mb-px flex items-center border-b-2 border-taupe pt-px text-sm font-medium transition-colors duration-200 ease-out"
                                   )}
                                 >
                                   {category.name}
@@ -403,7 +408,7 @@ export default function ShoppingSubheader(props) {
                                                 className="mt-6 block font-medium text-gray-900"
                                               >
                                                 <span
-                                                  className="absolute inset-0 z-10"
+                                                  className="absolute inset-0 "
                                                   aria-hidden="true"
                                                 />
                                                 {item.name}
@@ -417,10 +422,13 @@ export default function ShoppingSubheader(props) {
                                             </div>
                                           ))} */}
                                         </div>
-                                        <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
+                                        <div className="row-start-1 grid grid-cols-3 gap-x-2 gap-y-6 text-sm">
                                           {category.items.map((section) => (
-                                            <div key={section.name}>
-                                              <a
+                                            <div
+                                              key={section.name}
+                                              className="inline"
+                                            >
+                                              <Link
                                                 href={section.href.replace(
                                                   "https://e-bloggers.myshopify.com",
                                                   ""
@@ -428,32 +436,141 @@ export default function ShoppingSubheader(props) {
                                               >
                                                 <p
                                                   id={`${section.name}-heading`}
-                                                  className="font-medium text-gray-900"
+                                                  className="font-medium text-gray-900 inline"
                                                 >
                                                   {section.name}
                                                 </p>
-                                              </a>
+                                              </Link>
+                                              <PlusSmallIcon
+                                                className="inline mx-2 h-5 w-5 text-almostBlack"
+                                                onClick={() =>
+                                                  props.setOpen(true)
+                                                }
+                                              />
+                                              {/* NEEDS TO BE HOVER MENUS */}
                                               <ul
                                                 role="list"
                                                 aria-labelledby={`${section.name}-heading`}
                                                 className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
                                               >
-                                                {/* {section.items.map((item) => (
-                                                  <li
-                                                    key={item.name}
-                                                    className="flex"
+                                                {section.items.map((item) => (
+                                                  <Menu
+                                                    as="div"
+                                                    className="relative inline-block text-left"
+                                                    key={item}
                                                   >
-                                                    <a
-                                                      href={item.href.replace(
-                                                        "https://e-bloggers.myshopify.com",
-                                                        ""
-                                                      )}
-                                                      className="hover:text-gray-800"
+                                                    <div>
+                                                      <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 py-2 text-sm font-semibold text-gray-400 hover:text-almostBlack">
+                                                        <UserIcon
+                                                          className="h-6 w-6"
+                                                          aria-hidden="true"
+                                                        />
+                                                      </Menu.Button>
+                                                    </div>
+
+                                                    <Transition
+                                                      enter="transition ease-out duration-100"
+                                                      enterFrom="transform opacity-0 scale-95"
+                                                      enterTo="transform opacity-100 scale-100"
+                                                      leave="transition ease-in duration-75"
+                                                      leaveFrom="transform opacity-100 scale-100"
+                                                      leaveTo="transform opacity-0 scale-95"
                                                     >
-                                                      {item.name}
-                                                    </a>
-                                                  </li>
-                                                ))} */}
+                                                      <Menu.Items className="absolute right-0 mt-2 w-32 origin-top-right bg-offWhite shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-right">
+                                                        <div className="py-1">
+                                                          <Menu.Item>
+                                                            {({ active }) => (
+                                                              <Link
+                                                                href="/account"
+                                                                className={classNames(
+                                                                  active
+                                                                    ? "bg-cream text-black"
+                                                                    : "text-almostBlack",
+                                                                  "block px-4 py-2 text-sm"
+                                                                )}
+                                                              >
+                                                                Account
+                                                              </Link>
+                                                            )}
+                                                          </Menu.Item>
+                                                          <Menu.Item>
+                                                            {({ active }) => (
+                                                              <Link
+                                                                href="/account/wishlist"
+                                                                className={classNames(
+                                                                  active
+                                                                    ? "bg-cream text-black"
+                                                                    : "text-almostBlack",
+                                                                  "block px-4 py-2 text-sm"
+                                                                )}
+                                                              >
+                                                                Wishlist
+                                                              </Link>
+                                                            )}
+                                                          </Menu.Item>
+                                                          <Menu.Item>
+                                                            {({ active }) => (
+                                                              <Link
+                                                                href="/selling"
+                                                                className={classNames(
+                                                                  active
+                                                                    ? "bg-cream text-black"
+                                                                    : "text-almostBlack",
+                                                                  "block px-4 py-2 text-sm"
+                                                                )}
+                                                              >
+                                                                Selling
+                                                              </Link>
+                                                            )}
+                                                          </Menu.Item>
+                                                          {userInfo.loginStatus ? (
+                                                            <form
+                                                              method="POST"
+                                                              action="#"
+                                                            >
+                                                              <Menu.Item>
+                                                                {({
+                                                                  active,
+                                                                }) => (
+                                                                  <button
+                                                                    type="submit"
+                                                                    className={classNames(
+                                                                      active
+                                                                        ? "bg-cream text-black"
+                                                                        : "text-almostBlack",
+                                                                      "block w-full px-4 py-2 text-sm text-right"
+                                                                    )}
+                                                                    onClick={
+                                                                      logout
+                                                                    }
+                                                                  >
+                                                                    Logout
+                                                                  </button>
+                                                                )}
+                                                              </Menu.Item>
+                                                            </form>
+                                                          ) : (
+                                                            <div></div>
+                                                          )}
+                                                        </div>
+                                                      </Menu.Items>
+                                                    </Transition>
+                                                  </Menu>
+                                                  // <li
+                                                  //   key={item.name}
+                                                  //   className="flex"
+                                                  // >
+                                                  //   <a
+                                                  //     href={item.href.replace(
+                                                  //       "https://e-bloggers.myshopify.com",
+                                                  //       ""
+                                                  //     )}
+                                                  //     className="hover:text-gray-800"
+                                                  //   >
+                                                  //     {item.name}
+                                                  //   </a>
+                                                  // </li>
+                                                ))}
                                               </ul>
                                             </div>
                                           ))}

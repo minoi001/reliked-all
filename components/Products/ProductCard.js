@@ -14,10 +14,10 @@ const ProductCard = ({ hit }) => {
   const price = hit.price ?? hit.priceRange.minVariantPrice.amount;
   return (
     <div>
-      <Link href={`/products/${handle}`} className="z-0">
-        <div className="group z-0">
-          <div className="w-full bg-offWhite overflow-hidden z-0">
-            <div className="grid group-hover:opacity-75-20 w-full aspect-4/5 p-3 z-0 place-items-center">
+      <Link href={`/products/${handle}`} className="">
+        <div className="group ">
+          <div className="w-full bg-offWhite overflow-hidden ">
+            <div className="grid group-hover:opacity-75-20 w-full aspect-4/5 p-3 place-items-center">
               <Image
                 src={image}
                 alt={altText}

@@ -164,11 +164,7 @@ export default function SellingSubheader(props) {
     <div>
       {/* Mobile menu */}
       <Transition.Root show={props.open} as={Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-40 lg:hidden"
-          onClose={props.setOpen}
-        >
+        <Dialog as="div" className="relative lg:hidden" onClose={props.setOpen}>
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -181,7 +177,7 @@ export default function SellingSubheader(props) {
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
-          <div className="fixed inset-0 z-40 flex">
+          <div className="fixed inset-0 flex">
             <Transition.Child
               as={Fragment}
               enter="transition ease-in-out duration-300 transform"
@@ -248,7 +244,7 @@ export default function SellingSubheader(props) {
                                 className="mt-6 block font-medium text-gray-900"
                               >
                                 <span
-                                  className="absolute inset-0 z-10"
+                                  className="absolute inset-0"
                                   aria-hidden="true"
                                 />
                                 {item.name}
@@ -361,7 +357,7 @@ export default function SellingSubheader(props) {
                                 open
                                   ? "border-taupe text-indigo-600"
                                   : "border-transparent text-gray-700 hover:text-gray-800",
-                                "uppercase relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
+                                "uppercase relative -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
                               )}
                             >
                               {category.name}
@@ -404,7 +400,7 @@ export default function SellingSubheader(props) {
                                             className="mt-6 block font-medium text-gray-900"
                                           >
                                             <span
-                                              className="absolute inset-0 z-10"
+                                              className="absolute inset-0 "
                                               aria-hidden="true"
                                             />
                                             {item.name}

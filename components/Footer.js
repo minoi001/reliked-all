@@ -227,12 +227,12 @@ export default function Footer() {
         <div className="flex items-center justify-between border border-gray-800 dark:border-white mt-4">
           <input
             type="text"
-            className="text-base leading-4 p-4 relative z-0 w-full focus:outline-none text-gray-800 placeholder-gray-800 dark:text-white dark:placeholder-white dark:border-white dark:bg-gray-900"
+            className="text-base leading-4 p-4 relative w-full focus:outline-none text-gray-800 placeholder-gray-800 dark:text-white dark:placeholder-white dark:border-white dark:bg-gray-900"
             placeholder="Enter your email"
           />
           <button
             aria-label="send"
-            className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer mr-4 cursor-pointer relative z-40"
+            className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer mr-4 cursor-pointer relative"
           >
             <svg
               className="fill-current text-gray-800 hover:text-gray-500 dark:text-white dark:hover:text-gray-200"

@@ -7,19 +7,20 @@ import {
   connectStateResults,
 } from "react-instantsearch-dom";
 import { useState } from "react";
+import MiniDropdownMenu from "../MiniDropdownMenu";
+import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 
 const ProductList = () => {
   return (
-    <div className="bg-white">
-      <div>
+    <div className="mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8 ">
+      <div className="grid px-6 sm:px-12 place-items-center align-middle p-2 w-full bg-white shadow-lg">
         <Filters />`{" "}
-      </div>
-
-      <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <Results>
           <Hits hitComponent={ProductCard} />
         </Results>
-        <Pagination />
+        <div className="p-12">
+          <Pagination />
+        </div>
       </div>
     </div>
   );
@@ -38,18 +39,26 @@ const Filters = () => {
   const [showVendor, setShowVendor] = useState(false);
   const [showPrice, setShowPrice] = useState(false);
   return (
-    <div className="grid grid-cols-3 md:grid-cols-5 bg-gray-200 p-4">
-      <div>
-        <button className="flex" onClick={() => setShowVendor(!showVendor)}>
-          Vendor <ChevronDown />
-        </button>
-        {showVendor && <RefinementList attribute="vendor" />}
-      </div>
-      <div>
-        <button className="flex" onClick={() => setShowPrice(!showPrice)}>
-          Price <ChevronDown />
-        </button>
-        {showPrice && <RangeInput attribute="price" />}
+    // Need to keep the filters applied to the search results when the dropdown menu is closed/minimized
+    // Also need to add a fixed heigh to the dropdown menus and add a scroll
+    // styling on algolia dropdown menu needs to be full width of the refinements/range inputs
+    <div>
+      <h1 className="p-4 text-3xl">Search Results</h1>
+      <div className="inline pb-4">
+        <div className="inline-flex">
+          {AlgoliaDropdownMenu(
+            "Influencer",
+            <ChevronDown />,
+            <RefinementList attribute="vendor" className="w-full m-2" />
+          )}
+        </div>
+        <div className="inline-flex">
+          {AlgoliaDropdownMenu(
+            "Price",
+            <ChevronDown />,
+            <RangeInput attribute="price" className="w-full m-2" />
+          )}
+        </div>
       </div>
     </div>
   );
