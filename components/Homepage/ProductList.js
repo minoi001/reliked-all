@@ -42,7 +42,7 @@ const Filters = () => {
     // Need to keep the filters applied to the search results when the dropdown menu is closed/minimized
     // Also need to add a fixed heigh to the dropdown menus and add a scroll, preferably with an apply button fixed at the bottom of the dropdown menu which closes it
     // styling on algolia dropdown menu needs to be full width of the refinements/range inputs
-    <div>
+    <div className="">
       <h1 className="p-4 text-3xl">Search Results</h1>
       <div className="inline pb-4">
         <div className="inline-flex">
