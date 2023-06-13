@@ -51,8 +51,8 @@ export default function Collections({ influencersCollections }) {
           <button
             className={
               collectionsTypeDisplayed === "Influencer"
-                ? "m-1 text-white bg-almostBlack hover:bg-black font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
-                : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+                ? "m-1 text-white bg-almostBlack hover:bg-black font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
+                : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
             }
             onClick={() => updateCollections("Influencer")}
           >
@@ -61,8 +61,8 @@ export default function Collections({ influencersCollections }) {
           <button
             className={
               collectionsTypeDisplayed === "Brand"
-                ? "m-1 text-white bg-almostBlack hover:bg-black font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
-                : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+                ? "m-1 text-white bg-almostBlack hover:bg-black font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
+                : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
             }
             onClick={() => updateCollections("Brand")}
           >
@@ -71,14 +71,14 @@ export default function Collections({ influencersCollections }) {
           <button
             className={
               collectionsTypeDisplayed === "Size"
-                ? "m-1 text-white bg-almostBlack hover:bg-black font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
-                : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+                ? "m-1 text-white bg-almostBlack hover:bg-black font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
+                : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
             }
             onClick={() => updateCollections("Size")}
           >
             Sizes
           </button>
-          <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center">
+          <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium text-sm px-4 py-2.5 text-center inline-flex items-center">
             Category
             <svg
               className="w-4 h-4 ml-2"
@@ -96,7 +96,7 @@ export default function Collections({ influencersCollections }) {
               ></path>
             </svg>
           </button>
-          <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center">
+          <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium text-sm px-4 py-2.5 text-center inline-flex items-center">
             Type
             <svg
               className="w-4 h-4 ml-2"
@@ -114,7 +114,7 @@ export default function Collections({ influencersCollections }) {
               ></path>
             </svg>
           </button>
-          <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center">
+          <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium text-sm px-4 py-2.5 text-center inline-flex items-center">
             Sort by
             <svg
               className="w-4 h-4 ml-2"
@@ -166,7 +166,7 @@ function Dropdown({ updateCollections }) {
     <>
       <button
         id="dropdownDefaultButton"
-        className="text-white bg-rose hover:bg-pink-800 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center "
+        className="text-white bg-rose hover:bg-pink-800 font-medium text-sm px-4 py-2.5 text-center inline-flex items-center "
         type="button"
         onClick={() => {
           const dropdown = document.getElementById("dropdown");
@@ -192,7 +192,7 @@ function Dropdown({ updateCollections }) {
       </button>
       <div
         id="dropdown"
-        className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+        className="z-10 hidden bg-white divide-y divide-gray-100 shadow w-44 dark:bg-gray-700"
       >
         <ul
           className="py-2 text-sm text-gray-700 dark:text-gray-200"
