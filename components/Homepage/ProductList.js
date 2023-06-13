@@ -7,7 +7,7 @@ import {
   connectStateResults,
 } from "react-instantsearch-dom";
 import { useState } from "react";
-import MiniDropdownMenu from "../MiniDropdownMenu";
+import MiniDropdownMenu from "../Header/MiniDropdownMenu";
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 
 const ProductList = () => {

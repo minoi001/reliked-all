@@ -8,11 +8,13 @@ import {
   XMarkIcon,
   PlusSmallIcon,
   UserIcon,
+  ChevronDownIcon,
 } from "@heroicons/react/24/outline";
 import { ShopContext } from "../../context/shopContext";
 import { AccountContext } from "../../context/accountContext";
 import { useContext } from "react";
 import Link from "next/link";
+import MiniDropdownMenu from "./MiniDropdownMenu";
 const TWnav = {
   categories: [
     {
@@ -428,150 +430,24 @@ export default function ShoppingSubheader(props) {
                                               key={section.name}
                                               className="inline"
                                             >
+                                              {/* NEEDS TO BE HOVER MENUS */}
                                               <Link
                                                 href={section.href.replace(
                                                   "https://e-bloggers.myshopify.com",
                                                   ""
                                                 )}
                                               >
-                                                <p
-                                                  id={`${section.name}-heading`}
-                                                  className="font-medium text-gray-900 inline"
-                                                >
-                                                  {section.name}
-                                                </p>
+                                                <div key={section.name}>
+                                                  {MiniDropdownMenu(
+                                                    section.name,
+                                                    section.href.replace(
+                                                      "https://e-bloggers.myshopify.com",
+                                                      ""
+                                                    ),
+                                                    section.items
+                                                  )}
+                                                </div>
                                               </Link>
-                                              <PlusSmallIcon
-                                                className="inline mx-2 h-5 w-5 text-almostBlack"
-                                                onClick={() =>
-                                                  props.setOpen(true)
-                                                }
-                                              />
-                                              {/* NEEDS TO BE HOVER MENUS */}
-                                              <ul
-                                                role="list"
-                                                aria-labelledby={`${section.name}-heading`}
-                                                className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
-                                              >
-                                                {section.items.map((item) => (
-                                                  <Menu
-                                                    as="div"
-                                                    className="relative inline-block text-left"
-                                                    key={item}
-                                                  >
-                                                    <div>
-                                                      <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 py-2 text-sm font-semibold text-gray-400 hover:text-almostBlack">
-                                                        <UserIcon
-                                                          className="h-6 w-6"
-                                                          aria-hidden="true"
-                                                        />
-                                                      </Menu.Button>
-                                                    </div>
-
-                                                    <Transition
-                                                      enter="transition ease-out duration-100"
-                                                      enterFrom="transform opacity-0 scale-95"
-                                                      enterTo="transform opacity-100 scale-100"
-                                                      leave="transition ease-in duration-75"
-                                                      leaveFrom="transform opacity-100 scale-100"
-                                                      leaveTo="transform opacity-0 scale-95"
-                                                    >
-                                                      <Menu.Items className="absolute right-0 mt-2 w-32 origin-top-right bg-offWhite shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-right">
-                                                        <div className="py-1">
-                                                          <Menu.Item>
-                                                            {({ active }) => (
-                                                              <Link
-                                                                href="/account"
-                                                                className={classNames(
-                                                                  active
-                                                                    ? "bg-cream text-black"
-                                                                    : "text-almostBlack",
-                                                                  "block px-4 py-2 text-sm"
-                                                                )}
-                                                              >
-                                                                Account
-                                                              </Link>
-                                                            )}
-                                                          </Menu.Item>
-                                                          <Menu.Item>
-                                                            {({ active }) => (
-                                                              <Link
-                                                                href="/account/wishlist"
-                                                                className={classNames(
-                                                                  active
-                                                                    ? "bg-cream text-black"
-                                                                    : "text-almostBlack",
-                                                                  "block px-4 py-2 text-sm"
-                                                                )}
-                                                              >
-                                                                Wishlist
-                                                              </Link>
-                                                            )}
-                                                          </Menu.Item>
-                                                          <Menu.Item>
-                                                            {({ active }) => (
-                                                              <Link
-                                                                href="/selling"
-                                                                className={classNames(
-                                                                  active
-                                                                    ? "bg-cream text-black"
-                                                                    : "text-almostBlack",
-                                                                  "block px-4 py-2 text-sm"
-                                                                )}
-                                                              >
-                                                                Selling
-                                                              </Link>
-                                                            )}
-                                                          </Menu.Item>
-                                                          {userInfo.loginStatus ? (
-                                                            <form
-                                                              method="POST"
-                                                              action="#"
-                                                            >
-                                                              <Menu.Item>
-                                                                {({
-                                                                  active,
-                                                                }) => (
-                                                                  <button
-                                                                    type="submit"
-                                                                    className={classNames(
-                                                                      active
-                                                                        ? "bg-cream text-black"
-                                                                        : "text-almostBlack",
-                                                                      "block w-full px-4 py-2 text-sm text-right"
-                                                                    )}
-                                                                    onClick={
-                                                                      logout
-                                                                    }
-                                                                  >
-                                                                    Logout
-                                                                  </button>
-                                                                )}
-                                                              </Menu.Item>
-                                                            </form>
-                                                          ) : (
-                                                            <div></div>
-                                                          )}
-                                                        </div>
-                                                      </Menu.Items>
-                                                    </Transition>
-                                                  </Menu>
-                                                  // <li
-                                                  //   key={item.name}
-                                                  //   className="flex"
-                                                  // >
-                                                  //   <a
-                                                  //     href={item.href.replace(
-                                                  //       "https://e-bloggers.myshopify.com",
-                                                  //       ""
-                                                  //     )}
-                                                  //     className="hover:text-gray-800"
-                                                  //   >
-                                                  //     {item.name}
-                                                  //   </a>
-                                                  // </li>
-                                                ))}
-                                              </ul>
                                             </div>
                                           ))}
                                         </div>
