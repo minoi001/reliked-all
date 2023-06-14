@@ -9,7 +9,7 @@ export default function ProductPageContent({ product }) {
           <div className="grid py-10 place-items-center align-middle max-sm:py-24">
             <Image
               src={
-                product.images
+                product.images.edges[0]
                   ? product.images.edges[0].node.url
                       .replace(".png", "_1000x1000.png")
                       .replace(".jpg", "_1000x1000.jpg")
