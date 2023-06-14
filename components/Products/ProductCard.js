@@ -4,9 +4,10 @@ import { formatter } from "../../utils/helpers";
 
 const ProductCard = ({ hit }) => {
   const { handle, title } = hit;
+  console.log(hit);
   const image = hit.image
     ? hit.image
-    : hit.images
+    : hit.images.edges[0]
     ? hit.images.edges[0].node.originalSrc
     : "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018";
   const altText = hit.body_html_safe ? hit.body_html_safe : "image";
