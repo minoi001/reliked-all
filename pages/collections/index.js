@@ -3,8 +3,11 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useState } from "react";
 import Image from "next/image";
+import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function Collections({ influencersCollections }) {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const [influencerCollections, setInfluencerCollections] = useState([]);
   const [brandCollections, setBrandCollections] = useState([]);
   const [sizeCollections, setSizeCollections] = useState([]);
@@ -131,6 +134,25 @@ export default function Collections({ influencersCollections }) {
                 d="M19 9l-7 7-7-7"
               ></path>
             </svg>
+          </button>
+          <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium text-sm px-4 py-2.5 text-center inline-flex items-center cursor-default focus-within:bg-cream">
+            <div className="inline">
+              <MagnifyingGlassIcon className="text-black w-4 h-4 inline -mt-0.5" />
+              <input
+                placeholder="Search..."
+                value={searchQuery}
+                className="text-black hover:text-almostBlack font-medium text-sm text-left pl-2 w-auto inline-block focus:outline-none bg-inherit"
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery ? (
+                <XMarkIcon
+                  className="text-black w-4 h-4 inline -mt-0.5"
+                  onClick={() => setSearchQuery("")}
+                />
+              ) : (
+                ""
+              )}
+            </div>
           </button>
         </div>
         {/* <Dropdown className="pb-12" updateCollections={updateCollections} /> */}
