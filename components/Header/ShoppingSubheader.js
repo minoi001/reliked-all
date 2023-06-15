@@ -330,15 +330,12 @@ export default function ShoppingSubheader(props) {
           </Transition.Root>
           {/* Desktop */}
           <header className="relative max-lg:hidden">
-            <nav
-              aria-label="Top"
-              className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
-            >
+            <nav aria-label="Top" className="max-w-7xl px-4 sm:px-6 lg:px-8">
               <div>
                 <div className="flex h-8 items-center justify-center">
                   {/* Flyout menus */}
                   <Popover.Group className="hidden lg:block lg:self-stretch">
-                    <div className="items-center justify-center flex h-full space-x-8 pb-1">
+                    <div className="-ml-36 items-center justify-center flex h-full space-x-8 pb-1">
                       {navigation.items.map((category) => (
                         <Popover key={category.name} className="flex">
                           {({ open }) => (
