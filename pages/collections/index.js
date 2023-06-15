@@ -50,91 +50,96 @@ export default function Collections({ influencersCollections }) {
     <div className="mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="grid px-6 sm:px-12 place-items-center align-middle p-2 w-full bg-white shadow-lg">
         <h1 className="p-4 text-3xl">Shop by {collectionsTypeDisplayed}</h1>
-        <div className="inline pb-4">
-          <button
-            className={
-              collectionsTypeDisplayed === "Influencer"
-                ? "m-1 text-white bg-almostBlack hover:bg-black font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
-                : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
-            }
-            onClick={() => updateCollections("Influencer")}
-          >
-            Influencers
-          </button>
-          <button
-            className={
-              collectionsTypeDisplayed === "Brand"
-                ? "m-1 text-white bg-almostBlack hover:bg-black font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
-                : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
-            }
-            onClick={() => updateCollections("Brand")}
-          >
-            Brands
-          </button>
-          <button
-            className={
-              collectionsTypeDisplayed === "Size"
-                ? "m-1 text-white bg-almostBlack hover:bg-black font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
-                : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
-            }
-            onClick={() => updateCollections("Size")}
-          >
-            Sizes
-          </button>
-          <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium text-sm px-4 py-2.5 text-center inline-flex items-center">
-            Category
-            <svg
-              className="w-4 h-4 ml-2"
-              aria-hidden="true"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+        <div className="inline pb-4 items-center m-auto">
+          <div className="lg:inline place-items-center align-middle">
+            {/* Want these to be centred on mobile as well  */}
+            <button
+              className={
+                collectionsTypeDisplayed === "Influencer"
+                  ? "m-1 text-white bg-almostBlack hover:bg-black font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
+                  : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
+              }
+              onClick={() => updateCollections("Influencer")}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </button>
-          <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium text-sm px-4 py-2.5 text-center inline-flex items-center">
-            Type
-            <svg
-              className="w-4 h-4 ml-2"
-              aria-hidden="true"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+              Influencers
+            </button>
+            <button
+              className={
+                collectionsTypeDisplayed === "Brand"
+                  ? "m-1 text-white bg-almostBlack hover:bg-black font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
+                  : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
+              }
+              onClick={() => updateCollections("Brand")}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </button>
-          <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium text-sm px-4 py-2.5 text-center inline-flex items-center">
-            Sort by
-            <svg
-              className="w-4 h-4 ml-2"
-              aria-hidden="true"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+              Brands
+            </button>
+            <button
+              className={
+                collectionsTypeDisplayed === "Size"
+                  ? "m-1 text-white bg-almostBlack hover:bg-black font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
+                  : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
+              }
+              onClick={() => updateCollections("Size")}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </button>
+              Sizes
+            </button>
+          </div>
+          <div className="lg:inline">
+            <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium text-sm px-4 py-2.5 text-center inline-flex items-center">
+              Category
+              <svg
+                className="w-4 h-4 ml-2"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium text-sm px-4 py-2.5 text-center inline-flex items-center">
+              Type
+              <svg
+                className="w-4 h-4 ml-2"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium text-sm px-4 py-2.5 text-center inline-flex items-center">
+              Sort by
+              <svg
+                className="w-4 h-4 ml-2"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+          </div>
           <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium text-sm px-4 py-2.5 text-center inline-flex items-center cursor-default focus-within:bg-cream">
             <div className="inline">
               <MagnifyingGlassIcon className="text-black w-4 h-4 inline -mt-0.5" />
