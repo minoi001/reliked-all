@@ -46,18 +46,18 @@ const InfluencerSlider = () => {
 
   return (
     <div>
-      <div className="w-full pt-12">
-        <h1 className="font-h text-3xl lg:text-4xl px-4 font-bold">
+      <div className="grid px-4 sm:px-12 place-items-center align-middle w-full pt-6">
+        <h1 className="font-h text-3xl lg:text-4xl font-bold p-4">
           Your home of celebrity and influencer closets
           {/* {homepageContent.featured_influencers.key} */}
         </h1>
-        <div className="flex overflow-x-scroll w-full p-4">
+        <div className="flex overflow-x-scroll w-full py-6">
           {homepageContent.featured_influencers.value
             ? JSON.parse(homepageContent.featured_influencers.value).map(
                 (product, index) => (
                   <Link key={index} href={product.handle}>
                     <div className="flex-col cursor-pointer ">
-                      <div className=" bg-white relative shadow-sm hover:shadow-md mx-2 w-48">
+                      <div className=" bg-white relative shadow-sm hover:shadow-md mr-2 w-48">
                         <div className="">
                           <Image
                             className="h-48 w-full object-cover"
