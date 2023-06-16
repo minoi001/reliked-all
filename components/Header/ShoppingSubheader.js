@@ -335,7 +335,7 @@ export default function ShoppingSubheader(props) {
                 <div className="flex h-8 items-center justify-center">
                   {/* Flyout menus */}
                   <Popover.Group className="hidden lg:block lg:self-stretch">
-                    <div className="-ml-36 items-center justify-center flex h-full space-x-8 pb-1">
+                    <div className="ml-12 items-center justify-center flex h-full space-x-8 pb-1">
                       {navigation.items.map((category) => (
                         <Popover key={category.name} className="flex">
                           {({ open }) => (

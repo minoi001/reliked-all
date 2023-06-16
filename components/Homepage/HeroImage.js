@@ -13,7 +13,7 @@ const HeroImage = ({ homepageContent }) => {
           height="2000"
           width="2000"
           alt=""
-          className="max-md:hidden w-full flex self-center h-96 object-cover"
+          className="max-md:hidden w-full flex self-center h-full object-cover"
         />
         <Image
           src={homepageContent.hero_image_mobile.value}

@@ -25,14 +25,14 @@ const LogoHeader = () => {
     <div>
       <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div>
-          <div className="flex h-12 items-center"></div>
+          <div className="flex h-14 items-center"></div>
           <div className="relative">
             {/* Logo */}
             <div className="items-center justify-center flex">
               <Link href="/">
                 <span className="sr-only">Reliked</span>
                 <Image
-                  className="h-8 w-auto -mt-10"
+                  className="h-10 w-auto -mt-12"
                   src={headerContent.logo}
                   alt=""
                   width="100"
