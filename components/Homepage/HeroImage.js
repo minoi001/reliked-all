@@ -13,7 +13,7 @@ const HeroImage = ({ homepageContent }) => {
           height="2000"
           width="2000"
           alt=""
-          className="max-md:hidden w-full flex self-center h-2/3"
+          className="max-md:hidden w-full flex self-center h-96 object-cover"
         />
         <Image
           src={homepageContent.hero_image_mobile.value}
@@ -23,10 +23,10 @@ const HeroImage = ({ homepageContent }) => {
           className="md:hidden w-full flex self-center h-2/3"
         />
         <div className="-mt-72 pb-24 text-center align-middle">
-          <h1 className="font-h text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+          <h1 className="font-h text-4xl font-bold tracking-tight text-almostBlack sm:text-6xl ts-white">
             The Influencer Shop
           </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-6 text-lg leading-8 text-almostBlack ts-white">
             Gorgeous pieces from your favourite influencers & celebs.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">

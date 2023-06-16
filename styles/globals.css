@@ -33,3 +33,23 @@
 .ais-RefinementList-count {
   @apply bg-gray-200;
 }
+
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
+  }
+  @variants responsive {
+    .ts-black {
+      text-shadow: 4px 2px 8px black;
+    }
+    .ts-white {
+      text-shadow: 4px 2px 12px white;
+    }
+    .text-shadow-lg {
+      text-shadow: 15px 15px 30px black;
+    }
+    .text-shadow-none {
+      text-shadow: none;
+    }
+  }
+}
