@@ -4,7 +4,6 @@ import AlgoliaDropdownMenu from "../../components/AlgoliaDropdownMenu";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 export default function CollectionPage({ collection }) {
-  console.log(collection);
   const searchParameters = {
     query: "",
     filters: `collections:"${collection}"`,
@@ -29,9 +28,6 @@ export default function CollectionPage({ collection }) {
   );
 }
 export async function getServerSideProps({ params }) {
-  // Fetch data based on the slug parameter
-  //const collection = await getCollection(params.collection);
-
   return {
     props: {
       collection: params.collection,

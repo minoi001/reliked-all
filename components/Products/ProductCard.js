@@ -4,7 +4,6 @@ import { formatter } from "../../utils/helpers";
 
 const ProductCard = ({ hit }) => {
   const { handle, title } = hit;
-  console.log(hit);
   const image = hit.image
     ? hit.image
     : hit.images.edges[0]
