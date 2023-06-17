@@ -38,16 +38,15 @@ function Hit({ hit }) {
 }
 
 function Dropdown({ updateCollections }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleOpen = () => setIsOpen(!isOpen);
   return (
-    <div>
+    <div className="relative">
       <button
         id="dropdownDefaultButton"
         className="text-white bg-rose hover:bg-pink-800 font-medium rounded-lg text-sm px-4 py-2.5 text-center  items-center"
         type="button"
-        onClick={() => {
-          const dropdown = document.getElementById("dropdown");
-          dropdown.classList.toggle("hidden");
-        }}
+        onClick={toggleOpen}
       >
         Shop By
         <svg
@@ -66,40 +65,42 @@ function Dropdown({ updateCollections }) {
           ></path>
         </svg>
       </button>
-      <div
-        id="dropdown"
-        className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-      >
-        <ul
-          className="py-2 text-sm text-gray-700 dark:text-gray-200"
-          aria-labelledby="dropdownDefaultButton"
+      {isOpen && (
+        <div
+          id="dropdown"
+          className="absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
         >
-          <li className="hover:bg-gray-600">
-            <button
-              className=" px-4 py-2 text-left w-full"
-              onClick={() => updateCollections("Vendor")}
-            >
-              Influencer
-            </button>
-          </li>
-          <li className="hover:bg-gray-600">
-            <button
-              className=" px-4 py-2 text-left w-full"
-              onClick={() => updateCollections("Brand")}
-            >
-              Brand
-            </button>
-          </li>
-          <li className="hover:bg-gray-600">
-            <button
-              className=" px-4 py-2 text-left w-full"
-              onClick={() => updateCollections("Size")}
-            >
-              Size
-            </button>
-          </li>
-        </ul>
-      </div>
+          <ul
+            className="py-2 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="dropdownDefaultButton"
+          >
+            <li className="hover:bg-gray-600">
+              <button
+                className=" px-4 py-2 text-left w-full"
+                onClick={() => updateCollections("Vendor")}
+              >
+                Influencer
+              </button>
+            </li>
+            <li className="hover:bg-gray-600">
+              <button
+                className=" px-4 py-2 text-left w-full"
+                onClick={() => updateCollections("Brand")}
+              >
+                Brand
+              </button>
+            </li>
+            <li className="hover:bg-gray-600">
+              <button
+                className=" px-4 py-2 text-left w-full"
+                onClick={() => updateCollections("Size")}
+              >
+                Size
+              </button>
+            </li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
