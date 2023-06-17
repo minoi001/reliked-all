@@ -1,11 +1,9 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   createCheckout,
   getHeaderContent,
-  updateCheckout,
-  getHomepageContent,
   getNavigation,
-  getCollection,
+  updateCheckout,
 } from "../lib/shopify";
 
 const ShopContext = createContext();

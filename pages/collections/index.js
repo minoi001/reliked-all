@@ -1,46 +1,48 @@
-import { getCollections } from "../../lib/shopify";
 import Link from "next/link";
 import { useState } from "react";
+import { Configure, Hits, InstantSearch } from "react-instantsearch-dom";
+import { indexNames, searchClient } from "../../algoliaConfig";
 
 export default function Collections({ vendorsCollections }) {
   // Filters: all, women, men, beauty, luxury ... metafields
-  const [collectionsDisplayed, setCollectionDisplayed] =
-    useState(vendorsCollections);
+  const [collectionType, setCollectionType] = useState("vendor");
   async function updateCollections(collectionType) {
-    const collectionsByType = await getCollections(collectionType);
-    setCollectionDisplayed(collectionsByType);
+    setCollectionType(collectionType);
   }
+
+  const searchParameters = {
+    query: "",
+    filters: `meta.custom_fields.collection_type:'${collectionType}'`,
+  };
 
   return (
     <>
       <Dropdown updateCollections={updateCollections} />
-      <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 z-0">
-        {collectionsDisplayed.map((collection, i) => {
-          return (
-            <Link key={i} href={`collections/${collection.node.handle}`}>
-              <img src={collection?.node?.image?.src} />
-              <p>{collection?.node?.title}</p>
-            </Link>
-          );
-        })}
-      </div>
+      <InstantSearch
+        searchClient={searchClient}
+        indexName={indexNames.collections}
+      >
+        <Configure {...searchParameters} />
+        <Hits hitComponent={Hit} />
+      </InstantSearch>
     </>
   );
 }
-
-export async function getStaticProps() {
-  const vendorsCollections = await getCollections("Vendor");
-  return {
-    props: { vendorsCollections },
-  };
+function Hit({ hit }) {
+  return (
+    <Link href={`collections/${hit.handle}`}>
+      <img src={hit.image} />
+      <p>{hit.title}</p>
+    </Link>
+  );
 }
 
 function Dropdown({ updateCollections }) {
   return (
-    <>
+    <div>
       <button
         id="dropdownDefaultButton"
-        className="text-white bg-rose hover:bg-pink-800 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center "
+        className="text-white bg-rose hover:bg-pink-800 font-medium rounded-lg text-sm px-4 py-2.5 text-center  items-center"
         type="button"
         onClick={() => {
           const dropdown = document.getElementById("dropdown");
@@ -98,6 +100,6 @@ function Dropdown({ updateCollections }) {
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 }
