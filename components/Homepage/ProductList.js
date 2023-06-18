@@ -36,8 +36,6 @@ const Results = connectStateResults(
 );
 
 const Filters = () => {
-  const [showVendor, setShowVendor] = useState(false);
-  const [showPrice, setShowPrice] = useState(false);
   return (
     // Need to keep the filters applied to the search results when the dropdown menu is closed/minimized
     // Also need to add a fixed heigh to the dropdown menus and add a scroll, preferably with an apply button fixed at the bottom of the dropdown menu which closes it
@@ -48,14 +46,14 @@ const Filters = () => {
         <div className="inline-flex">
           {AlgoliaDropdownMenu(
             "Influencer",
-            <ChevronDown />,
+
             <RefinementList attribute="vendor" className="w-full m-2" />
           )}
         </div>
         <div className="inline-flex">
           {AlgoliaDropdownMenu(
             "Price",
-            <ChevronDown />,
+
             <RangeInput attribute="price" className="w-full m-2" />
           )}
         </div>
@@ -63,22 +61,5 @@ const Filters = () => {
     </div>
   );
 };
-
-const ChevronDown = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke-width="1.5"
-    stroke="currentColor"
-    className="w-4 h-4 self-center"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-    />
-  </svg>
-);
 
 export default ProductList;

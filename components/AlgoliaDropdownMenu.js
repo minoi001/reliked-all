@@ -1,8 +1,4 @@
-import { Fragment } from "react";
-import { Menu, Transition } from "@headlessui/react";
-import { UserIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import { useContext, useEffect } from "react";
+import { useState } from "react";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -17,54 +13,49 @@ function classNames(...classes) {
 //   { title: "title", url: "url" },
 // ];
 
-export default function AlgoliaDropdownMenu(
-  menuTitle,
-  menuIcon,
-  RefinementList
-) {
-  // the filters are showing above the subheader dropdown, needs to be fixed
-  return (
-    <div className="">
-      <Menu as="div" className="relative inline-block text-left">
-        <div>
-          <Menu.Button className="m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center">
-            {menuTitle}
-            {menuIcon}
-          </Menu.Button>
-        </div>
+export default function AlgoliaDropdownMenu(menuTitle, menuItems) {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
-        <Transition
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
+  return (
+    <div className="relative inline-block text-left">
+      <div>
+        <button
+          type="button"
+          className="m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
+          onClick={toggleMenu}
         >
-          <Menu.Items className="absolute ml-1 w-full origin-top-right bg-offWhite shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div className="py-1">
-              {RefinementList}
-              {/* {menuItems.map((item) => (
-              <div key={item.title}>
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      href={item.handle}
-                      className={classNames(
-                        active ? "bg-cream text-black" : "text-almostBlack",
-                        "block px-4 py-2 text-sm"
-                      )}
-                    >
-                      {item.title}
-                    </Link>
-                  )}
-                </Menu.Item>
-              </div>
-            ))} */}
-            </div>
-          </Menu.Items>
-        </Transition>
-      </Menu>
+          {menuTitle}
+          <ChevronDown />
+        </button>
+      </div>
+
+      <div
+        className={`absolute ml-1 w-full origin-top-right bg-offWhite shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
+          isOpen ? "" : "hidden"
+        }`}
+      >
+        <div className="py-1">{menuItems}</div>
+      </div>
     </div>
   );
 }
+
+const ChevronDown = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    className="w-4 h-4 self-center"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+    />
+  </svg>
+);
