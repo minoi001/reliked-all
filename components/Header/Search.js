@@ -5,12 +5,16 @@ import { useRouter } from "next/navigation";
 import "instantsearch.css/themes/reset.css";
 
 export const Search = () => {
+  const router = useRouter();
   const onSubmit = (e) => {
     e.preventDefault();
     const searchTerm = e.currentTarget?.elements[0]?.value;
     router.push(`/search?q=${searchTerm.trim().replace(" ", "&")}`);
   };
-  const router = useRouter();
+
+  const onReset = () => {
+    router.push(`/search`);
+  };
 
   // // SearchBox({
   // //   // ...
@@ -34,7 +38,7 @@ export const Search = () => {
   return (
     <div>
       {/* <CustomSearchBox /> */}
-      <SearchBox onSubmit={onSubmit} />
+      <SearchBox onSubmit={onSubmit} onReset={onReset} />
     </div>
   );
 };
