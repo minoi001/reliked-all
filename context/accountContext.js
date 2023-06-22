@@ -46,7 +46,13 @@ export default function AccountProvider({ children }) {
       event.preventDefault();
     }
     let response = await recoverUserAccount(userInfo.email);
-    if (!response.customerRecover.customerUserErrors) {
+    if (!response) {
+      updateUserValue({
+        errorMessage:
+          "You have made too many recovery requests, please try again later.",
+        successMessage: "",
+      });
+    } else if (!response.customerRecover.customerUserErrors) {
       updateUserValue({
         successMessage:
           "You should receive an email to reset your password ASAP.",

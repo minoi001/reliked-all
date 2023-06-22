@@ -10,6 +10,14 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Questrial&display=swap"
           rel="stylesheet"
         />
+        <script
+          src="https://unpkg.com/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.js"
+          type="module"
+        ></script>
+        <link
+          href="https://unpkg.com/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
+          rel="stylesheet"
+        ></link>
       </Head>
       <body>
         <Main />

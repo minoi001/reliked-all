@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import { ProductContext } from "../../../context/productContext";
 import { AccountContext } from "../../../context/accountContext";
-import { Widget } from "@uploadcare/react-widget";
 import Effects from "uploadcare-widget-tab-effects";
+import Select from "react-select";
 
-const Photos = ({ products }) => {
+const Photos = ({ styles }) => {
   const { productInfo } = useContext(ProductContext);
-  const { userInfo } = useContext(AccountContext);
 
   return (
     <div>
@@ -14,29 +13,23 @@ const Photos = ({ products }) => {
         <legend className="p-1">PHOTOS</legend>
         <div className="flex">
           <input
-            className="mb-4 p-2 flex-auto w-full"
+            className="p-2 flex-auto w-full"
             placeholder={"How is this item being photographed?"}
           />
         </div>
         <div className="flex">
-          <div className="mb-4 p-2 -mt-2 w-full text-black bg-taupe">
-            <Widget
-              previewStep
-              publicKey={process.env.UPLOADCARE_PUBLIC_KEY}
-              multiple="true"
-              effects="rotate,mirror,flip"
-              customTabs={{ preview: Effects }}
-              imagesOnly="true"
-              onChange={(data) => {
-                console.log(data);
-                props.setPhotosCount(data.count);
-                props.setCdnLink(data.url);
-                getURL(data.cdnUrl, data.count);
-              }}
-              imageShrink="1334x1559 100%"
-              style="backgroundColor: #000000;"
-              className="bg-rose"
+          <div className="w-1/2 m-1 mb-4">
+            <Select
+              styles={styles}
+              options={[
+                { value: "pink", label: "Pinkkkkkkkkkkkkkkkkkkkk" },
+                { value: "blue", label: "Blue" },
+              ]}
             />
+          </div>
+          <div className="mt-1 text-black">
+            {" "}
+            <lr-file-uploader-regular class="uploadcare-settings lr-wgt-common"></lr-file-uploader-regular>
           </div>
         </div>
       </fieldset>

@@ -53,3 +53,8 @@
     }
   }
 }
+
+.uploadcare-settings {
+  --cfg-pubkey: "9371e1e21ff6cdffe0b2";
+  /* all available settings https://uploadcare.github.io/blocks/solutions/file-uploader/#configuration */
+}

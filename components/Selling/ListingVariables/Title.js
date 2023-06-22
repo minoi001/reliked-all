@@ -60,8 +60,8 @@ const Title = ({ products }) => {
           {/* <p className="mb-4 py-2 inline">:</p> */}
         </div>{" "}
         <div className="flex">
-          <Creatable
-            className="pb-6 pr-1 pl-2 inline w-3/4"
+          <input
+            className="p-1 inline w-full mb-2 ml-2 mr-1 border-cream active:border-cream focus:border-cream"
             id="description"
             type="text"
             placeholder={
@@ -69,12 +69,11 @@ const Title = ({ products }) => {
                 ? "Description"
                 : "Copy & paste product title..."
             }
-            isCreatable
             onChange={handleChange}
           />
           {/* <p className="mb-4 py-2 inline">:</p> */}
           <Select
-            className="pb-2 pr-2 inline w-1/4"
+            className="pb-2 pr-2 inline w-2/5 rounded-none"
             id="size"
             type="text"
             options={sizes}

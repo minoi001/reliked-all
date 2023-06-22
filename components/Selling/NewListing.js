@@ -16,6 +16,69 @@ export default function NewListing({ listing }) {
   const { productInfo, resetProductInfo } = useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
 
+  const styles = {
+    control: (provided, state) => ({
+      ...provided,
+      boxShadow: "none",
+      borderRadius: 0,
+      borderColor: "#EFE8DF",
+      color: "black",
+      "&:hover": {
+        border: "1px solid #A8918D",
+      },
+    }),
+    menu: (provided, state) => ({
+      ...provided,
+      borderRadius: 0,
+      borderColor: "#A8918D",
+      ":active": {
+        ...provided[":active"],
+        borderColor: "white",
+      },
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor:
+        state.isSelected || state.isFocused ? "#EFE8DF" : "#ffffff",
+
+      color: "black",
+      borderRadius: 0,
+      borderColor: "#A8918D",
+      ":active": {
+        ...provided[":active"],
+        backgroundColor: !state.isDisabled ? "#A8918D" : undefined,
+        color: "white",
+      },
+    }),
+    menuList: (base) => ({
+      ...base,
+      // kill the white space on first and last option
+      padding: 0,
+    }),
+    indicatorSeparator: (base) => ({
+      ...base,
+      display: "none",
+    }),
+    myDropDown__indicator: (base) => ({
+      ...base,
+      "&.myDropDown__dropdown-indicator": {
+        "&.indicatorContainer": {
+          color: "#000000",
+        },
+      },
+    }),
+    "&.indicatorContainer": {
+      color: "#000000",
+    },
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      color: state.isActive ? "#A8918D" : "#EFE8DF", // Custom colour
+      "&:hover": {
+        color: "#A8918D",
+      },
+    }),
+  };
+
   useEffect(() => {
     // console.log("refresh");
     resetProductInfo();
@@ -58,7 +121,7 @@ export default function NewListing({ listing }) {
               {/* RIGHT SIDE OF FORM */}
 
               <div className="inline w-full p-4 pt-0 md:pr-8">
-                <Photos />
+                <Photos styles={styles} />
 
                 <Details />
 
