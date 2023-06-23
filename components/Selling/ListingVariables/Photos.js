@@ -29,7 +29,7 @@ const Photos = ({ styles }) => {
             />
           </div>
           <div className="mt-1 text-black">
-            {/* <PhotoUploader /> */}
+            <PhotoUploader />
             {/* photo uploading erroring, asked uploadcare */}
             {/* <lr-file-uploader-regular class="uploadcare-settings lr-wgt-common"></lr-file-uploader-regular>
             <template id="output-template">
