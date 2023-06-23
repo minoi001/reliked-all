@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Select from "react-select";
 import { ProductContext } from "../../../context/productContext";
 import { AccountContext } from "../../../context/accountContext";
-const Price = ({ products }) => {
+const Price = ({ styles }) => {
   const { productInfo, updateProductValue } = useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
 
@@ -58,46 +58,66 @@ const Price = ({ products }) => {
 
   return (
     <div>
-      <fieldset className="px-4 border-solid border-2 border-taupe ">
-        <legend className="p-1">PRICE</legend>
-        <div className="flex">
+      <fieldset className="px-4 border-2 border-taupe">
+        <legend className="p-1">PRICING</legend>
+        <div className="sm:flex mb-4 ">
           <Select
-            className="mb-4 p-2 pr-4 inline w-1/2"
-            id="anonymous"
+            className="inline w-full rounded-none"
+            id="availability"
+            name="availability"
             type="text"
             options={availabilities}
             placeholder="Availability"
             onChange={handleChange}
+            styles={styles}
           />
-          <span className="py-4 inline w-1/12">£</span>
+          <fieldset className="pl-1 sm:inline sm:w-2/3 sm:-mt-2 sm:ml-2 sm:mr-1 max-sm:my-2 max-sm:pb-1 border border-cream">
+            <legend className="pl-1 text-xs">RRP</legend>
 
-          <input
-            id="RRP"
-            name="RRP"
-            className="mb-4 inline w-1/6 "
-            placeholder={"RRP"}
-            onChange={handlePriceChange("RRP")}
-            value={productInfo.RRP}
-          />
-          {/* <p className="mb-4 py-2 inline">:</p> */}
-          <span className="py-4 inline w-1/12">£</span>
+            <div className="inline-flex pl-1">
+              <span className="inline px-1">£</span>
+              <input
+                className="inline w-full bg-white focus:ring-0 focus:outline-none"
+                name="RRP"
+                id="RRP"
+                placeholder={"RRP"}
+                onChange={handlePriceChange("RRP")}
+                value={productInfo.RRP}
+              />
+            </div>
+          </fieldset>
 
-          <input
-            id="SalePrice"
-            className="mb-4 p-2 inline w-1/4"
-            placeholder={"Sale Price"}
-            onChange={handlePriceChange("salePrice")}
-            value={productInfo.salePrice}
-          />
+          <fieldset className="pl-1 sm:inline sm:w-2/3 sm:-mt-2 sm:ml-2 sm:mr-1 max-sm:my-2 max-sm:pb-1 border border-cream">
+            <legend className="pl-1 text-xs">Sale Price</legend>
+
+            <div className="inline-flex pl-1">
+              <span className="inline px-1">£</span>
+              <input
+                className="inline w-full bg-white focus:ring-0 focus:outline-none"
+                name="SalePrice"
+                id="SalePrice"
+                placeholder={"Sale Price"}
+                onChange={handlePriceChange("salePrice")}
+                value={productInfo.salePrice}
+              />
+            </div>
+          </fieldset>
+          <fieldset className="pl-1 sm:inline sm:w-2/3 sm:-mt-2 sm:ml-2 sm:mr-1 max-sm:my-2 max-sm:pb-1 border border-cream">
+            <legend className="pl-1 text-xs">Price</legend>
+
+            <div className="inline-flex pl-1 text-taupe">
+              <span className="inline px-1">£</span>
+              <input
+                className="inline w-full bg-white focus:ring-0 focus:outline-none"
+                name="price"
+                id="price"
+                placeholder={"Price"}
+                disabled={true}
+                value={productInfo.price}
+              />
+            </div>
+          </fieldset>
           {/* <p className="mb-4 py-2 inline">:</p> */}
-          {/* <p className="mb-4 py-2 inline">:</p> */}
-          <span className="py-4 inline w-1/12">£</span>
-          <input
-            className="mb-4 p-2 inline w-1/6"
-            placeholder={"Price"}
-            disabled={true}
-            value={productInfo.price}
-          />
         </div>
       </fieldset>
     </div>

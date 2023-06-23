@@ -233,7 +233,7 @@ export default function ShoppingSubheader(props) {
                                     <div key={section.name}>
                                       <a
                                         href={section.href.replace(
-                                          "https://e-bloggers.myshopify.com",
+                                          "https://reliked.com",
                                           ""
                                         )}
                                       >
@@ -256,7 +256,7 @@ export default function ShoppingSubheader(props) {
                                           >
                                             <a
                                               href={item.href.replace(
-                                                "https://e-bloggers.myshopify.com",
+                                                "https://reliked.com",
                                                 ""
                                               )}
                                               className="-m-2 block p-2 text-gray-500"
@@ -355,7 +355,7 @@ export default function ShoppingSubheader(props) {
                                 ) : (
                                   <Link
                                     href={category.href.replace(
-                                      "https://e-bloggers.myshopify.com",
+                                      "https://reliked.com",
                                       ""
                                     )}
                                   >
@@ -432,7 +432,7 @@ export default function ShoppingSubheader(props) {
                                                 {/* NEEDS TO BE HOVER MENUS */}
                                                 <Link
                                                   href={section.href.replace(
-                                                    "https://e-bloggers.myshopify.com",
+                                                    "https://reliked.com",
                                                     ""
                                                   )}
                                                 >
@@ -440,7 +440,7 @@ export default function ShoppingSubheader(props) {
                                                     {MiniDropdownMenu(
                                                       section.name,
                                                       section.href.replace(
-                                                        "https://e-bloggers.myshopify.com",
+                                                        "https://reliked.com",
                                                         ""
                                                       ),
                                                       section.items

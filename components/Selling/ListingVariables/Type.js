@@ -3,7 +3,7 @@ import Select from "react-select";
 
 import { ProductContext } from "../../../context/productContext";
 import { AccountContext } from "../../../context/accountContext";
-const Type = ({ products }) => {
+const Type = ({ styles }) => {
   const {
     productInfo,
     updateProductValue,
@@ -31,6 +31,7 @@ const Type = ({ products }) => {
             options={types}
             placeholder="What are you listing?"
             onChange={handleChange}
+            styles={styles}
           />
         </div>
       </fieldset>

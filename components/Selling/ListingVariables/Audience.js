@@ -3,7 +3,7 @@ import Select from "react-select";
 
 import { ProductContext } from "../../../context/productContext";
 import { AccountContext } from "../../../context/accountContext";
-const Audience = ({ products }) => {
+const Audience = ({ styles }) => {
   const { productInfo, updateProductValue } = useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
 
@@ -42,6 +42,7 @@ const Audience = ({ products }) => {
             options={ages}
             placeholder="Age"
             onChange={handleChange}
+            styles={styles}
           />
           {/* <p className="mb-4 py-2 inline">:</p> */}
           <Select
@@ -51,6 +52,7 @@ const Audience = ({ products }) => {
             options={categories}
             placeholder="Category"
             onChange={handleChange}
+            styles={styles}
           />
         </div>
       </fieldset>

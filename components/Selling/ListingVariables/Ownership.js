@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Select from "react-select";
 import { ProductContext } from "../../../context/productContext";
 import { AccountContext } from "../../../context/accountContext";
-const Ownership = ({ products }) => {
+const Ownership = ({ styles }) => {
   const { productInfo, updateProductValue, listingVariables } =
     useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
@@ -39,6 +39,7 @@ const Ownership = ({ products }) => {
             options={influencers}
             placeholder="Influencer"
             onChange={handleChange}
+            styles={styles}
           />
           {/* <input className="mb-4 p-2 inline w-2/3" placeholder={"Influencer"} /> */}
           {/* <p className="mb-4 py-2 inline">:</p> */}
@@ -49,6 +50,7 @@ const Ownership = ({ products }) => {
             options={anonymous}
             placeholder="Anonymity"
             onChange={handleChange}
+            styles={styles}
           />
         </div>
       </fieldset>

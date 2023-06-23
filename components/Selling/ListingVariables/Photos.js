@@ -1,14 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ProductContext } from "../../../context/productContext";
 import { AccountContext } from "../../../context/accountContext";
-import Effects from "uploadcare-widget-tab-effects";
 import Select from "react-select";
+import PhotoUploader from "./PhotoUploader";
 
 const Photos = ({ styles }) => {
   const { productInfo } = useContext(ProductContext);
+  let { cdnUrl, setCdnUrl } = useState("");
 
   return (
-    <div>
+    <div className="">
       <fieldset className="px-4 border-solid border-2 border-taupe w-full">
         <legend className="p-1">PHOTOS</legend>
         <div className="flex">
@@ -17,8 +18,8 @@ const Photos = ({ styles }) => {
             placeholder={"How is this item being photographed?"}
           />
         </div>
-        <div className="flex">
-          <div className="w-1/2 m-1 mb-4">
+        <div className="">
+          <div className="w-full m-1 mb-4">
             <Select
               styles={styles}
               options={[
@@ -28,8 +29,25 @@ const Photos = ({ styles }) => {
             />
           </div>
           <div className="mt-1 text-black">
-            {" "}
-            <lr-file-uploader-regular class="uploadcare-settings lr-wgt-common"></lr-file-uploader-regular>
+            {/* <PhotoUploader /> */}
+            {/* photo uploading erroring, asked uploadcare */}
+            {/* <lr-file-uploader-regular class="uploadcare-settings lr-wgt-common"></lr-file-uploader-regular>
+            <template id="output-template">
+              <h3>Files uploaded:</h3>
+              <div repeat="filesData">
+                <lr-img width="300" set="@uuid: uuid"></lr-img>
+                <div>
+                  <a set="@href: cdnUrl"></a>
+                </div>
+              </div>
+            </template>
+            <lr-data-output
+              use-console
+              use-event
+              use-template="#output-template"
+            >
+              {" "}
+            </lr-data-output> */}
           </div>
         </div>
       </fieldset>

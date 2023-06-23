@@ -3,7 +3,7 @@ import { ProductContext } from "../../../context/productContext";
 import { AccountContext } from "../../../context/accountContext";
 import Select from "react-select";
 
-const Details = ({ products }) => {
+const Details = ({ styles }) => {
   const { productInfo, updateProductValue, listingVariables } =
     useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
@@ -51,6 +51,7 @@ const Details = ({ products }) => {
             options={conditions}
             placeholder="Condition"
             onChange={handleChange}
+            styles={styles}
           />
           <Select
             className="mb-4 p-2 inline w-1/2"
@@ -59,6 +60,7 @@ const Details = ({ products }) => {
             options={packagings}
             placeholder="Packaging"
             onChange={handleChange}
+            styles={styles}
           />
         </div>
         <div className="flex">

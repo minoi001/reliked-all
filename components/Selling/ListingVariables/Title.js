@@ -5,7 +5,7 @@ import Creatable from "react-select/creatable";
 import { ProductContext } from "../../../context/productContext";
 import { AccountContext } from "../../../context/accountContext";
 
-const Title = ({ products }) => {
+const Title = ({ styles }) => {
   const {
     productInfo,
     updateProductValue,
@@ -47,6 +47,7 @@ const Title = ({ products }) => {
             options={brands}
             placeholder="Brand"
             onChange={handleChange}
+            styles={styles}
           />
           {/* <p className="mb-4 py-2 inline">:</p> */}
           <Select
@@ -56,12 +57,13 @@ const Title = ({ products }) => {
             options={colours}
             placeholder="Colour"
             onChange={handleChange}
+            styles={styles}
           />
           {/* <p className="mb-4 py-2 inline">:</p> */}
         </div>{" "}
-        <div className="flex">
+        <div className="flex mb-2">
           <input
-            className="p-1 inline w-full mb-2 ml-2 mr-1 border-cream active:border-cream focus:border-cream"
+            className="p-1 pl-2.5 inline w-full mb-2 ml-2 mr-1 border-cream active:border-cream focus:border-taupe hover:border-taupe focus:ring-0"
             id="description"
             type="text"
             placeholder={
@@ -79,6 +81,7 @@ const Title = ({ products }) => {
             options={sizes}
             placeholder="Size"
             onChange={handleChange}
+            styles={styles}
           />
         </div>
       </fieldset>

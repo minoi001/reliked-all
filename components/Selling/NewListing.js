@@ -109,13 +109,13 @@ export default function NewListing({ listing }) {
                       : ""
                   }
                 >
-                  <Ownership />
+                  <Ownership styles={styles} />
 
-                  <Type />
+                  <Type styles={styles} />
 
-                  <Audience />
+                  <Audience styles={styles} />
 
-                  <Title />
+                  <Title styles={styles} />
                 </div>
               </div>
               {/* RIGHT SIDE OF FORM */}
@@ -123,9 +123,9 @@ export default function NewListing({ listing }) {
               <div className="inline w-full p-4 pt-0 md:pr-8">
                 <Photos styles={styles} />
 
-                <Details />
+                <Details styles={styles} />
 
-                <Price />
+                <Price styles={styles} />
               </div>
             </div>
             <div
@@ -136,14 +136,14 @@ export default function NewListing({ listing }) {
                   : "flex-inline px-4 md:px-8 w-full"
               }
             >
-              <Staff />
+              <Staff styles={styles} />
             </div>
           </div>
         </div>
       ) : (
         <div className="w-full max-w-md border bg-white overflow-hidden shadow-lg md:w-1/2">
           <div className="relative h-full w-full">
-            <Login />
+            <Login styles={styles} />
           </div>
         </div>
       )}

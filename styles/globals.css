@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* colors: {
+  rose: "#EC516B";
+  taupe: "#A8918D";
+  almostblack: "#2D2D2D";
+  cream: "#EFE8DF";
+  mint: "#D8EFDE";
+  offwhite: "#F8F8F7";
+} */
+
 .ais-SearchBox {
   margin: 1em 0;
 }
@@ -57,4 +66,33 @@
 .uploadcare-settings {
   --cfg-pubkey: "9371e1e21ff6cdffe0b2";
   /* all available settings https://uploadcare.github.io/blocks/solutions/file-uploader/#configuration */
+  font-family: Questrial, sans-serif;
+  border-radius: 0px;
+}
+
+.uploadcare-settings button,
+.not-active {
+  border-radius: 0px;
+}
+
+.uploadcare-settings button:not(.mini-btn) {
+  background-color: #efe8df;
+  padding: 1rem;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  border-radius: 0px;
+  color: #2d2d2d;
+}
+
+.uploadcare-settings button:hover {
+  background-color: #a8918d;
+  color: white;
+}
+
+.uploadcare-settings span {
+  font-family: Questrial, sans-serif;
+}
+
+.credits {
+  display: none;
 }

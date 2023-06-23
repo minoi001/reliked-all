@@ -20,11 +20,7 @@ module.exports = {
     ALGOLIA_API_KEY: process.env.ALGOLIA_API_KEY,
   },
   images: {
-    domains: [
-      `cdn.shopify.com`,
-      `tailwindui.com`,
-      `images.hardlyeverwornit.com`,
-    ],
+    domains: [`cdn.shopify.com`, `tailwindui.com`, `ucarecdn.com`],
   },
   async redirects() {
     return [
