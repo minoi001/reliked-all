@@ -38,7 +38,7 @@
   .content-auto {
     content-visibility: auto;
   }
-  @variants responsive {
+  @layer components {
     .ts-black {
       text-shadow: 4px 2px 8px black;
     }
