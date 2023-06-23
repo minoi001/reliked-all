@@ -12,26 +12,28 @@ const Photos = ({ styles }) => {
     <div className="">
       <fieldset className="px-4 border-solid border-2 border-taupe w-full">
         <legend className="p-1">PHOTOS</legend>
-        <div className="flex">
+        {/* <div className="flex">
           <input
-            className="p-2 flex-auto w-full"
+            className="p-2 flex-auto w-full bg-white"
             placeholder={"How is this item being photographed?"}
+            disabled
           />
-        </div>
+        </div> */}
         <div className="">
-          <div className="w-full m-1 mb-4">
+          <div className="w-full ml-2 pr-3.5 mt-1 mb-4">
             <Select
               styles={styles}
+              placeholder={"How is this item being photographed?"}
               options={[
-                { value: "pink", label: "Pinkkkkkkkkkkkkkkkkkkkk" },
-                { value: "blue", label: "Blue" },
+                { value: "DeskPhoto", label: "Photographed at my desk" },
+                { value: "MachinePhoto", label: "Sent to be photographed" },
+                { value: "StockPhoto", label: "Photo found online & uploaded" },
               ]}
             />
           </div>
-          <div className="mt-1 text-black">
-            <PhotoUploader />
-            {/* photo uploading erroring, asked uploadcare */}
-            {/* <lr-file-uploader-regular class="uploadcare-settings lr-wgt-common"></lr-file-uploader-regular>
+          <PhotoUploader />
+          {/* photo uploading erroring, asked uploadcare */}
+          {/* <lr-file-uploader-regular class="uploadcare-settings lr-wgt-common"></lr-file-uploader-regular>
             <template id="output-template">
               <h3>Files uploaded:</h3>
               <div repeat="filesData">
@@ -48,7 +50,6 @@ const Photos = ({ styles }) => {
             >
               {" "}
             </lr-data-output> */}
-          </div>
         </div>
       </fieldset>
     </div>

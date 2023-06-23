@@ -28,6 +28,7 @@ function PhotoUploader() {
   }, [handleUploaderEvent]);
 
   return (
+    //     <div className={st.wrapper + " max-w-xs"}>
     <div className={st.wrapper}>
       <lr-file-uploader-regular
         class={"uploadcare-settings " + st.uploaderCfg}
@@ -44,12 +45,13 @@ function PhotoUploader() {
 
       <div className={"grid" + st.output}>
         {files.map((file) => (
-          <div className="inline-flex p-1 w-1/4" key={file.uuid}>
+          <div className="inline-flex p-1 w-1/4 h-36" key={file.uuid}>
             <Image
+              className="object-contain p-1"
               key={file.uuid}
               src={`https://ucarecdn.com/${file.uuid}/${
                 file.cdnUrlModifiers || ""
-              }-/preview/-/scale_crop/400x500/`}
+              }`}
               width="400"
               height="500"
               alt="Preview"

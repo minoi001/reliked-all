@@ -27,7 +27,7 @@ const Title = ({ styles }) => {
     if (event.variable) {
       updateProductValue({ [event.variable]: event.value });
     } else {
-      updateProductValue({ description: event.value });
+      updateProductValue({ description: event.target.value });
     }
   };
 
