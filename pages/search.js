@@ -1,5 +1,8 @@
 import ProductList from "../components/Homepage/ProductList";
+import { useSearchParams } from "next/navigation";
 
 export default function Search() {
-  return <ProductList />;
+  const searchParams = useSearchParams();
+
+  return <ProductList query={searchParams} />;
 }
