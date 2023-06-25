@@ -10,7 +10,6 @@ import {
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 
 const ProductList = ({ query }) => {
-  console.log("***", query.get("q"));
   const searchParameters = {
     query: query.get("q") || "",
     // filters: ``,
