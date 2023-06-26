@@ -96,3 +96,19 @@
 .credits {
   display: none;
 }
+
+.slider {
+  background-color: black;
+  height:  5px;
+  margin-top: 10px;
+}
+
+.slider .thumb {
+   width: 10px;
+  height: 10px;
+  cursor: pointer;
+  background: #EC516B;
+  border-radius: 50%;
+  border: 2px solid #EC516B;
+  top: -2px
+}

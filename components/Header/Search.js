@@ -9,7 +9,7 @@ export const Search = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     const searchTerm = e.currentTarget?.elements[0]?.value;
-    router.push(`/search?q=${searchTerm.trim().replace(" ", "&")}`);
+    router.push(`/search?q=${searchTerm.trim().replace(" ", "+")}`);
   };
 
   const onReset = () => {
