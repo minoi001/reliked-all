@@ -3,7 +3,6 @@ import Image from "next/image";
 import { formatter } from "../../utils/helpers";
 
 const ProductCard = ({ hit }) => {
-  console.log("hit", hit);
   const { handle, title } = hit;
   const image = hit.image
     ? hit.image

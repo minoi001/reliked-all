@@ -1,6 +1,7 @@
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
-import { RefinementList, SortBy } from "react-instantsearch-dom";
+import { SortBy } from "react-instantsearch-dom";
 import { CustomRangeSlider } from "./CustomRangeSlider";
+import { CustomRefinementList } from "./CustomRefinementList";
 
 const ProductFilters = () => {
   return (
@@ -22,7 +23,7 @@ const ProductFilters = () => {
       <div className="inline-flex">
         {AlgoliaDropdownMenu(
           "Influencer",
-          <RefinementList attribute="vendor" className="w-full m-2" />
+          <CustomRefinementList attribute="vendor" />
         )}
       </div>
       <div className="inline-flex">

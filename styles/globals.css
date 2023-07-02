@@ -40,7 +40,7 @@
 }
 
 .ais-SortBy-select {
-  @apply m-1 text-black bg-white hover:bg-cream hover:text-white font-medium text-sm py-2.5 text-center inline-flex items-center rounded-full border border-cream
+  @apply m-1 text-black bg-white hover:bg-cream  focus:border-cream hover:text-white font-medium text-sm py-2.5 text-center inline-flex items-center rounded-full border border-cream
 }
 
 .ais-RefinementList-count {
