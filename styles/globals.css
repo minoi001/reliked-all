@@ -39,6 +39,10 @@
   @apply pl-6 bg-white;
 }
 
+.ais-SortBy-select {
+  @apply m-1 text-black bg-white hover:bg-cream hover:text-white font-medium text-sm py-2.5 text-center inline-flex items-center rounded-full border border-cream
+}
+
 .ais-RefinementList-count {
   @apply bg-gray-200;
 }
@@ -100,7 +104,8 @@
 .slider {
   background-color: black;
   height:  5px;
-  margin-top: 10px;
+  margin-top: 5px;
+  min-width: 7rem;
 }
 
 .slider .thumb {

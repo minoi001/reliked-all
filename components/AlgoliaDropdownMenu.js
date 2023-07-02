@@ -15,30 +15,23 @@ function classNames(...classes) {
 
 export default function AlgoliaDropdownMenu(menuTitle, menuItems) {
   const [isOpen, setIsOpen] = useState(false);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <div className="relative inline-block text-left">
-      <div>
-        <button
-          type="button"
-          className="m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
-          onClick={toggleMenu}
-        >
-          {menuTitle}
-          <ChevronDown />
-        </button>
-      </div>
-
-      <div
-        className={`absolute ml-1 w-full origin-top-right bg-offWhite shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
-          isOpen ? "" : "hidden"
-        }`}
+    <div>
+      <button
+        type="button"
+        className="m-1 text-black bg-white hover:bg-cream hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center rounded-full border border-cream"
+        onClick={toggleMenu}
       >
-        <div className="py-1">{menuItems}</div>
-      </div>
+        {menuTitle}
+        <ChevronDown />
+      </button>
+
+      <div className={`${isOpen ? "" : "hidden"}`}>{menuItems}</div>
     </div>
   );
 }
@@ -48,7 +41,7 @@ const ChevronDown = () => (
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
-    stroke-width="1.5"
+    strokeWidth="1.5"
     stroke="currentColor"
     className="w-4 h-4 self-center"
   >

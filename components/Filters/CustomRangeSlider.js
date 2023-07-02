@@ -8,19 +8,6 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
       setValues([currentRefinement.min, currentRefinement.max]);
     }
   }, [currentRefinement.min, currentRefinement.max]);
-
-  // const onChange = ({ values: [min, max] }) => {
-  //   // setValues(values);
-  //   if (currentRefinement.min !== min || currentRefinement.max !== max) {
-  //     refine({ min, max });
-  //   }
-  // };
-
-  // const onValuesUpdated = ({ values: [min, max] }) => {
-  //   setStateMin(min);
-  //   setStateMax(max);
-  // };
-
   const onChange = (a) => {
     console.log(a[0], a[1]);
     const [min, max] = a;
@@ -31,10 +18,10 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col absolute p-4 bg-cream rounded">
       <div className="flex justify-between">
-        <span className="value">£{values[0]}</span>
-        <p className="value">£{values[1]}</p>
+        <span className="text-sm">£{values[0]}</span>
+        <p className="text-sm">£{values[1]}</p>
       </div>
       <Slider
         className="slider"
@@ -44,20 +31,6 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
         onChange={onChange}
       />
     </div>
-    // <Rheostat
-    //   min={min}
-    //   max={max}
-    //   values={[currentRefinement.min, currentRefinement.max]}
-    //   onChange={onChange}
-    //   onValuesUpdated={onValuesUpdated}
-    // >
-    //   <div className="rheostat-marker round-marker">
-    //     <div className="rheostat-value">{stateMin}</div>
-    //   </div>
-    //   <div className="rheostat-marker round-marker">
-    //     <div className="rheostat-value">{stateMax}</div>
-    //   </div>
-    // </Rheostat>
   );
 };
 
