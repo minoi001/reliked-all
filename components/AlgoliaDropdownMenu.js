@@ -24,7 +24,7 @@ export default function AlgoliaDropdownMenu(menuTitle, menuItems) {
     <div>
       <button
         type="button"
-        className="m-1 text-black bg-white hover:bg-cream hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center rounded-full border border-cream"
+        className="m-1 text-black bg-white hover:bg-cream hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center rounded-none border border-cream"
         onClick={toggleMenu}
       >
         {menuTitle}

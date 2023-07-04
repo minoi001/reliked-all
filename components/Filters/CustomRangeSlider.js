@@ -18,7 +18,7 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
   };
 
   return (
-    <div className="flex flex-col absolute p-4 bg-cream rounded">
+    <div className="flex flex-col absolute p-4 bg-cream rounded-none">
       <div className="flex justify-between">
         <span className="text-sm">£{values[0]}</span>
         <p className="text-sm">£{values[1]}</p>

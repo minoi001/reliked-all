@@ -7,7 +7,7 @@ const RefinementList = ({
   searchForItems,
   createURL,
 }) => (
-  <ul className="absolute bg-cream rounded p-4">
+  <ul className="absolute bg-cream rounded-none p-4">
     {items.map((item) => (
       <li key={item.label}>
         <a

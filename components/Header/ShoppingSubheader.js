@@ -232,10 +232,12 @@ export default function ShoppingSubheader(props) {
                                   {category.items.map((section) => (
                                     <div key={section.name}>
                                       <a
-                                        href={section.href.replace(
-                                          "https://reliked.com",
-                                          ""
-                                        )}
+                                        href={section.href
+                                          .replace("https://reliked.com", "")
+                                          .replace(
+                                            "https://e-bloggers.myshopify.com",
+                                            ""
+                                          )}
                                       >
                                         <p
                                           id={`-heading-mobile`}
@@ -255,10 +257,15 @@ export default function ShoppingSubheader(props) {
                                             className="flow-root"
                                           >
                                             <a
-                                              href={item.href.replace(
-                                                "https://reliked.com",
-                                                ""
-                                              )}
+                                              href={item.href
+                                                .replace(
+                                                  "https://reliked.com",
+                                                  ""
+                                                )
+                                                .replace(
+                                                  "https://e-bloggers.myshopify.com",
+                                                  ""
+                                                )}
                                               className="-m-2 block p-2 text-gray-500"
                                             >
                                               {item.name}
@@ -354,10 +361,12 @@ export default function ShoppingSubheader(props) {
                                   </Popover.Button>
                                 ) : (
                                   <Link
-                                    href={category.href.replace(
-                                      "https://reliked.com",
-                                      ""
-                                    )}
+                                    href={category.href
+                                      .replace("https://reliked.com", "")
+                                      .replace(
+                                        "https://e-bloggers.myshopify.com",
+                                        ""
+                                      )}
                                   >
                                     <Popover.Button
                                       className={classNames(
@@ -431,18 +440,28 @@ export default function ShoppingSubheader(props) {
                                               >
                                                 {/* NEEDS TO BE HOVER MENUS */}
                                                 <Link
-                                                  href={section.href.replace(
-                                                    "https://reliked.com",
-                                                    ""
-                                                  )}
+                                                  href={section.href
+                                                    .replace(
+                                                      "https://reliked.com",
+                                                      ""
+                                                    )
+                                                    .replace(
+                                                      "https://e-bloggers.myshopify.com",
+                                                      ""
+                                                    )}
                                                 >
                                                   <div key={section.name}>
                                                     {MiniDropdownMenu(
                                                       section.name,
-                                                      section.href.replace(
-                                                        "https://reliked.com",
-                                                        ""
-                                                      ),
+                                                      section.href
+                                                        .replace(
+                                                          "https://reliked.com",
+                                                          ""
+                                                        )
+                                                        .replace(
+                                                          "https://e-bloggers.myshopify.com",
+                                                          ""
+                                                        ),
                                                       section.items
                                                     )}
                                                   </div>

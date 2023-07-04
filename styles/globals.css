@@ -40,11 +40,11 @@
 }
 
 .ais-SortBy-select {
-  @apply m-1 text-black bg-white hover:bg-cream  focus:border-cream hover:text-white font-medium text-sm py-2.5 text-center inline-flex items-center rounded-full border border-cream;
+  @apply m-1 text-black bg-white hover:bg-cream  focus:border-cream hover:text-white font-medium text-sm py-2.5 text-center inline-flex items-center rounded-none border border-cream;
 }
 
 .ais-RefinementList-count {
-  @apply bg-gray-200;
+  @apply bg-gray-200 rounded-none;
 }
 
 @layer utilities {
@@ -121,6 +121,7 @@
   height: 5px;
   margin-top: 5px;
   min-width: 7rem;
+  border-radius: 0px;
 }
 
 .slider .thumb {
@@ -128,7 +129,7 @@
   height: 10px;
   cursor: pointer;
   background: #ec516b;
-  border-radius: 50%;
+  border-radius: 0px;
   border: 2px solid #ec516b;
   top: -2px;
 }
