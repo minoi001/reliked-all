@@ -3,6 +3,7 @@ import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Configure, Hits, InstantSearch } from "react-instantsearch-dom";
 import { indexNames, searchClient } from "../../algoliaConfig";
 import Link from "next/link";
+import { ChevronDown } from "../../components/AlgoliaDropdownMenu";
 
 export default function Collections() {
   const [collectionType, setCollectionType] = useState("vendor");
@@ -54,41 +55,40 @@ function CollectionFilters({ updateCollections, collectionType }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="inline pb-4 items-center m-auto">
-      <div className="lg:inline place-items-center align-middle">
-        {/* Want these to be centred on mobile as well  */}
-        <button
-          className={
-            collectionType === "vendor"
-              ? "m-1 text-white bg-almostBlack hover:bg-black font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
-              : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
-          }
-          onClick={() => updateCollections("vendor")}
-        >
-          Influencers
-        </button>
-        <button
-          className={
-            collectionType === "brand"
-              ? "m-1 text-white bg-almostBlack hover:bg-black font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
-              : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
-          }
-          onClick={() => updateCollections("brand")}
-        >
-          Brands
-        </button>
-        <button
-          className={
-            collectionType === "size"
-              ? "m-1 text-white bg-almostBlack hover:bg-black font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
-              : "m-1 text-black bg-cream hover:bg-taupe hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center"
-          }
-          onClick={() => updateCollections("size")}
-        >
-          Sizes
-        </button>
-      </div>
-      <div className="lg:inline">
+    <div className="flex flex-wrap justify-center items-center space-y-1 lg:flex-nowrap">
+      <button
+        className={`m-1 text-${
+          collectionType === "vendor" ? "white" : "black"
+        } bg-${
+          collectionType === "vendor" ? "almostBlack" : "cream"
+        } hover:bg-${
+          collectionType === "vendor" ? "black" : "taupe"
+        } font-medium text-sm px-4 py-2.5 text-center inline-flex items-center`}
+        onClick={() => updateCollections("vendor")}
+      >
+        Influencers
+      </button>
+      <button
+        className={`m-1 text-${
+          collectionType === "brand" ? "white" : "black"
+        } bg-${collectionType === "brand" ? "almostBlack" : "cream"} hover:bg-${
+          collectionType === "brand" ? "black" : "taupe"
+        } font-medium text-sm px-4 py-2.5 text-center inline-flex items-center`}
+        onClick={() => updateCollections("brand")}
+      >
+        Brands
+      </button>
+      <button
+        className={`m-1 text-${
+          collectionType === "size" ? "white" : "black"
+        } bg-${collectionType === "size" ? "almostBlack" : "cream"} hover:bg-${
+          collectionType === "size" ? "black" : "taupe"
+        } font-medium text-sm px-4 py-2.5 text-center inline-flex items-center`}
+        onClick={() => updateCollections("size")}
+      >
+        Sizes
+      </button>
+      <div className="flex flex-wrap justify-center items-center space-x-1">
         <button className="m-1 text-black bg-offWhite hover:bg-cream hover:text-almostBlack font-medium text-sm px-4 py-2.5 text-center inline-flex items-center">
           Category
           <svg
@@ -153,13 +153,11 @@ function CollectionFilters({ updateCollections, collectionType }) {
             className="text-black hover:text-almostBlack font-medium text-sm text-left pl-2 w-auto inline-block focus:outline-none bg-inherit"
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          {searchQuery ? (
+          {searchQuery && (
             <XMarkIcon
               className="text-black w-4 h-4 inline -mt-0.5"
               onClick={() => setSearchQuery("")}
             />
-          ) : (
-            ""
           )}
         </div>
       </button>
