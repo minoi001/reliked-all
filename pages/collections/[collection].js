@@ -9,7 +9,7 @@ export default function CollectionPage({ collection }) {
   };
   return (
     <div className="mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="grid px-6 sm:px-12 align-middle p-2 w-full bg-white shadow-lg pb-12 relative">
+      <div className="grid px-6 sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
         <h1 className="p-4 text-3xl capitalize">
           {collection.replace("-", " ")}
         </h1>

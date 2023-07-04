@@ -155,7 +155,7 @@ export default function ShoppingSubheader(props) {
   let { menuItemsShow, setMenuItemsShow } = useState(false);
 
   return (
-    <div>
+    <div className="z-100">
       {navigation.items ? (
         <div className="object-cover">
           {/* Mobile menu */}
