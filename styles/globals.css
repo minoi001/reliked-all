@@ -96,3 +96,18 @@
 .credits {
   display: none;
 }
+
+.my-config {
+  --cfg-pubkey: "9371e1e21ff6cdffe0b2";
+  --cfg-img-only: 1;
+  --cfg-multiple: 1;
+  --cfg-max-local-file-size-bytes: 10737418240;
+  --cfg-multiple-max: 10;
+  --cfg-use-cloud-image-editor: 1;
+  --cfg-source-list: "local, url, camera, facebook, instagram";
+  --darkmode: 0;
+  --h-accent: 9;
+  --s-accent: 13%;
+  --l-accent: 61%;
+  --border-radius-element: 0;
+}

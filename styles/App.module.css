@@ -22,6 +22,27 @@
   --cfg-accept: "";
   --cfg-store: 1;
   --cfg-camera-mirror: 0;
-  --cfg-source-list: "local, url, camera, dropbox, gdrive";
+  --cfg-source-list: "local, url, camera";
+  /* --cfg-source-list: "local, url, camera, dropbox, gdrive"; */
   --cfg-max-files: 10;
+  --darkmode: 0;
+  --h-accent: 9;
+  --s-accent: 13%;
+  --l-accent: 61%;
+  --h-background: 60;
+  --s-background: 7%;
+  --l-background: 97%;
+  --h-foreground: 0;
+  --s-foreground: 0%;
+  --l-foreground: 18%;
+  --border-radius-element: 0;
 }
+
+/* colors: {
+  rose: "#EC516B";
+  taupe: "#A8918D";
+  almostblack: "#2D2D2D";
+  cream: "#EFE8DF";
+  mint: "#D8EFDE";
+  offwhite: "#F8F8F7";
+} */

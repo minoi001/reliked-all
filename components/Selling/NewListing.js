@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Login from "../Account/Login";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef, useState, useCallback } from "react";
 import { ProductContext } from "../../context/productContext";
 import { AccountContext } from "../../context/accountContext";
 import Title from "./ListingVariables/Title";
@@ -11,10 +11,35 @@ import Photos from "./ListingVariables/Photos";
 import Details from "./ListingVariables/Details";
 import Staff from "./ListingVariables/Staff";
 import Price from "./ListingVariables/Price";
+import * as LR from "@uploadcare/blocks";
+import st from "../../styles/App.module.css";
+import { PACKAGE_VERSION } from "@uploadcare/blocks/env";
 
 export default function NewListing({ listing }) {
   const { productInfo, resetProductInfo } = useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
+
+  LR.registerBlocks(LR);
+
+  const dataOutputRef = useRef();
+  // TODO: We need to export all data output types
+  const [files, setFiles] = useState([]);
+
+  // TODO: We need to export all the event types
+  const handleUploaderEvent = useCallback((e) => {
+    const { data } = e.detail;
+    setFiles(data);
+  }, []);
+
+  useEffect(() => {
+    const el = dataOutputRef.current;
+
+    // TODO: Augment global custom event types
+    el?.addEventListener("lr-data-output", handleUploaderEvent);
+    return () => {
+      el?.removeEventListener("lr-data-output", handleUploaderEvent);
+    };
+  }, [handleUploaderEvent]);
 
   const styles = {
     control: (provided, state) => ({
@@ -85,7 +110,12 @@ export default function NewListing({ listing }) {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center -mt-6 sm:-mt-16 md:flex-row md:items-start md:space-x-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto">
+    <div
+      className={
+        st.wrapper +
+        "flex flex-col justify-center items-center -mt-6 sm:-mt-16 md:flex-row md:items-start md:space-x-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto"
+      }
+    >
       {userInfo.loginStatus ? (
         //  logged in
         <div>
@@ -96,6 +126,22 @@ export default function NewListing({ listing }) {
                   {/* {productInfo.title} */}
                   <center>Add Listing</center>
                 </h1>
+                <div className={"grid" + st.output}>
+                  {files.map((file) => (
+                    <div className="inline-flex p-1 w-1/4 h-36" key={file.uuid}>
+                      <Image
+                        className="object-contain p-1"
+                        key={file.uuid}
+                        src={`https://ucarecdn.com/${file.uuid}/${
+                          file.cdnUrlModifiers || ""
+                        }`}
+                        width="400"
+                        height="500"
+                        alt="Preview"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
             <div className="grid md:grid-cols-2">
@@ -121,8 +167,24 @@ export default function NewListing({ listing }) {
               {/* RIGHT SIDE OF FORM */}
 
               <div className="inline w-full p-4 pt-0 md:pr-8">
-                <Photos styles={styles} />
-
+                <fieldset className="px-4 border-solid border-2 border-taupe w-full">
+                  <legend className="p-1">PHOTOS</legend>
+                  <Photos styles={styles} />
+                  <div>
+                    <lr-file-uploader-regular
+                      class={"uploadcare-settings " + st.uploaderCfg}
+                      css-src={`https://unpkg.com/@uploadcare/blocks@${PACKAGE_VERSION}/web/file-uploader-regular.min.css`}
+                    >
+                      <lr-data-output
+                        ref={dataOutputRef}
+                        use-event
+                        hidden
+                        class={st.uploaderCfg}
+                        onEvent={handleUploaderEvent}
+                      ></lr-data-output>
+                    </lr-file-uploader-regular>
+                  </div>
+                </fieldset>
                 <Details styles={styles} />
 
                 <Price styles={styles} />

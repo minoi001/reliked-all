@@ -31,9 +31,11 @@ function PhotoUploader() {
     //     <div className={st.wrapper + " max-w-xs"}>
     <div className={st.wrapper}>
       <lr-file-uploader-regular
-        class={"uploadcare-settings " + st.uploaderCfg}
-        css-src={`https://unpkg.com/@uploadcare/blocks@${PACKAGE_VERSION}/web/file-uploader-regular.min.css`}
+        css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
+        ctx-name="my-uploader"
+        class="my-config"
       >
+        <lr-simple-btn className="lr-wgt-common"></lr-simple-btn>
         <lr-data-output
           ref={dataOutputRef}
           use-event
