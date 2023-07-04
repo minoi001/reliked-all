@@ -1,8 +1,6 @@
-import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon, UserIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { useContext, useEffect } from "react";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -18,7 +16,7 @@ function classNames(...classes) {
 // ];
 
 export default function MiniDropdownMenu(menuTitle, menuHandle, menuItems) {
-  console.log(menuTitle, menuItems);
+  // console.log(menuTitle, menuItems);
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>

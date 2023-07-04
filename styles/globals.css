@@ -39,6 +39,10 @@
   @apply pl-6 bg-white;
 }
 
+.ais-SortBy-select {
+  @apply m-1 text-black bg-white hover:bg-cream  focus:border-cream hover:text-white font-medium text-sm py-2.5 text-center inline-flex items-center rounded-full border border-cream;
+}
+
 .ais-RefinementList-count {
   @apply bg-gray-200;
 }
@@ -110,4 +114,21 @@
   --s-accent: 13%;
   --l-accent: 61%;
   --border-radius-element: 0;
+}
+
+.slider {
+  background-color: black;
+  height: 5px;
+  margin-top: 5px;
+  min-width: 7rem;
+}
+
+.slider .thumb {
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  background: #ec516b;
+  border-radius: 50%;
+  border: 2px solid #ec516b;
+  top: -2px;
 }
