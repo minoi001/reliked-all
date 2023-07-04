@@ -29,4 +29,16 @@ const RefinementList = ({
   </ul>
 );
 
+function getItemLabel(item) {
+  if (item && item.label) {
+    if (item.label.includes(" - ")) {
+      return item.label.split(" - ")[1];
+    } else {
+      return item.label;
+    }
+  }
+
+  return "";
+}
+
 export const CustomRefinementList = connectRefinementList(RefinementList);

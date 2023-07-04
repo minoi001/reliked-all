@@ -1,5 +1,5 @@
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
-import { SortBy } from "react-instantsearch-dom";
+import { RefinementList, SortBy } from "react-instantsearch-dom";
 import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomRefinementList } from "./CustomRefinementList";
 
@@ -21,10 +21,17 @@ const ProductFilters = () => {
         />
       </div>
       <div className="inline-flex">
-        {AlgoliaDropdownMenu(
-          "Influencer",
-          <CustomRefinementList attribute="vendor" />
-        )}
+        {
+          // Algolia only lets you show the X most popular filters, so I've set it to 20 for now
+          AlgoliaDropdownMenu(
+            "Influencer",
+            <CustomRefinementList
+              attribute="vendor"
+              showMore={true}
+              showMoreLimit={20}
+            />
+          )
+        }
       </div>
       <div className="inline-flex">
         {AlgoliaDropdownMenu("Price", <CustomRangeSlider attribute="price" />)}
