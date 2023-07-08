@@ -8,6 +8,7 @@ import HeroImage from "../components/Homepage/HeroImage.js";
 import InfluencerSlider from "../components/Homepage/InfluencerSlider.js";
 import FeaturedCollections from "../components/Homepage/FeaturedCollections.js";
 import NewIn from "../components/Homepage/NewIn";
+import Head from "next/head";
 
 // type products = [];
 // I need to learn more about typescript
@@ -16,13 +17,35 @@ export default function Home({ products, headerContent, homepageContent }) {
   // const { headerContent, homepageContent } = useContext(ShopContext);
 
   return (
-    <div className="bg-white">
-      <HeroImage homepageContent={homepageContent} />
-      <InfluencerSlider />
-      <FeaturedCollections />
-      <NewIn products={products} />
-    </div>
+    <>
+      <Head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-2S3478ZN8E"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+
+                  gtag('config', '${process.env.GOOGLE_ANALYTICS_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                  }); 
+              `,
+          }}
+        />
+      </Head>
+      <div className="bg-white">
+        <HeroImage homepageContent={homepageContent} />
+        <InfluencerSlider />
+        <FeaturedCollections />
+        <NewIn products={products} />
+      </div>
+    </>
   );
+  s;
 }
 
 // export function Header({ headerContent }) {
