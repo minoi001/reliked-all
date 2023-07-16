@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { Configure, Hits, InstantSearch } from "react-instantsearch-dom";
+import {
+  Configure,
+  Hits,
+  InstantSearch,
+  Pagination,
+} from "react-instantsearch-dom";
 import { indexNames, searchClient } from "../../algoliaConfig";
 import Link from "next/link";
 import CollectionFilters from "../../components/Filters/CollectionFilters";
@@ -44,6 +49,21 @@ export default function Collections() {
         >
           <Configure {...searchParameters} />
           <Hits hitComponent={Hit} />
+          <div className="p-12">
+            <Pagination
+              translations={{
+                previous: "Previous",
+                next: "Next",
+                first: "First",
+                last: "Last",
+                page(currentRefinement) {
+                  return currentRefinement;
+                },
+              }}
+              hitsPerPage={24}
+              showLast={true}
+            />
+          </div>
         </InstantSearch>
       </div>
     </div>

@@ -20,7 +20,19 @@ const ProductList = ({ query }) => {
           <Hits hitComponent={ProductCard} />
         </Results>
         <div className="p-12">
-          <Pagination />
+          <Pagination
+            translations={{
+              previous: "Previous",
+              next: "Next",
+              first: "First",
+              last: "Last",
+              page(currentRefinement) {
+                return currentRefinement;
+              },
+            }}
+            hitsPerPage={24}
+            showLast={true}
+          />
         </div>
       </div>
     </div>

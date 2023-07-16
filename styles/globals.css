@@ -23,6 +23,10 @@
   @apply flex justify-center items-center gap-x-6;
 }
 
+.ais-Pagination-item--selected {
+  @apply border-2 border-rose p-1 rounded;
+}
+
 .ais-SearchBox-form {
   @apply grid grid-cols-1 -mt-5 justify-end lg:w-5/6 lg:h-3;
 }

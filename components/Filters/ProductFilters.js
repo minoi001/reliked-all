@@ -21,17 +21,14 @@ const ProductFilters = () => {
         />
       </div>
       <div className="inline-flex">
-        {
-          // Algolia only lets you show the X most popular filters, so I've set it to 20 for now
-          AlgoliaDropdownMenu(
-            "Influencer",
-            <CustomRefinementList
-              attribute="vendor"
-              showMore={true}
-              showMoreLimit={500}
-            />
-          )
-        }
+        {AlgoliaDropdownMenu(
+          "Influencer",
+          <CustomRefinementList
+            attribute="vendor"
+            showMore={true}
+            showMoreLimit={500}
+          />
+        )}
 
         {AlgoliaDropdownMenu("Price", <CustomRangeSlider attribute="price" />)}
       </div>
