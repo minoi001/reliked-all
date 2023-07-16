@@ -1,5 +1,5 @@
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
-import { RefinementList, SortBy } from "react-instantsearch-dom";
+import { SortBy } from "react-instantsearch-dom";
 import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomRefinementList } from "./CustomRefinementList";
 
