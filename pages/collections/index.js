@@ -53,7 +53,9 @@ export default function Collections() {
 function Hit({ hit }) {
   return (
     <Link href={`collections/${hit.handle}`}>
-      <img src={hit.image} />
+      {hit.meta?.custom_fields?.collection_type?.includes("Vendor") && (
+        <img src={hit.image} />
+      )}
       <p>{hit.title}</p>
     </Link>
   );
