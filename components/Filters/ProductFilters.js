@@ -28,7 +28,7 @@ const ProductFilters = () => {
             <CustomRefinementList
               attribute="vendor"
               showMore={true}
-              showMoreLimit={20}
+              showMoreLimit={500}
             />
           )
         }
