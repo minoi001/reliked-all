@@ -20,7 +20,7 @@ const ProductFilters = () => {
           ]}
         />
       </div>
-      <div className="inline-flex">
+      <div className="lg:inline-flex">
         {AlgoliaDropdownMenu(
           "Influencer",
           <CustomRefinementList
@@ -31,6 +31,30 @@ const ProductFilters = () => {
         )}
 
         {AlgoliaDropdownMenu("Price", <CustomRangeSlider attribute="price" />)}
+        {AlgoliaDropdownMenu(
+          "Size",
+          <CustomRefinementList attribute="meta.custom_fields.size" />
+        )}
+        {AlgoliaDropdownMenu(
+          "Brand",
+          <CustomRefinementList attribute="options.brand" />
+        )}
+        {AlgoliaDropdownMenu(
+          "Colour",
+          <CustomRefinementList attribute="options.colour" />
+        )}
+        {AlgoliaDropdownMenu(
+          "Condition",
+          <CustomRefinementList attribute="meta.custom_fields.product_condition" />
+        )}
+        {AlgoliaDropdownMenu(
+          "Packaging",
+          <CustomRefinementList attribute="meta.custom_fields.product_packaging" />
+        )}
+        {AlgoliaDropdownMenu(
+          "Availability",
+          <CustomRefinementList attribute="inventory_available" />
+        )}
       </div>
     </div>
   );
