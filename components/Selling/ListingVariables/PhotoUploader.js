@@ -1,10 +1,6 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
-import * as LR from "@uploadcare/blocks";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import st from "../../../styles/App.module.css";
-import { PACKAGE_VERSION } from "@uploadcare/blocks/env";
 import Image from "next/image";
-
-LR.registerBlocks(LR);
 
 function PhotoUploader() {
   const dataOutputRef = useRef();
@@ -30,21 +26,6 @@ function PhotoUploader() {
   return (
     //     <div className={st.wrapper + " max-w-xs"}>
     <div className={st.wrapper}>
-      <lr-file-uploader-regular
-        css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
-        ctx-name="my-uploader"
-        class="my-config"
-      >
-        <lr-simple-btn className="lr-wgt-common"></lr-simple-btn>
-        <lr-data-output
-          ref={dataOutputRef}
-          use-event
-          hidden
-          class={st.uploaderCfg}
-          onEvent={handleUploaderEvent}
-        ></lr-data-output>
-      </lr-file-uploader-regular>
-
       <div className={"grid" + st.output}>
         {files.map((file) => (
           <div className="inline-flex p-1 w-1/4 h-36" key={file.uuid}>
