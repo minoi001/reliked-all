@@ -9,7 +9,7 @@ export default function Layout({ children }) {
   const { pathname } = useRouter();
 
   return (
-    <div className="bg-offWhite">
+    <div className="bg-offWhite w-fit">
       <header>
         <Banner />
         <LogoHeader />

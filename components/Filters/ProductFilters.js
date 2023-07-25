@@ -8,9 +8,12 @@ const ProductFilters = () => {
     // Also need to add a fixed height to the dropdown menus and add a scroll, preferably with an apply button fixed at the bottom of the dropdown menu which closes it
     // styling on algolia dropdown menu needs to be full width of the refinements/range inputs
 
-    <div className="inline pb-4 flex justify-between ">
+    <div
+      /*className="inline pb-4 flex justify-between "*/ className="block max-h-min sticky top-0 lg:flex md:pb-4 sm:justify-between sm:static sm:inline"
+    >
       <div>
         <SortBy
+          className="mb-4 md:mb-0"
           defaultRefinement="shopify_products"
           items={[
             // { value: "shopify_products", label: "Relevance" },
@@ -20,7 +23,7 @@ const ProductFilters = () => {
           ]}
         />
       </div>
-      <div className="lg:inline-flex">
+      <div className="bg-offWhite mx-4 lg:inline-flex">
         {AlgoliaDropdownMenu(
           "Influencer",
           <CustomRefinementList
