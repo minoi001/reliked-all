@@ -4,10 +4,12 @@ import {
   Hits,
   InstantSearch,
   Pagination,
+  SearchBox,
 } from "react-instantsearch-dom";
 import { indexNames, searchClient } from "../../algoliaConfig";
 import Link from "next/link";
 import CollectionFilters from "../../components/Filters/CollectionFilters";
+import { Search } from "../../components/Header/Search";
 
 export default function Collections() {
   const [collectionType, setCollectionType] = useState("vendor");
@@ -39,14 +41,15 @@ export default function Collections() {
         <h1 className="p-4 text-3xl">
           Shop by {collectionHeader(collectionType)}
         </h1>
-        <CollectionFilters
-          updateCollections={updateCollections}
-          collectionType={collectionType}
-        />
+
         <InstantSearch
           searchClient={searchClient}
           indexName={indexNames.collections}
         >
+          <CollectionFilters
+            updateCollections={updateCollections}
+            collectionType={collectionType}
+          />
           <Configure {...searchParameters} />
           <Hits hitComponent={Hit} />
           <div className="p-12">

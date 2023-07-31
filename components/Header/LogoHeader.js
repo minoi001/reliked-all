@@ -20,6 +20,7 @@ const LogoHeader = () => {
   const { cart, cartOpen, setCartOpen, headerContent } =
     useContext(ShopContext);
   const { pathname } = useRouter();
+  const isCollectionsPage = pathname.includes("/collections");
 
   return (
     <div>
@@ -42,9 +43,11 @@ const LogoHeader = () => {
             </div>
             {/* End of Logo */}
             {/* DesktopSearch/HamburgerMenu */}
-            <div className="float-left -mt-9 text-sm w-60 max-lg:hidden">
-              <Search />
-            </div>
+            {!isCollectionsPage && (
+              <div className="float-left -mt-9 text-sm w-60 max-lg:hidden">
+                <Search />
+              </div>
+            )}
             {/* End of DesktopSearch/HamburgerMenu */}
             {/* Icons */}
             <div className="float-right -mt-9 text-sm">
@@ -121,9 +124,11 @@ const LogoHeader = () => {
 
             {/* End of Navigation */}
             {/* Mobile Search Bar */}
-            <div className="lg:hidden pb-2 w-full">
-              <Search />
-            </div>
+            {!isCollectionsPage && (
+              <div className="lg:hidden pb-2 w-full">
+                <Search />
+              </div>
+            )}
             {/* End of Mobile Search Bar */}
           </div>
         </div>
