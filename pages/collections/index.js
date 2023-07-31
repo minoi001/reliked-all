@@ -28,19 +28,6 @@ export default function Collections() {
     filters: `meta.custom_fields.collection_type:'${collectionType}'`,
   };
 
-  function capitaliseFirstLetter(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-  }
-  const collectionHeader = (collectionType) => {
-    switch (collectionType) {
-      case "vendor":
-        return "Influencer";
-
-      default:
-        return capitaliseFirstLetter(collectionType);
-    }
-  };
-
   return (
     <div className="mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="grid px-6 sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
@@ -89,3 +76,16 @@ function Hit({ hit }) {
     </Link>
   );
 }
+
+function capitaliseFirstLetter(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+export const collectionHeader = (collectionType) => {
+  switch (collectionType) {
+    case "vendor":
+      return "Influencer";
+
+    default:
+      return capitaliseFirstLetter(collectionType);
+  }
+};

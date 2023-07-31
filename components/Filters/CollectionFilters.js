@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SearchBox } from "react-instantsearch-dom";
+import { collectionHeader } from "../../pages/collections";
 
 function CollectionFilters({ updateCollections, collectionType }) {
   return (
@@ -23,11 +24,11 @@ function Dropdown({ updateCollections, collectionType }) {
       <div>
         <button
           type="button"
-          className="inline-flex w-40 justify-center gap-x-1.5 bg-offWhite px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-beige"
+          className="inline-flex w-60 justify-center gap-x-1.5 bg-offWhite px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-beige"
           id="menu-button"
           onClick={() => setIsOpen(!isOpen)}
         >
-          Shop by
+          Shop by {collectionHeader(collectionType)}
           <svg
             className="-mr-1 h-5 w-5 text-gray-400"
             viewBox="0 0 20 20"
