@@ -1,12 +1,8 @@
 import { useState } from "react";
-import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { SearchBox } from "react-instantsearch-dom";
 
 function CollectionFilters({ updateCollections, collectionType }) {
-  // const [searchQuery, setSearchQuery] = useState("");
-
   return (
-    // <div className="flex flex-wrap justify-center items-center space-y-1 lg:flex-nowrap">
     <div className="inline pb-4 flex justify-between ">
       <Dropdown
         updateCollections={updateCollections}

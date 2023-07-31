@@ -18,7 +18,6 @@ const ProductFilters = () => {
         <SortBy
           defaultRefinement="shopify_products"
           items={[
-            // { value: "shopify_products", label: "Relevance" },
             { value: "shopify_products_published_at_desc", label: "Newest in" },
             { value: "shopify_products_price_desc", label: "Price descending" },
             { value: "shopify_products_price_asc", label: "Price ascending" },

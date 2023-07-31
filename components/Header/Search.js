@@ -18,7 +18,6 @@ export const Search = () => {
 
   return (
     <div>
-      {/* <CustomSearchBox /> */}
       <SearchBox onSubmit={onSubmit} onReset={onReset} />
     </div>
   );

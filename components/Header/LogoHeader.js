@@ -20,8 +20,8 @@ const LogoHeader = () => {
   const { cart, cartOpen, setCartOpen, headerContent } =
     useContext(ShopContext);
   const { pathname } = useRouter();
-  const isCollectionsPage = pathname.includes("/collections");
-
+  // const isCollectionsPage = pathname.includes("/collections");
+  const isCollectionsPage = false;
   return (
     <div>
       <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
