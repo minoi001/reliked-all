@@ -6,7 +6,13 @@ import {
   Pagination,
 } from "react-instantsearch-dom";
 import ProductFilters from "../Filters/ProductFilters";
+import { Playfair_Display } from "next/font/google";
 
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  style: "italic",
+  weight: "700",
+});
 const ProductList = ({ query }) => {
   const searchParameters = {
     query: query.get("q") || "",
@@ -16,6 +22,9 @@ const ProductList = ({ query }) => {
       <div className="grid px-6 sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
         <ProductFilters />
         <Results>
+          <h1 className={`${playfair.className} text-4xl text-center p-4`}>
+            Results for "{searchParameters.query}"
+          </h1>
           <Configure {...searchParameters} />
           <Hits hitComponent={ProductCard} />
         </Results>
