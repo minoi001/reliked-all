@@ -101,12 +101,7 @@ export default function ShopProvider({ children }) {
   });
 
   function updateHeaderContentValue(valuesObject) {
-    // console.log(valuesObject);
     setHeaderContent({ ...headerContent, ...valuesObject });
-
-    // for (let value in valuesObject) {
-    //   console.log(valuesObject[value]);
-    // }
 
     return valuesObject;
   }
@@ -130,12 +125,7 @@ export default function ShopProvider({ children }) {
   });
 
   function updateHomepageContentValue(valuesObject) {
-    // console.log(valuesObject);
     setHomepageContent({ ...homepageContent, ...valuesObject });
-
-    // for (let value in valuesObject) {
-    //   console.log(valuesObject[value]);
-    // }
 
     return valuesObject;
   }

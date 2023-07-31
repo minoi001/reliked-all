@@ -1,7 +1,12 @@
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
-import { SortBy } from "react-instantsearch-dom";
+import {
+  RefinementList,
+  SortBy,
+  ToggleRefinement,
+} from "react-instantsearch-dom";
 import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomRefinementList } from "./CustomRefinementList";
+import { CustomToggleRefinement } from "./CustomToggle";
 
 const ProductFilters = () => {
   return (
@@ -53,7 +58,11 @@ const ProductFilters = () => {
         )}
         {AlgoliaDropdownMenu(
           "Availability",
-          <CustomRefinementList attribute="inventory_available" />
+          <CustomToggleRefinement
+            attribute="inventory_available"
+            label="Available"
+            value={true}
+          />
         )}
       </div>
     </div>
