@@ -23,7 +23,7 @@ const ProductList = ({ query }) => {
         <ProductFilters />
         <Results>
           <h1 className={`${playfair.className} text-4xl text-center p-4`}>
-            Results for "{searchParameters.query}"
+            Results for {searchParameters.query}
           </h1>
           <Configure {...searchParameters} />
           <Hits hitComponent={ProductCard} />
