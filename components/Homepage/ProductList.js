@@ -15,7 +15,13 @@ import ProductFiltersSlideOut from "../Filters/ProductFiltersSlideOut";
 // useEffect(() => {
 //   const width = window.innerWidth;
 // }, [])
+import { Playfair_Display } from "next/font/google";
 
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  style: "italic",
+  weight: "700",
+});
 const ProductList = ({ query }) => {
   const [width, setWidth] = useState(null);
   const [isOpenTwo, setisOpenTwo] = useState(false);
@@ -169,6 +175,9 @@ const ProductList = ({ query }) => {
         } */}
         </div>
         <Results>
+          <h1 className={`${playfair.className} text-4xl text-center p-4`}>
+            Results for {searchParameters.query}
+          </h1>
           <Configure {...searchParameters} />
           <Hits hitComponent={ProductCard} />
         </Results>

@@ -1,8 +1,13 @@
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
-import { SortBy } from "react-instantsearch-dom";
+import {
+  RefinementList,
+  SortBy,
+  ToggleRefinement,
+} from "react-instantsearch-dom";
 import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomRefinementList } from "./CustomRefinementList";
 import ProductFiltersSlideOut from "./ProductFiltersSlideOut";
+import { CustomToggleRefinement } from "./CustomToggle";
 
 const ProductFilters = () => {
   return (
@@ -17,7 +22,6 @@ const ProductFilters = () => {
           className="mb-4 md:mb-0"
           defaultRefinement="shopify_products"
           items={[
-            // { value: "shopify_products", label: "Relevance" },
             { value: "shopify_products_published_at_desc", label: "Newest in" },
             { value: "shopify_products_price_desc", label: "Price descending" },
             { value: "shopify_products_price_asc", label: "Price ascending" },
@@ -58,7 +62,11 @@ const ProductFilters = () => {
         )}
         {AlgoliaDropdownMenu(
           "Availability",
-          <CustomRefinementList attribute="inventory_available" />
+          <CustomToggleRefinement
+            attribute="inventory_available"
+            label="Available"
+            value={true}
+          />
         )}
       </div> */}
     </div>

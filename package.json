@@ -14,8 +14,7 @@
     "@heroicons/react": "^2.0.16",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
-    "@uploadcare/blocks": "0.22.13",
-    "@uploadcare/react-widget": "^2.4.2",
+    "@uploadcare/blocks": "0.24.2",
     "algoliasearch": "^4.17.0",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
@@ -30,7 +29,7 @@
     "react-select": "^5.7.2",
     "react-slider": "^2.0.5",
     "react-tailwindcss-select": "^1.8.5",
-    "sharp": "^0.32.1",
+    "sharp": "^0.32.4",
     "uploadcare-widget-tab-effects": "^1.6.0"
   },
   "devDependencies": {
