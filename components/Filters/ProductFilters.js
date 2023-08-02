@@ -2,6 +2,7 @@ import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 import { SortBy } from "react-instantsearch-dom";
 import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomRefinementList } from "./CustomRefinementList";
+import ProductFiltersSlideOut from "./ProductFiltersSlideOut";
 
 const ProductFilters = () => {
   return (
@@ -23,7 +24,8 @@ const ProductFilters = () => {
           ]}
         />
       </div>
-      <div className="bg-offWhite mx-4 lg:inline-flex">
+      <ProductFiltersSlideOut />
+      {/* <div className="xs:hidden md:flex bg-offWhite mx-4 lg:inline-flex">
         {AlgoliaDropdownMenu(
           "Influencer",
           <CustomRefinementList
@@ -58,7 +60,7 @@ const ProductFilters = () => {
           "Availability",
           <CustomRefinementList attribute="inventory_available" />
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
