@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ProductForm from "./ProductForm";
+import RelatedProductsSection from "./RelatedProductsSection";
 export default function ProductPageContent({ product }) {
   return (
     <div>
@@ -34,6 +35,7 @@ export default function ProductPageContent({ product }) {
         </div>
         <ProductForm product={product} />
       </div>
+      <RelatedProductsSection />
     </div>
   );
 }
