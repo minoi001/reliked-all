@@ -10,7 +10,7 @@ import ProductFilters from "../Filters/ProductFilters";
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 import { CustomRangeSlider } from "../Filters/CustomRangeSlider";
 import { CustomRefinementList } from "../Filters/CustomRefinementList";
-import ProductFiltersSlideOut from "../Filters/ProductFiltersSlideOut";
+// import ProductFiltersSlideOut from "../Filters/ProductFiltersSlideOut";
 
 // useEffect(() => {
 //   const width = window.innerWidth;
@@ -33,13 +33,6 @@ const ProductList = ({ query }) => {
   function toggleSlideover() {
     console.log(!isOpenTwo);
     setisOpenTwo(!isOpenTwo);
-    // console.log("slide");
-    // document
-    //   .getElementById("slideover-container")
-    //   .classList.toggle("invisible");
-    // document.getElementById("slideover-bg").classList.toggle("opacity-0");
-    // document.getElementById("slideover-bg").classList.toggle("opacity-50");
-    // document.getElementById("slideover").classList.toggle("translate-x-full");
   }
 
   const handleAlgoliaDropdownClick = (event) => {
@@ -51,7 +44,7 @@ const ProductList = ({ query }) => {
   const searchParameters = {
     query: query.get("q") || "",
   };
-  console.log(width);
+
   const ConditionalWrapper = ({ condition, wrapper, children }) => {
     condition ? wrapper(children) : children;
   };
@@ -75,7 +68,7 @@ const ProductList = ({ query }) => {
           <div className="w-fit h-fit md:hidden flex content-normal justify-center">
             <div
               onClick={toggleSlideover}
-              className="cursor-pointer px-5 py-2 text-sm border text-gray-500 hover:bg-gray-100 rounded border-gray-300 mb-4 md:mb-0"
+              className="cursor-pointer px-5 py-2 text-sm border text-gray-500 hover:bg-gray-100 rounded border-gray-300 mb-4 md:mb-0 rounded-none"
             >
               Filters +
             </div>
@@ -94,19 +87,19 @@ const ProductList = ({ query }) => {
               id="slideover-bg"
               className={
                 isOpenTwo
-                  ? "w-full h-full duration-500 ease-out transition-all inset-0 absolute bg-gray-900 opacity-50"
-                  : "w-full h-full duration-500 ease-out transition-all inset-0 absolute bg-gray-900 opacity-0"
+                  ? "w-full h-full  duration-300 transition ease-in-out transition-all inset-0 absolute bg-gray-900 opacity-50"
+                  : "w-full h-full  duration-300 transition ease-in-out transition-all inset-0 absolute bg-gray-900 opacity-0"
               }
             ></div>
             <div
-              onClick={toggleSlideover}
               id="slideover"
               className={
-                "w-96 bg-white h-full absolute right-0 duration-300 ease-out transition-all"
+                "w-1/2 bg-white h-full absolute right-0 duration-300 transition ease-in-out transition-all"
               }
             >
-              <div className="absolute cursor-pointer text-gray-600 ease-in ease-out top-0 w-8 h-8 flex items-center justify-center right-0 mt-5 mr-5">
+              <div className="absolute cursor-pointer text-gray-600 duration-300 transition ease-in-out top-0 w-8 h-8 flex items-center justify-center right-0 mt-2 mr-2">
                 <svg
+                  onClick={toggleSlideover}
                   className="w-6 h-6"
                   fill="none"
                   stroke="currentColor"
@@ -119,12 +112,13 @@ const ProductList = ({ query }) => {
                     stroke-width="2"
                     d="M6 18L18 6M6 6l12 12"
                   ></path>
-                </svg>
+                </svg>{" "}
               </div>
-              <div className="bg-offWhite mx-4 lg:inline-flex">
-                {/* <ProductFiltersSlideOut /> */}
-              </div>
-              <div className="bg-offWhite mx-4 lg:inline-flex">
+
+              {/* <div className="bg-offWhite mx-4 lg:inline-flex">
+                <ProductFiltersSlideOut />
+              </div> */}
+              <div className="bg-offWhite flex flex-col justify-evenly lg:inline-flex px-8 py-8 h-full">
                 {AlgoliaDropdownMenu(
                   "Influencer",
                   <CustomRefinementList

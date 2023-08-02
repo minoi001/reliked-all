@@ -28,7 +28,9 @@ const ProductFilters = () => {
           ]}
         />
       </div>
-      <ProductFiltersSlideOut />
+      <div className="xs:hidden md:flex bg-offWhite mx-4 lg:inline-flex">
+        <ProductFiltersSlideOut />
+      </div>
       {/* <div className="xs:hidden md:flex bg-offWhite mx-4 lg:inline-flex">
         {AlgoliaDropdownMenu(
           "Influencer",
