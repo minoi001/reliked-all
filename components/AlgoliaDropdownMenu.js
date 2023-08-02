@@ -1,25 +1,10 @@
-import { useState } from "react";
+// import { useState } from "react";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+// function classNames(...classes) {
+//   return classes.filter(Boolean).join(" ");
+// }
 
-// menuItems prop should be passed in the following format:
-// const MenuItemsPropExampleFormat = [
-//   { title: "title", handle: "url" },
-//   { title: "title", handle: "url" },
-//   { title: "title", url: "url" },
-//   { title: "title", url: "url" },
-//   { title: "title", url: "url" },
-// ];
-
-export default function AlgoliaDropdownMenu(menuTitle, menuItems) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
+export default function AlgoliaDropdownMenu(menuTitle, menuItems, isOpen, toggleMenu) {
   return (
     <div>
       <button
@@ -52,3 +37,5 @@ export const ChevronDown = () => (
     />
   </svg>
 );
+
+
