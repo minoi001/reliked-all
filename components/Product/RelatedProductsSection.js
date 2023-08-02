@@ -24,10 +24,13 @@ export default function RelatedProductsSection() {
 
   return (
     <div>
-      <hr className="mt-40 mb-20"/> <h3 className="flex justify-center mb-20">More products you might like</h3>
+      <hr className="mt-40 mb-20" />{" "}
+      <h3 className="flex justify-center mb-20">
+        More products you might like
+      </h3>
       <div className="flex flex-row justify-evenly">
-        {images.map((image) => (
-          <div className="flex flex-col">
+        {images.map((image, i) => (
+          <div className="flex flex-col" key={i}>
             <img src={image.image} />
             <span>{image.price}</span>
             <span>{image.description}</span>
