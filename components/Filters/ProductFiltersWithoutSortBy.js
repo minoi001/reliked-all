@@ -3,9 +3,15 @@ import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomRefinementList } from "./CustomRefinementList";
 
-function ProductFiltersWithoutSortBy() {
+function ProductFiltersWithoutSortBy({ format }) {
   return (
-    <div className="md:flex lg:inline-flex">
+    <div
+      className={
+        format === "row"
+          ? `md:flex lg:inline-flex`
+          : `bg-offWhite flex flex-col justify-evenly px-8 py-8 h-full`
+      }
+    >
       {AlgoliaDropdownMenu(
         "Influencer",
         <CustomRefinementList

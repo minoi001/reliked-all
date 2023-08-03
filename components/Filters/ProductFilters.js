@@ -17,7 +17,7 @@ const ProductFilters = () => {
         ]}
       />
       <div className="xs:hidden lg:inline-flex">
-        <ProductFiltersWithoutSortBy />
+        <ProductFiltersWithoutSortBy format={"row"} />
       </div>
     </div>
   );

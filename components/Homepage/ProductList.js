@@ -10,12 +10,12 @@ import ProductFilters from "../Filters/ProductFilters";
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 import { CustomRangeSlider } from "../Filters/CustomRangeSlider";
 import { CustomRefinementList } from "../Filters/CustomRefinementList";
-// import ProductFiltersSlideOut from "../Filters/ProductFiltersSlideOut";
 
 // useEffect(() => {
 //   const width = window.innerWidth;
 // }, [])
 import { Playfair_Display } from "next/font/google";
+import ProductFiltersWithoutSortBy from "../Filters/ProductFiltersWithoutSortBy";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -113,54 +113,7 @@ const ProductList = ({ query }) => {
                 </svg>{" "}
               </div>
 
-              {/* <div className="bg-offWhite mx-4 lg:inline-flex">
-                <ProductFiltersSlideOut />
-              </div> */}
-              <div className="bg-offWhite flex flex-col justify-evenly px-8 py-8 h-full">
-                {AlgoliaDropdownMenu(
-                  "Influencer",
-                  <CustomRefinementList
-                    attribute="vendor"
-                    showMore={true}
-                    showMoreLimit={500}
-                  />
-                )}
-
-                {AlgoliaDropdownMenu(
-                  "Price",
-                  <CustomRangeSlider
-                    onClick={handleAlgoliaDropdownClick}
-                    attribute="price"
-                  />
-                )}
-                {AlgoliaDropdownMenu(
-                  "Size",
-                  <CustomRefinementList
-                    onClick={handleAlgoliaDropdownClick}
-                    attribute="meta.custom_fields.size"
-                  />
-                )}
-                {AlgoliaDropdownMenu(
-                  "Brand",
-                  <CustomRefinementList attribute="options.brand" />
-                )}
-                {AlgoliaDropdownMenu(
-                  "Colour",
-                  <CustomRefinementList attribute="options.colour" />
-                )}
-                {AlgoliaDropdownMenu(
-                  "Condition",
-                  <CustomRefinementList attribute="meta.custom_fields.product_condition" />
-                )}
-                {AlgoliaDropdownMenu(
-                  "Packaging",
-                  <CustomRefinementList attribute="meta.custom_fields.product_packaging" />
-                )}
-                {AlgoliaDropdownMenu(
-                  "Availability",
-                  <CustomRefinementList attribute="inventory_available" />
-                )}
-              </div>
+              <ProductFiltersWithoutSortBy format="column" />
             </div>
           </div>
           {/* : null
