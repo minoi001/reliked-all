@@ -1,13 +1,5 @@
-import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
-import {
-  RefinementList,
-  SortBy,
-  ToggleRefinement,
-} from "react-instantsearch-dom";
-import { CustomRangeSlider } from "./CustomRangeSlider";
-import { CustomRefinementList } from "./CustomRefinementList";
+import { SortBy } from "react-instantsearch-dom";
 import ProductFiltersSlideOut from "./ProductFiltersSlideOut";
-import { CustomToggleRefinement } from "./CustomToggle";
 
 const ProductFilters = () => {
   return (
