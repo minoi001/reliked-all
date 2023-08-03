@@ -15,7 +15,7 @@ const ProductFilters = () => {
     // styling on algolia dropdown menu needs to be full width of the refinements/range inputs
 
     <div
-      /*className="inline pb-4 flex justify-between "*/ className="block max-h-min sticky top-0 lg:flex md:pb-4 sm:justify-between sm:static sm:inline"
+      /*className="inline pb-4 flex justify-between "*/ className="block max-h-min sticky top-0 lg:flex-wrap xl-flex md:pb-4 sm:justify-between sm:static sm:inline" /*the lg/xl flex not working as expected*/
     >
       <div>
         <SortBy
@@ -28,7 +28,7 @@ const ProductFilters = () => {
           ]}
         />
       </div>
-      <div className="xs:hidden md:flex bg-offWhite mx-4 lg:inline-flex">
+      <div className="xs:hidden lg:flex bg-offWhite xl:mx-4 lg:inline-flex">
         <ProductFiltersSlideOut />
       </div>
       {/* <div className="xs:hidden md:flex bg-offWhite mx-4 lg:inline-flex">

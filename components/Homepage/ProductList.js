@@ -51,7 +51,8 @@ const ProductList = ({ query }) => {
 
   return (
     <div className="mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8 ">
-      <div className="grid px-6 sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
+      {/* <div className="grid px-6 sm:px-12 align-middle p-2 w-full bg-white shadow-lg"> */}
+      <div className="sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
         {/* <section>
           <ConditionalWrapper
             condition={width > 768}
@@ -65,11 +66,8 @@ const ProductList = ({ query }) => {
         > */}
         <div className="flex flex-row justify-between">
           <ProductFilters />
-          <div className="w-fit h-fit md:hidden flex content-normal justify-center">
-            <div
-              onClick={toggleSlideover}
-              className="cursor-pointer px-5 py-2 text-sm border text-gray-500 hover:bg-gray-100 rounded border-gray-300 mb-4 md:mb-0 rounded-none"
-            >
+          <div className="lg:hidden flex content-normal justify-center mb-4">
+            <div onClick={toggleSlideover} className="ais-SortBy-select px-2">
               Filters +
             </div>
           </div>
@@ -178,7 +176,7 @@ const ProductList = ({ query }) => {
         {/* </div> */}
         {/* </ConditionalWrapper>
         </section> */}
-        <div className="p-12">
+        <div className="py-12 md:p-12">
           <Pagination
             translations={{
               previous: "Previous",
