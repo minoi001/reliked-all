@@ -67,7 +67,10 @@ const ProductList = ({ query }) => {
         <div className="flex flex-row justify-between">
           <ProductFilters />
           <div className="lg:hidden flex content-normal justify-center mb-4">
-            <div onClick={toggleSlideover} className="ais-SortBy-select px-2">
+            <div
+              onClick={toggleSlideover}
+              className="ais-SortBy-select px-2"
+            >
               Filters +
             </div>
           </div>

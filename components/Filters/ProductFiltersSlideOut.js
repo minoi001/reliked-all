@@ -5,7 +5,7 @@ import { CustomRefinementList } from "./CustomRefinementList";
 
 function ProductFiltersSlideOut() {
   return (
-    <div className="xs:hidden md:flex bg-offWhite mx-4 lg:inline-flex">
+    <div className="md:flex lg:inline-flex">
       {AlgoliaDropdownMenu(
         "Influencer",
         <CustomRefinementList
