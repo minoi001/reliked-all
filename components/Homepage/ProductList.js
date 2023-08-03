@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ProductCard from "../Products/ProductCard";
 import {
   Configure,
@@ -31,13 +31,7 @@ const ProductList = ({ query }) => {
     <div className="mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8 ">
       <div className="sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
         <div className="flex flex-row justify-between">
-          <ProductFilters />
-          <div className="lg:hidden flex content-normal justify-center mb-4">
-            <div onClick={toggleSlideover} className="ais-SortBy-select px-2">
-              Filters +
-            </div>
-          </div>
-
+          <ProductFilters toggleSlideover={toggleSlideover} />
           <SlideOut
             isSlideOverOpen={isSlideOverOpen}
             toggleSlideover={toggleSlideover}
