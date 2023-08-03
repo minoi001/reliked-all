@@ -7,15 +7,9 @@ import {
   Pagination,
 } from "react-instantsearch-dom";
 import ProductFilters from "../Filters/ProductFilters";
-import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
-import { CustomRangeSlider } from "../Filters/CustomRangeSlider";
-import { CustomRefinementList } from "../Filters/CustomRefinementList";
+import SlideOut from "../SlideOut";
 
-// useEffect(() => {
-//   const width = window.innerWidth;
-// }, [])
 import { Playfair_Display } from "next/font/google";
-import ProductFiltersWithoutSortBy from "../Filters/ProductFiltersWithoutSortBy";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -44,52 +38,10 @@ const ProductList = ({ query }) => {
             </div>
           </div>
 
-          <div
-            id="slideover-container"
-            className={
-              isSlideOverOpen
-                ? "w-full h-full fixed inset-0"
-                : "w-full h-full fixed inset-0 invisible"
-            }
-          >
-            <div
-              onClick={toggleSlideover}
-              id="slideover-bg"
-              className={
-                isSlideOverOpen
-                  ? "w-full h-full  duration-300 transition ease-in-out transition-all inset-0 absolute bg-gray-900 opacity-50"
-                  : "w-full h-full  duration-300 transition ease-in-out transition-all inset-0 absolute bg-gray-900 opacity-0"
-              }
-            ></div>
-            <div
-              id="slideover"
-              className={
-                "w-1/2 bg-white h-full absolute right-0 duration-300 transition ease-in-out transition-all"
-              }
-            >
-              <div className="absolute cursor-pointer text-gray-600 duration-300 transition ease-in-out top-0 w-8 h-8 flex items-center justify-center right-0 mt-2 mr-2">
-                <svg
-                  onClick={toggleSlideover}
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  ></path>
-                </svg>
-              </div>
-
-              <ProductFiltersWithoutSortBy format="column" />
-            </div>
-          </div>
-          {/* : null
-        } */}
+          <SlideOut
+            isSlideOverOpen={isSlideOverOpen}
+            toggleSlideover={toggleSlideover}
+          />
         </div>
         <Results>
           <h1 className={`${playfair.className} text-4xl text-center p-4`}>
