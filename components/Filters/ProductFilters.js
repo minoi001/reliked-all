@@ -1,21 +1,14 @@
-import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
-import {
-  RefinementList,
-  SortBy,
-  ToggleRefinement,
-} from "react-instantsearch-dom";
-import { CustomRangeSlider } from "./CustomRangeSlider";
-import { CustomRefinementList } from "./CustomRefinementList";
-import { CustomToggleRefinement } from "./CustomToggle";
+import { SortBy } from "react-instantsearch-dom";
+import ProductFiltersWithoutSortBy from "./ProductFiltersWithoutSortBy";
 
-const ProductFilters = () => {
+const ProductFilters = ({ toggleSlideover }) => {
   return (
     // Also need to add a fixed height to the dropdown menus and add a scroll, preferably with an apply button fixed at the bottom of the dropdown menu which closes it
     // styling on algolia dropdown menu needs to be full width of the refinements/range inputs
-
-    <div className="inline pb-4 flex justify-between ">
-      <div>
+    <>
+      <div className="max-h-min lg:flex-wrap flex md:pb-4 sm:justify-between sm:static sm:inline">
         <SortBy
+          className="mb-4 md:mb-0"
           defaultRefinement="shopify_products"
           items={[
             { value: "shopify_products_published_at_desc", label: "Newest in" },
@@ -23,48 +16,16 @@ const ProductFilters = () => {
             { value: "shopify_products_price_asc", label: "Price ascending" },
           ]}
         />
+        <div className="xs:hidden lg:inline-flex">
+          <ProductFiltersWithoutSortBy format={"row"} />
+        </div>
       </div>
-      <div className="lg:inline-flex">
-        {AlgoliaDropdownMenu(
-          "Influencer",
-          <CustomRefinementList
-            attribute="vendor"
-            showMore={true}
-            showMoreLimit={500}
-          />
-        )}
-
-        {AlgoliaDropdownMenu("Price", <CustomRangeSlider attribute="price" />)}
-        {AlgoliaDropdownMenu(
-          "Size",
-          <CustomRefinementList attribute="meta.custom_fields.size" />
-        )}
-        {AlgoliaDropdownMenu(
-          "Brand",
-          <CustomRefinementList attribute="options.brand" />
-        )}
-        {AlgoliaDropdownMenu(
-          "Colour",
-          <CustomRefinementList attribute="options.colour" />
-        )}
-        {AlgoliaDropdownMenu(
-          "Condition",
-          <CustomRefinementList attribute="meta.custom_fields.product_condition" />
-        )}
-        {AlgoliaDropdownMenu(
-          "Packaging",
-          <CustomRefinementList attribute="meta.custom_fields.product_packaging" />
-        )}
-        {AlgoliaDropdownMenu(
-          "Availability",
-          <CustomToggleRefinement
-            attribute="inventory_available"
-            label="Available"
-            value={true}
-          />
-        )}
+      <div className="lg:hidden flex content-normal justify-center mb-4">
+        <div onClick={toggleSlideover} className="ais-SortBy-select px-2">
+          Filters +
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

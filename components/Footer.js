@@ -21,7 +21,7 @@ export default function Footer() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="max-w-7xl mx-auto container py-20 xl:px-24 lg:px-12 sm:px-6 px-4 bg-taupe">
+    <div className="py-20 xl:px-24 lg:px-12 sm:px-6 px-4 bg-taupe">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 gap-4">
         <div className="flex flex-col flex-shrink-0">
           <div className="dark:text-white">
