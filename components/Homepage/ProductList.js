@@ -23,47 +23,19 @@ const playfair = Playfair_Display({
   weight: "700",
 });
 const ProductList = ({ query }) => {
-  const [width, setWidth] = useState(null);
-  const [isOpenTwo, setisOpenTwo] = useState(false);
-
-  useEffect(() => {
-    setWidth(window.innerWidth);
-  }, []);
+  const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
 
   function toggleSlideover() {
-    console.log(!isOpenTwo);
-    setisOpenTwo(!isOpenTwo);
+    setIsSlideOverOpen(!isSlideOverOpen);
   }
-
-  const handleAlgoliaDropdownClick = (event) => {
-    // Prevent the click event from propagating to the parent div
-    event.stopPropagation();
-    // Your other handling logic for the AlgoliaDropdownMenu click
-  };
 
   const searchParameters = {
     query: query.get("q") || "",
   };
 
-  const ConditionalWrapper = ({ condition, wrapper, children }) => {
-    condition ? wrapper(children) : children;
-  };
-
   return (
     <div className="mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8 ">
-      {/* <div className="grid px-6 sm:px-12 align-middle p-2 w-full bg-white shadow-lg"> */}
       <div className="sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
-        {/* <section>
-          <ConditionalWrapper
-            condition={width > 768}
-            wrapper={(children) => (
-              <div className="flex flex-row-reverse">{children}</div>
-            )}
-          > */}
-        {/* <div
-          hidden={width >= 768}
-          className="flex md:flex-row-reverse md:flex-none"
-        > */}
         <div className="flex flex-row justify-between">
           <ProductFilters />
           <div className="lg:hidden flex content-normal justify-center mb-4">
@@ -75,7 +47,7 @@ const ProductList = ({ query }) => {
           <div
             id="slideover-container"
             className={
-              isOpenTwo
+              isSlideOverOpen
                 ? "w-full h-full fixed inset-0"
                 : "w-full h-full fixed inset-0 invisible"
             }
@@ -84,7 +56,7 @@ const ProductList = ({ query }) => {
               onClick={toggleSlideover}
               id="slideover-bg"
               className={
-                isOpenTwo
+                isSlideOverOpen
                   ? "w-full h-full  duration-300 transition ease-in-out transition-all inset-0 absolute bg-gray-900 opacity-50"
                   : "w-full h-full  duration-300 transition ease-in-out transition-all inset-0 absolute bg-gray-900 opacity-0"
               }
@@ -110,7 +82,7 @@ const ProductList = ({ query }) => {
                     stroke-width="2"
                     d="M6 18L18 6M6 6l12 12"
                   ></path>
-                </svg>{" "}
+                </svg>
               </div>
 
               <ProductFiltersWithoutSortBy format="column" />
@@ -126,9 +98,6 @@ const ProductList = ({ query }) => {
           <Configure {...searchParameters} />
           <Hits hitComponent={ProductCard} />
         </Results>
-        {/* </div> */}
-        {/* </ConditionalWrapper>
-        </section> */}
         <div className="py-12 md:p-12">
           <Pagination
             translations={{
