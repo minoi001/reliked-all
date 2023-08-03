@@ -3,7 +3,7 @@ import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomRefinementList } from "./CustomRefinementList";
 
-function ProductFiltersSlideOut() {
+function ProductFiltersWithoutSortBy() {
   return (
     <div className="md:flex lg:inline-flex">
       {AlgoliaDropdownMenu(
@@ -44,4 +44,4 @@ function ProductFiltersSlideOut() {
   );
 }
 
-export default ProductFiltersSlideOut;
+export default ProductFiltersWithoutSortBy;

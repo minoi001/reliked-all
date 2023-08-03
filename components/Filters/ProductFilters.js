@@ -1,5 +1,5 @@
 import { SortBy } from "react-instantsearch-dom";
-import ProductFiltersSlideOut from "./ProductFiltersSlideOut";
+import ProductFiltersWithoutSortBy from "./ProductFiltersWithoutSortBy";
 
 const ProductFilters = () => {
   return (
@@ -17,7 +17,7 @@ const ProductFilters = () => {
         ]}
       />
       <div className="xs:hidden lg:inline-flex">
-        <ProductFiltersSlideOut />
+        <ProductFiltersWithoutSortBy />
       </div>
     </div>
   );

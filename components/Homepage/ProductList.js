@@ -67,10 +67,7 @@ const ProductList = ({ query }) => {
         <div className="flex flex-row justify-between">
           <ProductFilters />
           <div className="lg:hidden flex content-normal justify-center mb-4">
-            <div
-              onClick={toggleSlideover}
-              className="ais-SortBy-select px-2"
-            >
+            <div onClick={toggleSlideover} className="ais-SortBy-select px-2">
               Filters +
             </div>
           </div>
@@ -119,7 +116,7 @@ const ProductList = ({ query }) => {
               {/* <div className="bg-offWhite mx-4 lg:inline-flex">
                 <ProductFiltersSlideOut />
               </div> */}
-              <div className="bg-offWhite flex flex-col justify-evenly lg:inline-flex px-8 py-8 h-full">
+              <div className="bg-offWhite flex flex-col justify-evenly px-8 py-8 h-full">
                 {AlgoliaDropdownMenu(
                   "Influencer",
                   <CustomRefinementList
