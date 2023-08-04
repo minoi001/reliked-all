@@ -13,13 +13,12 @@ function classNames(...classes) {
 //   { title: "title", url: "url" },
 // ];
 
-export default function AlgoliaDropdownMenu(menuTitle, menuItems) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
+export default function AlgoliaDropdownMenu(
+  menuTitle,
+  menuItems,
+  isOpen,
+  toggleMenu
+) {
   return (
     <div>
       <button
