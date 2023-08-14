@@ -30,7 +30,7 @@ const HeroImage = ({ homepageContent }) => {
             Gorgeous pieces from your favourite influencers & celebs.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <div className=" bg-cream px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-taupe hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            <div className="bg-cream px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-taupe hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
               Shop by Influencer
             </div>
           </div>

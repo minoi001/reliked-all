@@ -24,6 +24,7 @@ const ProductCard = ({ hit }) => {
                 width="446"
                 height="533"
                 className="object-contain w-36 max-h-12 xxs:max-h-24 xs:max-h-48 sm:max-h-60"
+                priority
               />
             </div>
           </div>

@@ -16,28 +16,8 @@ export const Search = () => {
     router.push(`/search`);
   };
 
-  // // SearchBox({
-  // //   // ...
-  // //   placeholder: "Search for products",
-  // // });
-
-  // const SearchBox = ({ currentRefinement, refine }) => {
-  //   // return the DOM output
-  //   <input
-  //     type="search"
-  //     value={currentRefinement}
-  //     onChange={(event) => refine(event.currentTarget.value)}
-  //   />;
-  // };
-
-  // // 2. Connect the component using the connector
-  // const CustomSearchBox = connectSearchBox(SearchBox);
-
-  // 3. Use your connected widget
-
   return (
     <div>
-      {/* <CustomSearchBox /> */}
       <SearchBox onSubmit={onSubmit} onReset={onReset} />
     </div>
   );

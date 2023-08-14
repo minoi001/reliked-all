@@ -49,25 +49,6 @@ const Photos = ({ styles }) => {
             onChange={handleChange}
           />
         </div>
-
-        {/* photo uploading erroring, asked uploadcare */}
-        {/* <lr-file-uploader-regular class="uploadcare-settings lr-wgt-common"></lr-file-uploader-regular>
-            <template id="output-template">
-              <h3>Files uploaded:</h3>
-              <div repeat="filesData">
-                <lr-img width="300" set="@uuid: uuid"></lr-img>
-                <div>
-                  <a set="@href: cdnUrl"></a>
-                </div>
-              </div>
-            </template>
-            <lr-data-output
-              use-console
-              use-event
-              use-template="#output-template"
-            >
-              {" "}
-            </lr-data-output> */}
       </div>
     </div>
   );

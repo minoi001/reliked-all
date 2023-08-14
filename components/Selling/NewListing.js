@@ -22,8 +22,6 @@ export default function NewListing({ listing }) {
     useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
 
-  LR.registerBlocks(LR);
-
   const dataOutputRef = useRef();
   // TODO: We need to export all data output types
   const [files, setFiles] = useState([]);
