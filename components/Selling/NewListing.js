@@ -14,9 +14,12 @@ import Price from "./ListingVariables/Price";
 import * as LR from "@uploadcare/blocks";
 import st from "../../styles/App.module.css";
 import { PACKAGE_VERSION } from "@uploadcare/blocks/env";
+import CreateProduct from "./Functions & Variables/CreateProduct";
+import CreateProductReady from "./Functions & Variables/CreateProductReady";
 
 export default function NewListing({ listing }) {
-  const { productInfo, resetProductInfo } = useContext(ProductContext);
+  const { productInfo, setProductInfo, resetProductInfo } =
+    useContext(ProductContext);
   const { userInfo } = useContext(AccountContext);
 
   LR.registerBlocks(LR);
@@ -127,6 +130,40 @@ export default function NewListing({ listing }) {
                   <center>Add Listing</center>
                 </h1>
                 <div className={"grid" + st.output}>
+                  <div className="inline-flex p-1 w-1/6 h-48">
+                    <Image
+                      src={
+                        "https://cdn.shopify.com/s/files/1/2481/5934/files/grey.jpg?v=1689346930"
+                      }
+                      alt={"hi"}
+                      className=""
+                      width="400"
+                      height="500"
+                    />
+                  </div>
+                  <div className="inline-flex p-1 w-1/6 h-48">
+                    <Image
+                      src={
+                        "https://cdn.shopify.com/s/files/1/2481/5934/files/grey.jpg?v=1689346930"
+                      }
+                      alt={"hi"}
+                      className=""
+                      width="400"
+                      height="500"
+                    />
+                  </div>
+                  <div className="inline-flex p-1 w-1/6 h-48">
+                    <Image
+                      src={
+                        "https://cdn.shopify.com/s/files/1/2481/5934/files/grey.jpg?v=1689346930"
+                      }
+                      alt={"hi"}
+                      className=""
+                      width="400"
+                      height="500"
+                    />
+                  </div>
+                  <div className="inline-flex p-1 w-1/4 h-36"></div>
                   {files.map((file) => (
                     <div className="inline-flex p-1 w-1/4 h-36" key={file.uuid}>
                       <Image
@@ -170,7 +207,7 @@ export default function NewListing({ listing }) {
                 <fieldset className="px-4 border-solid border-2 border-taupe w-full">
                   <legend className="p-1">PHOTOS</legend>
                   <Photos styles={styles} />
-                  <div>
+                  <div className="ml-2 mb-5 mr-1.5 -mt-2 bg-UCgrey">
                     <lr-file-uploader-regular
                       class={"uploadcare-settings " + st.uploaderCfg}
                       css-src={`https://unpkg.com/@uploadcare/blocks@${PACKAGE_VERSION}/web/file-uploader-regular.min.css`}
@@ -199,6 +236,14 @@ export default function NewListing({ listing }) {
               }
             >
               <Staff styles={styles} />
+            </div>
+            <div>
+              <button
+                className=""
+                onClick={() => CreateProductReady(productInfo)}
+              >
+                Save
+              </button>
             </div>
           </div>
         </div>

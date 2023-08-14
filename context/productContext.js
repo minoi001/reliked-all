@@ -46,13 +46,13 @@ export default function ProductProvider({ children }) {
     brand: "",
     colour: "",
     size: "",
-    occasion: [],
+    occasion: [""],
     sleeveLength: "",
     dressType: "",
     trouserFit: "",
     bottomsRise: "",
-    bagType: [],
-    tags: [],
+    bagType: [""],
+    tags: [""],
     description: "",
     SKU: "",
     title: "Product Title",
@@ -144,7 +144,7 @@ export default function ProductProvider({ children }) {
         listingVariables,
         setListingVariables,
         getListingVariables,
-        resetProductInfo, 
+        resetProductInfo,
       }}
     >
       {children}

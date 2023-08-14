@@ -45,7 +45,7 @@ const Details = ({ styles }) => {
         <legend className="p-1">DETAILS</legend>
         <div className="flex">
           <Select
-            className="mb-4 p-2 inline w-1/2"
+            className="m-1 inline w-1/2"
             id="condition"
             type="text"
             options={conditions}
@@ -54,7 +54,7 @@ const Details = ({ styles }) => {
             styles={styles}
           />
           <Select
-            className="mb-4 p-2 inline w-1/2"
+            className="m-1 inline w-1/2"
             id="packaging"
             type="text"
             options={packagings}
@@ -70,10 +70,41 @@ const Details = ({ styles }) => {
             /> */}
           {/* <input className="mb-4 p-2 inline w-full" placeholder={"Packaging"} /> */}
           <input
-            className="mb-4 p-2 inline w-full"
+            className="p-1.5 pl-2.5 inline w-1/2 m-1 border-cream active:border-cream focus:border-taupe hover:border-taupe focus:ring-0"
+            id="description"
+            type="text"
             placeholder={"More Information"}
+            onChange={handleChange}
           />
-          <input className="mb-4 p-2 inline w-full" placeholder={"Faults"} />
+          <input
+            className="p-1.5 pl-2.5 inline w-1/2 m-1 border-cream active:border-cream focus:border-taupe hover:border-taupe focus:ring-0"
+            id="description"
+            type="text"
+            placeholder={"Faults"}
+            onChange={handleChange}
+          />
+        </div>
+        {/* additional details */}
+        <div className="flex mb-4">
+          {/* <input
+              className="mb-4 p-2 inline w-full"
+              placeholder={"Condition"}
+            /> */}
+          {/* <input className="mb-4 p-2 inline w-full" placeholder={"Packaging"} /> */}
+          <input
+            className="p-1.5 pl-2.5 inline w-1/2 m-1 border-cream active:border-cream focus:border-taupe hover:border-taupe focus:ring-0"
+            id="description"
+            type="text"
+            placeholder={"Sleeve Length"}
+            onChange={handleChange}
+          />
+          <input
+            className="p-1.5 pl-2.5 inline w-1/2 m-1 border-cream active:border-cream focus:border-taupe hover:border-taupe focus:ring-0"
+            id="description"
+            type="text"
+            placeholder={"Faults"}
+            onChange={handleChange}
+          />
         </div>
       </fieldset>
     </div>

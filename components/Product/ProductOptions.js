@@ -5,9 +5,10 @@ export default function ProductOptions({
   setOptions,
 }) {
   return (
-    <fieldset>
-      <legend className="text-md font-semibold">{name}</legend>
-      <div className="  items-center inline-flex">
+    // need to make a grid
+    <fieldset className="grid grid-cols-3">
+      <legend className="text-md font-semibold col-span-1">{name}</legend>
+      <div className="items-center">
         {values.map((value) => {
           const id = `option-${name}-${value}`;
           const checked = selectedOptions[name] === value;

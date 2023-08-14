@@ -79,6 +79,11 @@
   border-radius: 0px;
 }
 
+lr-simple-btn {
+  background-color: #efe8df;
+  width: 100%;
+}
+
 .uploadcare-settings button:not(.mini-btn) {
   background-color: #efe8df;
   padding: 1rem;

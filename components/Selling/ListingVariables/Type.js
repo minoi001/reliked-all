@@ -16,7 +16,7 @@ const Type = ({ styles }) => {
 
   const handleChange = (event) => {
     console.log(event);
-    updateProductValue({ [event.variable]: event.value });
+    updateProductValue({ ["type"]: event.value });
   };
 
   return (

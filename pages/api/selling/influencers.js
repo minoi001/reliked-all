@@ -35,7 +35,7 @@ export default async function handler(req, res) {
   const getData = await googleSheets.spreadsheets.values.get({
     auth,
     spreadsheetId,
-    range: "Influencers!A2:F",
+    range: "Influencers!A2:G",
   });
 
   const influencersObject = getData.data.values.map((x) => ({
@@ -45,6 +45,7 @@ export default async function handler(req, res) {
     Name: x[3],
     value: x[4],
     label: x[5],
+    variable: x[6],
   }));
 
   res.send(influencersObject);

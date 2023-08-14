@@ -1,4 +1,6 @@
-import React from "react";
+import { useContext, useEffect, useRef, useState, useCallback } from "react";
+import { ProductContext } from "../../context/productContext";
+import { AccountContext } from "../../context/accountContext";
 
 let SKUzone = "*****-";
 let SKUaisle = "*-";
@@ -11,7 +13,10 @@ let SKUcon = "***-";
 let SKUpack = "***";
 let SKUarray = [];
 
-export const SKU = (product, user) => {
+export default function SKU() {
+  const { productInfo, setProductInfo, resetProductInfo } =
+    useContext(ProductContext);
+  const { userInfo } = useContext(AccountContext);
   // https://stackoverflow.com/questions/32888728/correct-way-to-share-functions-between-components-in-react
   SKUarray = [];
   if (product.type.includes("Fashion  >  Clothing")) {
@@ -150,4 +155,4 @@ export const SKU = (product, user) => {
     SKUpack
   );
   return SKUarray;
-};
+}

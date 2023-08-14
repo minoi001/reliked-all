@@ -50,6 +50,7 @@ module.exports = {
         cream: "#EFE8DF",
         mint: "#D8EFDE",
         offWhite: "#F8F8F7",
+        UCgrey: "#f1f1ef",
       },
     },
   },

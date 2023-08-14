@@ -5,8 +5,15 @@ import Select from "react-select";
 import PhotoUploader from "./PhotoUploader";
 
 const Photos = ({ styles }) => {
-  const { productInfo } = useContext(ProductContext);
+  const { productInfo, updateProductValue, listingVariables } =
+    useContext(ProductContext);
+  const { userInfo } = useContext(AccountContext);
   let { cdnUrl, setCdnUrl } = useState("");
+
+  const handleChange = (event) => {
+    console.log(event);
+    updateProductValue({ [event.variable]: event.value });
+  };
 
   return (
     <div className="photos">
@@ -23,10 +30,23 @@ const Photos = ({ styles }) => {
             styles={styles}
             placeholder={"How is this item being photographed?"}
             options={[
-              { value: "DeskPhoto", label: "Photographed at my desk" },
-              { value: "MachinePhoto", label: "Sent to be photographed" },
-              { value: "StockPhoto", label: "Photo found online & uploaded" },
+              {
+                value: "DeskPhoto",
+                label: "Photographed at my desk",
+                variable: "photography",
+              },
+              {
+                value: "MachinePhoto",
+                label: "Sent to be photographed",
+                variable: "photography",
+              },
+              {
+                value: "StockPhoto",
+                label: "Photo found online & uploaded",
+                variable: "photography",
+              },
             ]}
+            onChange={handleChange}
           />
         </div>
 

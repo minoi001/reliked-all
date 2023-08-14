@@ -5,7 +5,7 @@ function CollectionFilters({ updateCollections, collectionType }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="flex flex-wrap justify-center items-center space-y-1 lg:flex-nowrap">
+    <div className="flex flex-wrap justify-center items-center space-y-1 lg:flex-nowrap pb-3">
       <button
         className={`m-1 text-${
           collectionType === "vendor" ? "white" : "black"

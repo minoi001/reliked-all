@@ -36,13 +36,14 @@ export default async function handler(req, res) {
   const getData = await googleSheets.spreadsheets.values.get({
     auth,
     spreadsheetId,
-    range: "Types!A2:C",
+    range: "Types!A2:D",
   });
 
   const typesObject = getData.data.values.map((x) => ({
     Name: x[0],
     value: x[1],
     label: x[2],
+    variable: x[4],
   }));
 
   res.send(typesObject);
