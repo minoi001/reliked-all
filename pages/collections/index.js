@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  Configure,
-  Hits,
-  InstantSearch,
-  Pagination,
-  SearchBox,
-} from "react-instantsearch-dom";
+import { Configure, Hits, InstantSearch, Pagination, SearchBox } from 'react-instantsearch';
 import { indexNames, searchClient } from "../../algoliaConfig";
 import Link from "next/link";
 import CollectionFilters from "../../components/Filters/CollectionFilters";
@@ -48,10 +42,10 @@ export default function Collections() {
           <div className="py-12 md:p-12">
             <Pagination
               translations={{
-                previous: "Previous",
-                next: "Next",
-                first: "First",
-                last: "Last",
+                previousPageItemText: "Previous",
+                nextPageItemText: "Next",
+                firstPageItemText: "First",
+                lastPageItemText: "Last",
                 page(currentRefinement) {
                   return currentRefinement;
                 },

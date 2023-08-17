@@ -1,4 +1,4 @@
-import { connectPagination } from "react-instantsearch-dom";
+import { usePagination } from 'react-instantsearch';
 
 const Pagination = ({ currentRefinement, nbPages, refine }) => (
   <ul className="flex justify-center">
@@ -23,3 +23,14 @@ const Pagination = ({ currentRefinement, nbPages, refine }) => (
 );
 
 export const CustomPagination = connectPagination(Pagination);
+
+// TODO (Codemod generated): ensure your usage correctly maps the props from the connector to the hook
+function connectPagination(Component) {
+  const Pagination = (props) => {
+    const data = usePagination(props);
+
+    return <Component {...props} {...data} />;
+  };
+
+  return Pagination;
+}

@@ -1,4 +1,4 @@
-import { Configure, Hits } from "react-instantsearch-dom";
+import { Configure, Hits } from 'react-instantsearch';
 import ProductCard from "../../components/Products/ProductCard";
 import ProductFilters from "../../components/Filters/ProductFilters";
 import { Playfair_Display } from "next/font/google";

@@ -1,4 +1,4 @@
-import { connectToggleRefinement } from "react-instantsearch-dom";
+import { useToggleRefinement } from 'react-instantsearch';
 
 const ToggleRefinement = ({
   currentRefinement,
@@ -32,3 +32,14 @@ const ToggleRefinement = ({
 );
 
 export const CustomToggleRefinement = connectToggleRefinement(ToggleRefinement);
+
+// TODO (Codemod generated): ensure your usage correctly maps the props from the connector to the hook
+function connectToggleRefinement(Component) {
+  const ToggleRefinement = (props) => {
+    const data = useToggleRefinement(props);
+
+    return <Component {...props} {...data} />;
+  };
+
+  return ToggleRefinement;
+}

@@ -1,4 +1,4 @@
-import { connectRefinementList, Highlight } from "react-instantsearch-dom";
+import { useRefinementList, Highlight } from 'react-instantsearch';
 
 const RefinementList = ({
   items,
@@ -49,3 +49,14 @@ function getItemLabel(item) {
 }
 
 export const CustomRefinementList = connectRefinementList(RefinementList);
+
+// TODO (Codemod generated): ensure your usage correctly maps the props from the connector to the hook
+function connectRefinementList(Component) {
+  const RefinementList = (props) => {
+    const data = useRefinementList(props);
+
+    return <Component {...props} {...data} />;
+  };
+
+  return RefinementList;
+}

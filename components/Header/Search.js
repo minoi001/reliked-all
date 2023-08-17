@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchBox, connectSearchBox } from "react-instantsearch-dom";
+import { SearchBox, useSearchBox } from 'react-instantsearch';
 import { useRouter } from "next/navigation";
 // Include only the reset
 import "instantsearch.css/themes/reset.css";
@@ -22,3 +22,14 @@ export const Search = () => {
     </div>
   );
 };
+
+// TODO (Codemod generated): ensure your usage correctly maps the props from the connector to the hook
+function connectSearchBox(Component) {
+  const SearchBox = (props) => {
+    const data = useSearchBox(props);
+
+    return <Component {...props} {...data} />;
+  };
+
+  return SearchBox;
+}

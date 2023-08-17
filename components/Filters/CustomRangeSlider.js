@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connectRange } from "react-instantsearch-dom";
+import { useRange } from 'react-instantsearch';
 import Slider from "react-slider";
 const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
   const [values, setValues] = useState([]);
@@ -35,3 +35,14 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
 };
 
 export const CustomRangeSlider = connectRange(RangeSlider);
+
+// TODO (Codemod generated): ensure your usage correctly maps the props from the connector to the hook
+function connectRange(Component) {
+  const Range = (props) => {
+    const data = useRange(props);
+
+    return <Component {...props} {...data} />;
+  };
+
+  return Range;
+}

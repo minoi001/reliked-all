@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SearchBox } from "react-instantsearch-dom";
+import { SearchBox } from 'react-instantsearch';
 import { collectionHeader } from "../../pages/collections";
 
 function CollectionFilters({ updateCollections, collectionType }) {
