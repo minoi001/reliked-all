@@ -1,4 +1,4 @@
-import { SortBy } from 'react-instantsearch';
+import { SortBy } from "react-instantsearch";
 import ProductFiltersWithoutSortBy from "./ProductFiltersWithoutSortBy";
 
 const ProductFilters = ({ toggleSlideover }) => {
@@ -9,9 +9,6 @@ const ProductFilters = ({ toggleSlideover }) => {
       <div className="max-h-min lg:flex-wrap flex md:pb-4 sm:justify-between sm:static sm:inline">
         <SortBy
           className="mb-4 md:mb-0"
-          /* TODO (Codemod generated): Move this into `InstantSearch`'s `initialUiState` prop.
-          See https://www.algolia.com/doc/guides/building-search-ui/upgrade-guides/react/#default-refinements */
-          defaultRefinement="shopify_products"
           items={[
             { value: "shopify_products_published_at_desc", label: "Newest in" },
             { value: "shopify_products_price_desc", label: "Price descending" },
