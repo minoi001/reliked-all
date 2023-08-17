@@ -22,6 +22,7 @@ function MyApp({ Component, pageProps }) {
       <InstantSearch
         searchClient={searchClient}
         indexName={indexNames.products}
+        insights={true}
       >
         {" "}
         <ShopProvider>

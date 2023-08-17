@@ -37,6 +37,7 @@ export default function Collections() {
         <InstantSearch
           searchClient={searchClient}
           indexName={indexNames.collections}
+          insights={true}
         >
           <CollectionFilters
             updateCollections={updateCollections}
