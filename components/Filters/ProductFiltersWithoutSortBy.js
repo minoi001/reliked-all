@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 import { CustomRefinementList } from "./CustomRefinementList";
+import { CustomRangeSlider } from "./CustomRangeSlider";
 
 function ProductFiltersWithoutSortBy({ format }) {
   const [isInfluencerOpen, setIsInfluencerOpen] = useState(false);
@@ -73,12 +74,12 @@ function ProductFiltersWithoutSortBy({ format }) {
         () => toggleDropdown("Influencer")
       )}
 
-      {/*{AlgoliaDropdownMenu(*/}
-      {/*  "Price",*/}
-      {/*  <CustomRangeSlider attribute="price" />,*/}
-      {/*  isPriceOpen,*/}
-      {/*  () => toggleDropdown("Price")*/}
-      {/*)}*/}
+      {AlgoliaDropdownMenu(
+        "Price",
+        <CustomRangeSlider attribute="price" />,
+        isPriceOpen,
+        () => toggleDropdown("Price")
+      )}
       {AlgoliaDropdownMenu(
         "Size",
         <CustomRefinementList attribute="meta.custom_fields.size" />,

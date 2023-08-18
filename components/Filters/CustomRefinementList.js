@@ -7,7 +7,6 @@ const RefinementList = ({
   searchForItems,
   createURL,
 }) => {
-  console.log("items", items);
   return (
     <ul className="absolute bg-cream rounded-none p-4 overflow-auto h-48">
       {items.map((item) => {
