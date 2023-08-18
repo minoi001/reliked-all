@@ -19,13 +19,12 @@ export default function Home({ products, headerContent, homepageContent }) {
 
   return (
     <>
-      <Head>
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-2S3478ZN8E"
-        />
-      </Head>
       <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-2S3478ZN8E"
+      />
+      <Script
+        id={"google-analytics"}
         dangerouslySetInnerHTML={{
           __html: `
                   window.dataLayer = window.dataLayer || [];
