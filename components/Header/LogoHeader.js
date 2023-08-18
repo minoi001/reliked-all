@@ -113,13 +113,9 @@ const LogoHeader = () => {
             {/* End of Burger Menu Button */}
             {/* Navigation */}
             {pathname?.includes("/selling") ? (
-              <subheader>
-                <SellingSubheader open={open} setOpen={setOpen} />
-              </subheader>
+              <SellingSubheader open={open} setOpen={setOpen} />
             ) : (
-              <subheader>
-                <ShoppingSubheader open={open} setOpen={setOpen} />
-              </subheader>
+              <ShoppingSubheader open={open} setOpen={setOpen} />
             )}
 
             {/* End of Navigation */}

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
-import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomRefinementList } from "./CustomRefinementList";
 
 function ProductFiltersWithoutSortBy({ format }) {

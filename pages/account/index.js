@@ -12,7 +12,7 @@ export default function LoginPage({ account }) {
     if (!userInfo.loginStatus) {
       push("/account/login");
     }
-  }, []);
+  }, [push, userInfo.loginStatus]);
 
   return (
     <div>

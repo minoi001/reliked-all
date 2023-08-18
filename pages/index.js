@@ -9,6 +9,7 @@ import InfluencerSlider from "../components/Homepage/InfluencerSlider.js";
 import FeaturedCollections from "../components/Homepage/FeaturedCollections.js";
 import NewIn from "../components/Homepage/NewIn";
 import Head from "next/head";
+import Script from "next/script";
 
 // type products = [];
 // I need to learn more about typescript
@@ -19,11 +20,11 @@ export default function Home({ products, headerContent, homepageContent }) {
   return (
     <>
       <Head>
-        <script
+        <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-2S3478ZN8E"
         />
-        <script
+        <Script
           dangerouslySetInnerHTML={{
             __html: `
                   window.dataLayer = window.dataLayer || [];

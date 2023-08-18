@@ -22,7 +22,7 @@ export default function LoginPage({ account }) {
       push("/account");
       // redirect to account page after login
     }
-  }, []);
+  }, [push, userInfo.loginStatus]);
 
   return (
     <div className="minh-screen py-12 sm:pt-20">

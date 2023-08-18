@@ -24,7 +24,6 @@ function MyApp({ Component, pageProps }) {
         indexName={indexNames.products}
         insights={true}
       >
-        {" "}
         <ShopProvider>
           <AccountProvider>
             <ProductProvider>
