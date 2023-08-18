@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { connectRange } from "react-instantsearch-dom";
 import Slider from "react-slider";
 const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
   const [values, setValues] = useState([]);
@@ -33,5 +32,3 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
     </div>
   );
 };
-
-export const CustomRangeSlider = connectRange(RangeSlider);

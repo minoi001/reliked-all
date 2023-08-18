@@ -1,4 +1,4 @@
-import { connectRefinementList, Highlight } from "react-instantsearch-dom";
+import { useRefinementList, Highlight } from "react-instantsearch";
 
 const RefinementList = ({
   items,
@@ -48,4 +48,7 @@ function getItemLabel(item) {
   return "";
 }
 
-export const CustomRefinementList = connectRefinementList(RefinementList);
+export const CustomRefinementList = (props) => {
+  const refinementBox = useRefinementList(props);
+  return <RefinementList {...refinementBox} />;
+};

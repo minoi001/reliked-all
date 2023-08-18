@@ -1,4 +1,4 @@
-import { connectToggleRefinement } from "react-instantsearch-dom";
+import { connectToggleRefinement } from "react-instantsearch";
 
 const ToggleRefinement = ({
   currentRefinement,

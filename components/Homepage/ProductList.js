@@ -1,11 +1,6 @@
 import { useState } from "react";
 import ProductCard from "../Products/ProductCard";
-import {
-  Configure,
-  connectStateResults,
-  Hits,
-  Pagination,
-} from "react-instantsearch-dom";
+import { Configure, Hits, Pagination } from "react-instantsearch";
 import ProductFilters from "../Filters/ProductFilters";
 import SlideOut from "../SlideOut";
 
@@ -37,13 +32,13 @@ const ProductList = ({ query }) => {
             toggleSlideover={toggleSlideover}
           />
         </div>
-        <Results>
-          <h1 className={`${playfair.className} text-4xl text-center p-4`}>
-            Results for {searchParameters.query}
-          </h1>
-          <Configure {...searchParameters} />
-          <Hits hitComponent={ProductCard} />
-        </Results>
+        {/*<Results>*/}
+        <h1 className={`${playfair.className} text-4xl text-center p-4`}>
+          Results for {searchParameters.query}
+        </h1>
+        <Configure {...searchParameters} />
+        <Hits hitComponent={ProductCard} />
+        {/*</Results>*/}
         <div className="py-12 md:p-12">
           <Pagination
             translations={{
@@ -63,14 +58,14 @@ const ProductList = ({ query }) => {
     </div>
   );
 };
-
-const Results = connectStateResults(
-  ({ searchState, searchResults, children }) =>
-    searchResults && searchResults.nbHits !== 0 ? (
-      children
-    ) : (
-      <div>No results have been found for {searchState.query}.</div>
-    )
-);
+//
+// const Results = connectStateResults(
+//   ({ searchState, searchResults, children }) =>
+//     searchResults && searchResults.nbHits !== 0 ? (
+//       children
+//     ) : (
+//       <div>No results have been found for {searchState.query}.</div>
+//     )
+// );
 
 export default ProductList;

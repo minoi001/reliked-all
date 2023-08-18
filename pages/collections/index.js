@@ -5,7 +5,7 @@ import {
   InstantSearch,
   Pagination,
   SearchBox,
-} from "react-instantsearch-dom";
+} from "react-instantsearch";
 import { indexNames, searchClient } from "../../algoliaConfig";
 import Link from "next/link";
 import CollectionFilters from "../../components/Filters/CollectionFilters";

@@ -74,12 +74,12 @@ function ProductFiltersWithoutSortBy({ format }) {
         () => toggleDropdown("Influencer")
       )}
 
-      {AlgoliaDropdownMenu(
-        "Price",
-        <CustomRangeSlider attribute="price" />,
-        isPriceOpen,
-        () => toggleDropdown("Price")
-      )}
+      {/*{AlgoliaDropdownMenu(*/}
+      {/*  "Price",*/}
+      {/*  <CustomRangeSlider attribute="price" />,*/}
+      {/*  isPriceOpen,*/}
+      {/*  () => toggleDropdown("Price")*/}
+      {/*)}*/}
       {AlgoliaDropdownMenu(
         "Size",
         <CustomRefinementList attribute="meta.custom_fields.size" />,

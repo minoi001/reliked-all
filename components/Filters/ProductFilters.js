@@ -1,4 +1,4 @@
-import { SortBy } from "react-instantsearch-dom";
+import { SortBy } from "react-instantsearch";
 import ProductFiltersWithoutSortBy from "./ProductFiltersWithoutSortBy";
 
 const ProductFilters = ({ toggleSlideover }) => {
