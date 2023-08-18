@@ -24,9 +24,10 @@ export default function Home({ products, headerContent, homepageContent }) {
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-2S3478ZN8E"
         />
-        <Script
-          dangerouslySetInnerHTML={{
-            __html: `
+      </Head>
+      <Script
+        dangerouslySetInnerHTML={{
+          __html: `
                   window.dataLayer = window.dataLayer || [];
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
@@ -35,9 +36,8 @@ export default function Home({ products, headerContent, homepageContent }) {
                   page_path: window.location.pathname,
                   }); 
               `,
-          }}
-        />
-      </Head>
+        }}
+      />
       <div className="bg-white">
         <HeroImage homepageContent={homepageContent} />
         <InfluencerSlider />
