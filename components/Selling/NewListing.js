@@ -106,9 +106,8 @@ export default function NewListing({ listing }) {
   };
 
   useEffect(() => {
-    // console.log("refresh");
     resetProductInfo();
-  }, []);
+  }, [resetProductInfo]);
 
   return (
     <div
