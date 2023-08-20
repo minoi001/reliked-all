@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "../Products/ProductCard";
-import { Configure, Hits, Pagination } from "react-instantsearch";
+import {
+  Configure,
+  Hits,
+  Pagination,
+  useInstantSearch,
+} from "react-instantsearch";
 import ProductFilters from "../Filters/ProductFilters";
 import SlideOut from "../SlideOut";
 
@@ -13,6 +18,11 @@ const playfair = Playfair_Display({
 });
 const ProductList = ({ query }) => {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
+  // useEffect(const { results, indexUiState } = useInstantSearch();
+
+  const { results, indexUiState } = useInstantSearch();
+
+  console.log(results.hits, "results", indexUiState.query, "indexUiState");
 
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
@@ -32,40 +42,37 @@ const ProductList = ({ query }) => {
             toggleSlideover={toggleSlideover}
           />
         </div>
-        {/*<Results>*/}
-        <h1 className={`${playfair.className} text-4xl text-center p-4`}>
-          Results for {searchParameters.query}
-        </h1>
-        <Configure {...searchParameters} />
-        <Hits hitComponent={ProductCard} />
-        {/*</Results>*/}
-        <div className="py-12 md:p-12">
-          <Pagination
-            translations={{
-              previous: "Previous",
-              next: "Next",
-              first: "First",
-              last: "Last",
-              page(currentRefinement) {
-                return currentRefinement;
-              },
-            }}
-            hitsPerPage={24}
-            showLast={true}
-          />
-        </div>
+        {results.hits.length > 0 ? (
+          <>
+            <h1 className={`${playfair.className} text-4xl text-center p-4`}>
+              Results for {searchParameters.query}
+            </h1>
+            <Configure {...searchParameters} />
+            <Hits hitComponent={ProductCard} />
+            <div className="py-12 md:p-12">
+              <Pagination
+                translations={{
+                  previous: "Previous",
+                  next: "Next",
+                  first: "First",
+                  last: "Last",
+                  page(currentRefinement) {
+                    return currentRefinement;
+                  },
+                }}
+                hitsPerPage={24}
+                showLast={true}
+              />
+            </div>
+          </>
+        ) : (
+          <h1 className={`${playfair.className} text-4xl text-center p-4`}>
+            No results have been found for {`'${indexUiState.query}'`}
+          </h1>
+        )}
       </div>
     </div>
   );
 };
-//
-// const Results = connectStateResults(
-//   ({ searchState, searchResults, children }) =>
-//     searchResults && searchResults.nbHits !== 0 ? (
-//       children
-//     ) : (
-//       <div>No results have been found for {searchState.query}.</div>
-//     )
-// );
 
 export default ProductList;
