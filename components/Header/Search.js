@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchBox, connectSearchBox } from "react-instantsearch-dom";
+import { SearchBox, connectSearchBox } from "react-instantsearch";
 import { useRouter } from "next/navigation";
 // Include only the reset
 import "instantsearch.css/themes/reset.css";

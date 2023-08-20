@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
-import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomRefinementList } from "./CustomRefinementList";
+import { CustomRangeSlider } from "./CustomRangeSlider";
 
 function ProductFiltersWithoutSortBy({ format }) {
   const [isInfluencerOpen, setIsInfluencerOpen] = useState(false);

@@ -1,31 +1,26 @@
 import {
   getHeaderContent,
   getHomepageContent,
-  getProductsInCollection,
   getNavigation,
+  getProductsInCollection,
 } from "../lib/shopify.js";
 import HeroImage from "../components/Homepage/HeroImage.js";
 import InfluencerSlider from "../components/Homepage/InfluencerSlider.js";
 import FeaturedCollections from "../components/Homepage/FeaturedCollections.js";
 import NewIn from "../components/Homepage/NewIn";
-import Head from "next/head";
-
-// type products = [];
-// I need to learn more about typescript
+import Script from "next/script";
 
 export default function Home({ products, headerContent, homepageContent }) {
-  // const { headerContent, homepageContent } = useContext(ShopContext);
-
   return (
     <>
-      <Head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-2S3478ZN8E"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-2S3478ZN8E"
+      />
+      <Script
+        id={"google-analytics"}
+        dangerouslySetInnerHTML={{
+          __html: `
                   window.dataLayer = window.dataLayer || [];
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
@@ -34,9 +29,8 @@ export default function Home({ products, headerContent, homepageContent }) {
                   page_path: window.location.pathname,
                   }); 
               `,
-          }}
-        />
-      </Head>
+        }}
+      />
       <div className="bg-white">
         <HeroImage homepageContent={homepageContent} />
         <InfluencerSlider />
@@ -47,15 +41,6 @@ export default function Home({ products, headerContent, homepageContent }) {
   );
   s;
 }
-
-// export function Header({ headerContent }) {
-//   console.log(headerContent);
-//   return (
-//     <div >
-//       <Nav headerContent={headerContent} />
-//     </div>
-//   );
-// }
 
 export async function getStaticProps() {
   const products = await getProductsInCollection();

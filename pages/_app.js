@@ -4,9 +4,9 @@ import ShopProvider from "../context/shopContext";
 import ProductProvider from "../context/productContext";
 import AccountProvider from "../context/accountContext";
 import { useRouter } from "next/router";
-import { InstantSearch } from "react-instantsearch-dom";
 import ErrorBoundary from "../components/ErrorBoundary";
 import { indexNames, searchClient } from "../algoliaConfig";
+import { InstantSearch } from "react-instantsearch";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -22,8 +22,8 @@ function MyApp({ Component, pageProps }) {
       <InstantSearch
         searchClient={searchClient}
         indexName={indexNames.products}
+        insights={true}
       >
-        {" "}
         <ShopProvider>
           <AccountProvider>
             <ProductProvider>

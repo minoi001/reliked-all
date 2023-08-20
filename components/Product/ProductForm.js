@@ -83,7 +83,7 @@ export default function ProductForm({ product }) {
           addToCart(selectedVariant);
           setCartOpen(true);
         }}
-        className="bg-rose text-white px-2 py-3 mt-16 hover:bg-gray-800 bottom-0"
+        className="bg-rose text-white px-2 py-3 mt-8 lg:mt-16 hover:bg-gray-800 bottom-0"
       >
         Add to cart
       </button>

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { formatter } from "../../utils/helpers";
 
 const ProductCard = ({ hit }) => {
-  const { handle, title } = hit;
+  const { handle, title, objectID } = hit;
   const image = hit.image
     ? hit.image
     : hit.images?.edges[0]
@@ -14,7 +14,7 @@ const ProductCard = ({ hit }) => {
   const price = hit.price ?? hit.priceRange.minVariantPrice.amount;
   return (
     <div>
-      <Link href={`/products/${handle}`} className="">
+      <Link href={{ pathname: `/products/${handle}`, query: { id: objectID } }}>
         <div className="group ">
           <div className="w-full bg-offWhite overflow-hidden ">
             <div className="grid group-hover:opacity-75-20 w-full aspect-4/5 p-3 place-items-center">

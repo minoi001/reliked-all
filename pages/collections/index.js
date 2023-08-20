@@ -4,12 +4,10 @@ import {
   Hits,
   InstantSearch,
   Pagination,
-  SearchBox,
-} from "react-instantsearch-dom";
+} from "react-instantsearch";
 import { indexNames, searchClient } from "../../algoliaConfig";
 import Link from "next/link";
 import CollectionFilters from "../../components/Filters/CollectionFilters";
-import { Search } from "../../components/Header/Search";
 import { Playfair_Display } from "next/font/google";
 
 const playfair = Playfair_Display({
@@ -37,6 +35,7 @@ export default function Collections() {
         <InstantSearch
           searchClient={searchClient}
           indexName={indexNames.collections}
+          insights={true}
         >
           <CollectionFilters
             updateCollections={updateCollections}
@@ -69,7 +68,7 @@ function Hit({ hit }) {
   return (
     <Link href={`collections/${hit.handle}`}>
       {hit.meta?.custom_fields?.collection_type?.includes("Vendor") && (
-        <img src={hit.image} />
+        <img src={hit.image} alt={hit.handle} />
       )}
       <p>{hit.title}</p>
     </Link>

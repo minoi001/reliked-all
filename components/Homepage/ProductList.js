@@ -2,10 +2,10 @@ import { useState } from "react";
 import ProductCard from "../Products/ProductCard";
 import {
   Configure,
-  connectStateResults,
   Hits,
   Pagination,
-} from "react-instantsearch-dom";
+  useInstantSearch,
+} from "react-instantsearch";
 import ProductFilters from "../Filters/ProductFilters";
 import SlideOut from "../SlideOut";
 
@@ -18,11 +18,10 @@ const playfair = Playfair_Display({
 });
 const ProductList = ({ query }) => {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
-
+  const { results, indexUiState } = useInstantSearch();
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
   }
-
   const searchParameters = {
     query: query.get("q") || "",
   };
@@ -37,40 +36,37 @@ const ProductList = ({ query }) => {
             toggleSlideover={toggleSlideover}
           />
         </div>
-        <Results>
+        {results?.hits && results.hits.length > 0 ? (
+          <>
+            <h1 className={`${playfair.className} text-4xl text-center p-4`}>
+              Results for {searchParameters.query}
+            </h1>
+            <Configure {...searchParameters} />
+            <Hits hitComponent={ProductCard} />
+            <div className="py-12 md:p-12">
+              <Pagination
+                translations={{
+                  previous: "Previous",
+                  next: "Next",
+                  first: "First",
+                  last: "Last",
+                  page(currentRefinement) {
+                    return currentRefinement;
+                  },
+                }}
+                hitsPerPage={24}
+                showLast={true}
+              />
+            </div>
+          </>
+        ) : (
           <h1 className={`${playfair.className} text-4xl text-center p-4`}>
-            Results for {searchParameters.query}
+            No results have been found for {`'${indexUiState.query}'`}
           </h1>
-          <Configure {...searchParameters} />
-          <Hits hitComponent={ProductCard} />
-        </Results>
-        <div className="py-12 md:p-12">
-          <Pagination
-            translations={{
-              previous: "Previous",
-              next: "Next",
-              first: "First",
-              last: "Last",
-              page(currentRefinement) {
-                return currentRefinement;
-              },
-            }}
-            hitsPerPage={24}
-            showLast={true}
-          />
-        </div>
+        )}
       </div>
     </div>
   );
 };
-
-const Results = connectStateResults(
-  ({ searchState, searchResults, children }) =>
-    searchResults && searchResults.nbHits !== 0 ? (
-      children
-    ) : (
-      <div>No results have been found for {searchState.query}.</div>
-    )
-);
 
 export default ProductList;

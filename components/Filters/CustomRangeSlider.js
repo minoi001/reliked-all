@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { connectRange } from "react-instantsearch-dom";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slider";
-const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
+import { useRange } from "react-instantsearch";
+export const CustomRangeSlider = (props) => {
+  const { range, canRefine, refine } = useRange(props);
   const [values, setValues] = useState([]);
-  React.useEffect(() => {
+  useEffect(() => {
     if (canRefine) {
-      setValues([currentRefinement.min, currentRefinement.max]);
+      setValues([range.min, range.max]);
     }
-  }, [currentRefinement.min, currentRefinement.max]);
+  }, range);
   const onChange = (a) => {
-    console.log(a[0], a[1]);
     const [min, max] = a;
     setValues(a);
-    if (currentRefinement.min !== min || currentRefinement.max !== max) {
-      refine({ min, max });
+    if (range.min !== min || range.max !== max) {
+      refine([min, max]);
     }
   };
 
@@ -26,12 +26,10 @@ const RangeSlider = ({ min, max, currentRefinement, canRefine, refine }) => {
       <Slider
         className="slider"
         value={values}
-        min={min}
-        max={max}
+        min={range.min}
+        max={range.max}
         onChange={onChange}
       />
     </div>
   );
 };
-
-export const CustomRangeSlider = connectRange(RangeSlider);
