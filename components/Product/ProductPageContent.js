@@ -2,7 +2,6 @@ import Image from "next/image";
 import ProductForm from "./ProductForm";
 import RelatedProductsSection from "./RelatedProductsSection";
 export default function ProductPageContent({ product, id }) {
-  console.log(product);
   return (
     <div>
       <div className="flex flex-col justify-center items-center space-y-8 md:flex-row md:items-start md:space-y-0 md:spacex-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto ">
