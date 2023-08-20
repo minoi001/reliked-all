@@ -36,7 +36,7 @@ const ProductList = ({ query }) => {
             toggleSlideover={toggleSlideover}
           />
         </div>
-        {results.hits.length > 0 ? (
+        {results?.hits && results.hits.length > 0 ? (
           <>
             <h1 className={`${playfair.className} text-4xl text-center p-4`}>
               Results for {searchParameters.query}
