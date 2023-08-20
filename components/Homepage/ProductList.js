@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ProductCard from "../Products/ProductCard";
 import {
   Configure,
@@ -18,16 +18,10 @@ const playfair = Playfair_Display({
 });
 const ProductList = ({ query }) => {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
-  // useEffect(const { results, indexUiState } = useInstantSearch();
-
   const { results, indexUiState } = useInstantSearch();
-
-  console.log(results.hits, "results", indexUiState.query, "indexUiState");
-
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
   }
-
   const searchParameters = {
     query: query.get("q") || "",
   };
