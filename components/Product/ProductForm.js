@@ -69,24 +69,28 @@ export default function ProductForm({ product }) {
       <span className="pb-6">
         {formatter.format(product.variants.edges[0].node.priceV2.amount)}
       </span>
-      {product.options.map(({ name, values }) => (
-        <ProductOptions
-          key={`key-${name}`}
-          name={name}
-          values={values}
-          selectedOptions={selectedOptions}
-          setOptions={setOptions}
-        />
-      ))}
-      <button
-        onClick={() => {
-          addToCart(selectedVariant);
-          setCartOpen(true);
-        }}
-        className="bg-rose text-white px-2 py-3 mt-8 lg:mt-16 hover:bg-gray-800 bottom-0"
-      >
-        Add to cart
-      </button>
+      <div className="flex">
+        {product.options.map(({ name, values }) => (
+          <ProductOptions
+            key={`key-${name}`}
+            name={name}
+            values={values}
+            selectedOptions={selectedOptions}
+            setOptions={setOptions}
+          />
+        ))}
+      </div>
+      <div className="">
+        <button
+          onClick={() => {
+            addToCart(selectedVariant);
+            setCartOpen(true);
+          }}
+          className="bg-taupe text-white px-2 py-3 mt-8 lg:mt-16 hover:bg-gray-800 bottom-0 w-full"
+        >
+          Add to cart
+        </button>
+      </div>
     </div>
   );
 }

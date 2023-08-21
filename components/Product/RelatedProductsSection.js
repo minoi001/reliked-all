@@ -39,7 +39,7 @@ export default function RelatedProductsSection({ currentObjectID }) {
         maxRecommendations={9}
         headerComponent={() => {
           return (
-            <h2 className=" mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8 text-2xl font-extrabold text-gray-900 mt-16">
+            <h2 className=" mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8 text-2xl font-extrabold text-gray-900 mt-6">
               YOU MIGHT ALSO LIKE
             </h2>
           );

@@ -6,8 +6,8 @@ export default function ProductOptions({
 }) {
   return (
     // need to make a grid
-    <fieldset className="grid grid-cols-3">
-      <legend className="text-md font-semibold col-span-1">{name}</legend>
+    <fieldset className="flex border border-cream p-2 m-2 ml-0">
+      <legend className="text-md font-semibold col-span-1 px-1">{name}</legend>
       <div className="items-center">
         {values.map((value) => {
           const id = `option-${name}-${value}`;
@@ -27,8 +27,8 @@ export default function ProductOptions({
                   }}
                 />
                 <div
-                  className={`inline p-2 my-3 text-md cursor-pointer mr-3 ${
-                    checked ? "text-white bg-rose" : "text-gray-600 bg-gray-100"
+                  className={`inline text-md mr-3 ${
+                    checked ? "text-almostBlack" : "text-gray-600 bg-gray-100"
                   }`}
                 >
                   <span className="inline px-2">{value}</span>
