@@ -36,6 +36,9 @@ module.exports = {
     extend: {
       aspectRatio: {
         "4/5": "4 / 5",
+        "5/6": "5 / 6",
+        "7/8": "7 / 8",
+        "11/12": "11 / 12",
       },
       padding: {
         "28r": "28rem",

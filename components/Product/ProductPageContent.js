@@ -18,7 +18,7 @@ export default function ProductPageContent({ product, id }) {
               alt={product.title}
               height="1000"
               width="1000"
-              className="static object-contain center bg-offWhite p-12 w-full h-96"
+              className="static object-contain center bg-offWhite p-12 w-full aspect-11/12"
               priority={true}
             />
           </div>
