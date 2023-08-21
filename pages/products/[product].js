@@ -3,7 +3,7 @@ import { getProduct } from "../../lib/shopify.js";
 
 export default function ProductPage({ product, id }) {
   return (
-    <div className="minh-screen">
+    <div className="minh-screen mb-8">
       <ProductPageContent product={product} id={id} />
     </div>
   );
