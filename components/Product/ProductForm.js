@@ -64,7 +64,7 @@ export default function ProductForm({ product }) {
   }
 
   return (
-    <div className="p-2 shadow-lg flex flex-col w-full  md:w-7/12 bg-white h-96">
+    <div>
       <h2 className="text-2xl font-bold">{product.title}</h2>
       <span className="pb-6">
         {formatter.format(product.variants.edges[0].node.priceV2.amount)}
