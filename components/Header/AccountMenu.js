@@ -56,7 +56,7 @@ export default function AccountMenu() {
                 </Link>
               )}
             </Menu.Item>
-            <Menu.Item>
+            {/* <Menu.Item>
               {({ active }) => (
                 <Link
                   href="/selling"
@@ -68,7 +68,7 @@ export default function AccountMenu() {
                   Selling
                 </Link>
               )}
-            </Menu.Item>
+            </Menu.Item> */}
             {userInfo.loginStatus ? (
               <form method="POST" action="#">
                 <Menu.Item>

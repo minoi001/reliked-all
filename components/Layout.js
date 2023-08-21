@@ -9,16 +9,19 @@ export default function Layout({ children }) {
   const { pathname } = useRouter();
 
   return (
-    <div className="bg-offWhite flex flex-col">
-      <header>
-        <Banner />
-        <LogoHeader />
-      </header>
-
+    <div className="flex flex-col">
+      <div className="bg-offWhite">
+        <header>
+          <Banner />
+          <LogoHeader />
+        </header>
+      </div>
       <main>{children}</main>
-      <footer>
-        <Footer />
-      </footer>
+      <div className="bg-taupe">
+        <footer>
+          <Footer />
+        </footer>
+      </div>
     </div>
   );
 }
