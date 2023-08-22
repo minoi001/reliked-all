@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 import { CustomRefinementList } from "./CustomRefinementList";
 import { CustomRangeSlider } from "./CustomRangeSlider";
@@ -12,6 +12,30 @@ function ProductFiltersWithoutSortBy({ format }) {
   const [isConditionOpen, setIsConditionOpen] = useState(false);
   const [isPackagingOpen, setIsPackagingOpen] = useState(false);
   const [isAvailabilityOpen, setIsAvailabilityOpen] = useState(false);
+  const dropdownsRef = useRef(null);
+  const handleClickOutside = (event) => {
+    if (dropdownsRef.current && !dropdownsRef.current.contains(event.target)) {
+      // Close all dropdowns
+      setIsInfluencerOpen(false);
+      setIsPriceOpen(false);
+      setIsSizeOpen(false);
+      setIsBrandOpen(false);
+      setIsColourOpen(false);
+      setIsConditionOpen(false);
+      setIsPackagingOpen(false);
+      setIsAvailabilityOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    // Add event listener when the component mounts
+    document.addEventListener("click", handleClickOutside);
+
+    // Remove event listener when the component unmounts
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const toggleDropdown = (dropdownName) => {
     // Close all dropdowns
@@ -62,6 +86,7 @@ function ProductFiltersWithoutSortBy({ format }) {
           ? `flex flex-row`
           : `bg-offWhite flex flex-col justify-evenly px-8 py-8 h-full`
       }
+      ref={dropdownsRef}
     >
       {AlgoliaDropdownMenu(
         "Influencer",
