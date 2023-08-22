@@ -59,7 +59,7 @@ function ProductFiltersWithoutSortBy({ format }) {
     <div
       className={
         format === "row"
-          ? `md:flex lg:inline-flex`
+          ? `flex flex-row`
           : `bg-offWhite flex flex-col justify-evenly px-8 py-8 h-full`
       }
     >
