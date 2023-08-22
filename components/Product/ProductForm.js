@@ -81,9 +81,9 @@ export default function ProductForm({ product }) {
         ))}
       </div>
       <div className="mt-8 lg:mt-16 md:flex">
-        <button className="bg-taupe text-white max-md:m-1 md:mr-1 px-2 py-3 hover:bg-almostBlack bottom-0 md:w-1/3 w-full">
+        <button className="bg-cream text-almostBlack max-md:m-1 md:mr-1 px-2 py-3 hover:bg-almostBlack hover:text-white bottom-0 md:w-1/3 w-full">
           <Link
-            href={`https://wa.me/07718269608?text=I'm%20interested%20in%20your%20car%20for%20sale`}
+            href={`https://wa.me/447718269608?text=I%20would%20like%20to%20make%20an%20offer`}
             target="_blank"
           >
             {" "}
@@ -96,7 +96,7 @@ export default function ProductForm({ product }) {
             addToCart(selectedVariant);
             setCartOpen(true);
           }}
-          className="bg-almostBlack text-white max-md:m-1 md:ml-1 px-2 py-3 hover:bg-cream hover:text-almostBlack bottom-0 md:w-2/3 w-full"
+          className="bg-taupe text-white max-md:m-1 md:ml-1 px-2 py-3 hover:bg-almostBlack hover:text-white bottom-0 md:w-2/3 w-full"
         >
           Add to cart
         </button>
