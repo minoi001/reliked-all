@@ -3,7 +3,7 @@ import { formatter } from "../../utils/helpers";
 import ProductList from "../Homepage/ProductList";
 import ProductOptions from "./ProductOptions";
 import { ShopContext } from "../../context/shopContext";
-
+import Link from "next/link";
 export default function ProductForm({ product }) {
   const {
     cartOpen,
@@ -80,13 +80,23 @@ export default function ProductForm({ product }) {
           />
         ))}
       </div>
-      <div className="">
+      <div className="mt-8 lg:mt-16 md:flex">
+        <button className="bg-taupe text-white max-md:m-1 md:mr-1 px-2 py-3 hover:bg-almostBlack bottom-0 md:w-1/3 w-full">
+          <Link
+            href={`https://wa.me/07718269608?text=I'm%20interested%20in%20your%20car%20for%20sale`}
+            target="_blank"
+          >
+            {" "}
+            Make an offer
+          </Link>
+        </button>
+
         <button
           onClick={() => {
             addToCart(selectedVariant);
             setCartOpen(true);
           }}
-          className="bg-taupe text-white px-2 py-3 mt-8 lg:mt-16 hover:bg-gray-800 bottom-0 w-full"
+          className="bg-almostBlack text-white max-md:m-1 md:ml-1 px-2 py-3 hover:bg-cream hover:text-almostBlack bottom-0 md:w-2/3 w-full"
         >
           Add to cart
         </button>
