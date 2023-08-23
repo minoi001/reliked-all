@@ -5,10 +5,11 @@ export const CustomRangeSlider = (props) => {
   const { range, canRefine, refine } = useRange(props);
   const [values, setValues] = useState([]);
   useEffect(() => {
-    if (canRefine) {
+    if (canRefine && range.min !== undefined && range.max !== undefined) {
       setValues([range.min, range.max]);
     }
-  }, range);
+  }, [canRefine, range.min, range.max]);
+
   const onChange = (a) => {
     const [min, max] = a;
     setValues(a);
