@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 import { CustomRefinementList } from "./CustomRefinementList";
 import { CustomRangeSlider } from "./CustomRangeSlider";
+import { CustomToggleRefinement } from "./CustomToggle";
+import { ToggleRefinement } from "react-instantsearch";
 
 function ProductFiltersWithoutSortBy({ format }) {
   const [isInfluencerOpen, setIsInfluencerOpen] = useState(false);
@@ -111,7 +113,10 @@ function ProductFiltersWithoutSortBy({ format }) {
       )}
       {AlgoliaDropdownMenu(
         "Availability",
-        <CustomRefinementList attribute="inventory_available" />,
+        <CustomToggleRefinement
+          attribute="inventory_available"
+          label="Inventory available"
+        />,
         isAvailabilityOpen,
         () => toggleDropdown("Availability"),
         setIsAvailabilityOpen
