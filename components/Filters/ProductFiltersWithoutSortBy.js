@@ -12,42 +12,8 @@ function ProductFiltersWithoutSortBy({ format }) {
   const [isConditionOpen, setIsConditionOpen] = useState(false);
   const [isPackagingOpen, setIsPackagingOpen] = useState(false);
   const [isAvailabilityOpen, setIsAvailabilityOpen] = useState(false);
-  const dropdownsRef = useRef(null);
-  const handleClickOutside = (event) => {
-    if (dropdownsRef.current && !dropdownsRef.current.contains(event.target)) {
-      // Close all dropdowns
-      setIsInfluencerOpen(false);
-      setIsPriceOpen(false);
-      setIsSizeOpen(false);
-      setIsBrandOpen(false);
-      setIsColourOpen(false);
-      setIsConditionOpen(false);
-      setIsPackagingOpen(false);
-      setIsAvailabilityOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    // Add event listener when the component mounts
-    document.addEventListener("click", handleClickOutside);
-
-    // Remove event listener when the component unmounts
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
 
   const toggleDropdown = (dropdownName) => {
-    // Close all dropdowns
-    setIsInfluencerOpen(false);
-    setIsPriceOpen(false);
-    setIsSizeOpen(false);
-    setIsBrandOpen(false);
-    setIsColourOpen(false);
-    setIsConditionOpen(false);
-    setIsPackagingOpen(false);
-    setIsAvailabilityOpen(false);
-
     // Toggle the selected dropdown
     switch (dropdownName) {
       case "Influencer":
@@ -84,9 +50,10 @@ function ProductFiltersWithoutSortBy({ format }) {
       className={
         format === "row"
           ? `flex flex-row`
-          : `bg-offWhite flex flex-col justify-evenly px-8 py-8 h-full`
+          : // : `bg-offWhite flex flex-col justify-evenly px-8 py-8 h-full`
+            `flex flex-col`
       }
-      ref={dropdownsRef}
+      // ref={dropdownsRef}
     >
       {AlgoliaDropdownMenu(
         "Influencer",
@@ -96,50 +63,58 @@ function ProductFiltersWithoutSortBy({ format }) {
           showMoreLimit={500}
         />,
         isInfluencerOpen,
-        () => toggleDropdown("Influencer")
+        () => toggleDropdown("Influencer"),
+        setIsInfluencerOpen
       )}
 
       {AlgoliaDropdownMenu(
         "Price",
         <CustomRangeSlider attribute="price" />,
         isPriceOpen,
-        () => toggleDropdown("Price")
+        () => toggleDropdown("Price"),
+        setIsPriceOpen
       )}
       {AlgoliaDropdownMenu(
         "Size",
         <CustomRefinementList attribute="meta.custom_fields.size" />,
         isSizeOpen,
-        () => toggleDropdown("Size")
+        () => toggleDropdown("Size"),
+        setIsSizeOpen
       )}
       {AlgoliaDropdownMenu(
         "Brand",
         <CustomRefinementList attribute="options.brand" />,
         isBrandOpen,
-        () => toggleDropdown("Brand")
+        () => toggleDropdown("Brand"),
+        setIsBrandOpen
       )}
       {AlgoliaDropdownMenu(
         "Colour",
         <CustomRefinementList attribute="options.colour" />,
         isColourOpen,
-        () => toggleDropdown("Colour")
+        () => toggleDropdown("Colour"),
+        setIsColourOpen
       )}
       {AlgoliaDropdownMenu(
         "Condition",
         <CustomRefinementList attribute="meta.custom_fields.product_condition" />,
         isConditionOpen,
-        () => toggleDropdown("Condition")
+        () => toggleDropdown("Condition"),
+        setIsConditionOpen
       )}
       {AlgoliaDropdownMenu(
         "Packaging",
         <CustomRefinementList attribute="meta.custom_fields.product_packaging" />,
         isPackagingOpen,
-        () => toggleDropdown("Packaging")
+        () => toggleDropdown("Packaging"),
+        setIsPackagingOpen
       )}
       {AlgoliaDropdownMenu(
         "Availability",
         <CustomRefinementList attribute="inventory_available" />,
         isAvailabilityOpen,
-        () => toggleDropdown("Availability")
+        () => toggleDropdown("Availability"),
+        setIsAvailabilityOpen
       )}
     </div>
   );
