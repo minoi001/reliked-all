@@ -436,36 +436,28 @@ export default function ShoppingSubheader(props) {
                                             {category.items.map((section) => (
                                               <div
                                                 key={section.name}
-                                                className="inline"
+                                                className="flex"
                                               >
                                                 {/* NEEDS TO BE HOVER MENUS */}
-                                                <Link
-                                                  href={section.href
-                                                    .replace(
-                                                      "https://reliked.com",
-                                                      ""
-                                                    )
-                                                    .replace(
-                                                      "https://e-bloggers.myshopify.com",
-                                                      ""
-                                                    )}
+
+                                                <div
+                                                  key={section.name}
+                                                  className="relative"
                                                 >
-                                                  <div key={section.name}>
-                                                    {MiniDropdownMenu(
-                                                      section.name,
-                                                      section.href
-                                                        .replace(
-                                                          "https://reliked.com",
-                                                          ""
-                                                        )
-                                                        .replace(
-                                                          "https://e-bloggers.myshopify.com",
-                                                          ""
-                                                        ),
-                                                      section.items
-                                                    )}
-                                                  </div>
-                                                </Link>
+                                                  {MiniDropdownMenu(
+                                                    section.name,
+                                                    section.href
+                                                      .replace(
+                                                        "https://reliked.com",
+                                                        ""
+                                                      )
+                                                      .replace(
+                                                        "https://e-bloggers.myshopify.com",
+                                                        ""
+                                                      ),
+                                                    section.items
+                                                  )}
+                                                </div>
                                               </div>
                                             ))}
                                           </div>

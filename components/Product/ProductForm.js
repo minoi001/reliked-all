@@ -83,7 +83,7 @@ export default function ProductForm({ product }) {
       <div className="mt-8 lg:mt-16 md:flex">
         <button className="bg-cream text-almostBlack max-md:m-1 md:mr-1 px-2 py-3 hover:bg-almostBlack hover:text-white bottom-0 md:w-1/3 w-full">
           <Link
-            href={`https://wa.me/447718269608?text=I%20would%20like%20to%20make%20an%20offer`}
+            href={`https://wa.me/447718269608?text=I would like to make an offer on this ${product.title} https://reliked.com/products/${product.handle}`}
             target="_blank"
           >
             {" "}
