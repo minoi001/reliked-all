@@ -125,15 +125,16 @@ export default function ProductForm({ product }) {
           ""
         )}
       </div>
-      <div className="inline-flex w-full items-center mt-4">
-        <div className="text-lg inline-flex px-2 bottom-0">
+      {/* can't align text bottom */}
+      <div className="inline-flex w-full items-center mt-4 align-text-bottom">
+        <div className="text-lg inline-flex px-2  align-bottom">
           RRP{" "}
           {formatter.format(
             product.variants.edges[0].node.compareAtPrice.amount
           )}
         </div>
         {product.wasPrice ? (
-          <div className="text-lg inline-flex px-2 bottom-0">
+          <div className="text-lg inline-flex px-2 align-bottom">
             Was {formatter.format(product.wasPrice)}
           </div>
         ) : (
