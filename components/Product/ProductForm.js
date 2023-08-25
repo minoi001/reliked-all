@@ -17,6 +17,7 @@ export default function ProductForm({ product }) {
     decrementCartItem,
   } = useContext(ShopContext);
 
+  const [offerPrice, setOfferPrice] = useState(100 * 0.9);
   const allVariantOptions = product.variants.edges?.map((variant) => {
     const allOptions = {};
     variant.node.selectedOptions.map((item) => {
@@ -81,9 +82,16 @@ export default function ProductForm({ product }) {
         ))}
       </div>
       <div className="mt-8 lg:mt-16 md:flex">
-        <button className="bg-cream text-almostBlack max-md:m-1 md:mr-1 px-2 py-3 hover:bg-almostBlack hover:text-white bottom-0 md:w-1/3 w-full">
+        <input
+          className="w-1/4 inline-flex border-2 border-cream active:border-cream focus:border-almostBlack hover:border-almostBlack focus:ring-0 py-3 text-center"
+          id="description"
+          type="text"
+          placeholder={"£100"}
+          onChange={(e) => setOfferPrice(e.target.value)}
+        />
+        <button className="bg-cream border-cream border-2 text-almostBlack md:mr-1 px-2 py-3 hover:bg-almostBlack focus:border-almostBlack hover:border-almostBlack hover:text-white bottom-0 md:w-1/3 w-3/4">
           <Link
-            href={`https://wa.me/447718269608?text=I would like to make an offer on this ${product.title} https://reliked.com/products/${product.handle}`}
+            href={`https://wa.me/447718269608?text=I would like to make an offer on this ${product.title} for *${offerPrice}* https://reliked.com/products/${product.handle}`}
             target="_blank"
           >
             {" "}
@@ -96,7 +104,7 @@ export default function ProductForm({ product }) {
             addToCart(selectedVariant);
             setCartOpen(true);
           }}
-          className="bg-taupe text-white max-md:m-1 md:ml-1 px-2 py-3 hover:bg-almostBlack hover:text-white bottom-0 md:w-2/3 w-full"
+          className="bg-taupe text-white px-2 py-3 max-md:mt-1 hover:bg-almostBlack hover:text-white bottom-0 md:w-2/3 w-full"
         >
           Add to cart
         </button>
