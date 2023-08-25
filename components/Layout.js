@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import Banner from "./Header/Banner";
 import LogoHeader from "./Header/LogoHeader";
 import { GoogleAnalytics } from "./GoogleAnalytics";
+import CookieBanner from "./CookieBanner";
 
 export default function Layout({ children }) {
   const { pathname } = useRouter();
@@ -17,6 +18,7 @@ export default function Layout({ children }) {
         </header>
       </div>
       <main>{children}</main>
+      <CookieBanner />
       <div className="bg-taupe">
         <footer>
           <Footer />

@@ -54,7 +54,7 @@ export default function Collections() {
                   return currentRefinement;
                 },
               }}
-              hitsPerPage={24}
+              // hitsPerPage={24}
               showLast={true}
             />
           </div>

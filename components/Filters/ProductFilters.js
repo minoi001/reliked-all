@@ -9,7 +9,6 @@ const ProductFilters = ({ toggleSlideover }) => {
       <div className="max-h-min lg:flex md:pb-4 sm:static sm:inline">
         <SortBy
           className="mb-4 md:mb-0"
-          defaultRefinement="shopify_products"
           items={[
             { value: "shopify_products_published_at_desc", label: "Newest in" },
             { value: "shopify_products_price_desc", label: "Price descending" },
