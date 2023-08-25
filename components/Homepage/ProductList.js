@@ -54,7 +54,7 @@ const ProductList = ({ query }) => {
                     return currentRefinement;
                   },
                 }}
-                hitsPerPage={24}
+                // hitsPerPage={24}
                 showLast={true}
               />
             </div>

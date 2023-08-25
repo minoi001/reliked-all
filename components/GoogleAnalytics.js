@@ -1,6 +1,20 @@
 import Script from "next/script";
+import { useEffect } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export const GoogleAnalytics = () => {
+  const pageView = (url) => {
+    window.gtag("config", process.env.GOOGLE_ANALYTICS_TRACKING_ID, {
+      page_path: url,
+    });
+  };
+  const pathName = usePathname();
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const uri = pathName + searchParams;
+    pageView(uri);
+  }, [pathName, searchParams, process.env.GOOGLE_ANALYTICS_TRACKING_ID]);
+
   return (
     <>
       <Script
