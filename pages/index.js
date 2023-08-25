@@ -8,29 +8,12 @@ import HeroImage from "../components/Homepage/HeroImage.js";
 import InfluencerSlider from "../components/Homepage/InfluencerSlider.js";
 import FeaturedCollections from "../components/Homepage/FeaturedCollections.js";
 import NewIn from "../components/Homepage/NewIn";
-import Script from "next/script";
+import { GoogleAnalytics } from "../components/GoogleAnalytics";
 
 export default function Home({ products, headerContent, homepageContent }) {
   return (
     <>
-      <Script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_TRACKING_ID}`}
-      />
-      <Script
-        id={"google-analytics"}
-        dangerouslySetInnerHTML={{
-          __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-
-                  gtag('config', '${process.env.GOOGLE_ANALYTICS_TRACKING_ID}', {
-                  page_path: window.location.pathname,
-                  }); 
-              `,
-        }}
-      />
+      <GoogleAnalytics />
       <div className="bg-white">
         <HeroImage homepageContent={homepageContent} />
         <InfluencerSlider />
