@@ -8,12 +8,10 @@ import HeroImage from "../components/Homepage/HeroImage.js";
 import InfluencerSlider from "../components/Homepage/InfluencerSlider.js";
 import FeaturedCollections from "../components/Homepage/FeaturedCollections.js";
 import NewIn from "../components/Homepage/NewIn";
-import { GoogleAnalytics } from "../components/GoogleAnalytics";
 
 export default function Home({ products, headerContent, homepageContent }) {
   return (
     <>
-      <GoogleAnalytics />
       <div className="bg-white">
         <HeroImage homepageContent={homepageContent} />
         <InfluencerSlider />
