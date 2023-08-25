@@ -63,13 +63,19 @@ export default function ProductForm({ product }) {
       }
     });
   }
+  var stringToHTML = function (str) {
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(str, "text/html");
+    return doc.body;
+  };
 
   return (
     <div>
-      <h2 className="text-2xl font-bold">{product.title}</h2>
-      <span className="pb-6">
-        {formatter.format(product.variants.edges[0].node.priceV2.amount)}
-      </span>
+      <h2 className="text-2xl font-bold font-h">{product.title}</h2>
+      <div
+        className="pt-6 pb-4"
+        dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+      ></div>
       <div className="sm:flex">
         {product.options.map(({ name, values }) => (
           <ProductOptions
@@ -119,7 +125,25 @@ export default function ProductForm({ product }) {
           ""
         )}
       </div>
+      <div className="inline-flex w-full items-center mt-4">
+        <div className="text-lg inline-flex px-2 bottom-0">
+          RRP{" "}
+          {formatter.format(
+            product.variants.edges[0].node.compareAtPrice.amount
+          )}
+        </div>
+        {product.wasPrice ? (
+          <div className="text-lg inline-flex px-2 bottom-0">
+            Was {formatter.format(product.wasPrice)}
+          </div>
+        ) : (
+          ""
+        )}
 
+        <div className="font-h text-2xl inline-flex px-2">
+          Now {formatter.format(product.variants.edges[0].node.priceV2.amount)}
+        </div>
+      </div>
       {/* ATTEMPT 3 */}
       {product.variants.edges[0].node.compareAtPrice.amount >= 150 ||
       product.tags.toString().includes("MakeAnOffer") ? (
