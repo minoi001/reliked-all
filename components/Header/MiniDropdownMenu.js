@@ -31,7 +31,10 @@ export default function MiniDropdownMenu(menuTitle, menuHandle, menuItems) {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              href={item.href}
+                              href={item.href.replace(
+                                "https://e-bloggers.myshopify.com",
+                                ""
+                              )}
                               className={classNames(
                                 active
                                   ? "bg-cream text-black"
@@ -51,7 +54,9 @@ export default function MiniDropdownMenu(menuTitle, menuHandle, menuItems) {
             </div>
           </div>
         ) : (
-          <Link href={menuHandle}>
+          <Link
+            href={menuHandle.replace("https://e-bloggers.myshopify.com", "")}
+          >
             <button className="flex">{menuTitle}</button>
           </Link>
         )}
