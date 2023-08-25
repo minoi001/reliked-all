@@ -26,7 +26,7 @@ const FeaturedCollections = () => {
             <div className="-mr-12 sm:-mr-32 container h-full static p-0 py-0  mx-auto flex flex-col justify-around lg:flex-row">
               {/* Content */}
               <div className="w-full lg:w-1/2 flex-col  p-4 lg:p-2 lg:ml-12 ">
-                <h2 className="font-h text-2xl lg:text-4xl p-2 lg:p-5 text-almostBlack font-semibold">
+                <h2 className="font-h text-2xl lg:text-4xl p-2 lg:p-5 text-almostBlack">
                   Scarves
                 </h2>
                 <div className="relative w-full shadow-sm">
@@ -42,7 +42,7 @@ const FeaturedCollections = () => {
               </div>
 
               <div className="w-full lg:w-1/2 flex-col p-2 lg:ml-12 ">
-                <h2 className="font-h text-2xl lg:text-4xl p-2 lg:p-5 text-almostBlack font-semibold">
+                <h2 className="font-h text-2xl lg:text-4xl p-2 lg:p-5 text-almostBlack">
                   Scarves
                 </h2>
                 <div className="relative w-full shadow-sm">
@@ -58,7 +58,7 @@ const FeaturedCollections = () => {
               </div>
 
               <div className="w-full lg:w-1/2 flex-col  p-4 lg:p-2 lg:ml-12 hidden xxl:block ">
-                <h2 className="font-h text-2xl lg:text-4xl p-2 lg:p-5 text-almostBlack font-semibold">
+                <h2 className="font-h text-2xl lg:text-4xl p-2 lg:p-5 text-almostBlack">
                   Scarves
                 </h2>
                 <div className="relative w-full shadow-sm">

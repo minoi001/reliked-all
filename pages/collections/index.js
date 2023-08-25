@@ -8,13 +8,7 @@ import {
 import { indexNames, searchClient } from "../../algoliaConfig";
 import Link from "next/link";
 import CollectionFilters from "../../components/Filters/CollectionFilters";
-import { Playfair_Display } from "next/font/google";
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  style: "italic",
-  weight: "700",
-});
 export default function Collections() {
   const [collectionType, setCollectionType] = useState("vendor");
   async function updateCollections(collectionType) {
@@ -28,7 +22,7 @@ export default function Collections() {
   return (
     <div className="mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
-        <h1 className={`${playfair.className} p-4 text-3xl text-center`}>
+        <h1 className={`font-h p-4 text-3xl text-center`}>
           Shop by {collectionHeader(collectionType)}
         </h1>
 

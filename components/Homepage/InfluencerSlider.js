@@ -47,7 +47,7 @@ const InfluencerSlider = () => {
   return (
     <div>
       <div className="grid px-4 sm:px-12 place-items-center align-middle w-full pt-6">
-        <h1 className="font-h text-3xl lg:text-4xl font-bold p-4">
+        <h1 className="font-h text-3xl lg:text-4xl p-4">
           Your home of celebrity and influencer closets
           {/* {homepageContent.featured_influencers.key} */}
         </h1>

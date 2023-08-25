@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ["Questrial", "serif"],
-      h: ["Cormorant Garamond", "serif"],
+      h: ["DM Serif Display", "serif"],
     },
     screens: {
       xxs: "250px",

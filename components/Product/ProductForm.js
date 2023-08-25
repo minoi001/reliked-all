@@ -96,21 +96,27 @@ export default function ProductForm({ product }) {
           selectedOptions={selectedOptions}
           setOptions={setOptions}
         />
-        {product.influencer.value == "Anonymous" ||
-        product.influencer.value.includes("UNKN") ||
-        product.influencer.value.includes("Profit") ||
-        product.influencer.value.includes("EBLO") ||
-        product.influencer.value.includes("RELI") ||
-        product.type.includes("Beauty") ? (
-          ""
+        {product.influencer ? (
+          <div>
+            {product.influencer.value == "Anonymous" ||
+            product.influencer.value.includes("UNKN") ||
+            product.influencer.value.includes("Profit") ||
+            product.influencer.value.includes("EBLO") ||
+            product.influencer.value.includes("RELI") ||
+            product.type.includes("Beauty") ? (
+              ""
+            ) : (
+              <ProductOptions
+                key={`key-${product.influencer.value}`}
+                name={"Influencer"}
+                values={[product.influencer.value]}
+                selectedOptions={selectedOptions}
+                setOptions={setOptions}
+              />
+            )}
+          </div>
         ) : (
-          <ProductOptions
-            key={`key-${product.influencer.value}`}
-            name={"Influencer"}
-            values={[product.influencer.value]}
-            selectedOptions={selectedOptions}
-            setOptions={setOptions}
-          />
+          ""
         )}
       </div>
 

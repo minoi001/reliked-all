@@ -9,13 +9,6 @@ import {
 import ProductFilters from "../Filters/ProductFilters";
 import SlideOut from "../SlideOut";
 
-import { Playfair_Display } from "next/font/google";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  style: "italic",
-  weight: "700",
-});
 const ProductList = ({ query }) => {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
   const { results, indexUiState } = useInstantSearch();
@@ -38,7 +31,7 @@ const ProductList = ({ query }) => {
         </div>
         {results?.hits && results.hits.length > 0 ? (
           <>
-            <h1 className={`${playfair.className} text-4xl text-center p-4`}>
+            <h1 className={`font-h text-4xl text-center p-4`}>
               Results for {searchParameters.query}
             </h1>
             <Configure {...searchParameters} />
@@ -60,7 +53,7 @@ const ProductList = ({ query }) => {
             </div>
           </>
         ) : (
-          <h1 className={`${playfair.className} text-4xl text-center p-4`}>
+          <h1 className={`font-h text-4xl text-center p-4`}>
             No results have been found for {`'${indexUiState.query}'`}
           </h1>
         )}
