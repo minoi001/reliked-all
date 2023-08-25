@@ -83,48 +83,67 @@ export default function ProductForm({ product }) {
       </div>
 
       {/* ATTEMPT 3 */}
-      <div className="mt-6 text-center">
-        <div className="lg:inline text-center">
-          <button className="lg:inline-flex w-full lg:w-1/2 cursor-auto bg-white text-center">
-            <div className="inline-flex w-full border border-cream  hover:border-almostBlack">
-              <span className="inline-flex mt-3 pl-4 lg:pl-2 align-middle">
-                £
-              </span>
-              <input
-                className="inline-flex lg:w-1/2 p-1 border-none active:border-none hover:border-none focus:ring-0"
-                onChange={(e) => setOfferPrice(e.target.value)}
-                placeholder={
-                  product.variants.edges[0].node.priceV2.amount * 0.9
-                }
-              />
-              <Link
-                href={`https://wa.me/447718269608?text=I would like to make an offer on this ${product.title} for *£${offerPrice}* https://reliked.com/products/${product.handle}`}
-                target="_blank"
-                className="inline-flex text-center bg-cream p-3 w-full hover:bg-almostBlack hover:text-cream hover:border-almostBlack"
-              >
-                {" "}
-                Make an offer
-              </Link>
-            </div>
-          </button>
-          <button className="lg:inline-flex w-full lg:w-1/2 cursor-auto text-center">
-            <div className="inline-flex border border-taupe w-full bg-taupe text-taupe hover:bg-almostBlack hover:text-almostBlack hover:border-almostBlack">
-              <span className="inline-flex pt-3 bg-inherit text-inherit ">
-                -
-              </span>
-              <button
-                className="inline-flex bg-taupe p-3 text-center w-full text-white hover:bg-almostBlack"
-                onClick={() => {
-                  addToCart(selectedVariant);
-                  setCartOpen(true);
-                }}
-              >
-                Add to Cart
-              </button>
-            </div>
+      {product.variants.edges[0].node.compareAtPrice.amount >= 150 ||
+      product.tags.contains("MakeAnOffer") ? (
+        <div className="mt-6 text-center">
+          <div className="lg:inline text-center">
+            <button className="lg:inline-flex w-full lg:w-1/2 cursor-auto bg-white text-center">
+              <div className="inline-flex w-full border border-cream  hover:border-almostBlack">
+                <span
+                  className={
+                    (offerPrice ? "text-almostBlack" : "text-cream") +
+                    "inline-flex mt-3 pl-4 lg:pl-2 align-middle hover:text-almostBlack "
+                  }
+                >
+                  £
+                </span>
+                <input
+                  className="inline-flex lg:w-1/2 p-1 border-none active:border-none hover:border-none focus:ring-0 "
+                  onChange={(e) => setOfferPrice(e.target.value)}
+                  placeholder={""}
+                />
+                <Link
+                  href={`https://wa.me/447718269608?text=I would like to make an offer on this ${product.title} for *£${offerPrice}* https://reliked.com/products/${product.handle}`}
+                  target="_blank"
+                  className="inline-flex text-center bg-cream p-3 w-full hover:bg-almostBlack hover:text-cream hover:border-almostBlack"
+                >
+                  {" "}
+                  Make an offer
+                </Link>
+              </div>
+            </button>
+
+            <button className="lg:inline-flex w-full lg:w-1/2 cursor-auto text-center">
+              <div className="inline-flex border border-taupe w-full bg-taupe text-taupe hover:bg-almostBlack hover:text-almostBlack hover:border-almostBlack">
+                <span className="inline-flex pt-3 bg-inherit text-inherit ">
+                  -
+                </span>
+                <button
+                  className="inline-flex bg-taupe p-3 text-center w-full text-white hover:bg-almostBlack"
+                  onClick={() => {
+                    addToCart(selectedVariant);
+                    setCartOpen(true);
+                  }}
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="text-center mt-6">
+          <button
+            className="bg-taupe p-3 text-center w-full text-white hover:bg-almostBlack"
+            onClick={() => {
+              addToCart(selectedVariant);
+              setCartOpen(true);
+            }}
+          >
+            Add to Cart
           </button>
         </div>
-      </div>
+      )}
     </div>
   );
 }

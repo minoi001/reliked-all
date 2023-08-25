@@ -7,7 +7,9 @@ export default function ProductOptions({
   return (
     // need to make a grid
     <fieldset className="flex border border-cream p-2 m-2 ml-0">
-      <legend className="text-md font-semibold col-span-1 px-1">{name}</legend>
+      <legend className="text-sm font-semibold col-span-1 px-1">
+        {name.toUpperCase()}
+      </legend>
       <div className="items-center">
         {values.map((value) => {
           const id = `option-${name}-${value}`;
