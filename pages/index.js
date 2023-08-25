@@ -15,7 +15,7 @@ export default function Home({ products, headerContent, homepageContent }) {
     <>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-2S3478ZN8E"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_TRACKING_ID}`}
       />
       <Script
         id={"google-analytics"}
