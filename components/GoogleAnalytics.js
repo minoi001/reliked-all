@@ -34,7 +34,7 @@ export const GoogleAnalytics = () => {
                     'analytics_storage': 'denied'
                 });
                 
-                gtag('config', '${process.env.GOOGLE_ANALYTICS_TRACKING_ID}', {
+                gtag('config', 'G-WVNYK69X5D', {
                     page_path: window.location.pathname,
                     'debug_mode': true
                 });

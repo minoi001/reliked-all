@@ -8,11 +8,17 @@ import HeroImage from "../components/Homepage/HeroImage.js";
 import InfluencerSlider from "../components/Homepage/InfluencerSlider.js";
 import FeaturedCollections from "../components/Homepage/FeaturedCollections.js";
 import NewIn from "../components/Homepage/NewIn";
+import Head from "next/head";
 
 export default function Home({ products, headerContent, homepageContent }) {
   return (
     <>
       <div className="bg-white">
+        <Head>
+          <title>
+            Reliked | Bye Second Hand & Preloved Clothes from Influencers
+          </title>
+        </Head>
         <HeroImage homepageContent={homepageContent} />
         <InfluencerSlider />
         <FeaturedCollections />

@@ -4,6 +4,7 @@ import ProductOptions from "./ProductOptions";
 import { ShopContext } from "../../context/shopContext";
 import Link from "next/link";
 import { event } from "../../lib/ga";
+import getSymbolFromCurrency from "currency-symbol-map";
 
 export default function ProductForm({ product }) {
   const { addToCart, setCartOpen } = useContext(ShopContext);
@@ -37,6 +38,7 @@ export default function ProductForm({ product }) {
   const [selectedVariant, setSelectedVariant] = useState(allVariantOptions[0]);
   const [selectedOptions, setSelectedOptions] = useState(defaultValues);
   const [offerPrice, setOfferPrice] = useState();
+  const currency = product.variants.edges[0].node.priceV2.currencyCode;
 
   function setOptions(name, value) {
     setSelectedOptions((prevState) => {
@@ -54,11 +56,7 @@ export default function ProductForm({ product }) {
       }
     });
   }
-  var stringToHTML = function (str) {
-    var parser = new DOMParser();
-    var doc = parser.parseFromString(str, "text/html");
-    return doc.body;
-  };
+  console.log("**", product);
 
   return (
     <div>
@@ -120,12 +118,14 @@ export default function ProductForm({ product }) {
       </div>
       {/* can't align text bottom */}
       <div className="inline-flex w-full items-center mt-4 align-text-bottom">
-        <div className="text-lg inline-flex px-2  align-bottom">
-          RRP{" "}
-          {formatter.format(
-            product.variants.edges[0].node.compareAtPrice.amount
-          )}
-        </div>
+        {product.variants.edges[0].node.compareAtPrice && (
+          <div className="text-lg inline-flex px-2  align-bottom">
+            RRP
+            {formatter.format(
+              product.variants.edges[0].node.compareAtPrice?.amount
+            )}
+          </div>
+        )}
         {product.wasPrice ? (
           <div className="text-lg inline-flex px-2 align-bottom">
             Was {formatter.format(product.wasPrice)}
@@ -139,7 +139,7 @@ export default function ProductForm({ product }) {
         </div>
       </div>
       {/* ATTEMPT 3 */}
-      {product.variants.edges[0].node.compareAtPrice.amount >= 150 ||
+      {product.variants.edges[0].node.compareAtPrice?.amount >= 150 ||
       product.tags.toString().includes("MakeAnOffer") ? (
         <div className="mt-6 text-center">
           <div className="lg:inline text-center">
@@ -151,7 +151,9 @@ export default function ProductForm({ product }) {
                     "inline-flex mt-3 pl-4 lg:pl-2 align-middle hover:text-almostBlack "
                   }
                 >
-                  £
+                  {getSymbolFromCurrency(
+                    product.variants.edges[0].node.priceV2.currencyCode
+                  )}
                 </span>
                 <input
                   className="inline-flex lg:w-1/2 p-1 border-none active:border-none hover:border-none focus:ring-0 "
@@ -178,8 +180,9 @@ export default function ProductForm({ product }) {
                   onClick={() => {
                     addToCart(selectedVariant);
                     setCartOpen(true);
-                    event({
-                      action: "add_to_cart",
+                    event("add_to_cart", {
+                      currency: currency,
+                      value: product.variants.edges[0].node.priceV2.amount,
                     });
                   }}
                 >
@@ -196,8 +199,9 @@ export default function ProductForm({ product }) {
             onClick={() => {
               addToCart(selectedVariant);
               setCartOpen(true);
-              event({
-                action: "add_to_cart",
+              event("add_to_cart", {
+                currency: currency,
+                value: product.variants.edges[0].node.priceV2.amount,
               });
             }}
           >

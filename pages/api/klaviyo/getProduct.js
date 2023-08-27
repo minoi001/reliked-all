@@ -6,6 +6,5 @@ export default async function handler(req, res) {
   console.log(req.body);
   let handle = req.body.handle.replace("https://reliked.com/products/", "");
   let apiRes = await getProduct(handle);
-  // res.status(200).json({ createdAt: apiRes.createdAt });
   res.status(200).json({ createdAt: apiRes.createdAt });
 }
