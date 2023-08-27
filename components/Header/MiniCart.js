@@ -143,8 +143,13 @@ export default function MiniCart({ cart }) {
                             href={checkoutUrl}
                             className="flex items-center justify-center border border-transparent bg-taupe px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-almostBlack"
                             onClick={() =>
-                              event({
-                                action: "checkout_started",
+                              event("checkout_started", {
+                                currency:
+                                  cart.length > 0 ? cart[0].currency : "GBP",
+                                value: cartTotal,
+                                items: cart.map((p) => {
+                                  return { item_id: p.id, item_name: p.title };
+                                }),
                               })
                             }
                           >
