@@ -183,6 +183,7 @@ export default function ProductForm({ product }) {
                     event("add_to_cart", {
                       currency: currency,
                       value: product.variants.edges[0].node.priceV2.amount,
+                      ecomm_pagetype: "product",
                     });
                   }}
                 >
@@ -202,6 +203,9 @@ export default function ProductForm({ product }) {
               event("add_to_cart", {
                 currency: currency,
                 value: product.variants.edges[0].node.priceV2.amount,
+                ecomm_pagetype: "product",
+                ecomm_totalvalue: product.variants.edges[0].node.priceV2.amount,
+                //TODO: add ecomm_prodid: https://support.google.com/analytics/answer/3455600?hl=en#zippy=%2Cadd-attributes-for-the-retail-vertical
               });
             }}
           >

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { formatter } from "../../utils/helpers";
+import { event } from "../../lib/ga";
 
 const ProductCard = ({ hit }) => {
   const { handle, title, objectID } = hit;
@@ -14,7 +15,22 @@ const ProductCard = ({ hit }) => {
   const price = hit.price ?? hit.priceRange.minVariantPrice.amount;
   return (
     <div>
-      <Link href={{ pathname: `/products/${handle}`, query: { id: objectID } }}>
+      <Link
+        href={{ pathname: `/products/${handle}`, query: { id: objectID } }}
+        onClick={() =>
+          event("view_item", {
+            currency: hit.priceRange?.minVariantPrice?.currencyCode ?? "GBP",
+            value: price,
+            items: [
+              {
+                item_id: objectID,
+                item_name: title,
+              },
+            ],
+            ecomm_pagetype: "product",
+          })
+        }
+      >
         <div className="group ">
           <div className="w-full bg-offWhite overflow-hidden ">
             <div className="grid group-hover:opacity-75-20 w-full aspect-4/5 p-3 place-items-center">

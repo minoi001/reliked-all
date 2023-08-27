@@ -4,7 +4,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 export const GoogleAnalytics = () => {
   const pageView = (url) => {
-    window.gtag("config", process.env.GOOGLE_ANALYTICS_TRACKING_ID, {
+    window.gtag("config", "G-WVNYK69X5D", {
       page_path: url,
     });
   };
@@ -36,7 +36,6 @@ export const GoogleAnalytics = () => {
                 
                 gtag('config', 'G-WVNYK69X5D', {
                     page_path: window.location.pathname,
-                    'debug_mode': true
                 });
                 `,
         }}

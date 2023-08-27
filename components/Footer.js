@@ -1,25 +1,6 @@
-import { useContext } from "react";
-import { ShopContext } from "../context/shopContext";
-import { AccountContext } from "../context/accountContext";
 import Image from "next/image";
-import { Fragment, useState } from "react";
-import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-  MagnifyingGlassIcon,
-  ShoppingBagIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-
-import MiniCart from "./Header/MiniCart";
-import Link from "next/link";
 
 export default function Footer() {
-  const { cart, cartOpen, setCartOpen, headerContent } =
-    useContext(ShopContext);
-
-  const [open, setOpen] = useState(false);
-
   return (
     <div className="max-w-7xl mx-auto container py-20 xl:px-24 lg:px-12 sm:px-6 px-4 bg-taupe">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 gap-4">
