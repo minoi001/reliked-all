@@ -1,21 +1,12 @@
-import { useState, useContext } from "react";
+import { useContext, useState } from "react";
 import { formatter } from "../../utils/helpers";
-import ProductList from "../Homepage/ProductList";
 import ProductOptions from "./ProductOptions";
 import { ShopContext } from "../../context/shopContext";
 import Link from "next/link";
+import { event } from "../../lib/ga";
+
 export default function ProductForm({ product }) {
-  const {
-    cartOpen,
-    addToCart,
-    setCartOpen,
-    checkoutUrl,
-    removeCartItem,
-    clearCart,
-    cartLoading,
-    incrementCartItem,
-    decrementCartItem,
-  } = useContext(ShopContext);
+  const { addToCart, setCartOpen } = useContext(ShopContext);
 
   const allVariantOptions = product.variants.edges?.map((variant) => {
     const allOptions = {};
@@ -172,13 +163,12 @@ export default function ProductForm({ product }) {
                   target="_blank"
                   className="inline-flex text-center bg-cream p-3 w-full hover:bg-almostBlack hover:text-cream hover:border-almostBlack"
                 >
-                  {" "}
                   Make an offer
                 </Link>
               </div>
             </button>
 
-            <button className="lg:inline-flex w-full lg:w-1/2 cursor-auto text-center">
+            <div className="lg:inline-flex w-full lg:w-1/2 cursor-auto text-center">
               <div className="inline-flex border border-taupe w-full bg-taupe text-taupe hover:bg-almostBlack hover:text-almostBlack hover:border-almostBlack">
                 <span className="inline-flex pt-3 bg-inherit text-inherit ">
                   -
@@ -188,12 +178,15 @@ export default function ProductForm({ product }) {
                   onClick={() => {
                     addToCart(selectedVariant);
                     setCartOpen(true);
+                    event({
+                      action: "add_to_cart",
+                    });
                   }}
                 >
                   Add to Cart
                 </button>
               </div>
-            </button>
+            </div>
           </div>
         </div>
       ) : (
@@ -203,6 +196,9 @@ export default function ProductForm({ product }) {
             onClick={() => {
               addToCart(selectedVariant);
               setCartOpen(true);
+              event({
+                action: "add_to_cart",
+              });
             }}
           >
             Add to Cart

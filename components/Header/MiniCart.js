@@ -1,30 +1,21 @@
-import { Fragment, useState, useContext, useRef } from "react";
+import { Fragment, useContext, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { ShopContext } from "../../context/shopContext";
 import { formatter } from "../../utils/helpers";
+import { event } from "../../lib/ga";
 
 export default function MiniCart({ cart }) {
   const cancelButtonRef = useRef();
 
-  const {
-    cartOpen,
-    setCartOpen,
-    checkoutUrl,
-    removeCartItem,
-    clearCart,
-    cartLoading,
-    incrementCartItem,
-    decrementCartItem,
-  } = useContext(ShopContext);
+  const { cartOpen, setCartOpen, checkoutUrl, removeCartItem } =
+    useContext(ShopContext);
 
   let cartTotal = 0;
   cart.map((item) => {
     cartTotal += item?.variantPrice * item?.variantQuantity;
   });
-
-  const products = [];
 
   return (
     <Transition.Root show={cartOpen} as={Fragment}>
@@ -151,6 +142,11 @@ export default function MiniCart({ cart }) {
                           <a
                             href={checkoutUrl}
                             className="flex items-center justify-center border border-transparent bg-taupe px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-almostBlack"
+                            onClick={() =>
+                              event({
+                                action: "checkout_started",
+                              })
+                            }
                           >
                             Checkout
                           </a>

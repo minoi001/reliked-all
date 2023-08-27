@@ -19,6 +19,7 @@ export const GoogleAnalytics = () => {
     <>
       <Script
         async
+        //TODO- Replace with G-W6EE5XQGE6
         src={`https://www.googletagmanager.com/gtag/js?id=G-WVNYK69X5D`}
       />
       <Script
@@ -35,6 +36,7 @@ export const GoogleAnalytics = () => {
                 
                 gtag('config', '${process.env.GOOGLE_ANALYTICS_TRACKING_ID}', {
                     page_path: window.location.pathname,
+                    'debug_mode': true
                 });
                 `,
         }}
