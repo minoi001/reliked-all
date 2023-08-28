@@ -32,13 +32,13 @@ export default function CookieBanner() {
                         fixed bottom-0 left-0 right-0 
                         ${
                           cookieConsent != null ? "hidden" : "flex"
-                        }  px-3 md:px-4 py-3 justify-between items-center flex-col sm:flex-row gap-4  
-                         bg-gray-700 rounded-lg shadow`}
+                        }  px-3 md:px-4 py-3 justify-between items-center taupe flex-col sm:flex-row gap-4  
+                         bg-taupe rounded-lg shadow`}
     >
       <div className="text-center">
         <Link href="/info/cookies">
-          <p>
-            We use <span className="font-bold text-sky-400">cookies</span> on
+          <p className="text-cream">
+            We use <span className="font-bold text-offWhite">cookies</span> on
             our site.
           </p>
         </Link>
@@ -46,13 +46,13 @@ export default function CookieBanner() {
 
       <div className="flex gap-2">
         <button
-          className="px-5 py-2 text-gray-300 rounded-md border-gray-900"
+          className="px-5 py-2 text-cream rounded-md border-gray-900"
           onClick={() => setCookieConsent(false)}
         >
           Decline
         </button>
         <button
-          className="bg-gray-900 px-5 py-2 text-white rounded-lg"
+          className="bg-rose px-5 py-2 text-offWhite rounded-lg"
           onClick={() => setCookieConsent(true)}
         >
           Allow Cookies

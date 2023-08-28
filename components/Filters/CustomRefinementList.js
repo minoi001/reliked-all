@@ -8,7 +8,7 @@ const RefinementList = ({
   createURL,
 }) => {
   return (
-    <ul className="absolute bg-cream rounded-none p-4 overflow-auto h-48">
+    <ul className="absolute bg-cream rounded-none p-4 overflow-auto min-h-min">
       {items.map((item) => {
         return (
           <li key={item.label} className="flex items-center space-x-2">
