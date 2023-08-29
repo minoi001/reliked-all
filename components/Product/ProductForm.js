@@ -120,7 +120,7 @@ export default function ProductForm({ product }) {
       <div className="inline-flex w-full items-center mt-4 align-text-bottom">
         {product.variants.edges[0].node.compareAtPrice && (
           <div className="text-lg inline-flex px-2  align-bottom">
-            RRP
+            RRP{" "}
             {formatter.format(
               product.variants.edges[0].node.compareAtPrice?.amount
             )}
