@@ -2,7 +2,7 @@ import Head from "next/head";
 import { getBlogPostsList } from "../../../lib/shopify";
 import BlogPageContent from "../../../components/Blog/BlogPageContent";
 
-export default function BlogPostList(blog, id) {
+export default function BlogPostList({ blog, id }) {
   return (
     <div className="minh-screen">
       <Head>
