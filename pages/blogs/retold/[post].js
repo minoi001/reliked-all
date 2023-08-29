@@ -1,27 +1,26 @@
-import { getProduct } from "../../../lib/shopify.js";
-import ProductPageContent from "../../../components/Product/ProductPageContent.js";
+import { getBlogPost } from "../../../lib/shopify.js";
+import BlogPostPageContent from "../../../components/Blog/BlogPostPageContent.js";
 import Head from "next/head";
 
-export default function ProductPage({ product, id }) {
+export default function BlogPost({ post, id }) {
   return (
     <div className="minh-screen">
       <Head>
-        <title>{product.title}</title>
+        <title>{post.title}</title>
       </Head>
-      <title>{product.title}</title>
-      <meta name="description" content={product.description} />;
-      <ProductPageContent product={product} id={id} />
+      <title>{post.title}</title>
+      <meta name="description" content={post.description} />
+      <BlogPostPageContent post={post} id={id} />
     </div>
   );
 }
 export async function getServerSideProps({ params, query }) {
   // Fetch data based on the slug parameter
-  const product = await getProduct(params.product);
-
+  const post = await getBlogPost(`${params.post}`);
   return {
     props: {
-      product,
-      id: query.id,
+      post,
+      id: post.id,
     },
   };
 }

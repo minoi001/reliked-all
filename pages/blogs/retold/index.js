@@ -1,87 +1,29 @@
-import { useState } from "react";
-import {
-  Configure,
-  Hits,
-  InstantSearch,
-  Pagination,
-} from "react-instantsearch";
-import { indexNames, searchClient } from "../../algoliaConfig";
-import Link from "next/link";
-import CollectionFilters from "../../components/Filters/CollectionFilters";
 import Head from "next/head";
+import { getBlogPostsList } from "../../../lib/shopify";
+import BlogPageContent from "../../../components/Blog/BlogPageContent";
 
-export default function Collections() {
-  const [collectionType, setCollectionType] = useState("vendor");
-  async function updateCollections(collectionType) {
-    setCollectionType(collectionType);
-  }
-
-  const searchParameters = {
-    filters: `meta.custom_fields.collection_type:'${collectionType}'`,
-  };
-
+export default function BlogPostList(blog, id) {
   return (
-    <div className="mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="minh-screen">
       <Head>
-        <title>Collections</title>
+        <title>Reliked Blog | Retold</title>
       </Head>
-      <div className="sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
-        <h1 className={`font-h p-4 text-3xl text-center`}>
-          Shop by {collectionHeader(collectionType)}
-        </h1>
+      <meta name="description" content={blog.description} />
 
-        <InstantSearch
-          searchClient={searchClient}
-          indexName={indexNames.collections}
-          insights={true}
-        >
-          <CollectionFilters
-            updateCollections={updateCollections}
-            collectionType={collectionType}
-          />
-          <Configure {...searchParameters} />
-          <Hits hitComponent={Hit} />
-          <div className="py-12 md:p-12">
-            <Pagination
-              translations={{
-                previous: "Previous",
-                next: "Next",
-                first: "First",
-                last: "Last",
-                page(currentRefinement) {
-                  return currentRefinement;
-                },
-              }}
-              // hitsPerPage={24}
-              showLast={true}
-            />
-          </div>
-        </InstantSearch>
-      </div>
+      <BlogPageContent blog={blog} id={id} />
     </div>
   );
 }
 
-function Hit({ hit }) {
-  return (
-    <Link href={`collections/${hit.handle}`}>
-      {hit.meta?.custom_fields?.collection_type?.includes("Vendor") && (
-        <img src={hit.image} alt={hit.handle} />
-      )}
-      <p>{hit.title}</p>
-    </Link>
-  );
-}
+export async function getServerSideProps({ params, query }) {
+  // Fetch data based on the slug parameter
+  const blog = await getBlogPostsList(); //
 
-function capitaliseFirstLetter(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  return {
+    props: {
+      blog,
+      id: blog.id,
+      // query ID wouldn't work? is this an issue?
+    },
+  };
 }
-export const collectionHeader = (collectionType) => {
-  switch (collectionType) {
-    case "vendor":
-      return "Influencer";
-
-    default:
-      return capitaliseFirstLetter(collectionType);
-  }
-};
