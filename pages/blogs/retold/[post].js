@@ -1,5 +1,5 @@
-import ProductPageContent from "../../components/Product/ProductPageContent";
-import { getProduct } from "../../lib/shopify.js";
+import { getProduct } from "../../../lib/shopify.js";
+import ProductPageContent from "../../../components/Product/ProductPageContent.js";
 import Head from "next/head";
 
 export default function ProductPage({ product, id }) {

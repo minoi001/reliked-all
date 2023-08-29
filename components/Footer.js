@@ -129,7 +129,7 @@ export default function Footer() {
             About Us
           </a>
           <a
-            href=""
+            href="/pages/contact-us"
             className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
           >
             Contact us

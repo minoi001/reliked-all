@@ -1,27 +1,30 @@
-import ProductPageContent from "../../components/Product/ProductPageContent";
-import { getProduct } from "../../lib/shopify.js";
+import PageContent from "../../components/Page/PageContent";
+import { getPage } from "../../lib/shopify.js";
 import Head from "next/head";
 
-export default function ProductPage({ product, id }) {
+export default function Page({ page, id }) {
+  console.log(page.title);
   return (
     <div className="minh-screen">
       <Head>
-        <title>{product.title}</title>
+        <title>{page.title}</title>
       </Head>
-      <title>{product.title}</title>
-      <meta name="description" content={product.description} />;
-      <ProductPageContent product={product} id={id} />
+      <title>{page.title}</title>
+      <meta name="description" content={page.description} />
+      <PageContent page={page} id={id} />
     </div>
   );
 }
 export async function getServerSideProps({ params, query }) {
   // Fetch data based on the slug parameter
-  const product = await getProduct(params.product);
+  console.log(params);
+  const page = await getPage(params.page);
 
   return {
     props: {
-      product,
-      id: query.id,
+      page,
+      id: page.id,
+      // query ID wouldn't work? is this an issue?
     },
   };
 }
