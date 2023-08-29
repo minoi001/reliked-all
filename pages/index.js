@@ -16,7 +16,7 @@ export default function Home({ products, headerContent, homepageContent }) {
       <div className="bg-white">
         <Head>
           <title>
-            Reliked | Bye Second Hand & Preloved Clothes from Influencers
+            Reliked | Buy Second Hand & Preloved Clothes from Influencers
           </title>
         </Head>
         <HeroImage homepageContent={homepageContent} />

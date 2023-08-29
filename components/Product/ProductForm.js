@@ -100,7 +100,9 @@ export default function ProductForm({ product }) {
             product.influencer.value.includes("Profit") ||
             product.influencer.value.includes("EBLO") ||
             product.influencer.value.includes("RELI") ||
-            product.type.includes("Beauty") ? (
+            product.type.includes("Beauty") ||
+            product.tags.includes("HideVendor") ||
+            product.tags.includes("Anonymous VIB") ? (
               ""
             ) : (
               <ProductOptions
@@ -139,15 +141,14 @@ export default function ProductForm({ product }) {
         </div>
       </div>
       {/* ATTEMPT 3 */}
-      {product.variants.edges[0].node.compareAtPrice?.amount >= 150 ||
-      product.tags.toString().includes("MakeAnOffer") ? (
+      {product.tags.toString().includes("MakeAnOffer") ? (
         <div className="mt-6 text-center">
           <div className="lg:inline text-center">
             <button className="lg:inline-flex w-full lg:w-1/2 cursor-auto bg-white text-center">
               <div className="inline-flex w-full border border-cream  hover:border-almostBlack">
                 <span
                   className={
-                    (offerPrice ? "text-almostBlack" : "text-cream") +
+                    (offerPrice ? "text-almostBlack" : "text-white") +
                     "inline-flex mt-3 pl-4 lg:pl-2 align-middle hover:text-almostBlack "
                   }
                 >
@@ -163,7 +164,7 @@ export default function ProductForm({ product }) {
                 <Link
                   href={`https://wa.me/447718269608?text=I would like to make an offer on this ${product.title} for *£${offerPrice}* https://reliked.com/products/${product.handle}`}
                   target="_blank"
-                  className="inline-flex text-center bg-cream p-3 w-full hover:bg-almostBlack hover:text-cream hover:border-almostBlack"
+                  className="inline-flex text-center bg-cream p-3 w-full hover:bg-almostBlack hover:text-white hover:border-almostBlack"
                 >
                   Make an offer
                 </Link>

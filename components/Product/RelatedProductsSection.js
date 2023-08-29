@@ -36,17 +36,16 @@ export default function RelatedProductsSection({ currentObjectID }) {
         itemComponent={({ item }) => {
           return <ProductCard hit={item} />;
         }}
-        maxRecommendations={9}
+        maxRecommendations={12}
         headerComponent={() => {
           return (
-            <h2 className=" mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8 text-2xl font-extrabold text-gray-900 mt-6">
-              YOU MIGHT ALSO LIKE
+            <h2 className="font-h mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8 text-3xl font-extrabold text-gray-900 mt-6">
+              You may also like...
             </h2>
           );
         }}
         classNames={{
-          list: "grid grid-cols-3 sm:grid-cols-5 gap-4",
-          container: "bg-white p-4 mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8",
+          list: "grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 xl:gap-8",
         }}
       />
     </div>

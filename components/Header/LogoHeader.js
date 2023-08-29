@@ -121,7 +121,7 @@ const LogoHeader = () => {
             {/* End of Navigation */}
             {/* Mobile Search Bar */}
             {!isCollectionsPage && (
-              <div className="lg:hidden pb-2 w-full">
+              <div className="lg:hidden w-full">
                 <Search />
               </div>
             )}
