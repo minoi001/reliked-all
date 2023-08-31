@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-
-export default function Footer() {
+import { useContext } from "react";
+import { ShopContext } from "../context/shopContext";
+export default function Footer(props) {
+  const { footerNav } = useContext(ShopContext);
   return (
     <div className="max-w-7xl mx-auto container py-20 xl:px-24 lg:px-12 sm:px-6 px-4 bg-taupe">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 gap-4">
@@ -107,70 +109,25 @@ export default function Footer() {
             </button>
           </div>
         </div>
-        <div className="sm:ml-0 ml-8 flex flex-col">
-          <h2 className="text-base font-semibold leading-4 text-gray-800 dark:text-white">
-            Company
-          </h2>
-          <a
-            href=""
-            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
-          >
-            Blog
-          </a>
-          <a
-            href=""
-            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
-          >
-            Pricing
-          </a>
-          <a
-            href=""
-            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
-          >
-            About Us
-          </a>
-          <Link
-            href="/pages/contact-us"
-            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
-          >
-            Contact us
-          </Link>
-          <a
-            href=""
-            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
-          >
-            Testimonials
-          </a>
+        <div className="sm:ml-0 ml-1 w-full grid grid-cols-2">
+          {footerNav.items
+            ? footerNav.items.map((item) => (
+                <div key={item.name} className="md:w-full">
+                  <Link
+                    className="w-full"
+                    key={item.name}
+                    href={item.href
+                      .replace("https://e-bloggers.myshopify.com", "")
+                      .replace("https://reliked.com", "")
+                      .replace("https://ebloggers.co.uk", "")}
+                  >
+                    {item.name}
+                  </Link>
+                </div>
+              ))
+            : ""}
         </div>
-        <div className="flex flex-col">
-          <h2 className="text-base font-semibold leading-4 text-gray-800 dark:text-white">
-            Support
-          </h2>
-          <a
-            href=""
-            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
-          >
-            Legal policy
-          </a>
-          <a
-            href=""
-            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
-          >
-            Status policy
-          </a>
-          <a
-            href=""
-            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
-          >
-            Privacy policy
-          </a>
-          <a
-            href=""
-            className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6 text-gray-800 dark:text-white cursor-pointer"
-          >
-            Terms of service
-          </a>
-        </div>
+
         <div className="mt-10 lg:block hidden">
           <label className="text-xl font-medium leading-5 text-gray-800 dark:text-white">
             Get updates
