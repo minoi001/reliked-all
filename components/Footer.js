@@ -8,26 +8,19 @@ export default function Footer(props) {
     <div className="max-w-7xl mx-auto container py-20 xl:px-24 lg:px-12 sm:px-6 px-4 bg-taupe">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 gap-4">
         <div className="flex flex-col flex-shrink-0">
-          <div className="dark:text-white">
+          <div className="">
             <Image
-              className="dark:hidden"
-              src="https://tuk-cdn.s3.amazonaws.com/can-uploader/footer-I-svg1.svg"
+              className=""
+              src="https://cdn.shopify.com/s/files/1/2481/5934/files/Reliked_Logo_R_W.png?v=1642429362"
               alt="icon"
-              width="100"
-              height="100"
-            />
-            <Image
-              className="hidden dark:block"
-              src="https://tuk-cdn.s3.amazonaws.com/can-uploader/footer-I-svg1dark.svg"
-              alt="icon"
-              width="100"
+              width="150"
               height="100"
             />
           </div>
-          <p className="text-sm leading-none text-gray-800 mt-4 dark:text-white">
+          <p className="text-sm leading-none text-white mt-4">
             Copyright © 2021 Luxe
           </p>
-          <p className="text-sm leading-none text-gray-800 mt-4 dark:text-white">
+          <p className="text-sm leading-none text-white mt-4">
             All rights reserved
           </p>
           <div className="flex items-center gap-x-4 mt-12">
@@ -112,7 +105,7 @@ export default function Footer(props) {
         <div className="sm:ml-0 ml-1 w-full grid grid-cols-2">
           {footerNav.items
             ? footerNav.items.map((item) => (
-                <div key={item.name} className="md:w-full">
+                <div key={item.name} className="md:w-full text-white">
                   <Link
                     className="w-full"
                     key={item.name}
@@ -129,21 +122,21 @@ export default function Footer(props) {
         </div>
 
         <div className="mt-10 lg:block hidden">
-          <label className="text-xl font-medium leading-5 text-gray-800 dark:text-white">
+          <label className="text-xl font-medium leading-5 text-white b-2">
             Get updates
           </label>
-          <div className="cursor-pointer flex items-center justify-between border border-gray-800 dark:border-white mt-4">
+          <div className="cursor-pointer flex items-center justify-between border border-white mt-4">
             <input
               type="text"
-              className="text-base leading-4 p-4 w-full focus:outline-none text-gray-800 dark:text-white dark:placeholder-white dark:bg-gray-900 dark:border-white placeholder-gray-800"
+              className="text-base leading-4 p-4 w-full focus:outline-none text-almostBlack placeholder-taupe focus:ring-gray-800 border-white  active:border-cream focus:border-taupe hover:border-taupe focus:ring-0"
               placeholder="Enter your email"
             />
             <button
               aria-label="send"
-              className="mr-4 fill-current text-gray-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800"
+              className="mr-4 fill-current text-white hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800"
             >
               <svg
-                className="dark:text-white dark:hover:text-gray-200"
+                className="ml-4"
                 width="16"
                 height="17"
                 viewBox="0 0 16 17"
@@ -160,13 +153,13 @@ export default function Footer(props) {
         </div>
       </div>
       <div className="mt-10 lg:hidden">
-        <label className="text-xl font-medium leading-5 text-gray-800 dark:text-white">
+        <label className="text-xl font-medium leading-5 text-white">
           Get updates
         </label>
-        <div className="flex items-center justify-between border border-gray-800 dark:border-white mt-4">
+        <div className="flex items-center justify-between border border-white mt-4">
           <input
             type="text"
-            className="text-base leading-4 p-4 relative w-full focus:outline-none text-gray-800 placeholder-gray-800 dark:text-white dark:placeholder-white dark:border-white dark:bg-gray-900"
+            className="text-base leading-4 p-4 relative w-full focus:outline-none text-white placeholder-gray-800"
             placeholder="Enter your email"
           />
           <button
@@ -174,7 +167,7 @@ export default function Footer(props) {
             className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer mr-4 cursor-pointer relative"
           >
             <svg
-              className="fill-current text-gray-800 hover:text-gray-500 dark:text-white dark:hover:text-gray-200"
+              className="fill-current text-white hover:text-gray-500"
               width="16"
               height="17"
               viewBox="0 0 16 17"
