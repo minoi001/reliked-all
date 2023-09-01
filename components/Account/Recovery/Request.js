@@ -1,10 +1,10 @@
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import { useContext } from "react";
-import { AccountContext } from "../../context/accountContext";
+import { AccountContext } from "../../../context/accountContext";
 import Link from "next/link";
 
-export default function Recovery() {
+export default function Request() {
   const {
     userInfo,
     setUserInfo,

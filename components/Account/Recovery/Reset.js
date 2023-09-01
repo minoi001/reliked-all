@@ -1,10 +1,10 @@
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import { useContext } from "react";
-import { AccountContext } from "../../context/accountContext";
+import { AccountContext } from "../../../context/accountContext";
 import Link from "next/link";
-
-export default function PasswordReset() {
+import { useState } from "react";
+export default function Reset({ token }) {
   const {
     userInfo,
     setUserInfo,
@@ -13,7 +13,10 @@ export default function PasswordReset() {
     updateUserValue,
   } = useContext(AccountContext);
 
+  const { tokenObject, setTokenObject } = useState(token);
   const formInput = async (event) => {
+    // console.log(event);
+    // console.log(event.nativeEvent.srcElement.name);
     updateUserValue({
       [event.nativeEvent.srcElement.name]: `${event.target.value}`,
     });
@@ -22,12 +25,13 @@ export default function PasswordReset() {
   const buttonClick = async (event) => {
     event.preventDefault();
 
-    if (!userInfo.email) {
+    if (userInfo.newPassword !== userInfo.confirmPassword) {
       updateUserValue({
-        errorMessage: `Please enter a valid email address.`,
+        errorMessage: `Passwords do not match.`,
       });
     } else {
-      sendRecoveryRequest();
+      //   sendRecoveryRequest();
+      console.log("passwords match");
     }
   };
 
@@ -42,17 +46,10 @@ export default function PasswordReset() {
           <div className="w-full max-w-md space-y-8">
             <div>
               <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-                Account Recovery
+                {/* {token.reset} */}
+                Update Password
               </h2>
-              {/* <p className="mt-2 text-center text-sm text-gray-600">
-                Or
-                <a
-                  href="#"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  start your 14-day free trial
-                </a>
-              </p> */}
+
               {userInfo.errorMessage ? (
                 <h4 className="mt-6 text-center text-1xl font-bold tracking-tight text-gray-900 bg-red-300 text-red-700">
                   {userInfo.errorMessage}
@@ -72,37 +69,37 @@ export default function PasswordReset() {
               <input type="hidden" name="remember" defaultValue="true" />
               <div className="-space-y-px shadow-sm">
                 <div>
-                  <label htmlFor="email-address" className="sr-only">
-                    Email address
+                  <label htmlFor="password" className="sr-only">
+                    Password
                   </label>
                   <input
-                    id="email-address"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
+                    id="password"
+                    name="newPassword"
+                    type="password"
+                    autoComplete="password"
                     required
                     className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-taupe sm:text-sm sm:leading-6"
-                    placeholder="Email address"
+                    placeholder="New Password"
+                    onChange={formInput}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password" className="sr-only">
+                    Password
+                  </label>
+                  <input
+                    id="password"
+                    name="confirmPassword"
+                    type="password"
+                    autoComplete="password"
+                    required
+                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-taupe sm:text-sm sm:leading-6"
+                    placeholder="Confirm Password"
                     onChange={formInput}
                   />
                 </div>
               </div>
-              {/* <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <input
-                    id="remember-me"
-                    name="remember-me"
-                    type="checkbox"
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                  />
-                  <label
-                    htmlFor="remember-me"
-                    className="ml-2 block text-sm text-gray-900"
-                  >
-                    Remember me
-                  </label>
-                </div>
-              </div> */}
+
               <div>
                 <button
                   type="submit"
@@ -115,7 +112,7 @@ export default function PasswordReset() {
                       aria-hidden="true"
                     />
                   </span>
-                  Reset Password
+                  Update Password
                 </button>
                 <center>
                   <div className="text-sm p-2">
@@ -123,7 +120,7 @@ export default function PasswordReset() {
                       href="/account/login"
                       className="font-medium text-taupe hover:text-almostBlack"
                     >
-                      Know your details?
+                      Remembered your details?
                     </Link>
                   </div>
                 </center>
