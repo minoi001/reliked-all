@@ -3,7 +3,6 @@ import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 import { CustomRefinementList } from "./CustomRefinementList";
 import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomToggleRefinement } from "./CustomToggle";
-import { ToggleRefinement } from "react-instantsearch";
 
 function ProductFiltersWithoutSortBy({ format }) {
   const [isInfluencerOpen, setIsInfluencerOpen] = useState(false);

@@ -6,19 +6,29 @@ export const CustomToggleRefinement = (props) => {
   });
 
   const handleToggle = () => {
-    refine(!value); // Toggle the value and trigger refinement
+    console.log("8888", value.isRefined);
+    refine(value); // Toggle the value and trigger refinement
   };
 
   return (
-    <label className="relative inline-flex items-center cursor-pointer">
-      <input
-        type="checkbox"
-        value={value}
-        className="sr-only peer"
-        onChange={handleToggle} // Call handleToggle on checkbox change
-      />
-      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-pink-300 dark:peer-focus:ring-pink-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-pink-600"></div>
-      <span className="ml-3 text-sm font-medium">In stock</span>
-    </label>
+    <div className="absolute bg-cream rounded-none p-4 overflow-auto min-h-min w-130px">
+      <label className="flex items-center space-x-2">
+        <input
+          type="checkbox"
+          value={value}
+          onChange={handleToggle}
+          className="h-4 w-4 bg-taupe focus:ring-rose flex items-center space-x-2"
+          style={{
+            backgroundColor: value.isRefined ? "#EC516B" : "",
+          }}
+        />
+        <span
+          className="ml-3 font-medium"
+          style={{ fontWeight: value.isRefined ? "bold" : "" }}
+        >
+          In stock
+        </span>
+      </label>
+    </div>
   );
 };
