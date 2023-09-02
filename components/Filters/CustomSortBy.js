@@ -3,7 +3,6 @@ import { useSortBy } from "react-instantsearch";
 
 function CustomSortBy(props) {
   const { currentRefinement, options, refine } = useSortBy(props);
-  console.log("%%%%%%", options);
 
   return (
     <>
