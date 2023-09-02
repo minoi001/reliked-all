@@ -11,7 +11,7 @@ export default function Layout({ children }) {
   return (
     <div className="flex flex-col">
       <GoogleAnalytics />
-      <div className="bg-offWhite">
+      <div className="bg-offWhite -mb-4 lg:-mb-2">
         <header>
           <Banner />
           <LogoHeader />
@@ -19,7 +19,7 @@ export default function Layout({ children }) {
       </div>
       <main>{children}</main>
       <CookieBanner />
-      <div className="bg-taupe">
+      <div className="bg-taupe mt-12">
         <footer>
           <Footer />
         </footer>

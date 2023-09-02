@@ -66,7 +66,7 @@ function Hit({ hit }) {
   return (
     <Link href={`collections/${hit.handle}`}>
       {hit.meta?.custom_fields?.collection_type?.includes("Vendor") && (
-        <img src={hit.image} alt={hit.handle} />
+        <img src={hit.image} alt={hit.handle} className="aspect-1" />
       )}
       <p>{hit.title}</p>
     </Link>

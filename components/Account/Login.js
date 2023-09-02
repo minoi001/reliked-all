@@ -138,7 +138,7 @@ export default function Login() {
                 <center>
                   <div className="text-sm p-2">
                     <Link
-                      href="/account/recovery"
+                      href="/account/recovery/request"
                       className="font-medium text-taupe hover:text-almostBlack"
                     >
                       Forgot your password?

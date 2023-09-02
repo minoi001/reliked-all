@@ -60,7 +60,7 @@ function ProductFiltersWithoutSortBy({ format }) {
       {AlgoliaDropdownMenu(
         "Influencer",
         <CustomRefinementList
-          attribute="vendor"
+          attribute="meta.custom.influencer"
           showMore={true}
           showMoreLimit={500}
         />,

@@ -28,11 +28,7 @@ export default function ProductOptions({
                     setOptions(name, value);
                   }}
                 />
-                <div
-                  className={`inline text-md mr-3 ${
-                    checked ? "text-almostBlack" : "text-gray-600 bg-gray-100"
-                  }`}
-                >
+                <div className={`inline text-md mr-3 text-almostBlack`}>
                   <span className="inline px-2">{value}</span>
                 </div>
               </label>

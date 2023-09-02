@@ -4,7 +4,7 @@ import Head from "next/head";
 
 export default function ProductPage({ product, id }) {
   return (
-    <div className="minh-screen mb-8">
+    <div className="minh-screen">
       <Head>
         <title>{product.title}</title>
       </Head>

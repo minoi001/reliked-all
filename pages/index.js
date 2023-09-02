@@ -3,6 +3,7 @@ import {
   getHomepageContent,
   getNavigation,
   getProductsInCollection,
+  getFooterNav,
 } from "../lib/shopify.js";
 import HeroImage from "../components/Homepage/HeroImage.js";
 import InfluencerSlider from "../components/Homepage/InfluencerSlider.js";
@@ -16,7 +17,7 @@ export default function Home({ products, headerContent, homepageContent }) {
       <div className="bg-white">
         <Head>
           <title>
-            Reliked | Bye Second Hand & Preloved Clothes from Influencers
+            Reliked | Buy Second Hand & Preloved Clothes from Influencers
           </title>
         </Head>
         <HeroImage homepageContent={homepageContent} />
@@ -36,8 +37,15 @@ export async function getStaticProps() {
   );
   const homepageContent = await getHomepageContent();
   const navigation = await getNavigation();
+  const footerNavigation = await getFooterNav();
 
   return {
-    props: { products, headerContent, homepageContent, navigation },
+    props: {
+      products,
+      headerContent,
+      homepageContent,
+      navigation,
+      footerNavigation,
+    },
   };
 }
