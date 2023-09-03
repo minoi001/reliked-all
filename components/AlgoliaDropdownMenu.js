@@ -1,14 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export default function AlgoliaDropdownMenu(
-  menuTitle,
-  menuItems,
-  isOpen,
-  toggleMenu,
-  setIsOpen
-) {
+export default function AlgoliaDropdownMenu(menuTitle, menuItems) {
   const dropdownsRef = useRef(null);
-
+  const [isOpen, setIsOpen] = useState(false);
   const handleClickOutside = (event) => {
     if (dropdownsRef.current && !dropdownsRef.current.contains(event.target)) {
       setIsOpen(false);
@@ -29,7 +23,7 @@ export default function AlgoliaDropdownMenu(
       <button
         type="button"
         className="m-1 text-black bg-white hover:bg-cream hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center rounded-none border border-cream"
-        onClick={toggleMenu}
+        onClick={() => setIsOpen(!isOpen)}
       >
         {menuTitle}
         <ChevronDown />

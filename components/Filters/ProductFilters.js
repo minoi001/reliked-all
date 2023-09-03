@@ -26,10 +26,7 @@ const ProductFilters = ({ toggleSlideover, isFromSearch, refine }) => {
               },
               { value: "shopify_products_price_asc", label: "Price ascending" },
             ]}
-          />,
-          isSortByOpen,
-          () => setIsSortByOpen(!isSortByOpen),
-          setIsSortByOpen
+          />
         )}
       </div>
       <div className="hidden lg:block">
