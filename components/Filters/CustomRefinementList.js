@@ -6,7 +6,7 @@ const RefinementList = ({ items, isFromSearch, refine, format }) => {
     <ul
       className={`${
         format === "row" ? "absolute" : ""
-      }bg-cream rounded-none p-4 overflow-auto min-h-min`}
+      } bg-cream rounded-none p-4 overflow-auto min-h-min`}
     >
       {items.map((item) => {
         return (
@@ -48,5 +48,5 @@ function getItemLabel(item) {
 
 export const CustomRefinementList = (props) => {
   const refinementBox = useRefinementList(props);
-  return <RefinementList {...refinementBox} />;
+  return <RefinementList {...refinementBox} format={props.format} />;
 };
