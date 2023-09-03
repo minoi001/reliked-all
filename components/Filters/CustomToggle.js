@@ -10,7 +10,11 @@ export const CustomToggleRefinement = (props) => {
   };
 
   return (
-    <div className="absolute bg-cream rounded-none p-4 overflow-auto min-h-min w-130px">
+    <div
+      className={`${
+        props.format === "row" ? "absolute" : ""
+      } bg-cream rounded-none p-4 overflow-auto min-h-min w-130px`}
+    >
       <label className="flex items-center space-x-2">
         <input
           type="checkbox"

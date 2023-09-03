@@ -5,24 +5,13 @@ import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomToggleRefinement } from "./CustomToggle";
 
 function ProductFiltersWithoutSortBy({ format }) {
-  const [isInfluencerOpen, setIsInfluencerOpen] = useState(false);
-  const [isPriceOpen, setIsPriceOpen] = useState(false);
-  const [isSizeOpen, setIsSizeOpen] = useState(false);
-  const [isBrandOpen, setIsBrandOpen] = useState(false);
-  const [isColourOpen, setIsColourOpen] = useState(false);
-  const [isConditionOpen, setIsConditionOpen] = useState(false);
-  const [isPackagingOpen, setIsPackagingOpen] = useState(false);
-  const [isAvailabilityOpen, setIsAvailabilityOpen] = useState(false);
-
   return (
     <div
       className={
         format === "row"
           ? `flex flex-row`
-          : // : `bg-offWhite flex flex-col justify-evenly px-8 py-8 h-full`
-            `flex flex-col`
+          : `bg-offWhite flex flex-col  px-8 py-8 h-full`
       }
-      // ref={dropdownsRef}
     >
       {AlgoliaDropdownMenu(
         "Influencer",
@@ -30,35 +19,49 @@ function ProductFiltersWithoutSortBy({ format }) {
           attribute="meta.custom.influencer"
           showMore={true}
           showMoreLimit={500}
+          format={format}
         />
       )}
 
-      {AlgoliaDropdownMenu("Price", <CustomRangeSlider attribute="price" />)}
+      {AlgoliaDropdownMenu(
+        "Price",
+        <CustomRangeSlider attribute="price" format={format} />
+      )}
       {AlgoliaDropdownMenu(
         "Size",
-        <CustomRefinementList attribute="meta.custom_fields.size" />
+        <CustomRefinementList
+          attribute="meta.custom_fields.size"
+          format={format}
+        />
       )}
       {AlgoliaDropdownMenu(
         "Brand",
-        <CustomRefinementList attribute="options.brand" />
+        <CustomRefinementList attribute="options.brand" format={format} />
       )}
       {AlgoliaDropdownMenu(
         "Colour",
-        <CustomRefinementList attribute="options.colour" />
+        <CustomRefinementList attribute="options.colour" format={format} />
       )}
       {AlgoliaDropdownMenu(
         "Condition",
-        <CustomRefinementList attribute="meta.custom_fields.product_condition" />
+        <CustomRefinementList
+          attribute="meta.custom_fields.product_condition"
+          format={format}
+        />
       )}
       {AlgoliaDropdownMenu(
         "Packaging",
-        <CustomRefinementList attribute="meta.custom_fields.product_packaging" />
+        <CustomRefinementList
+          attribute="meta.custom_fields.product_packaging"
+          format={format}
+        />
       )}
       {AlgoliaDropdownMenu(
         "Availability",
         <CustomToggleRefinement
           attribute="inventory_available"
           label="Inventory available"
+          format={format}
         />
       )}
     </div>

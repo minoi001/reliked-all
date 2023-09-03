@@ -19,7 +19,11 @@ export const CustomRangeSlider = (props) => {
   };
 
   return (
-    <div className="flex flex-col absolute p-4 bg-cream rounded-none">
+    <div
+      className={`flex flex-col ${
+        props.format === "row" ? "absolute" : ""
+      } p-4 bg-cream rounded-none`}
+    >
       <div className="flex justify-between">
         <span className="text-sm">£{values[0]}</span>
         <p className="text-sm">£{values[1]}</p>

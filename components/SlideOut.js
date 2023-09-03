@@ -23,7 +23,7 @@ export default function SlideOut({ isSlideOverOpen, toggleSlideover }) {
       <div
         id="slideover"
         className={
-          "w-1/2 bg-white h-full absolute right-0 duration-300 transition ease-in-out transition-all"
+          "w-2/3 bg-white h-full absolute right-0 duration-300 transition ease-in-out transition-all"
         }
       >
         <div className="absolute cursor-pointer text-gray-600 duration-300 transition ease-in-out top-0 w-8 h-8 flex items-center justify-center right-0 mt-2 mr-2">

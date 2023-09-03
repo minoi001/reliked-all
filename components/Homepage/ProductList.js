@@ -11,7 +11,7 @@ import SlideOut from "../SlideOut";
 
 const ProductList = ({ query }) => {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
-  const { results, indexUiState } = useInstantSearch();
+  const { results } = useInstantSearch();
 
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
@@ -33,7 +33,7 @@ const ProductList = ({ query }) => {
         {results.hits.length > 0 ? (
           <>
             <h1 className={`font-h text-4xl text-center p-4`}>
-              Results for {searchParameters.query}
+              Results for {results.query}
             </h1>
             <Configure {...searchParameters} />
             <Hits hitComponent={ProductCard} />
