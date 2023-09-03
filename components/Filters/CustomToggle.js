@@ -13,7 +13,7 @@ export const CustomToggleRefinement = (props) => {
     <div
       className={`${
         props.format === "row" ? "absolute" : ""
-      } bg-cream rounded-none p-4 overflow-auto min-h-min w-130px`}
+      } bg-cream rounded-none p-4 overflow-auto min-h-min w-130px m-1 mt-0`}
     >
       <label className="flex items-center space-x-2">
         <input

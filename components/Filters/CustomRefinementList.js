@@ -6,7 +6,7 @@ const RefinementList = ({ items, isFromSearch, refine, format }) => {
     <ul
       className={`${
         format === "row" ? "absolute" : ""
-      } bg-cream rounded-none p-4 overflow-auto min-h-min`}
+      } bg-cream rounded-none p-4 overflow-auto min-h-min m-1 mt-0`}
     >
       {items.map((item) => {
         return (
