@@ -4,13 +4,13 @@ import { useContext } from "react";
 import { AccountContext } from "../../../context/accountContext";
 import Link from "next/link";
 import { useState } from "react";
-export default function Reset({ token }) {
+export default function Reset({ token, id, url }) {
   const {
     userInfo,
     setUserInfo,
     getUserInfo,
-    sendRecoveryRequest,
     updateUserValue,
+    sendRecoveryRequest,
   } = useContext(AccountContext);
 
   const { tokenObject, setTokenObject } = useState(token);
@@ -65,7 +65,7 @@ export default function Reset({ token }) {
                 ""
               )}
             </div>
-            <form className="mt-8 space-y-6" action="#" method="POST">
+            <form className="mt-8 space-y-3" action="#" method="POST">
               <input type="hidden" name="remember" defaultValue="true" />
               <div className="-space-y-px shadow-sm">
                 <div>
@@ -73,7 +73,7 @@ export default function Reset({ token }) {
                     Password
                   </label>
                   <input
-                    id="password"
+                    id="newPassword"
                     name="newPassword"
                     type="password"
                     autoComplete="password"
@@ -83,12 +83,12 @@ export default function Reset({ token }) {
                     onChange={formInput}
                   />
                 </div>
-                <div>
+                <div className="pt-1">
                   <label htmlFor="password" className="sr-only">
                     Password
                   </label>
                   <input
-                    id="password"
+                    id="confirmPassword"
                     name="confirmPassword"
                     type="password"
                     autoComplete="password"

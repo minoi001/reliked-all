@@ -14,13 +14,20 @@ export default function ResetPage({ token }) {
     </div>
   );
 }
-export async function getServerSideProps({ params, query }) {
+export async function getServerSideProps({ params, query, resolvedUrl }) {
   // Fetch data based on the slug parameter
   const token = await params;
+  const id = await query;
+  const url = await resolvedUrl.replace(
+    "/account/recovery/",
+    "https://e-bloggers.myshopify.com/_t/c/"
+  );
 
   return {
     props: {
       token,
+      id,
+      url,
     },
   };
 }
