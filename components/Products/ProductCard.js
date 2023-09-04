@@ -56,7 +56,7 @@ const ProductCard = ({ hit, collection }) => {
             hit.tags.toString().includes("HideVendor") ? (
               <div>
                 {/* only show you may also like on influencer collections */}
-                {hit.tags.toString().includes("Eligible") ? (
+                {title.includes("Black") ? (
                   <div className="group flex relative">
                     <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
                       You might also like
