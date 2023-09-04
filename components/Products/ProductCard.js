@@ -56,7 +56,7 @@ const ProductCard = ({ hit, collection }) => {
             hit.tags.toString().includes("HideVendor") ? (
               <div>
                 {/* only show you may also like on influencer collections */}
-                {collection ? (
+                {hit.tags.toString().includes("Eligible") ? (
                   <div className="group flex relative">
                     <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
                       You might also like
@@ -70,13 +70,27 @@ const ProductCard = ({ hit, collection }) => {
     -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
                     >
                       {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
-                      This item isn't owned by {hit.meta.custom.influencer} but
-                      our algorithm thinks you might still like it!
+                      This item isn{"'"}t owned by {hit.meta.custom.influencer}{" "}
+                      but our algorithm thinks you might still like it!
                     </span>
                   </div>
                 ) : (
                   <div className="group flex relative">
-                    <span className="bg-offWhite text-almostBlack px-2 py-3.5 w-full pl-3 text-sm "></span>
+                    <span className="bg-offWhite text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
+                      Sold Anonymously
+                      <BanknotesIcon
+                        color="black"
+                        className="h-6 w-6 inline pb-0.5 pl-1"
+                      />
+                    </span>
+                    <span
+                      className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2 
+    -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
+                    >
+                      {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
+                      We are a preowned marketplace, so this item is sold by a
+                      private seller.
+                    </span>
                   </div>
                 )}
               </div>
