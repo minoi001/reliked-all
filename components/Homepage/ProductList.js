@@ -35,7 +35,7 @@ const ProductList = ({ query }) => {
               Results for {searchParameters.query}
             </h1>
             <Configure {...searchParameters} />
-            <Hits hitComponent={ProductCard} />
+            <Hits hitComponent={<ProductCard collection={query} />} />
             <div className="py-12 md:p-12">
               <Pagination
                 translations={{

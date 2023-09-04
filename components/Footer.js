@@ -18,7 +18,6 @@ export default function Footer(props) {
         <div className="flex flex-col flex-shrink-0">
           <div className="">
             <Image
-              className=""
               src="https://cdn.shopify.com/s/files/1/2481/5934/files/Reliked_Logo_R_W.png?v=1642429362"
               alt="icon"
               width="150"

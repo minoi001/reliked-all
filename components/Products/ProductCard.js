@@ -2,8 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { formatter } from "../../utils/helpers";
 import { event } from "../../lib/ga";
+import {
+  InformationCircleIcon,
+  CurrencyPoundIcon,
+  SunIcon,
+  BanknotesIcon,
+} from "@heroicons/react/24/outline";
 
-const ProductCard = ({ hit }) => {
+const ProductCard = ({ hit, collection }) => {
   const { handle, title, objectID } = hit;
   const image = hit.image
     ? hit.image
@@ -31,8 +37,8 @@ const ProductCard = ({ hit }) => {
           })
         }
       >
-        <div className="group ">
-          <div className="w-full bg-offWhite overflow-hidden ">
+        <div>
+          <div className="group w-full bg-offWhite overflow-hidden ">
             <div className="grid group-hover:opacity-75-20 w-full aspect-4/5 p-3 place-items-center">
               <Image
                 src={image}
@@ -44,8 +50,68 @@ const ProductCard = ({ hit }) => {
               />
             </div>
           </div>
-          <h3 className="mt-4 text-lg font-medium text-gray-900">{title}</h3>
-          <h4 className="mt-4 text-md font-medium text-gray-900">
+
+          <div>
+            {hit.tags.toString().includes("Anonymous") ||
+            hit.tags.toString().includes("HideVendor") ? (
+              <div>
+                {/* only show you may also like on influencer collections */}
+                {collection ? (
+                  <div className="group flex relative">
+                    <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
+                      You might also like
+                      <SunIcon
+                        color="black"
+                        className="h-6 w-6 inline pb-0.5 pl-1"
+                      />
+                    </span>
+                    <span
+                      className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2 
+    -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
+                    >
+                      {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
+                      This item isn't owned by CollectionTitle but our algorithm
+                      thinks you might still like it!
+                    </span>
+                  </div>
+                ) : (
+                  <div className="group flex relative">
+                    <span className="bg-offWhite text-almostBlack px-2 py-3.5 w-full pl-3 text-sm hover:cursor-help"></span>
+                    <span
+                      className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2 
+  -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
+                    >
+                      {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
+                      This item isn't owned by CollectionTitle but our algorithm
+                      thinks you might still like it!
+                    </span>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="group flex relative">
+                <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
+                  Sold by CollectionTitle
+                  <BanknotesIcon
+                    color="black"
+                    className="h-6 w-6 inline pb-0.5 pl-1"
+                  />
+                </span>
+                <span
+                  className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2 
+    -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
+                >
+                  {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
+                  We are a preowned marketplace, so this item is sold by
+                  CollectionTitle (a private seller).
+                </span>
+              </div>
+            )}
+          </div>
+          <h3 className="mt-2 text-mg font-medium text-gray-900 px-1">
+            {title}
+          </h3>
+          <h4 className="mt-2 text-md font-medium text-gray-900 px-0">
             {formatter.format(price)}
           </h4>
         </div>
