@@ -1,14 +1,13 @@
 import { useRefinementList, Highlight } from "react-instantsearch";
 
-const RefinementList = ({
-  items,
-  isFromSearch,
-  refine,
-  searchForItems,
-  createURL,
-}) => {
+const RefinementList = ({ items, isFromSearch, refine, format }) => {
+  console.log(format, "format");
   return (
-    <ul className="absolute bg-cream rounded-none p-4 overflow-auto min-h-min">
+    <ul
+      className={`${
+        format === "row" ? "absolute" : ""
+      } bg-cream rounded-none p-4 overflow-auto min-h-min m-1 mt-0`}
+    >
       {items.map((item) => {
         return (
           <li key={item.label} className="flex items-center space-x-2">
@@ -49,5 +48,5 @@ function getItemLabel(item) {
 
 export const CustomRefinementList = (props) => {
   const refinementBox = useRefinementList(props);
-  return <RefinementList {...refinementBox} />;
+  return <RefinementList {...refinementBox} format={props.format} />;
 };

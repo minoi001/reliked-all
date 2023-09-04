@@ -56,7 +56,6 @@ export default function ProductForm({ product }) {
       }
     });
   }
-  console.log("**", product);
 
   return (
     <div>

@@ -11,7 +11,8 @@ import SlideOut from "../SlideOut";
 
 const ProductList = ({ query }) => {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
-  const { results, indexUiState } = useInstantSearch();
+  const { results } = useInstantSearch();
+
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
   }
@@ -29,10 +30,10 @@ const ProductList = ({ query }) => {
             toggleSlideover={toggleSlideover}
           />
         </div>
-        {results?.hits && results.hits.length > 0 ? (
+        {results.hits.length > 0 ? (
           <>
             <h1 className={`font-h text-4xl text-center p-4`}>
-              Results for {searchParameters.query}
+              Results for {results.query}
             </h1>
             <Configure {...searchParameters} />
             <Hits hitComponent={<ProductCard collection={query} />} />
@@ -47,14 +48,13 @@ const ProductList = ({ query }) => {
                     return currentRefinement;
                   },
                 }}
-                // hitsPerPage={24}
                 showLast={true}
               />
             </div>
           </>
         ) : (
           <h1 className={`font-h text-4xl text-center p-4`}>
-            No results have been found for {`'${indexUiState.query}'`}
+            No results have been found for {`''`}
           </h1>
         )}
       </div>
