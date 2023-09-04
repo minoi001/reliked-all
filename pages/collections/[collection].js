@@ -4,6 +4,7 @@ import ProductFilters from "../../components/Filters/ProductFilters";
 import { useState } from "react";
 import SlideOut from "../../components/SlideOut";
 import Head from "next/head";
+import { SortBy, Pagination } from "react-instantsearch";
 
 export default function CollectionPage({ collection }) {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
@@ -36,6 +37,18 @@ export default function CollectionPage({ collection }) {
         </div>
         <Hits hitComponent={ProductCard} collection={collection} />
       </div>
+      <Pagination
+        translations={{
+          previous: "Previous",
+          next: "Next",
+          first: "First",
+          last: "Last",
+          page(currentRefinement) {
+            return currentRefinement;
+          },
+        }}
+        showLast={true}
+      />
     </div>
   );
 }
