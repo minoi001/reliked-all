@@ -5,6 +5,8 @@ import { ShopContext } from "../../context/shopContext";
 import Link from "next/link";
 import { event } from "../../lib/ga";
 import getSymbolFromCurrency from "currency-symbol-map";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function ProductForm({ product }) {
   const { addToCart, setCartOpen } = useContext(ShopContext);
@@ -163,9 +165,18 @@ export default function ProductForm({ product }) {
                 <Link
                   href={`https://wa.me/447718269608?text=I would like to make an offer on this ${product.title} for *£${offerPrice}* https://reliked.com/products/${product.handle}`}
                   target="_blank"
-                  className="inline-flex text-center bg-cream p-3 w-full hover:bg-almostBlack hover:text-white hover:border-almostBlack"
+                  className={
+                    "inline-flex text-center bg-cream p-3 w-full hover:bg-almostBlack hover:text-white hover:border-almostBlack"
+                  }
                 >
                   Make an offer
+                  <FontAwesomeIcon
+                    icon={faWhatsapp}
+                    color="black hover:white"
+                    width="20"
+                    height="20"
+                    className="pt-1 pl-1"
+                  />
                 </Link>
               </div>
             </button>

@@ -34,7 +34,7 @@ export default function CollectionPage({ collection }) {
             toggleSlideover={toggleSlideover}
           />
         </div>
-        <Hits hitComponent={ProductCard} />
+        <Hits hitComponent={ProductCard} collection={collection} />
       </div>
     </div>
   );

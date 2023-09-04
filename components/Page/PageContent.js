@@ -1,4 +1,5 @@
 import Image from "next/image";
+import styles from "../../styles/dangerous.module.css";
 
 export default function PageContent({ page, id }) {
   return (
@@ -8,7 +9,7 @@ export default function PageContent({ page, id }) {
           <h1 className="font-h text-3xl">{page.title.trim()}</h1>
 
           <div
-            className="pt-6 pb-4"
+            className="pt-6 pb-4 space-y-4"
             dangerouslySetInnerHTML={{
               __html: page.body.replaceAll("<p> </p>", ""),
             }}
