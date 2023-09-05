@@ -36,19 +36,20 @@ export default function CollectionPage({ collection }) {
           />
         </div>
         <Hits hitComponent={ProductCard} collection={collection} />
+        <Pagination
+          className="mb-3 mt-12"
+          translations={{
+            previous: "Previous",
+            next: "Next",
+            first: "First",
+            last: "Last",
+            page(currentRefinement) {
+              return currentRefinement;
+            },
+          }}
+          showLast={true}
+        />
       </div>
-      <Pagination
-        translations={{
-          previous: "Previous",
-          next: "Next",
-          first: "First",
-          last: "Last",
-          page(currentRefinement) {
-            return currentRefinement;
-          },
-        }}
-        showLast={true}
-      />
     </div>
   );
 }
