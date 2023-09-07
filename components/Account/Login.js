@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AccountContext } from "../../context/accountContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { recoverUserAccount } from "../../lib/shopify";
 
 export default function Login() {
   const { push } = useRouter();
@@ -22,6 +23,11 @@ export default function Login() {
     updateUserValue({
       [event.nativeEvent.srcElement.name]: `${event.target.value}`,
     });
+  };
+
+  const handleOnClick = async (event) => {
+    event.preventDefault();
+    await recoverUserAccount(userInfo.email);
   };
 
   const buttonClick = async (event) => {
@@ -137,12 +143,13 @@ export default function Login() {
                 </button>
                 <center>
                   <div className="text-sm p-2">
-                    <Link
-                      href="/account/recovery/request"
+                    <button
+                      // href="/account/recovery/request"
+                      onClick={handleOnClick}
                       className="font-medium text-taupe hover:text-almostBlack"
                     >
                       Forgot your password?
-                    </Link>
+                    </button>
                   </div>
                 </center>
               </div>

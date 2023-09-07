@@ -2,7 +2,7 @@ import Head from "next/head";
 import Reset from "../../../../components/Account/Recovery/Reset";
 import { useParams } from "next/navigation";
 
-export default function ResetPage({ reset }) {
+export default function ResetPage({ reset, id, url }) {
   return (
     <div className="minh-screen">
       <Head>
@@ -14,7 +14,7 @@ export default function ResetPage({ reset }) {
     </div>
   );
 }
-export async function getServerSideProps({ params, query, resolvedUrl }) {
+export async function getServerSideProps({ req, params, query, resolvedUrl }) {
   // Fetch data based on the slug parameter
   const reset = await params;
   const id = await query;

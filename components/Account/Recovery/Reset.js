@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AccountContext } from "../../../context/accountContext";
 import Link from "next/link";
 import { useState } from "react";
+import { resetUserPasswordByURL } from "../../../lib/shopify";
 export default function Reset({ reset, id, url }) {
   const {
     userInfo,
@@ -30,9 +31,9 @@ export default function Reset({ reset, id, url }) {
         errorMessage: `Passwords do not match.`,
       });
     } else {
-      console.log(
-        "password reset url: " +
-          `https://e-bloggers.myshopify.com/account/reset/${reset.customerID}/${reset.token}`
+      await resetUserPasswordByURL(
+        userInfo.newPassword,
+        `http://localhost:3006/account/reset/${reset.customerID}/${reset.token}?syclid=ea6378ea-eaac-474a-9570-e16f50510406`
       );
       console.log("passwords match");
     }
@@ -49,7 +50,7 @@ export default function Reset({ reset, id, url }) {
           <div className="w-full max-w-md space-y-8">
             <div>
               <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-                {reset.customerID} {` `} {reset.token}
+                {/*{reset.customerID} {` `} {reset.token}*/}
                 Update Password
               </h2>
 
