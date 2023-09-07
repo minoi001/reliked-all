@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AccountContext } from "../../../context/accountContext";
 import Link from "next/link";
 import { useState } from "react";
-export default function Reset({ token, id, url }) {
+export default function Reset({ reset, id, url }) {
   const {
     userInfo,
     setUserInfo,
@@ -13,7 +13,7 @@ export default function Reset({ token, id, url }) {
     sendRecoveryRequest,
   } = useContext(AccountContext);
 
-  const { tokenObject, setTokenObject } = useState(token);
+  const { tokenObject, setTokenObject } = useState(reset);
   const formInput = async (event) => {
     // console.log(event);
     // console.log(event.nativeEvent.srcElement.name);
@@ -46,7 +46,7 @@ export default function Reset({ token, id, url }) {
           <div className="w-full max-w-md space-y-8">
             <div>
               <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-                {/* {token.reset} */}
+                {reset.customerID} {` `} {reset.token}
                 Update Password
               </h2>
 

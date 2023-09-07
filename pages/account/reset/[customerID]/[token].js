@@ -1,8 +1,8 @@
 import Head from "next/head";
-import Reset from "../../../components/Account/Recovery/Reset";
+import Reset from "../../../../components/Account/Recovery/Reset";
 import { useParams } from "next/navigation";
 
-export default function ResetPage({ token }) {
+export default function ResetPage({ reset }) {
   return (
     <div className="minh-screen">
       <Head>
@@ -10,13 +10,13 @@ export default function ResetPage({ token }) {
       </Head>
       <title>Password Reset</title>
       {/* <meta name="description" content={product.description} />; */}
-      <Reset token={token} id={token} />
+      <Reset reset={reset} id={reset.token} />
     </div>
   );
 }
 export async function getServerSideProps({ params, query, resolvedUrl }) {
   // Fetch data based on the slug parameter
-  const token = await params;
+  const reset = await params;
   const id = await query;
   const url = await resolvedUrl.replace(
     "/account/recovery/",
@@ -25,7 +25,7 @@ export async function getServerSideProps({ params, query, resolvedUrl }) {
 
   return {
     props: {
-      token,
+      reset,
       id,
       url,
     },

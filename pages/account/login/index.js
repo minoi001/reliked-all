@@ -1,9 +1,8 @@
-import { getNewInProducts, getProduct } from "../../lib/shopify.js";
 import { useRouter } from "next/navigation.js";
 import { useEffect } from "react";
 import { useContext } from "react";
-import { AccountContext } from "../../context/accountContext";
-import Login from "../../components/Account/Login.js";
+import { AccountContext } from "../../../context/accountContext.js";
+import Login from "../../../components/Account/Login.js";
 import Head from "next/head";
 
 export default function LoginPage({ account }) {
