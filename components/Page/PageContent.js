@@ -1,5 +1,4 @@
 import Image from "next/image";
-import styles from "../../styles/dangerous.module.css";
 
 export default function PageContent({ page, id }) {
   return (
