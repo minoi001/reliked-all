@@ -30,7 +30,10 @@ export default function Reset({ reset, id, url }) {
         errorMessage: `Passwords do not match.`,
       });
     } else {
-      //   sendRecoveryRequest();
+      console.log(
+        "password reset url: " +
+          `https://e-bloggers.myshopify.com/account/reset/${reset.customerID}/${reset.token}`
+      );
       console.log("passwords match");
     }
   };
