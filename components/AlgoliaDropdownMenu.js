@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function AlgoliaDropdownMenu(menuTitle, menuItems) {
+export default function AlgoliaDropdownMenu(menuTitle, menuItems, isRefined) {
   const dropdownsRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const handleClickOutside = (event) => {
@@ -26,7 +26,7 @@ export default function AlgoliaDropdownMenu(menuTitle, menuItems) {
         onClick={() => setIsOpen(!isOpen)}
       >
         {menuTitle}
-        <ChevronDown />
+        {isRefined ? <Cross /> : <ChevronDown />}
       </button>
 
       <div className={`${isOpen ? "" : "hidden"}`}>{menuItems}</div>

@@ -14,7 +14,10 @@ export const CustomRangeSlider = (props) => {
     const [min, max] = a;
     setValues(a);
     if (range.min !== min || range.max !== max) {
+      props.setIsRefined(true);
       refine([min, max]);
+    } else {
+      props.setIsRefined(false);
     }
   };
 

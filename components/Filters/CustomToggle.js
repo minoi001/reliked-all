@@ -6,7 +6,8 @@ export const CustomToggleRefinement = (props) => {
   });
 
   const handleToggle = () => {
-    refine(value); // Toggle the value and trigger refinement
+    refine(value);
+    props.setIsRefined(!value.isRefined);
   };
 
   return (
