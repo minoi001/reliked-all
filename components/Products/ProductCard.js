@@ -57,7 +57,7 @@ const ProductCard = ({ hit, collection }) => {
               <div>
                 {/* only show you may also like on influencer collections */}
                 {title.includes("Black") ? (
-                  <div className="group flex relative">
+                  <div className="group flex">
                     <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
                       You might also like
                       <SunIcon
@@ -75,7 +75,7 @@ const ProductCard = ({ hit, collection }) => {
                     </span>
                   </div>
                 ) : (
-                  <div className="group flex relative">
+                  <div className="group flex">
                     <span className="bg-offWhite text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
                       Sold Anonymously
                       <BanknotesIcon
@@ -95,7 +95,7 @@ const ProductCard = ({ hit, collection }) => {
                 )}
               </div>
             ) : (
-              <div className="group flex relative">
+              <div className="group flex">
                 <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
                   Sold by {hit.meta.custom.influencer}
                   <BanknotesIcon
