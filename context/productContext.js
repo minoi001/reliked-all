@@ -104,7 +104,6 @@ export default function ProductProvider({ children }) {
   }
 
   function updateProductValue(valuesObject) {
-    console.log(valuesObject);
     setProductInfo({ ...productInfo, ...valuesObject });
   }
 

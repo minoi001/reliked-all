@@ -14,8 +14,6 @@ export default function Request() {
   } = useContext(AccountContext);
 
   const formInput = async (event) => {
-    // console.log(event);
-    // console.log(event.nativeEvent.srcElement.name);
     updateUserValue({
       [event.nativeEvent.srcElement.name]: `${event.target.value}`,
     });

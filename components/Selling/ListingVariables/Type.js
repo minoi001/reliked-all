@@ -15,7 +15,6 @@ const Type = ({ styles }) => {
   const types = listingVariables.types;
 
   const handleChange = (event) => {
-    console.log(event);
     updateProductValue({ ["type"]: event.value });
   };
 

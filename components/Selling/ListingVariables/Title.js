@@ -23,7 +23,6 @@ const Title = ({ styles }) => {
   const sizes = listingVariables.sizes;
 
   const handleChange = (event) => {
-    console.log(event);
     if (event.variable) {
       updateProductValue({ [event.variable]: event.value });
     } else {

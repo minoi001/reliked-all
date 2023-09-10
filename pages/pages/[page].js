@@ -3,7 +3,6 @@ import { getPage } from "../../lib/shopify.js";
 import Head from "next/head";
 
 export default function Page({ page, id }) {
-  console.log(page.title);
   return (
     <div className="minh-screen">
       <Head>
@@ -15,16 +14,14 @@ export default function Page({ page, id }) {
     </div>
   );
 }
-export async function getServerSideProps({ params, query }) {
+export async function getServerSideProps({ params }) {
   // Fetch data based on the slug parameter
-  console.log(params);
   const page = await getPage(params.page);
 
   return {
     props: {
       page,
       id: page.id,
-      // query ID wouldn't work? is this an issue?
     },
   };
 }

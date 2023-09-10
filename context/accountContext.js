@@ -22,18 +22,12 @@ export default function AccountProvider({ children }) {
   });
 
   function updateUserValue(valuesObject) {
-    // console.log(valuesObject);
     setUserInfo({ ...userInfo, ...valuesObject });
-
-    // for (let value in valuesObject) {
-    //   console.log(valuesObject[value]);
-    // }
 
     return valuesObject;
   }
 
   const checkLoginStatus = async () => {
-    console.log(localStorage.accountToken);
     if (localStorage.accountToken) {
       await sendUserRequest();
     } else {
@@ -46,7 +40,7 @@ export default function AccountProvider({ children }) {
       event.preventDefault();
     }
     let response = await recoverUserAccount(userInfo.email);
-    console.log(response);
+
     if (!response) {
       updateUserValue({
         errorMessage:

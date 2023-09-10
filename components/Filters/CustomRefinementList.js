@@ -1,7 +1,6 @@
 import { useRefinementList, Highlight } from "react-instantsearch";
 
 const RefinementList = ({ items, isFromSearch, refine, format }) => {
-  console.log(format, "format");
   return (
     <ul
       className={`${
