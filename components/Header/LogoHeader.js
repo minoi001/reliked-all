@@ -12,7 +12,7 @@ import {
 import ShoppingSubheader from "./ShoppingSubheader";
 import MiniCart from "./MiniCart";
 import SellingSubheader from "./SellingSubheader";
-import { Search } from "./Search";
+import { Search } from "./SearchBox";
 import AccountMenu from "./AccountMenu";
 
 const LogoHeader = () => {
