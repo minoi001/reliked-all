@@ -10,10 +10,6 @@ export default function Search() {
     query: searchParams.get("q") || "",
   };
 
-  useEffect(() => {
-    console.log(searchParams, "and", searchParameters);
-  }, [searchParameters]);
-
   return (
     <div className="mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8">
       <Head>
