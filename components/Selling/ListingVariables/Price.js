@@ -19,13 +19,11 @@ const Price = ({ styles }) => {
     },
   ];
   const handleChange = (event) => {
-    console.log(event);
     updateProductValue({ [event.variable]: event.value });
   };
 
   const handlePriceChange = (variable) => (event) => {
     // logic around higher/lower prices not working
-    console.log(event.target.value, variable);
     if (variable === "RRP") {
       if (productInfo.salePrice > 0) {
         alert("Sale price has been cleared as you entered a new RRP");

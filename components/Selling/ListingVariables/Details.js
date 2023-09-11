@@ -35,7 +35,6 @@ const Details = ({ styles }) => {
   ];
 
   const handleChange = (event) => {
-    console.log(event);
     updateProductValue({ [event.variable]: event.value });
   };
 

@@ -20,7 +20,6 @@ async function createProduct(productData) {
     },
   });
 
-  console.log("RESULTS", result.data);
   return result.data;
 }
 

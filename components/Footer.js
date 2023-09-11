@@ -142,7 +142,7 @@ export default function Footer(props) {
         <div className="flex items-center justify-between border border-white mt-4">
           <input
             type="text"
-            className="text-base leading-4 p-4 relative w-full focus:outline-none text-white placeholder-gray-800"
+            className="text-base leading-4 p-4 w-full focus:outline-none text-white placeholder-gray-800"
             placeholder="Enter your email"
           />
           <button

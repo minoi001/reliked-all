@@ -8,21 +8,11 @@ import { resetUserPasswordByURL } from "../../../lib/shopify";
 import { useRouter } from "next/navigation";
 
 export default function Reset({ reset, id, url }) {
-  const {
-    userInfo,
-    setUserInfo,
-    getUserInfo,
-    updateUserValue,
-    sendRecoveryRequest,
-  } = useContext(AccountContext);
+  const { userInfo, updateUserValue } = useContext(AccountContext);
 
-  const { push } = useRouter();
   const [tryAgain, setTryAgain] = useState(false);
 
-  const { tokenObject, setTokenObject } = useState(reset);
   const formInput = async (event) => {
-    // console.log(event);
-    // console.log(event.nativeEvent.srcElement.name);
     updateUserValue({
       [event.nativeEvent.srcElement.name]: `${event.target.value}`,
     });
@@ -42,14 +32,14 @@ export default function Reset({ reset, id, url }) {
     } else {
       const resetRequest = await resetUserPasswordByURL(
         userInfo.newPassword,
+        //TODO: Change this to the correct URL when we go live
         `http://localhost:3006/account/reset/${reset.customerID}/${reset.token}?syclid=ea6378ea-eaac-474a-9570-e16f50510406`
       );
-      console.log(resetRequest);
+
       if (resetRequest.errorMessage === null) {
         updateUserValue({
           successMessage: `Your password was updated successfully, please login.`,
         });
-        // push("/account/login");
       } else {
         updateUserValue({
           errorMessage: `Your password could not be updated at this time. Please try again.`,

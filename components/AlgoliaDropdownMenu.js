@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function AlgoliaDropdownMenu(menuTitle, menuItems) {
+export default function AlgoliaDropdownMenu(menuTitle, menuItems, isRefined) {
   const dropdownsRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const handleClickOutside = (event) => {
@@ -22,11 +22,13 @@ export default function AlgoliaDropdownMenu(menuTitle, menuItems) {
     <div ref={dropdownsRef}>
       <button
         type="button"
-        className="m-1 text-black bg-white hover:bg-cream hover:text-white font-medium text-sm px-4 py-2.5 text-center inline-flex items-center rounded-none border border-cream"
+        className={`m-1 text-black ${
+          isRefined ? "bg-taupe" : "bg-white"
+        } hover:bg-cream hover:text-white font-medium text-sm py-2.5 p-4 text-center inline-flex items-center rounded-none border border-cream`}
         onClick={() => setIsOpen(!isOpen)}
       >
         {menuTitle}
-        <ChevronDown />
+        {isRefined ? <Cross /> : <ChevronDown />}
       </button>
 
       <div className={`${isOpen ? "" : "hidden"}`}>{menuItems}</div>
@@ -35,35 +37,39 @@ export default function AlgoliaDropdownMenu(menuTitle, menuItems) {
 }
 
 export const ChevronDown = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="w-4 h-4 self-center"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-    />
-  </svg>
+  <div className={"px-1"}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+      className="w-4 h-4 self-center"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+      />
+    </svg>
+  </div>
 );
 
 const Cross = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="w-4 h-4 self-center"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M6.75 6.75l10.5 10.5M17.25 6.75L6.75 17.25"
-    />
-  </svg>
+  <div className={"px-1"}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+      className="w-4 h-4 self-center"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6.75 6.75l10.5 10.5M17.25 6.75L6.75 17.25"
+      />
+    </svg>
+  </div>
 );
