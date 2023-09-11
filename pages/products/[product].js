@@ -21,7 +21,7 @@ export async function getServerSideProps({ params, query }) {
   return {
     props: {
       product,
-      id: product.id,
+      id: query.id ? query.id : product.id,
     },
   };
 }
