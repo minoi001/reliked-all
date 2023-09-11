@@ -81,7 +81,12 @@ export default function MiniCart({ cart }) {
                             {cart.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="relative h-36 w-24 flex-shrink-0 overflow-hidden border border-gray-200 py-4 px-2">
-                                  <Link href={`/products/${product.handle}`}>
+                                  <Link
+                                    href={`/products/${product.handle}`}
+                                    onClick={() => {
+                                      setCartOpen(!cartOpen);
+                                    }}
+                                  >
                                     {" "}
                                     <Image
                                       src={product.image}
@@ -99,6 +104,9 @@ export default function MiniCart({ cart }) {
                                       <h3>
                                         <Link
                                           href={`/products/${product.handle}`}
+                                          onClick={() => {
+                                            setCartOpen(!cartOpen);
+                                          }}
                                         >
                                           {product.title}
                                         </Link>
