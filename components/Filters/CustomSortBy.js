@@ -14,7 +14,7 @@ function CustomSortBy(props) {
           return (
             <li
               key={i}
-              className={`flex items-center space-x-2 px-4 py-2 ${
+              className={`flex items-center space-x-2 px-4 py-2 cursor-pointer ${
                 option.value === currentRefinement ? "bg-taupe" : "bg-cream"
               }`}
               onClick={() => handleClick(option)}

@@ -14,7 +14,7 @@ const ProductFilters = ({ toggleSlideover, isFromSearch, refine }) => {
         {AlgoliaDropdownMenu(
           "Sort By",
           <CustomSortBy
-            className="mb-4 md:mb-0"
+            className="mb-4 md:mb-0 cursor-pointer"
             items={[
               {
                 value: "shopify_products_published_at_desc",
@@ -33,7 +33,7 @@ const ProductFilters = ({ toggleSlideover, isFromSearch, refine }) => {
         <ProductFiltersWithoutSortBy format={"row"} />
       </div>
       <div className="lg:hidden justify-center">
-        <div onClick={toggleSlideover} className="ais-SortBy-select px-2">
+        <div onClick={toggleSlideover} className="ais-SortBy-select px-2 ">
           Filters +
         </div>
       </div>
