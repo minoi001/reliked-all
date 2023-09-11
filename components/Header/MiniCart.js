@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ShopContext } from "../../context/shopContext";
 import { formatter } from "../../utils/helpers";
 import { event } from "../../lib/ga";
+import Link from "next/link";
 
 export default function MiniCart({ cart }) {
   const cancelButtonRef = useRef();
@@ -80,22 +81,27 @@ export default function MiniCart({ cart }) {
                             {cart.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="relative h-36 w-24 flex-shrink-0 overflow-hidden border border-gray-200 py-4 px-2">
-                                  <Image
-                                    src={product.image}
-                                    alt={product.title}
-                                    className="h-full w-full object-contain object-center"
-                                    width="100"
-                                    height="100"
-                                  />
+                                  <Link href={`/products/${product.handle}`}>
+                                    {" "}
+                                    <Image
+                                      src={product.image}
+                                      alt={product.title}
+                                      className="h-full w-full object-contain object-center"
+                                      width="100"
+                                      height="100"
+                                    />
+                                  </Link>
                                 </div>
 
                                 <div className="ml-4 flex flex-1 flex-col">
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
-                                        <a href={product.href}>
+                                        <Link
+                                          href={`/products/${product.handle}`}
+                                        >
                                           {product.title}
-                                        </a>
+                                        </Link>
                                       </h3>
                                       <p className="ml-4">
                                         {formatter.format(product.variantPrice)}
