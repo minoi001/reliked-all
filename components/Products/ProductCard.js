@@ -22,7 +22,7 @@ const ProductCard = ({ hit, collection }) => {
   return (
     <div>
       <Link
-        href={{ pathname: `/products/${handle}`, query: { id: objectID } }}
+        href={{ pathname: `/products/${handle}` }}
         onClick={() =>
           event("view_item", {
             currency: hit.priceRange?.minVariantPrice?.currencyCode ?? "GBP",
