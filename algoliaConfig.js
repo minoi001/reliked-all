@@ -13,7 +13,10 @@ const indexNames = {
 const index = searchClient.initIndex(indexNames.products);
 async function getObjectIDByProductHandle(productHandle) {
   try {
-    const { hits } = await index.search(productHandle);
+    const { hits } = await index.search("", {
+      filters: `handle:${productHandle}`,
+    });
+
     if (hits.length > 0) {
       // Assuming there's only one matching result, you can access its objectID.
       const objectID = hits[0].objectID;
