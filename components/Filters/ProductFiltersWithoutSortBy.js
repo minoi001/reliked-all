@@ -1,17 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 import { CustomRefinementList } from "./CustomRefinementList";
 import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomToggleRefinement } from "./CustomToggle";
 
 function ProductFiltersWithoutSortBy({ format }) {
-  const [isInfluencerRefined, setIsInfluencerRefined] = useState(false);
   const [isPriceRefined, setIsPriceRefined] = useState(false);
-  const [isSizeRefined, setIsSizeRefined] = useState(false);
-  const [isBrandRefined, setIsBrandRefined] = useState(false);
-  const [isColourRefined, setIsColourRefined] = useState(false);
-  const [isConditionRefined, setIsConditionRefined] = useState(false);
-  const [isPackagingRefined, setIsPackagingRefined] = useState(false);
   const [isAvailabilityRefined, setIsAvailabilityRefined] = useState(false);
   return (
     <div
@@ -21,17 +15,13 @@ function ProductFiltersWithoutSortBy({ format }) {
           : `bg-offWhite flex flex-col  px-8 py-8 h-full`
       }
     >
-      {AlgoliaDropdownMenu(
-        "Influencer",
-        <CustomRefinementList
-          attribute="meta.custom.influencer"
-          showMore={true}
-          showMoreLimit={500}
-          format={format}
-          setIsRefined={setIsInfluencerRefined}
-        />,
-        isInfluencerRefined
-      )}
+      <CustomRefinementList
+        attribute="meta.custom.influencer"
+        showMore={true}
+        showMoreLimit={500}
+        format={format}
+        title="Influencer"
+      />
 
       {AlgoliaDropdownMenu(
         "Price",
@@ -42,58 +32,42 @@ function ProductFiltersWithoutSortBy({ format }) {
         />,
         isPriceRefined
       )}
-      {AlgoliaDropdownMenu(
-        "Size",
-        <CustomRefinementList
-          attribute="meta.custom_fields.size"
-          format={format}
-          setIsRefined={setIsSizeRefined}
-        />,
-        isSizeRefined
-      )}
-      {AlgoliaDropdownMenu(
-        "Brand",
-        <CustomRefinementList
-          attribute="options.brand"
-          format={format}
-          setIsRefined={setIsBrandRefined}
-        />,
-        isBrandRefined
-      )}
-      {AlgoliaDropdownMenu(
-        "Colour",
-        <CustomRefinementList
-          attribute="options.colour"
-          format={format}
-          setIsRefined={setIsColourRefined}
-        />,
-        isColourRefined
-      )}
-      {AlgoliaDropdownMenu(
-        "Condition",
-        <CustomRefinementList
-          attribute="meta.custom_fields.product_condition"
-          format={format}
-          setIsRefined={setIsConditionRefined}
-        />,
-        isConditionRefined
-      )}
-      {AlgoliaDropdownMenu(
-        "Packaging",
-        <CustomRefinementList
-          attribute="meta.custom_fields.product_packaging"
-          format={format}
-          setIsRefined={setIsPackagingRefined}
-        />,
-        isPackagingRefined
-      )}
+
+      <CustomRefinementList
+        attribute="meta.custom_fields.size"
+        format={format}
+        title="Size"
+      />
+
+      <CustomRefinementList
+        attribute="options.brand"
+        format={format}
+        title="Brand"
+      />
+
+      <CustomRefinementList
+        attribute="options.colour"
+        format={format}
+        title="Colour"
+      />
+
+      <CustomRefinementList
+        attribute="meta.custom_fields.product_condition"
+        format={format}
+        title={"Condition"}
+      />
+
+      <CustomRefinementList
+        attribute="meta.custom_fields.product_packaging"
+        format={format}
+        title={"Packaging"}
+      />
       {AlgoliaDropdownMenu(
         "Availability",
         <CustomToggleRefinement
           attribute="inventory_available"
           label="Inventory available"
           format={format}
-          setIsRefined={setIsAvailabilityRefined}
         />,
         isAvailabilityRefined
       )}
