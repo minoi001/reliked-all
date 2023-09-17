@@ -7,8 +7,28 @@ import { event } from "../../lib/ga";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as PropTypes from "prop-types";
 
+function AddToCartButton(props) {
+  return (
+    <button
+      className={`inline-flex ${
+        props.availableForSale ? "bg-taupe" : "bg-almostBlack"
+      } p-3 text-center w-full text-white hover:bg-almostBlack`}
+      onClick={props.onClick}
+      disabled={!props.availableForSale}
+    >
+      {props.availableForSale ? "Add to Cart" : "Unavailable"}
+    </button>
+  );
+}
+
+AddToCartButton.propTypes = {
+  availableForSale: PropTypes.any,
+  onClick: PropTypes.func,
+};
 export default function ProductForm({ product }) {
+  console.log("product", product);
   const { addToCart, setCartOpen } = useContext(ShopContext);
 
   const allVariantOptions = product.variants.edges?.map((variant) => {
@@ -186,42 +206,43 @@ export default function ProductForm({ product }) {
                 <span className="inline-flex pt-3 bg-inherit text-inherit ">
                   -
                 </span>
-                <button
-                  className="inline-flex bg-taupe p-3 text-center w-full text-white hover:bg-almostBlack"
+                <AddToCartButton
+                  availableForSale={product.availableForSale}
                   onClick={() => {
-                    addToCart(selectedVariant);
-                    setCartOpen(true);
-                    event("add_to_cart", {
-                      currency: currency,
-                      value: product.variants.edges[0].node.priceV2.amount,
-                      ecomm_pagetype: "product",
-                    });
+                    if (product.availableForSale) {
+                      addToCart(selectedVariant);
+                      setCartOpen(true);
+                      event("add_to_cart", {
+                        currency: currency,
+                        value: product.variants.edges[0].node.priceV2.amount,
+                        ecomm_pagetype: "product",
+                      });
+                    }
                   }}
-                >
-                  Add to Cart
-                </button>
+                />
               </div>
             </div>
           </div>
         </div>
       ) : (
         <div className="text-center mt-6">
-          <button
-            className="bg-taupe p-3 text-center w-full text-white hover:bg-almostBlack"
+          <AddToCartButton
+            availableForSale={product.availableForSale}
             onClick={() => {
-              addToCart(selectedVariant);
-              setCartOpen(true);
-              event("add_to_cart", {
-                currency: currency,
-                value: product.variants.edges[0].node.priceV2.amount,
-                ecomm_pagetype: "product",
-                ecomm_totalvalue: product.variants.edges[0].node.priceV2.amount,
-                //TODO: add ecomm_prodid: https://support.google.com/analytics/answer/3455600?hl=en#zippy=%2Cadd-attributes-for-the-retail-vertical
-              });
+              if (product.availableForSale) {
+                addToCart(selectedVariant);
+                setCartOpen(true);
+                event("add_to_cart", {
+                  currency: currency,
+                  value: product.variants.edges[0].node.priceV2.amount,
+                  ecomm_pagetype: "product",
+                  ecomm_totalvalue:
+                    product.variants.edges[0].node.priceV2.amount,
+                  //TODO: add ecomm_prodid: https://support.google.com/analytics/answer/3455600?hl=en#zippy=%2Cadd-attributes-for-the-retail-vertical
+                });
+              }
             }}
-          >
-            Add to Cart
-          </button>
+          />
         </div>
       )}
     </div>

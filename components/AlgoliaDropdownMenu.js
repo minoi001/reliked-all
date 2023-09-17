@@ -1,26 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import { ClearRefinements } from "react-instantsearch";
+import { useState } from "react";
 
 export default function AlgoliaDropdownMenu(menuTitle, menuItems, isRefined) {
-  const dropdownsRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
-  const handleClickOutside = (event) => {
-    if (dropdownsRef.current && !dropdownsRef.current.contains(event.target)) {
-      setIsOpen(false);
-    }
-  };
 
-  useEffect(() => {
-    // Add event listener when the component mounts
-    document.addEventListener("click", handleClickOutside);
-
-    // Remove event listener when the component unmounts
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
   return (
-    <div ref={dropdownsRef}>
+    <div>
       <button
         type="button"
         className={`m-1 text-black ${
@@ -56,16 +40,8 @@ export const ChevronDown = () => (
   </div>
 );
 
-const Cross = (isRefinement) => {
-  return isRefinement ? (
-    <div className={"px-1"}>
-      <ClearRefinements
-        translations={{
-          resetButtonText: "✕",
-        }}
-      />
-    </div>
-  ) : (
+export const Cross = () => {
+  return (
     <div className={"px-1"}>
       <svg
         xmlns="http://www.w3.org/2000/svg"

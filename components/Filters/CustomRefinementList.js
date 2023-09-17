@@ -3,7 +3,7 @@ import {
   Highlight,
   ClearRefinements,
 } from "react-instantsearch";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "../AlgoliaDropdownMenu";
 
 const RefinementList = ({
@@ -14,21 +14,39 @@ const RefinementList = ({
   format,
   title,
 }) => {
+  const dropdownsRef = useRef(null);
+  const handleClickOutside = (event) => {
+    if (dropdownsRef.current && !dropdownsRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
   const [isRefined, setIsRefined] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  console.log("attribute", attribute);
   useEffect(() => {
     const refinedItems = items.filter((item) => item.isRefined);
     setIsRefined(refinedItems.length > 0);
+    // Add event listener when the component mounts
+    document.addEventListener("click", handleClickOutside);
+    // Remove event listener when the component unmounts
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
   }, [items, setIsRefined]);
 
+  const handleRefine = (value) => {
+    refine(value);
+  };
+
   return (
-    <>
+    <div ref={dropdownsRef}>
       <button
         type="button"
         className={`m-1 text-black ${
           isRefined ? "bg-taupe" : "bg-white"
-        } hover:bg-cream hover:text-white font-medium text-sm py-2.5 p-4 text-center inline-flex justify-between rounded-none border border-cream`}
+        } hover:bg-cream hover:text-white font-medium text-sm py-2.5 p-4 text-center inline-flex justify-between rounded-none border border-cream ${
+          format === "row" ? "" : "w-full"
+        }`}
         onClick={() => setIsOpen(!isOpen)}
       >
         {title}
@@ -61,7 +79,7 @@ const RefinementList = ({
                   <input
                     type="checkbox"
                     checked={item.isRefined}
-                    onChange={() => refine(item.value)}
+                    onChange={() => handleRefine(item.value)}
                     className="h-4 w-4 bg-taupe focus:ring-rose cursor-pointer"
                     style={{ backgroundColor: item.isRefined ? "#EC516B" : "" }}
                   />
@@ -85,7 +103,7 @@ const RefinementList = ({
           })}
         </ul>
       )}
-    </>
+    </div>
   );
 };
 

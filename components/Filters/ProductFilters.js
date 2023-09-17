@@ -11,23 +11,21 @@ const ProductFilters = ({ toggleSlideover, isFromSearch, refine }) => {
     // styling on algolia dropdown menu needs to be full width of the refinements/range inputs
     <>
       <div className="max-h-min lg:flex md:pb-4 sm:static sm:inline">
-        {AlgoliaDropdownMenu(
-          "Sort By",
-          <CustomSortBy
-            className="mb-4 md:mb-0 cursor-pointer"
-            items={[
-              {
-                value: "shopify_products_published_at_desc",
-                label: "Newest in",
-              },
-              {
-                value: "shopify_products_price_desc",
-                label: "Price descending",
-              },
-              { value: "shopify_products_price_asc", label: "Price ascending" },
-            ]}
-          />
-        )}
+        <CustomSortBy
+          className="mb-4 md:mb-0 cursor-pointer"
+          items={[
+            {
+              value: "shopify_products_published_at_desc",
+              label: "Newest in",
+            },
+            {
+              value: "shopify_products_price_desc",
+              label: "Price descending",
+            },
+            { value: "shopify_products_price_asc", label: "Price ascending" },
+          ]}
+          title={"Sort By"}
+        />
       </div>
       <div className="hidden lg:block">
         <ProductFiltersWithoutSortBy format={"row"} />
