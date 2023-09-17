@@ -25,7 +25,8 @@ function MyApp({ Component, pageProps }) {
         insights={{
           insightsInitParams: {
             //TODO: Replace with cookie consent!!
-            useCookie: true,
+            //https://www.algolia.com/doc/guides/building-search-ui/events/react/
+            useCookie: false,
           },
         }}
       >
