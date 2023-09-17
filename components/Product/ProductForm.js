@@ -28,7 +28,6 @@ AddToCartButton.propTypes = {
   onClick: PropTypes.func,
 };
 export default function ProductForm({ product }) {
-  console.log("product", product);
   const { addToCart, setCartOpen } = useContext(ShopContext);
 
   const allVariantOptions = product.variants.edges?.map((variant) => {

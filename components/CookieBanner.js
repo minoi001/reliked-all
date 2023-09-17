@@ -35,6 +35,7 @@ export default function CookieBanner() {
                          bg-taupe rounded-lg shadow`}
     >
       <div className="text-center">
+        //TODO: Add link to privacy policy page
         <Link href="/info/cookies">
           <p className="text-cream">
             We use <span className="font-bold text-offWhite">cookies</span> on

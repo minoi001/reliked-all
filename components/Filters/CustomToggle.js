@@ -26,7 +26,6 @@ export const CustomToggleRefinement = (props) => {
 
   const handleToggle = () => {
     refine(value);
-    console.log("value", value);
     setIsRefined(!value.isRefined);
   };
   const onClick = () => {

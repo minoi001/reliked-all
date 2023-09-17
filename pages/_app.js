@@ -22,7 +22,12 @@ function MyApp({ Component, pageProps }) {
       <InstantSearch
         searchClient={searchClient}
         indexName={indexNames.products}
-        insights={true}
+        insights={{
+          insightsInitParams: {
+            //TODO: Replace with cookie consent!!
+            useCookie: true,
+          },
+        }}
       >
         <ShopProvider>
           <AccountProvider>

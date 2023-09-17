@@ -1,8 +1,6 @@
-import { SortBy } from "react-instantsearch";
 import ProductFiltersWithoutSortBy from "./ProductFiltersWithoutSortBy";
 import CustomSortBy from "./CustomSortBy";
 import { useState } from "react";
-import AlgoliaDropdownMenu from "../AlgoliaDropdownMenu";
 
 const ProductFilters = ({ toggleSlideover, isFromSearch, refine }) => {
   const [isSortByOpen, setIsSortByOpen] = useState();

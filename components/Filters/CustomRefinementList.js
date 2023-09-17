@@ -40,7 +40,7 @@ const RefinementList = ({
 
   return (
     <div ref={dropdownsRef}>
-      <button
+      <div
         type="button"
         className={`m-1 text-black ${
           isRefined ? "bg-taupe" : "bg-white"
@@ -62,7 +62,7 @@ const RefinementList = ({
         ) : (
           <ChevronDown />
         )}
-      </button>
+      </div>
       {isOpen && (
         <ul
           className={`${

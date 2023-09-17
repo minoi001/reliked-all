@@ -1,26 +1,3 @@
-import { useState } from "react";
-
-export default function AlgoliaDropdownMenu(menuTitle, menuItems, isRefined) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div>
-      <button
-        type="button"
-        className={`m-1 text-black ${
-          isRefined ? "bg-taupe" : "bg-white"
-        } hover:bg-cream hover:text-white font-medium text-sm py-2.5 p-4 text-center inline-flex items-center rounded-none border border-cream`}
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {menuTitle}
-        {isRefined ? <Cross /> : <ChevronDown />}
-      </button>
-
-      <div className={`${isOpen ? "" : "hidden"}`}>{menuItems}</div>
-    </div>
-  );
-}
-
 export const ChevronDown = () => (
   <div className={"px-1"}>
     <svg
