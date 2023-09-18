@@ -25,10 +25,10 @@ const ProductFilters = ({ toggleSlideover, isFromSearch, refine }) => {
           title={"Sort By"}
         />
       </div>
-      <div className="hidden lg:block">
+      <div className="hidden xl:block">
         <ProductFiltersWithoutSortBy format={"row"} />
       </div>
-      <div className="lg:hidden justify-center">
+      <div className="xl:hidden justify-center">
         <div onClick={toggleSlideover} className="ais-SortBy-select px-2 ">
           Filters +
         </div>

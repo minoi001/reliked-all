@@ -34,13 +34,16 @@ export default function CookieBanner() {
                         }  px-3 md:px-4 py-3 justify-between items-center taupe flex-col sm:flex-row gap-4  
                          bg-taupe rounded-lg shadow`}
     >
-      <div className="text-center">
-        //TODO: Add link to privacy policy page
+      <div className="flex flex-row ext-center">
         <Link href="/info/cookies">
           <p className="text-cream">
             We use <span className="font-bold text-offWhite">cookies</span> on
             our site.
           </p>
+        </Link>
+
+        <Link href="/privacypage" className="ml-4 font-bold text-offWhite">
+          Our Privacy Policy
         </Link>
       </div>
 
