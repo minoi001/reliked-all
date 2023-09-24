@@ -60,9 +60,7 @@ const ProductCarousel = ({ recommendations }) => {
 
       <div className="grid grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-6 xl:gap-4">
         {recommendations
-          .filter((_, index) => {
-            return index >= currentIndex && index < 4 + currentIndex;
-          })
+          .slice(currentIndex, currentIndex + 4)
           .map((recommendation, index) => (
             <div key={index}>
               <ProductCard hit={recommendation} key={recommendation.objectID} />
