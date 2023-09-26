@@ -81,12 +81,26 @@ export default function ShoppingSubheader(props) {
                         <Tab.List className="space-y-10 px-4 pb-8 pt-10">
                           {navigation.items.map((category, index) => (
                             <div key={category.name}>
-                              <p
+                              <Link
+                                href={
+                                  category.items.length > 0
+                                    ? "#"
+                                    : category.href
+                                        .replace(
+                                          "https://e-bloggers.myshopify.com",
+                                          ""
+                                        )
+                                        .replace("https://reliked.com", "")
+                                }
                                 className="font-h"
-                                onClick={() => navItemClick(category, index)}
+                                onClick={
+                                  category.items.length > 0
+                                    ? () => navItemClick(category, index)
+                                    : () => props.setOpen(false)
+                                }
                               >
                                 {category.name}
-                              </p>
+                              </Link>
                               {category.hidden ? (
                                 ""
                               ) : (
