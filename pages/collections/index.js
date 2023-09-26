@@ -22,7 +22,7 @@ export default function Collections() {
   };
 
   return (
-    <div className="mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Head>
         <title>Collections</title>
       </Head>

@@ -17,7 +17,7 @@ export default function CollectionPage({ collection }) {
     filters: `collections:"${collection}"`,
   };
   return (
-    <div className="mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Head>
         <title>{`${formatCollection(collection)} | Shop ${formatCollection(
           collection

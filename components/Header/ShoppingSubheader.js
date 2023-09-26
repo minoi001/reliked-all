@@ -51,7 +51,7 @@ export default function ShoppingSubheader(props) {
             <Dialog
               as="div"
               className="relative lg:hidden"
-              onClose={props.setOpen}
+              onClose={() => (props.setOpen, closeMenu())}
             >
               <Transition.Child
                 as={Fragment}
@@ -80,7 +80,7 @@ export default function ShoppingSubheader(props) {
                       <button
                         type="button"
                         className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
-                        onClick={() => props.setOpen(false)}
+                        onClick={() => (props.setOpen(false), closeMenu())}
                       >
                         <span className="sr-only">Close menu</span>
                         <XMarkIcon className="h-6 w-6" aria-hidden="true" />
