@@ -151,8 +151,21 @@ export default function ShopProvider({ children }) {
   async function sendNavigationRequest() {
     // doesn't work on first page render
     const navigationRequest = await getNavigation().then();
+    const newArr1 = navigationRequest.items.map((v) => ({
+      ...v,
+      hidden: true,
+    }));
+    const nav = { items: newArr1 };
+    setNavigation(nav);
+    // setNavigation(navigationRequest);
+  }
 
-    setNavigation(navigationRequest);
+  function navItemVisible(item, value) {
+    let newNav = navigation;
+    let itemObject = navigation.items[item];
+    itemObject.hidden = value;
+    newNav.items.splice(item, 1, itemObject);
+    setNavigation(newNav);
   }
 
   const [footerNav, setFooterNav] = useState({});
@@ -177,6 +190,7 @@ export default function ShopProvider({ children }) {
         navigation,
         footerNav,
         removeCartItem,
+        navItemVisible,
       }}
     >
       {children}

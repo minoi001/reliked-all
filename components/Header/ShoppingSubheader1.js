@@ -71,101 +71,93 @@ export default function ShoppingSubheader(props) {
                     {/* Links */}
                     <Tab.Group as="div" className="mt-2">
                       <div className="border-b border-gray-200">
-                        <Tab.List className="-mb-px flex space-x-8 px-4">
+                        <Tab.List className="space-y-10 px-4 pb-8 pt-10">
                           {navigation.items.map((category) => (
-                            <Tab
-                              key={category.name}
-                              className={({ selected }) =>
-                                classNames(
-                                  selected
-                                    ? "border-taupe text-taupe"
-                                    : "border-transparent text-gray-900",
-                                  "uppercase flex-1 px-1 py-1 text-base font-medium"
-                                )
-                              }
-                            >
-                              {category.name}
-                            </Tab>
+                            <div key={category.name}>
+                              <Tab
+                                key={category.name}
+                                className={({ selected }) =>
+                                  classNames(
+                                    selected
+                                      ? "border-taupe text-taupe"
+                                      : "border-transparent text-gray-900",
+                                    "uppercase block px-1 py-1 text-base font-medium"
+                                  )
+                                }
+                              >
+                                {category.name}
+                              </Tab>
+                              <Tab.Panels as={Fragment}>
+                                {navigation.items.map((category) => (
+                                  <Tab.Panel
+                                    key={category.name}
+                                    className="space-y-10 px-4 pb-8 pt-10"
+                                  >
+                                    <div className="grid grid-cols-2 gap-x-4">
+                                      {category.items.length > 0 ? (
+                                        <div>
+                                          {category.items.map((section) => (
+                                            <div key={section.name}>
+                                              <a
+                                                href={section.href
+                                                  .replace(
+                                                    "https://reliked.com",
+                                                    ""
+                                                  )
+                                                  .replace(
+                                                    "https://e-bloggers.myshopify.com",
+                                                    ""
+                                                  )}
+                                              >
+                                                <p
+                                                  id={`-heading-mobile`}
+                                                  className="font-medium text-gray-900"
+                                                >
+                                                  {section.name}
+                                                </p>
+                                              </a>
+                                              <ul
+                                                role="list"
+                                                aria-labelledby={`-heading-mobile`}
+                                                className="mt-6 flex flex-col space-y-6"
+                                              >
+                                                {section.items.map((item) => (
+                                                  <li
+                                                    key={item.name}
+                                                    className="flow-root"
+                                                  >
+                                                    <a
+                                                      href={item.href
+                                                        .replace(
+                                                          "https://reliked.com",
+                                                          ""
+                                                        )
+                                                        .replace(
+                                                          "https://e-bloggers.myshopify.com",
+                                                          ""
+                                                        )}
+                                                      className="-m-2 block p-2 text-gray-500"
+                                                    >
+                                                      {item.name}
+                                                    </a>
+                                                  </li>
+                                                ))}
+                                              </ul>
+                                            </div>
+                                          ))}
+                                        </div>
+                                      ) : (
+                                        <div></div>
+                                      )}
+                                    </div>
+                                  </Tab.Panel>
+                                ))}
+                              </Tab.Panels>
+                            </div>
                           ))}
                         </Tab.List>
                       </div>
-                      <Tab.Panels as={Fragment}>
-                        {navigation.items.map((category) => (
-                          <Tab.Panel
-                            key={category.name}
-                            className="space-y-10 px-4 pb-8 pt-10"
-                          >
-                            <div className="grid grid-cols-2 gap-x-4">
-                              {category.items.length > 0 ? (
-                                <div>
-                                  {category.items.map((section) => (
-                                    <div key={section.name}>
-                                      <a
-                                        href={section.href
-                                          .replace("https://reliked.com", "")
-                                          .replace(
-                                            "https://e-bloggers.myshopify.com",
-                                            ""
-                                          )}
-                                      >
-                                        <p
-                                          id={`-heading-mobile`}
-                                          className="font-medium text-gray-900"
-                                        >
-                                          {section.name}
-                                        </p>
-                                      </a>
-                                      <ul
-                                        role="list"
-                                        aria-labelledby={`-heading-mobile`}
-                                        className="mt-6 flex flex-col space-y-6"
-                                      >
-                                        {section.items.map((item) => (
-                                          <li
-                                            key={item.name}
-                                            className="flow-root"
-                                          >
-                                            <a
-                                              href={item.href
-                                                .replace(
-                                                  "https://reliked.com",
-                                                  ""
-                                                )
-                                                .replace(
-                                                  "https://e-bloggers.myshopify.com",
-                                                  ""
-                                                )}
-                                              className="-m-2 block p-2 text-gray-500"
-                                            >
-                                              {item.name}
-                                            </a>
-                                          </li>
-                                        ))}
-                                      </ul>
-                                    </div>
-                                  ))}
-                                </div>
-                              ) : (
-                                <div></div>
-                              )}
-                            </div>
-                          </Tab.Panel>
-                        ))}
-                      </Tab.Panels>
                     </Tab.Group>
-
-                    {/* <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                      {TWnav.pages.map((page) => (
-                        <div key={page.name} className="flow-root">
-                          <a
-                            href={page.href}
-                            className="uppercase -m-2 block p-2 font-medium text-gray-900"
-                          >
-                            {page.name}
-                          </a>
-                        </div>
-                      ))}
-                    </div> */}
 
                     <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                       <div className="flow-root">
@@ -342,16 +334,6 @@ export default function ShoppingSubheader(props) {
                           )}
                         </Popover>
                       ))}
-
-                      {/* {TWnav.pages.map((page) => (
-                        <a
-                          key={page.name}
-                          href={page.href}
-                          className="uppercase flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                        >
-                          {page.name}
-                        </a>
-                      ))} */}
                     </div>
                   </Popover.Group>
                 </div>

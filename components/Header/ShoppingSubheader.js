@@ -12,7 +12,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { ShopContext } from "../../context/shopContext";
 import { AccountContext } from "../../context/accountContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Link from "next/link";
 import MiniDropdownMenu from "./MiniDropdownMenu";
 
@@ -21,7 +21,14 @@ function classNames(...classes) {
 }
 
 export default function ShoppingSubheader(props) {
-  const { navigation } = useContext(ShopContext);
+  const { navigation, navItemVisible } = useContext(ShopContext);
+
+  let [updateMenu, setUpdateMenu] = useState(true);
+
+  function navItemClick(category, index) {
+    navItemVisible(index, !category.hidden);
+    setUpdateMenu(!updateMenu);
+  }
 
   return (
     <div className="z-100">
@@ -71,87 +78,30 @@ export default function ShoppingSubheader(props) {
                     {/* Links */}
                     <Tab.Group as="div" className="mt-2">
                       <div className="border-b border-gray-200">
-                        <Tab.List className="-mb-px flex space-x-8 px-4">
-                          {navigation.items.map((category) => (
-                            <Tab
-                              key={category.name}
-                              className={({ selected }) =>
-                                classNames(
-                                  selected
-                                    ? "border-taupe text-taupe"
-                                    : "border-transparent text-gray-900",
-                                  "uppercase flex-1 px-1 py-1 text-base font-medium"
-                                )
-                              }
-                            >
-                              {category.name}
-                            </Tab>
-                          ))}
-                        </Tab.List>
-                      </div>
-                      <Tab.Panels as={Fragment}>
-                        {navigation.items.map((category) => (
-                          <Tab.Panel
-                            key={category.name}
-                            className="space-y-10 px-4 pb-8 pt-10"
-                          >
-                            <div className="grid grid-cols-2 gap-x-4">
-                              {category.items.length > 0 ? (
-                                <div>
-                                  {category.items.map((section) => (
-                                    <div key={section.name}>
-                                      <a
-                                        href={section.href
-                                          .replace("https://reliked.com", "")
-                                          .replace(
-                                            "https://e-bloggers.myshopify.com",
-                                            ""
-                                          )}
-                                      >
-                                        <p
-                                          id={`-heading-mobile`}
-                                          className="font-medium text-gray-900"
-                                        >
-                                          {section.name}
-                                        </p>
-                                      </a>
-                                      <ul
-                                        role="list"
-                                        aria-labelledby={`-heading-mobile`}
-                                        className="mt-6 flex flex-col space-y-6"
-                                      >
-                                        {section.items.map((item) => (
-                                          <li
-                                            key={item.name}
-                                            className="flow-root"
-                                          >
-                                            <a
-                                              href={item.href
-                                                .replace(
-                                                  "https://reliked.com",
-                                                  ""
-                                                )
-                                                .replace(
-                                                  "https://e-bloggers.myshopify.com",
-                                                  ""
-                                                )}
-                                              className="-m-2 block p-2 text-gray-500"
-                                            >
-                                              {item.name}
-                                            </a>
-                                          </li>
-                                        ))}
-                                      </ul>
+                        <Tab.List className="space-y-10 px-4 pb-8 pt-10">
+                          {navigation.items.map((category, index) => (
+                            <div key={category.name}>
+                              <p
+                                className="font-h"
+                                onClick={() => navItemClick(category, index)}
+                              >
+                                {category.name}
+                              </p>
+                              {category.hidden ? (
+                                ""
+                              ) : (
+                                <div key="subcategories" className="">
+                                  {category.items.map((subcategory) => (
+                                    <div key={subcategory.name}>
+                                      {subcategory.name}
                                     </div>
                                   ))}
                                 </div>
-                              ) : (
-                                <div></div>
                               )}
                             </div>
-                          </Tab.Panel>
-                        ))}
-                      </Tab.Panels>
+                          ))}
+                        </Tab.List>
+                      </div>
                     </Tab.Group>
 
                     <div className="space-y-6 border-t border-gray-200 px-4 py-6">
