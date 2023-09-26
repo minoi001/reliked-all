@@ -242,30 +242,28 @@ export default function ShoppingSubheader(props) {
                                       open
                                         ? "border-taupe text-taupe"
                                         : "border-transparent text-gray-700 hover:text-gray-800",
-                                      "uppercase relative -mb-px flex items-center border-b-2 border-taupe pt-px text-sm font-medium transition-colors duration-200 ease-out"
+                                      "uppercase relative -mb-px flex items-center border-b-2 border-taupe pt-px text-sm font-medium transition-colors duration-200 ease-out hover:border-taupe hover:text-taupe hover:border-b-2 "
                                     )}
                                   >
                                     {category.name}
                                   </Popover.Button>
                                 ) : (
                                   <Link
-                                    href={category.href
-                                      .replace("https://reliked.com", "")
-                                      .replace(
-                                        "https://e-bloggers.myshopify.com",
-                                        ""
-                                      )}
+                                    className={classNames(
+                                      "hover:border-taupe hover:text-taupe hover:border-b-2 uppercase relative -mb-px flex items-center pt-px text-sm font-medium transition-colors duration-200 ease-out"
+                                    )}
+                                    href={
+                                      category.items.length > 0
+                                        ? "#"
+                                        : category.href
+                                            .replace(
+                                              "https://e-bloggers.myshopify.com",
+                                              ""
+                                            )
+                                            .replace("https://reliked.com", "")
+                                    }
                                   >
-                                    <Popover.Button
-                                      className={classNames(
-                                        open
-                                          ? "border-taupe text-taupe"
-                                          : "border-transparent text-gray-700 hover:text-gray-800",
-                                        "uppercase relative -mb-px flex items-center border-b-2 border-taupe pt-px text-sm font-medium transition-colors duration-200 ease-out"
-                                      )}
-                                    >
-                                      {category.name}
-                                    </Popover.Button>
+                                    {category.name}
                                   </Link>
                                 )}
                               </div>
