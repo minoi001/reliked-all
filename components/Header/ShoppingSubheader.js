@@ -21,12 +21,24 @@ function classNames(...classes) {
 }
 
 export default function ShoppingSubheader(props) {
-  const { navigation, navItemVisible } = useContext(ShopContext);
+  const { navigation, navItemVisible, navSubItemVisible, resetMenuVisibility } =
+    useContext(ShopContext);
 
   let [updateMenu, setUpdateMenu] = useState(true);
 
   function navItemClick(category, index) {
     navItemVisible(index, !category.hidden);
+    setUpdateMenu(!updateMenu);
+  }
+
+  function closeMenu() {
+    resetMenuVisibility();
+    setUpdateMenu(!updateMenu);
+  }
+
+  function navSubItemClick(categoryIndex, subcategoryIndex, subcategory) {
+    console.log(categoryIndex, subcategoryIndex);
+    navSubItemVisible(categoryIndex, subcategoryIndex, !subcategory.hidden);
     setUpdateMenu(!updateMenu);
   }
 
@@ -79,7 +91,7 @@ export default function ShoppingSubheader(props) {
                     <Tab.Group as="div" className="mt-2">
                       <div className="border-b border-gray-200">
                         <Tab.List className="space-y-10 px-4 pb-8 pt-10">
-                          {navigation.items.map((category, index) => (
+                          {navigation.items.map((category, index1) => (
                             <div key={category.name}>
                               <Link
                                 href={
@@ -95,8 +107,8 @@ export default function ShoppingSubheader(props) {
                                 className="font-h"
                                 onClick={
                                   category.items.length > 0
-                                    ? () => navItemClick(category, index)
-                                    : () => props.setOpen(false)
+                                    ? () => navItemClick(category, index1)
+                                    : () => (props.setOpen(false), closeMenu()) //
                                 }
                               >
                                 {category.name}
@@ -105,20 +117,66 @@ export default function ShoppingSubheader(props) {
                                 ""
                               ) : (
                                 <div key="subcategories" className="">
-                                  {category.items.map((subcategory) => (
-                                    <Link
-                                      key={subcategory.name}
-                                      className="block"
-                                      href={subcategory.href
-                                        .replace(
-                                          "https://e-bloggers.myshopify.com",
-                                          ""
-                                        )
-                                        .replace("https://reliked.com", "")}
-                                      onClick={() => props.setOpen(false)}
-                                    >
-                                      {subcategory.name}
-                                    </Link>
+                                  {category.items.map((subcategory, index2) => (
+                                    <div key={subcategory.name}>
+                                      <Link
+                                        key={subcategory.name}
+                                        className="block uppercase font-bold mt-4"
+                                        href={subcategory.href
+                                          .replace(
+                                            "https://e-bloggers.myshopify.com",
+                                            ""
+                                          )
+                                          .replace("https://reliked.com", "")}
+                                        onClick={
+                                          subcategory.items.length > 0
+                                            ? (e) =>
+                                                navSubItemClick(
+                                                  index1,
+                                                  index2,
+                                                  subcategory
+                                                )
+                                            : () => (
+                                                props.setOpen(false),
+                                                closeMenu()
+                                              ) //
+                                        }
+                                      >
+                                        {subcategory.name}
+                                      </Link>
+                                      {subcategory.hidden ? (
+                                        ""
+                                      ) : (
+                                        <div
+                                          key="subsubcategories"
+                                          className=""
+                                        >
+                                          {subcategory.items.map(
+                                            (subsubcategory) => (
+                                              <Link
+                                                key={subsubcategory.name}
+                                                className="block"
+                                                href={subsubcategory.href
+                                                  .replace(
+                                                    "https://e-bloggers.myshopify.com",
+                                                    ""
+                                                  )
+                                                  .replace(
+                                                    "https://reliked.com",
+                                                    ""
+                                                  )}
+                                                onClick={() => (
+                                                  props.setOpen(false),
+                                                  closeMenu()
+                                                )}
+                                              >
+                                                {subsubcategory.name}
+                                              </Link>
+                                            )
+                                          )}
+                                        </div>
+                                      )}
+                                    </div>
                                   ))}
                                 </div>
                               )}
