@@ -9,7 +9,7 @@ import {
   BanknotesIcon,
 } from "@heroicons/react/24/outline";
 
-const ProductCard = ({ hit, collection }) => {
+const ProductCard = ({ hit }) => {
   const { handle, title, objectID } = hit;
   const image = hit.image
     ? hit.image
@@ -22,7 +22,7 @@ const ProductCard = ({ hit, collection }) => {
   return (
     <div>
       <Link
-        href={{ pathname: `/products/${handle}`, query: { id: objectID } }}
+        href={{ pathname: `/products/${handle}` }}
         onClick={() =>
           event("view_item", {
             currency: hit.priceRange?.minVariantPrice?.currencyCode ?? "GBP",
@@ -51,69 +51,72 @@ const ProductCard = ({ hit, collection }) => {
             </div>
           </div>
 
-          <div>
-            {hit.tags.toString().includes("Anonymous") ||
-            hit.tags.toString().includes("HideVendor") ? (
-              <div>
-                {/* only show you may also like on influencer collections */}
-                {title.includes("Black") ? (
-                  <div className="group flex relative">
-                    <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
-                      You might also like
-                      <SunIcon
-                        color="black"
-                        className="h-6 w-6 inline pb-0.5 pl-1"
-                      />
-                    </span>
-                    <span
-                      className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2 
+          {hit.meta.custom && (
+            <div>
+              {hit.tags.toString().includes("Anonymous") ||
+              hit.tags.toString().includes("HideVendor") ? (
+                <div>
+                  {/* only show you may also like on influencer collections */}
+                  {title.includes("Black") ? (
+                    <div className="group flex relative">
+                      <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
+                        You might also like
+                        <SunIcon
+                          color="black"
+                          className="h-6 w-6 inline pb-0.5 pl-1"
+                        />
+                      </span>
+                      <span
+                        className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
     -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
-                    >
-                      {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
-                      This item isn{"'"}t owned by {hit.meta.custom.influencer}{" "}
-                      but our algorithm thinks you might still like it!
-                    </span>
-                  </div>
-                ) : (
-                  <div className="group flex relative">
-                    <span className="bg-offWhite text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
-                      Sold Anonymously
-                      <BanknotesIcon
-                        color="black"
-                        className="h-6 w-6 inline pb-0.5 pl-1"
-                      />
-                    </span>
-                    <span
-                      className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2 
+                      >
+                        {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
+                        This item isn{"'"}t owned by{" "}
+                        {hit.meta.custom.influencer}
+                        but our algorithm thinks you might still like it!
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="group flex relative">
+                      <span className="bg-offWhite text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
+                        Sold Anonymously
+                        <BanknotesIcon
+                          color="black"
+                          className="h-6 w-6 inline pb-0.5 pl-1"
+                        />
+                      </span>
+                      <span
+                        className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
     -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
-                    >
-                      {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
-                      We are a preowned marketplace, so this item is sold by a
-                      private seller.
-                    </span>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="group flex relative">
-                <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
-                  Sold by {hit.meta.custom.influencer}
-                  <BanknotesIcon
-                    color="black"
-                    className="h-6 w-6 inline pb-0.5 pl-1"
-                  />
-                </span>
-                <span
-                  className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2 
+                      >
+                        {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
+                        We are a preowned marketplace, so this item is sold by a
+                        private seller.
+                      </span>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="group flex relative">
+                  <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
+                    {hit.meta.custom.influencer}
+                    <BanknotesIcon
+                      color="black"
+                      className="h-6 w-6 inline pb-0.5 pl-1"
+                    />
+                  </span>
+                  <span
+                    className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
     -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
-                >
-                  {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
-                  We are a preowned marketplace, so this item is sold by{" "}
-                  {hit.meta.custom.influencer} (a private seller).
-                </span>
-              </div>
-            )}
-          </div>
+                  >
+                    {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
+                    We are a preowned marketplace, so this item is sold by{" "}
+                    {hit.meta.custom.influencer} (a private seller).
+                  </span>
+                </div>
+              )}
+            </div>
+          )}
           <h3 className="mt-2 text-mg font-medium text-gray-900 px-1">
             {title}
           </h3>

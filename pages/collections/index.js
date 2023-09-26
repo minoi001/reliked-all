@@ -9,6 +9,7 @@ import { indexNames, searchClient } from "../../algoliaConfig";
 import Link from "next/link";
 import CollectionFilters from "../../components/Filters/CollectionFilters";
 import Head from "next/head";
+import { indexToRoute, routeToIndex } from "../_app";
 
 export default function Collections() {
   const [collectionType, setCollectionType] = useState("vendor");
@@ -33,7 +34,7 @@ export default function Collections() {
         <InstantSearch
           searchClient={searchClient}
           indexName={indexNames.collections}
-          insights={true}
+          insights={true} //TODO: Replace by cookie consent
         >
           <CollectionFilters
             updateCollections={updateCollections}

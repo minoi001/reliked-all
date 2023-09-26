@@ -1,6 +1,7 @@
 import ProductPageContent from "../../components/Product/ProductPageContent";
 import { getProduct } from "../../lib/shopify.js";
 import Head from "next/head";
+import { getObjectIDByProductHandle } from "../../algoliaConfig";
 
 export default function ProductPage({ product, id }) {
   return (
@@ -14,14 +15,15 @@ export default function ProductPage({ product, id }) {
     </div>
   );
 }
-export async function getServerSideProps({ params, query }) {
+export async function getServerSideProps({ params }) {
   // Fetch data based on the slug parameter
   const product = await getProduct(params.product);
+  const id = await getObjectIDByProductHandle(params.product);
 
   return {
     props: {
       product,
-      id: query.id ? query.id : product.id,
+      id,
     },
   };
 }
