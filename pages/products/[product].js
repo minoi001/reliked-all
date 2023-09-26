@@ -10,7 +10,7 @@ export default function ProductPage({ product, id }) {
         <title>{product.title}</title>
       </Head>
       <title>{product.title}</title>
-      <meta name="description" content={product.description} />;
+      <meta name="description" content={product.description} />
       <ProductPageContent product={product} id={id} />
     </div>
   );

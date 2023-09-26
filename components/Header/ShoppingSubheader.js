@@ -106,9 +106,19 @@ export default function ShoppingSubheader(props) {
                               ) : (
                                 <div key="subcategories" className="">
                                   {category.items.map((subcategory) => (
-                                    <div key={subcategory.name}>
+                                    <Link
+                                      key={subcategory.name}
+                                      className="block"
+                                      href={subcategory.href
+                                        .replace(
+                                          "https://e-bloggers.myshopify.com",
+                                          ""
+                                        )
+                                        .replace("https://reliked.com", "")}
+                                      onClick={() => props.setOpen(false)}
+                                    >
                                       {subcategory.name}
-                                    </div>
+                                    </Link>
                                   ))}
                                 </div>
                               )}
