@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react";
 import { AccountContext } from "../../context/accountContext";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
+import AccountPageContent from "../../components/Account/AccountPageContent.js";
 
 export default function LoginPage({ account }) {
   const { userInfo, logout } = useContext(AccountContext);
@@ -22,8 +23,7 @@ export default function LoginPage({ account }) {
       </Head>
       {userInfo.loginStatus ? (
         <div>
-          <div className="minh-screen py-12 sm:pt-20">Account Home Page </div>
-          <button onClick={logout}>Logout</button>
+          <AccountPageContent />
         </div>
       ) : (
         <div></div>

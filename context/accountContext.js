@@ -92,6 +92,8 @@ export default function AccountProvider({ children }) {
     if (infoRequest.customer != null) {
       updateUserValue({
         userName: `${infoRequest.customer.firstName} ${infoRequest.customer.lastName}`,
+        firstName: `${infoRequest.customer.firstName}`,
+        lastName: `${infoRequest.customer.lastName}`,
         userType: `${infoRequest.customer.userType.value}`,
         listerCode: `${infoRequest.customer.userCode.value}`,
         loginStatus: true,
