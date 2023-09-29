@@ -50,13 +50,16 @@ const ProductCarousel = ({ recommendations }) => {
     setCurrentIndex(currentIndex - 1);
   };
 
+  const doNothing = () => {};
+
   return (
-    <div className="flex items-center justify-center">
-      {currentIndex > 0 && (
-        <div className="px-1" onClick={handlePrevClick}>
-          <ChevronLeft />
-        </div>
-      )}
+    <div className="flex items-center justify-center mb-12">
+      <div
+        className={"px-1"}
+        onClick={currentIndex > 0 ? handlePrevClick : doNothing}
+      >
+        <ChevronLeft colour={currentIndex > 0 ? "black" : "white"} />
+      </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 xl:gap-4">
         {recommendations
@@ -67,38 +70,42 @@ const ProductCarousel = ({ recommendations }) => {
             </div>
           ))}
       </div>
-      {currentIndex < 2 && (
-        <div className="px-1" onClick={handleNextClick}>
-          <ChevronRight />
-        </div>
-      )}
+
+      <div
+        className={"px-1"}
+        onClick={currentIndex < 2 ? handleNextClick : doNothing}
+      >
+        <ChevronRight colour={currentIndex < 2 ? "black" : "white"} />
+      </div>
     </div>
   );
 };
 
-function ChevronLeft() {
+function ChevronLeft({ colour }) {
   return (
     <svg
       height="20"
       width="20"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
       strokeWidth="1.5"
+      stroke={colour}
+      className="hover:cursor-pointer"
     >
       <polyline points="15 18 9 12 15 6"></polyline>
     </svg>
   );
 }
 
-function ChevronRight() {
+function ChevronRight({ colour }) {
   return (
     <svg
+      className="hover:cursor-pointer"
       height="20"
       width="20"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
+      stroke={colour}
       strokeWidth="1.5"
     >
       <polyline points="9 18 15 12 9 6"></polyline>
