@@ -12,7 +12,7 @@ export default function Layout({ children }) {
     <div className="flex flex-col">
       <GoogleAnalytics />
       <div className="bg-offWhite">
-        <header className="">
+        <header className="mb-2">
           <Banner />
           <LogoHeader />
         </header>
