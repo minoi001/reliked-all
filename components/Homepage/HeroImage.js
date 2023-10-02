@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const HeroImage = ({ homepageContent }) => {
   return (
-    <div className="mt-2 md:mt-4">
+    <div className="">
       <Link href="/collections">
         <Image
           src={homepageContent.hero_image.value}
