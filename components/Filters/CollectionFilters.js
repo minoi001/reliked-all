@@ -9,7 +9,7 @@ function CollectionFilters({ updateCollections, collectionType }) {
         updateCollections={updateCollections}
         collectionType={collectionType}
       />
-      <SearchBox />
+      <SearchBox placeholder="Filter" />
     </div>
   );
 }

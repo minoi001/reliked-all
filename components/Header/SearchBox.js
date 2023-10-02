@@ -20,7 +20,7 @@ export const Search = () => {
 
   return (
     <div>
-      <SearchBox onSubmit={onSubmit} onReset={onReset} />
+      <SearchBox onSubmit={onSubmit} onReset={onReset} placeholder="Search" />
     </div>
   );
 };

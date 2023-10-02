@@ -82,11 +82,14 @@ export default function ProductForm({ product }) {
     <div>
       <h2 className="text-2xl font-bold font-h">{product.title}</h2>
       <div
-        className="pt-6 pb-4"
+        className="pt-6 pb-4 h-24 overflow-y-scroll"
         dangerouslySetInnerHTML={{
           __html: product.descriptionHtml.replaceAll("<p> </p>", ""),
         }}
       ></div>
+      {/* <div className="text-center font-bold underline text-sm uppercase">
+        Read more
+      </div> */}
       <div className="sm:flex">
         {product.options.map(({ name, values }) => (
           <ProductOptions
