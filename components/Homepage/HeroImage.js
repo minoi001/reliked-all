@@ -16,6 +16,7 @@ const HeroImage = ({ homepageContent }) => {
         />
         <Image
           src={homepageContent.hero_image_mobile.value}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           height="1000"
           width="1000"
           alt=""
