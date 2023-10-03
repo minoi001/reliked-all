@@ -13,6 +13,7 @@ const HeroImage = ({ homepageContent }) => {
           height="1000"
           width="1000"
           alt=""
+          loading="eager"
           className="max-md:hidden w-full flex self-center h-full object-cover"
         />
         <Image
