@@ -16,10 +16,11 @@ const HeroImage = ({ homepageContent }) => {
         />
         <Image
           src={homepageContent.hero_image_mobile.value}
-          height="2000"
-          width="2000"
+          height="1000"
+          width="1000"
           alt=""
           className="md:hidden w-full flex self-center h-2/3"
+          loading="eager"
         />
         <div className="-mt-72 pb-24 text-center align-middle">
           <h1 className="font-h text-4xl tracking-tight text-almostBlack sm:text-6xl ts-white">
