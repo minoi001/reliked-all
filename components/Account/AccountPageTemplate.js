@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { AccountContext } from "../../context/accountContext";
 import Link from "next/link";
 
-import AccountHomeContent from "./AccountHomeContent";
+import AccountHomeContent from "./PageContent/AccountHomeContent";
 
-export default function AccountPageContent() {
+export default function AccountPageTemplate({ Content }) {
   const {
     userInfo,
     setUserInfo,
@@ -12,6 +12,7 @@ export default function AccountPageContent() {
     sendUserRequest,
     updateUserValue,
   } = useContext(AccountContext);
+  console.log(Content);
 
   return (
     <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
@@ -21,7 +22,11 @@ export default function AccountPageContent() {
             <p className={`m-1 font-black text-sm uppercase px-4 py-2.5 pt-6`}>
               Account Menu
             </p>
-
+            <Link href="/account">
+              <p className={`m-1 font-medium text-sm px-4 py-2.5 bg-cream`}>
+                Summary
+              </p>
+            </Link>
             <Link href="/account/details">
               <p className={`m-1 font-medium text-sm px-4 py-2.5 bg-cream`}>
                 Personal Details
@@ -44,7 +49,7 @@ export default function AccountPageContent() {
             </Link>
           </div>
           <div className="col-span-4 text-center">
-            <AccountHomeContent />
+            <Content />
           </div>
         </div>
       </div>

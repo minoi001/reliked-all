@@ -4,12 +4,14 @@ import { useContext, useEffect } from "react";
 import { AccountContext } from "../../context/accountContext";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
-import AccountPageContent from "../../components/Account/AccountPageContent.js";
-
+import AccountPageTemplate from "../../components/Account/AccountPageTemplate.js";
+import AccountOrdersContent from "../../components/Account/PageContent/AccountOrdersContent.js";
 export default function AccountOrdersPage({ account }) {
   const { userInfo, logout } = useContext(AccountContext);
   const { push } = useRouter();
-
+  const Content = () => {
+    return <AccountOrdersContent />;
+  };
   useEffect(() => {
     if (!userInfo.loginStatus) {
       push("/account/login");
@@ -23,7 +25,7 @@ export default function AccountOrdersPage({ account }) {
       </Head>
       {userInfo.loginStatus ? (
         <div>
-          <AccountPageContent />
+          <AccountPageTemplate Content={Content} />
         </div>
       ) : (
         <div></div>

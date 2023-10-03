@@ -4,8 +4,8 @@ import { useContext, useEffect } from "react";
 import { AccountContext } from "../../context/accountContext";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
-import AccountPageContent from "../../components/Account/AccountPageContent.js";
-
+import AccountPageTemplate from "../../components/Account/AccountPageTemplate.js";
+import AccountWishlistContent from "../../components/Account/PageContent/AccountWishlistContent.js";
 export default function AccountWishlistPage({ account }) {
   const { userInfo, logout } = useContext(AccountContext);
   const { push } = useRouter();
@@ -16,6 +16,10 @@ export default function AccountWishlistPage({ account }) {
     }
   }, [push, userInfo.loginStatus]);
 
+  const Content = () => {
+    return <AccountWishlistContent />;
+  };
+
   return (
     <div>
       <Head>
@@ -23,7 +27,7 @@ export default function AccountWishlistPage({ account }) {
       </Head>
       {userInfo.loginStatus ? (
         <div>
-          <AccountPageContent />
+          <AccountPageTemplate Content={Content} />
         </div>
       ) : (
         <div></div>
