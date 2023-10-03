@@ -90,7 +90,7 @@ export default function ProductForm({ product }) {
       {/* <div className="text-center font-bold underline text-sm uppercase">
         Read more
       </div> */}
-      <div className="sm:flex">
+      <div className="sm:flex"> 
         {product.options.map(({ name, values }) => (
           <ProductOptions
             key={`key-${name}`}

@@ -1,6 +1,9 @@
 import { useContext } from "react";
 import { AccountContext } from "../../context/accountContext";
 import Link from "next/link";
+
+import AccountHomeContent from "./AccountHomeContent";
+
 export default function AccountPageContent() {
   const {
     userInfo,
@@ -19,41 +22,29 @@ export default function AccountPageContent() {
               Account Menu
             </p>
 
-            <Link href="#">
+            <Link href="/account/details">
               <p className={`m-1 font-medium text-sm px-4 py-2.5 bg-cream`}>
                 Personal Details
               </p>
             </Link>
-            <Link href="#">
+            <Link href="/account/orders">
               <p className={`m-1 font-medium text-sm px-4 py-2.5 bg-cream`}>
                 Orders
               </p>
             </Link>
-            <Link href="#">
+            <Link href="/account/rewards">
               <p className={`m-1 font-medium text-sm px-4 py-2.5 bg-cream`}>
                 Rewards
               </p>
             </Link>
-            <Link href="#">
+            <Link href="/account/wishlist">
               <p className={`m-1 font-medium text-sm px-4 py-2.5 bg-cream`}>
                 Wishlist
               </p>
             </Link>
           </div>
           <div className="col-span-4 text-center">
-            <div className="text-center ">
-              <h1 className="font-h text-3xl text-center pt-6">
-                Hi {userInfo.firstName}
-              </h1>
-              <p className="p-6 md:px-24">
-                Welcome to your Reliked account summary, where you can view and
-                update your personal details, access your order history, check
-                your rewards status and browse your wishlist. Use the account
-                menu to navigate these pages.
-              </p>
-              <p className="md:px-24 font-h text-lg">Happy Shopping!</p>
-              <p className="p-2 md:px-24 font-h text-lg">Reliked x</p>
-            </div>
+            <AccountHomeContent />
           </div>
         </div>
       </div>

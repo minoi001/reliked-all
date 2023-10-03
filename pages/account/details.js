@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import AccountPageContent from "../../components/Account/AccountPageContent.js";
 
-export default function AccountPage({ account }) {
+export default function AccountDetailsPage({ account }) {
   const { userInfo, logout } = useContext(AccountContext);
   const { push } = useRouter();
 
