@@ -1,5 +1,3 @@
-import { getNewInProducts, getProduct } from "../../lib/shopify.js";
-
 import { useContext, useEffect } from "react";
 import { AccountContext } from "../../context/accountContext";
 import { useRouter } from "next/navigation";

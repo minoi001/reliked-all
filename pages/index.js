@@ -11,7 +11,7 @@ import FeaturedCollections from "../components/Homepage/FeaturedCollections.js";
 import NewIn from "../components/Homepage/NewIn";
 import Head from "next/head";
 
-export default function Home({ products, headerContent, homepageContent }) {
+export default function Home({ headerContent, homepageContent }) {
   return (
     <>
       <div className="bg-white">
@@ -23,7 +23,7 @@ export default function Home({ products, headerContent, homepageContent }) {
         <HeroImage homepageContent={homepageContent} />
         <InfluencerSlider />
         <FeaturedCollections />
-        <NewIn products={products} />
+        <NewIn />
       </div>
     </>
   );
@@ -31,7 +31,6 @@ export default function Home({ products, headerContent, homepageContent }) {
 }
 
 export async function getStaticProps() {
-  const products = await getProductsInCollection();
   const headerContent = await getHeaderContent(
     "gid://shopify/Metaobject/57180350"
   );
@@ -41,7 +40,6 @@ export async function getStaticProps() {
 
   return {
     props: {
-      products,
       headerContent,
       homepageContent,
       navigation,

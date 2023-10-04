@@ -1,6 +1,3 @@
-import NewListing from "../components/Selling/NewListing";
-import { getNewInProducts, getProduct } from "../lib/shopify.js";
-
 import { AccountContext } from "../context/accountContext";
 import { useContext } from "react";
 import Login from "../components/Account/Login";

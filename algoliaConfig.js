@@ -10,10 +10,10 @@ const indexNames = {
   collections: "shopify_collections",
 };
 
-const index = searchClient.initIndex(indexNames.products);
+const productIndex = searchClient.initIndex(indexNames.products);
 async function getObjectIDByProductHandle(productHandle) {
   try {
-    const { hits } = await index.search("", {
+    const { hits } = await productIndex.search("", {
       filters: `handle:${productHandle}`,
     });
 
@@ -30,4 +30,27 @@ async function getObjectIDByProductHandle(productHandle) {
     return null;
   }
 }
-export { searchClient, indexNames, getObjectIDByProductHandle };
+
+const productPublishedAtIndex = searchClient.initIndex(
+  "shopify_products_published_at_desc"
+);
+
+async function getNewestProducts() {
+  try {
+    const { hits } = await productPublishedAtIndex.search("", {
+      filters: "collections:in-stock",
+      hitsPerPage: 4,
+    });
+    return hits;
+  } catch (error) {
+    console.error("***Error fetching Algolia data (NewIn):", error);
+    return null;
+  }
+}
+
+export {
+  searchClient,
+  indexNames,
+  getObjectIDByProductHandle,
+  getNewestProducts,
+};
