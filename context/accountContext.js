@@ -94,11 +94,14 @@ export default function AccountProvider({ children }) {
         userName: `${infoRequest.customer.firstName} ${infoRequest.customer.lastName}`,
         firstName: `${infoRequest.customer.firstName}`,
         lastName: `${infoRequest.customer.lastName}`,
+        email: `${infoRequest.customer.email}`,
+        phone: `${infoRequest.customer.phone}`,
         userType: `${infoRequest.customer.userType.value}`,
         listerCode: `${infoRequest.customer.userCode.value}`,
         loginStatus: true,
         checkingLogin: false,
         errorMessage: null,
+        addresses: infoRequest.customer.addresses,
       });
       // token invalid, set error message and login status to false
     } else {
