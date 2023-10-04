@@ -75,8 +75,21 @@ export default function AccountDetailsContent() {
           return (
             <p className="m-2" key={i}>
               {address.node.formatted.map((line, ind) => {
-                return <p key={ind}>{line}</p>;
+                return (
+                  <div key={ind}>
+                    <p key={ind}>{line}</p>
+                  </div>
+                );
               })}
+              <div className="inline bg-cream p-1 text-xs uppercase">
+                <button className="inline">
+                  Edit{" "}
+                  <PencilIcon
+                    className="h-3 w-3 text-almostBlack group-hover:text-taupe inline"
+                    aria-hidden="true"
+                  />
+                </button>
+              </div>
             </p>
           );
         })}
