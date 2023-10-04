@@ -5,7 +5,7 @@ export default function AccountDetailsContent() {
   const { userInfo } = useContext(AccountContext);
 
   return (
-    <div className="block">
+    <div className="block ml-12">
       <h1 className="font-h text-3xl text-center pt-6">Details</h1>
       <div className="grid grid-cols-2 mt-4">
         <div className="col-span-1">
@@ -69,8 +69,8 @@ export default function AccountDetailsContent() {
           </div>
         </div>
       </div>
-      <p className="uppercase text-sm mt-4 text-center">Addresses</p>
-      <div className="grid grid-cols-4 mt-4">
+      <p className="uppercase text-sm mt-12 text-center">Addresses</p>
+      <div className="grid grid-cols-4 mt-2">
         {userInfo.addresses.edges.map((address, i) => {
           return (
             <p className="m-2" key={i}>
