@@ -9,7 +9,6 @@ function CollectionFilters({ updateCollections, collectionType }) {
         updateCollections={updateCollections}
         collectionType={collectionType}
       />
-      <SearchBox placeholder="Filter" />
     </div>
   );
 }
@@ -34,7 +33,7 @@ function Dropdown({ updateCollections, collectionType }) {
     <div className="relative">
       <button
         onClick={handleToggle}
-        className="inline-flex font-h text-3xl pl-4 items-center"
+        className="inline-flex font-h text-3xl pl-1 items-center text-rose"
       >
         {collectionType === "vendor"
           ? "Influencers"

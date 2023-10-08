@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import ProductList from "../components/Homepage/ProductList";
 import { useSearchParams } from "next/navigation";
 import Head from "next/head";
