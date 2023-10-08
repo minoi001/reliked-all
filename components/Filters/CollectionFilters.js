@@ -32,7 +32,10 @@ function Dropdown({ updateCollections, collectionType }) {
 
   return (
     <div className="relative">
-      <button onClick={handleToggle} className="inline-flex font-h text-3xl pl-4">
+      <button
+        onClick={handleToggle}
+        className="inline-flex font-h text-3xl pl-4 items-center"
+      >
         {collectionType === "vendor"
           ? "Influencers"
           : collectionType === "brand"
