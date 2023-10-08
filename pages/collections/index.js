@@ -10,6 +10,7 @@ import Link from "next/link";
 import CollectionFilters from "../../components/Filters/CollectionFilters";
 import Head from "next/head";
 import { indexToRoute, routeToIndex } from "../_app";
+import { SearchBox } from "react-instantsearch";
 
 export default function Collections() {
   const [collectionType, setCollectionType] = useState("vendor");
@@ -19,6 +20,7 @@ export default function Collections() {
 
   const searchParameters = {
     filters: `meta.custom_fields.collection_type:'${collectionType}'`,
+    hitsPerPage: 30,
   };
 
   return (
@@ -27,19 +29,22 @@ export default function Collections() {
         <title>Collections</title>
       </Head>
       <div className="sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
-        <h1 className={`font-h p-4 text-3xl text-center`}>
-          Shop by {collectionHeader(collectionType)}
-        </h1>
+        <div className="flex justify-between align-middle">
+          <div className="inline-flex">
+            <h1 className={`font-h text-3xl`}>Shop by</h1>
+            <CollectionFilters
+              updateCollections={updateCollections}
+              collectionType={collectionType}
+            />
+          </div>
+            <SearchBox placeholder="Filter" />
+        </div>
 
         <InstantSearch
           searchClient={searchClient}
           indexName={indexNames.collections}
           insights={true} //TODO: Replace by cookie consent
         >
-          <CollectionFilters
-            updateCollections={updateCollections}
-            collectionType={collectionType}
-          />
           <Configure {...searchParameters} />
           <Hits hitComponent={Hit} />
           <div className="py-12 md:p-12">
@@ -53,7 +58,6 @@ export default function Collections() {
                   return currentRefinement;
                 },
               }}
-              // hitsPerPage={24}
               showLast={true}
             />
           </div>
@@ -69,7 +73,11 @@ function Hit({ hit }) {
       {hit.meta?.custom_fields?.collection_type?.includes("Vendor") && (
         <img src={hit.image} alt={hit.handle} className="aspect-1" />
       )}
-      <p>{hit.title}</p>
+      {hit.meta?.custom_fields?.collection_type?.includes("Vendor") ? (
+        <p>{hit.title}</p>
+      ) : (
+        <p className="text-3xl">{hit.title}</p>
+      )}
     </Link>
   );
 }

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { SearchBox } from "react-instantsearch";
 import { collectionHeader } from "../../pages/collections";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 function CollectionFilters({ updateCollections, collectionType }) {
   return (
-    <div className="inline pb-4 flex justify-between ">
+    <div className="inline flex justify-end items-center">
       <Dropdown
         updateCollections={updateCollections}
         collectionType={collectionType}
@@ -16,42 +16,29 @@ function CollectionFilters({ updateCollections, collectionType }) {
 
 function Dropdown({ updateCollections, collectionType }) {
   const [isOpen, setIsOpen] = useState(false);
+
   const bgColour = (type) => {
     return collectionType === type ? "bg-taupe" : "bg-offWhite hover:bg-cream";
   };
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleOptionClick = (option) => {
+    updateCollections(option);
+    setIsOpen(false);
+  };
+
   return (
-    <div className="flex flex-wrap justify-center items-center space-y-1 lg:flex-nowrap">
-      <button
-        className={`m-1 text-${
-          collectionType === "vendor" ? "white" : "black"
-        } bg-${
-          collectionType === "vendor" ? "almostBlack" : "cream"
-        } hover:bg-${
-          collectionType === "vendor" ? "black" : "taupe"
-        } font-medium text-sm px-4 py-2.5 text-center inline-flex items-center`}
-        onClick={() => updateCollections("vendor")}
-      >
-        Influencers
-      </button>
-      <button
-        className={`m-1 text-${
-          collectionType === "brand" ? "white" : "black"
-        } bg-${collectionType === "brand" ? "almostBlack" : "cream"} hover:bg-${
-          collectionType === "brand" ? "black" : "taupe"
-        } font-medium text-sm px-4 py-2.5 text-center inline-flex items-center`}
-        onClick={() => updateCollections("brand")}
-      >
-        Brands
-      </button>
-      <button
-        className={`m-1 text-${
-          collectionType === "size" ? "white" : "black"
-        } bg-${collectionType === "size" ? "almostBlack" : "cream"} hover:bg-${
-          collectionType === "size" ? "black" : "taupe"
-        } font-medium text-sm px-4 py-2.5 text-center inline-flex items-center`}
-        onClick={() => updateCollections("size")}
-      >
-        Sizes
+    <div className="relative">
+      <button onClick={handleToggle} className="inline-flex font-h text-3xl pl-4">
+        {collectionType === "vendor"
+          ? "Influencers"
+          : collectionType === "brand"
+          ? "Brands"
+          : "Sizes"}
+        <ChevronDownIcon className="flex w-5 h-5 p-1" />
       </button>
 
       {isOpen && (
@@ -66,7 +53,7 @@ function Dropdown({ updateCollections, collectionType }) {
                 "vendor"
               )}`}
               role="menuitem"
-              onClick={() => updateCollections("vendor")}
+              onClick={() => handleOptionClick("vendor")}
             >
               Influencers
             </li>
@@ -75,7 +62,7 @@ function Dropdown({ updateCollections, collectionType }) {
                 "brand"
               )}`}
               role="menuitem"
-              onClick={() => updateCollections("brand")}
+              onClick={() => handleOptionClick("brand")}
             >
               Brands
             </li>
@@ -84,7 +71,7 @@ function Dropdown({ updateCollections, collectionType }) {
                 "size"
               )}`}
               role="menuitem"
-              onClick={() => updateCollections("size")}
+              onClick={() => handleOptionClick("size")}
             >
               Sizes
             </li>
