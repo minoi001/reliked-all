@@ -1,25 +1,32 @@
-import { useState } from "react";
-import {
-  Configure,
-  Hits,
-  InstantSearch,
-  Pagination,
-} from "react-instantsearch";
-import { indexNames, searchClient } from "../../algoliaConfig";
+import { useEffect, useState } from "react";
+import { getCollections } from "../../algoliaConfig";
 import Link from "next/link";
 import CollectionFilters from "../../components/Filters/CollectionFilters";
 import Head from "next/head";
-import { indexToRoute, routeToIndex } from "../_app";
 
 export default function Collections() {
   const [collectionType, setCollectionType] = useState("vendor");
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
+  const [maxPage, setMaxPage] = useState(0);
   async function updateCollections(collectionType) {
+    setData([]);
     setCollectionType(collectionType);
   }
 
-  const searchParameters = {
-    filters: `meta.custom_fields.collection_type:'${collectionType}'`,
-  };
+  function loadMore() {
+    if (page < maxPage - 1) setPage(page + 1);
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { hits, nbPages } = await getCollections(collectionType, page);
+      setData(data.concat(hits));
+      setMaxPage(nbPages);
+      console.log(hits, "hits");
+    };
+    fetchData();
+  }, [collectionType, page]);
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -27,37 +34,36 @@ export default function Collections() {
         <title>Collections</title>
       </Head>
       <div className="sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
-        <h1 className={`font-h p-4 text-3xl text-center`}>
-          Shop by {collectionHeader(collectionType)}
-        </h1>
-
-        <InstantSearch
-          searchClient={searchClient}
-          indexName={indexNames.collections}
-          insights={true} //TODO: Replace by cookie consent
-        >
-          <CollectionFilters
-            updateCollections={updateCollections}
-            collectionType={collectionType}
-          />
-          <Configure {...searchParameters} />
-          <Hits hitComponent={Hit} />
-          <div className="py-12 md:p-12">
-            <Pagination
-              translations={{
-                previous: "Previous",
-                next: "Next",
-                first: "First",
-                last: "Last",
-                page(currentRefinement) {
-                  return currentRefinement;
-                },
-              }}
-              // hitsPerPage={24}
-              showLast={true}
+        <div className="flex justify-between align-middle">
+          <div className="inline-flex py-4">
+            <h1 className={`font-h text-3xl`}>Shop by</h1>
+            <CollectionFilters
+              updateCollections={updateCollections}
+              collectionType={collectionType}
             />
           </div>
-        </InstantSearch>
+        </div>
+        {/*//TODO: Readd the search bar*/}
+        <div
+          className={`
+            grid grid-cols-2 ${
+              collectionType === "vendor"
+                ? "gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
+                : ""
+            }`}
+        >
+          {data.map((collection) => (
+            <Hit hit={collection} key={collection.id} />
+          ))}
+        </div>
+        {page < maxPage - 1 && (
+          <button
+            className={"font-h text-2xl w-full justify-center"}
+            onClick={loadMore}
+          >
+            Load More
+          </button>
+        )}
       </div>
     </div>
   );
@@ -69,7 +75,11 @@ function Hit({ hit }) {
       {hit.meta?.custom_fields?.collection_type?.includes("Vendor") && (
         <img src={hit.image} alt={hit.handle} className="aspect-1" />
       )}
-      <p>{hit.title}</p>
+      {hit.meta?.custom_fields?.collection_type?.includes("Vendor") ? (
+        <p>{hit.title}</p>
+      ) : (
+        <p className="text-2xl">{hit.title}</p>
+      )}
     </Link>
   );
 }

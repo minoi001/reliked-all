@@ -11,6 +11,7 @@ const indexNames = {
 };
 
 const productIndex = searchClient.initIndex(indexNames.products);
+const collctionIndex = searchClient.initIndex(indexNames.collections);
 async function getObjectIDByProductHandle(productHandle) {
   try {
     const { hits } = await productIndex.search("", {
@@ -48,9 +49,24 @@ async function getNewestProducts() {
   }
 }
 
+async function getCollections(type, page = 0) {
+  try {
+    const { hits, nbPages } = await collctionIndex.search("", {
+      filters: `meta.custom_fields.collection_type:'${type}'`,
+      hitsPerPage: 40,
+      page: page,
+    });
+    return { hits, nbPages };
+  } catch (error) {
+    console.error("***Error fetching Algolia data (NewIn):", error);
+    return null;
+  }
+}
+
 export {
   searchClient,
   indexNames,
   getObjectIDByProductHandle,
   getNewestProducts,
+  getCollections,
 };
