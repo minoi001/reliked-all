@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { ProductContext } from "../../../context/productContext";
 import { AccountContext } from "../../../context/accountContext";
 import Select from "react-select";
-import PhotoUploader from "./PhotoUploader";
 
 const Photos = ({ styles }) => {
   const { updateProductValue } = useContext(ProductContext);

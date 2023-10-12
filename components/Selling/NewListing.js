@@ -11,9 +11,9 @@ import Photos from "./ListingVariables/Photos";
 import Details from "./ListingVariables/Details";
 import Staff from "./ListingVariables/Staff";
 import Price from "./ListingVariables/Price";
-import * as LR from "@uploadcare/blocks";
+// import * as LR from "@uploadcare/blocks";
 import st from "../../styles/App.module.css";
-import { PACKAGE_VERSION } from "@uploadcare/blocks/env";
+// import { PACKAGE_VERSION } from "@uploadcare/blocks/env";
 import CreateProduct from "./Functions & Variables/CreateProduct";
 import CreateProductReady from "./Functions & Variables/CreateProductReady";
 
@@ -110,147 +110,148 @@ export default function NewListing({ listing }) {
   }, [resetProductInfo]);
 
   return (
-    <div
-      className={
-        st.wrapper +
-        "flex flex-col justify-center items-center -mt-6 sm:-mt-16 md:flex-row md:items-start md:space-x-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto"
-      }
-    >
-      {userInfo.loginStatus ? (
-        //  logged in
-        <div>
-          <div className="bg-white pb-4">
-            <div>
-              <div className="max-w-2xl mx-auto py-4 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                <h1 className="text-3xl font-extrabold text-almostBlack mb-0 ">
-                  {/* {productInfo.title} */}
-                  <center>Add Listing</center>
-                </h1>
-                <div className={"grid" + st.output}>
-                  <div className="inline-flex p-1 w-1/6 h-48">
-                    <Image
-                      src={
-                        "https://cdn.shopify.com/s/files/1/2481/5934/files/grey.jpg?v=1689346930"
-                      }
-                      alt={"hi"}
-                      className=""
-                      width="400"
-                      height="500"
-                    />
-                  </div>
-                  <div className="inline-flex p-1 w-1/6 h-48">
-                    <Image
-                      src={
-                        "https://cdn.shopify.com/s/files/1/2481/5934/files/grey.jpg?v=1689346930"
-                      }
-                      alt={"hi"}
-                      className=""
-                      width="400"
-                      height="500"
-                    />
-                  </div>
-                  <div className="inline-flex p-1 w-1/6 h-48">
-                    <Image
-                      src={
-                        "https://cdn.shopify.com/s/files/1/2481/5934/files/grey.jpg?v=1689346930"
-                      }
-                      alt={"hi"}
-                      className=""
-                      width="400"
-                      height="500"
-                    />
-                  </div>
-                  <div className="inline-flex p-1 w-1/4 h-36"></div>
-                  {files.map((file) => (
-                    <div className="inline-flex p-1 w-1/4 h-36" key={file.uuid}>
-                      <Image
-                        className="object-contain p-1"
-                        key={file.uuid}
-                        src={`https://ucarecdn.com/${file.uuid}/${
-                          file.cdnUrlModifiers || ""
-                        }`}
-                        width="400"
-                        height="500"
-                        alt="Preview"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="grid md:grid-cols-2">
-              {/* LEFT SIDE OF FORM */}
-              <div className="inline w-full p-4 pt-0 md:pl-8">
-                <div
-                  className={
-                    userInfo.userType === "Customer" ||
-                    userInfo.userType === "Influencer"
-                      ? "hidden "
-                      : ""
-                  }
-                >
-                  <Ownership styles={styles} />
+    <div>nothing</div>
+    // <div
+    //   className={
+    //     st.wrapper +
+    //     "flex flex-col justify-center items-center -mt-6 sm:-mt-16 md:flex-row md:items-start md:space-x-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto"
+    //   }
+    // >
+    //   {userInfo.loginStatus ? (
+    //     //  logged in
+    //     <div>
+    //       <div className="bg-white pb-4">
+    //         <div>
+    //           <div className="max-w-2xl mx-auto py-4 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    //             <h1 className="text-3xl font-extrabold text-almostBlack mb-0 ">
+    //               {/* {productInfo.title} */}
+    //               <center>Add Listing</center>
+    //             </h1>
+    //             <div className={"grid" + st.output}>
+    //               <div className="inline-flex p-1 w-1/6 h-48">
+    //                 <Image
+    //                   src={
+    //                     "https://cdn.shopify.com/s/files/1/2481/5934/files/grey.jpg?v=1689346930"
+    //                   }
+    //                   alt={"hi"}
+    //                   className=""
+    //                   width="400"
+    //                   height="500"
+    //                 />
+    //               </div>
+    //               <div className="inline-flex p-1 w-1/6 h-48">
+    //                 <Image
+    //                   src={
+    //                     "https://cdn.shopify.com/s/files/1/2481/5934/files/grey.jpg?v=1689346930"
+    //                   }
+    //                   alt={"hi"}
+    //                   className=""
+    //                   width="400"
+    //                   height="500"
+    //                 />
+    //               </div>
+    //               <div className="inline-flex p-1 w-1/6 h-48">
+    //                 <Image
+    //                   src={
+    //                     "https://cdn.shopify.com/s/files/1/2481/5934/files/grey.jpg?v=1689346930"
+    //                   }
+    //                   alt={"hi"}
+    //                   className=""
+    //                   width="400"
+    //                   height="500"
+    //                 />
+    //               </div>
+    //               <div className="inline-flex p-1 w-1/4 h-36"></div>
+    //               {files.map((file) => (
+    //                 <div className="inline-flex p-1 w-1/4 h-36" key={file.uuid}>
+    //                   <Image
+    //                     className="object-contain p-1"
+    //                     key={file.uuid}
+    //                     src={`https://ucarecdn.com/${file.uuid}/${
+    //                       file.cdnUrlModifiers || ""
+    //                     }`}
+    //                     width="400"
+    //                     height="500"
+    //                     alt="Preview"
+    //                   />
+    //                 </div>
+    //               ))}
+    //             </div>
+    //           </div>
+    //         </div>
+    //         <div className="grid md:grid-cols-2">
+    //           {/* LEFT SIDE OF FORM */}
+    //           <div className="inline w-full p-4 pt-0 md:pl-8">
+    //             <div
+    //               className={
+    //                 userInfo.userType === "Customer" ||
+    //                 userInfo.userType === "Influencer"
+    //                   ? "hidden "
+    //                   : ""
+    //               }
+    //             >
+    //               <Ownership styles={styles} />
 
-                  <Type styles={styles} />
+    //               <Type styles={styles} />
 
-                  <Audience styles={styles} />
+    //               <Audience styles={styles} />
 
-                  <Title styles={styles} />
-                </div>
-              </div>
-              {/* RIGHT SIDE OF FORM */}
+    //               <Title styles={styles} />
+    //             </div>
+    //           </div>
+    //           {/* RIGHT SIDE OF FORM */}
 
-              <div className="inline w-full p-4 pt-0 md:pr-8">
-                <fieldset className="px-4 border-solid border-2 border-taupe w-full">
-                  <legend className="p-1">PHOTOS</legend>
-                  <Photos styles={styles} />
-                  <div className="ml-2 mb-5 mr-1.5 -mt-2 bg-UCgrey">
-                    <lr-file-uploader-regular
-                      class={"uploadcare-settings " + st.uploaderCfg}
-                      css-src={`https://unpkg.com/@uploadcare/blocks@${PACKAGE_VERSION}/web/file-uploader-regular.min.css`}
-                    >
-                      <lr-data-output
-                        ref={dataOutputRef}
-                        use-event
-                        hidden
-                        class={st.uploaderCfg}
-                        onEvent={handleUploaderEvent}
-                      ></lr-data-output>
-                    </lr-file-uploader-regular>
-                  </div>
-                </fieldset>
-                <Details styles={styles} />
+    //           <div className="inline w-full p-4 pt-0 md:pr-8">
+    //             <fieldset className="px-4 border-solid border-2 border-taupe w-full">
+    //               <legend className="p-1">PHOTOS</legend>
+    //               <Photos styles={styles} />
+    //               <div className="ml-2 mb-5 mr-1.5 -mt-2 bg-UCgrey">
+    //                 <lr-file-uploader-regular
+    //                   class={"uploadcare-settings " + st.uploaderCfg}
+    //                   css-src={`https://unpkg.com/@uploadcare/blocks@${PACKAGE_VERSION}/web/file-uploader-regular.min.css`}
+    //                 >
+    //                   <lr-data-output
+    //                     ref={dataOutputRef}
+    //                     use-event
+    //                     hidden
+    //                     class={st.uploaderCfg}
+    //                     onEvent={handleUploaderEvent}
+    //                   ></lr-data-output>
+    //                 </lr-file-uploader-regular>
+    //               </div>
+    //             </fieldset>
+    //             <Details styles={styles} />
 
-                <Price styles={styles} />
-              </div>
-            </div>
-            <div
-              className={
-                userInfo.userType === "Customer" ||
-                userInfo.userType === "Influencer"
-                  ? "hidden "
-                  : "flex-inline px-4 md:px-8 w-full"
-              }
-            >
-              <Staff styles={styles} />
-            </div>
-            <div>
-              <button
-                className=""
-                onClick={() => CreateProductReady(productInfo)}
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="w-full max-w-md border bg-white overflow-hidden shadow-lg md:w-1/2">
-          <div className="relative h-full w-full">
-            <Login styles={styles} />
-          </div>
-        </div>
-      )}
-    </div>
+    //             <Price styles={styles} />
+    //           </div>
+    //         </div>
+    //         <div
+    //           className={
+    //             userInfo.userType === "Customer" ||
+    //             userInfo.userType === "Influencer"
+    //               ? "hidden "
+    //               : "flex-inline px-4 md:px-8 w-full"
+    //           }
+    //         >
+    //           <Staff styles={styles} />
+    //         </div>
+    //         <div>
+    //           <button
+    //             className=""
+    //             onClick={() => CreateProductReady(productInfo)}
+    //           >
+    //             Save
+    //           </button>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   ) : (
+    //     <div className="w-full max-w-md border bg-white overflow-hidden shadow-lg md:w-1/2">
+    //       <div className="relative h-full w-full">
+    //         <Login styles={styles} />
+    //       </div>
+    //     </div>
+    //   )}
+    // </div>
   );
 }
