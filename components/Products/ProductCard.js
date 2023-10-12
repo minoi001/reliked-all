@@ -41,7 +41,7 @@ const ProductCard = ({ hit }) => {
           <div className="group w-full bg-offWhite overflow-hidden ">
             <div className="grid group-hover:opacity-75-20 w-full aspect-4/5 p-3 place-items-center">
               <Image
-                sizes="(max-width: 768px) 30vw, (max-width: 1200px) 20vw, 10vw"
+                sizes="(max-width: 768px) 17vw, (max-width: 1200px) 15vw, 7vw"
                 src={image}
                 alt={altText}
                 width="446"
