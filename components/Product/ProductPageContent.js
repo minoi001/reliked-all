@@ -20,6 +20,7 @@ export default function ProductPageContent({ product, id }) {
               width="1000"
               className="static object-contain center bg-offWhite p-12 w-full aspect-11/12"
               priority={true}
+              loading="eager"
             />
           </div>
           <div className="md:w-3/5 p-4 px-8 md:p-12">

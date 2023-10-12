@@ -3,6 +3,7 @@ import { getCollections } from "../../algoliaConfig";
 import Link from "next/link";
 import CollectionFilters from "../../components/Filters/CollectionFilters";
 import Head from "next/head";
+import Image from "next/image";
 
 export default function Collections() {
   const [collectionType, setCollectionType] = useState("vendor");
@@ -74,7 +75,13 @@ function Hit({ hit }) {
   return (
     <Link href={`collections/${hit.handle}`}>
       {hit.meta?.custom_fields?.collection_type?.includes("Vendor") && (
-        <img src={hit.image} alt={hit.handle} className="aspect-1" />
+        <Image
+          src={hit.image}
+          alt={hit.handle.trim()}
+          className="aspect-1"
+          width="400"
+          height="400"
+        />
       )}
       {hit.meta?.custom_fields?.collection_type?.includes("Vendor") ? (
         <p>{hit.title}</p>
