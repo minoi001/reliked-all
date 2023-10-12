@@ -30,7 +30,7 @@ function Dropdown({ updateCollections, collectionType }) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative text-center">
       <button
         onClick={handleToggle}
         className="inline-flex font-h text-3xl pl-1 items-center text-rose"
@@ -42,6 +42,10 @@ function Dropdown({ updateCollections, collectionType }) {
           : "Sizes"}
         <ChevronDownIcon className="flex w-5 h-5 p-1" />
       </button>
+
+      <p className="text-center">
+        Can we please make this text and the title above centered
+      </p>
 
       {isOpen && (
         <div

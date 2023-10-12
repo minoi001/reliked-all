@@ -30,6 +30,46 @@ module.exports = {
         destination: "/collections",
         permanent: true,
       },
+      {
+        source: "/pages/female-vibs",
+        destination: "/collections",
+        permanent: true,
+      },
+      {
+        source: "/pages/kids-vibs",
+        destination: "/collections",
+        permanent: true,
+      },
+      {
+        source: "/pages/male-vibs",
+        destination: "/collections",
+        permanent: true,
+      },
+      {
+        source: "/pages/brands",
+        destination: "/collections",
+        permanent: true,
+      },
+      {
+        source: "/pages/female-brands",
+        destination: "/collections",
+        permanent: true,
+      },
+      {
+        source: "/pages/mens-brands",
+        destination: "/collections",
+        permanent: true,
+      },
+      {
+        source: "/pages/luxury-brands",
+        destination: "/collections",
+        permanent: true,
+      },
+      {
+        source: "/pages/beauty-brands",
+        destination: "/collections",
+        permanent: true,
+      },
     ];
   },
 };

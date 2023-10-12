@@ -35,8 +35,9 @@ export default function Collections() {
       </Head>
       <div className="sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
         <div className="flex justify-between align-middle">
-          <div className="inline-flex py-4">
-            <h1 className={`font-h text-3xl`}>Shop by</h1>
+          <div className="inline-flex py-4 text-center">
+            <h1 className={`font-h text-3xl text-center`}>Shop by</h1>
+
             <CollectionFilters
               updateCollections={updateCollections}
               collectionType={collectionType}
