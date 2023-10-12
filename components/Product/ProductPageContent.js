@@ -18,7 +18,8 @@ export default function ProductPageContent({ product, id }) {
               alt={product.title}
               height="1000"
               width="1000"
-              className="static object-contain center bg-offWhite p-12 w-full aspect-11/12"
+              sizes="(max-width: 768px) 80vw, (max-width: 1200px) 33vw, 15vw"
+              className="w-full aspect-11/12 object-contain p-12 bg-offWhite bg-off"
               priority={true}
               loading="eager"
             />

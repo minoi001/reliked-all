@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
+module.exports = withBundleAnalyzer({
   env: {
     SHOPIFY_STORE_DOMAIN: process.env.SHOPIFY_STORE_DOMAIN,
     SHOPIFY_STOREFRONT_DOMAIN: process.env.SHOPIFY_STOREFRONT_DOMAIN,
@@ -19,6 +24,7 @@ module.exports = {
     RELIKED_API_KEY: process.env.RELIKED_API_KEY,
     ALGOLIA_APP_ID: process.env.ALGOLIA_APP_ID,
     ALGOLIA_API_KEY: process.env.ALGOLIA_API_KEY,
+    ANALYZE: process.env.ANALYZE,
   },
   images: {
     domains: [
@@ -77,4 +83,4 @@ module.exports = {
       },
     ];
   },
-};
+});
