@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AccountContext } from "../../../context/accountContext";
 import { PencilIcon } from "@heroicons/react/24/outline";
-import PopUp from "../../PopUp";
+import PopUp from "../../EditPopUp";
 
 export default function AccountDetailsContent() {
   const { userInfo } = useContext(AccountContext);

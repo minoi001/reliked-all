@@ -1,15 +1,22 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState, useContext } from "react";
+import { AccountContext } from "../context/accountContext";
 import { Dialog, Transition } from "@headlessui/react";
 import { PencilIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 export default function PopUp({ open, setOpen, content }) {
+  const {
+    userInfo,
+    updatePassword,
+    updateUserName,
+    updateEmail,
+    updatePhone,
+    updateAddress,
+  } = useContext(AccountContext);
+
+  // need to set error message to blank on load
   let [inputData, setInputData] = useState([]);
   let [errorMessage, setErrorMessage] = useState("");
-
-  function updatePassword(params) {
-    console.log(params[0].value);
-  }
 
   const cancelButtonRef = useRef(null);
 
@@ -43,6 +50,7 @@ export default function PopUp({ open, setOpen, content }) {
       setOpen(false);
       eval(functionName + "(inputData)");
       setErrorMessage("");
+      setInputData([]);
     }
   };
 

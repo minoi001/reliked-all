@@ -3,6 +3,7 @@ import {
   getUserAccessToken,
   getUserInfo,
   recoverUserAccount,
+  updateUserNameReq,
 } from "../lib/shopify";
 
 const AccountContext = createContext();
@@ -102,6 +103,7 @@ export default function AccountProvider({ children }) {
         checkingLogin: false,
         errorMessage: null,
         addresses: infoRequest.customer.addresses,
+        token: localStorage.accountToken,
       });
       // token invalid, set error message and login status to false
     } else {
@@ -113,6 +115,24 @@ export default function AccountProvider({ children }) {
       localStorage.removeItem("accountToken");
     }
   }
+
+  const updateUserName = async (inputData) => {
+    let input = {
+      firstName: inputData[0].value,
+      lastName: inputData[1].value,
+      userName: `${inputData[0].value} ${inputData[1].value}`,
+      token: `${userInfo.token}`,
+    };
+    let token = await updateUserNameReq(input);
+    updateUserValue({
+      firstName: inputData[0].value,
+      lastName: inputData[1].value,
+      userName: `${inputData[0].value} ${inputData[1].value}`,
+      token: `${token}`,
+    });
+    // store token in local storage
+    localStorage.setItem("accountToken", `${token}`);
+  };
 
   const logout = async () => {
     localStorage.removeItem("accountToken");
@@ -143,6 +163,7 @@ export default function AccountProvider({ children }) {
         sendUserRequest,
         sendRecoveryRequest,
         updateUserValue,
+        updateUserName,
         logout,
       }}
     >
