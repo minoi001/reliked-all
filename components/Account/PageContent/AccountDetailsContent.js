@@ -23,7 +23,7 @@ export default function AccountDetailsContent() {
               <p>Name</p>
             </div>
             <div className="col-span-1">
-              <p>
+              <div>
                 {userInfo.userName}{" "}
                 <button
                   onClick={(event) =>
@@ -52,7 +52,7 @@ export default function AccountDetailsContent() {
                     aria-hidden="true"
                   />
                 </button>
-              </p>
+              </div>
             </div>
           </div>
           <div className="grid grid-cols-2 items-center">
@@ -60,7 +60,7 @@ export default function AccountDetailsContent() {
               <p>Email</p>
             </div>
             <div className="col-span-1">
-              <p>
+              <div>
                 {userInfo.email}{" "}
                 <button>
                   <PencilIcon
@@ -68,7 +68,7 @@ export default function AccountDetailsContent() {
                     aria-hidden="true"
                   />
                 </button>
-              </p>
+              </div>
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default function AccountDetailsContent() {
       <div className="grid grid-cols-4 mt-2">
         {userInfo.addresses.edges.map((address, i) => {
           return (
-            <p className="m-2" key={i}>
+            <div className="m-2" key={i}>
               {address.node.formatted.map((line, ind) => {
                 return (
                   <div key={ind}>
@@ -120,7 +120,7 @@ export default function AccountDetailsContent() {
                   />
                 </button>
               </div>
-            </p>
+            </div>
           );
         })}
       </div>

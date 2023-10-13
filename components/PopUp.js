@@ -6,6 +6,11 @@ import Link from "next/link";
 export default function PopUp({ open, setOpen, content }) {
   let [inputData, setInputData] = useState([]);
   let [loadComponent, setLoadComponent] = useState(false);
+
+  function updateUserName(params) {
+    console.log(params[0].value);
+  }
+
   const cancelButtonRef = useRef(null);
 
   function handleInput(label, value) {
@@ -27,9 +32,12 @@ export default function PopUp({ open, setOpen, content }) {
     setInputData(updatedInputs);
   }
 
-  function handleUpdate(values) {
+  const handleUpdate = async (event, functionName) => {
+    event.preventDefault();
     setOpen(false);
-  }
+    eval(functionName + "(inputData)");
+  };
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -78,7 +86,14 @@ export default function PopUp({ open, setOpen, content }) {
                         {content ? content.title : ""}
                       </Dialog.Title>
                       <div className="mt-2">
-                        <form className="" action="#" method="POST">
+                        <form
+                          className=""
+                          action="#"
+                          method="POST"
+                          onSubmit={(event) =>
+                            handleUpdate(event, "updateUserName")
+                          }
+                        >
                           <input
                             type="hidden"
                             name="remember"
@@ -120,7 +135,6 @@ export default function PopUp({ open, setOpen, content }) {
                             <button
                               type="submit"
                               className="inline-flex w-full justify-center rounded-md bg-mint px-3 py-2 text-sm font-semibold text-almostBlack shadow-sm hover:bg-almostBlack hover:text-white sm:ml-3 sm:w-auto"
-                              onSubmit={handleUpdate}
                             >
                               Update
                             </button>
