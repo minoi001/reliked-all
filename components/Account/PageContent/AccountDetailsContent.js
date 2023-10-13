@@ -24,7 +24,7 @@ export default function AccountDetailsContent() {
             </div>
             <div className="col-span-1">
               <div>
-                {userInfo.userName}{" "}
+                {userInfo.firstName} {userInfo.lastName}
                 <button
                   onClick={(event) =>
                     editButton({

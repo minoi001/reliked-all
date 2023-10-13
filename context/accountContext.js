@@ -3,7 +3,7 @@ import {
   getUserAccessToken,
   getUserInfo,
   recoverUserAccount,
-  updateUserNameReq,
+  updateCustomerReq,
 } from "../lib/shopify";
 
 const AccountContext = createContext();
@@ -11,7 +11,8 @@ const AccountContext = createContext();
 export default function AccountProvider({ children }) {
   const [userInfo, setUserInfo] = useState({
     userType: "",
-    userName: "",
+    firstName: "",
+    lastName: "",
     listerCode: "",
     email: "",
     password: "",
@@ -92,7 +93,6 @@ export default function AccountProvider({ children }) {
     // if token value, set user info values
     if (infoRequest.customer != null) {
       updateUserValue({
-        userName: `${infoRequest.customer.firstName} ${infoRequest.customer.lastName}`,
         firstName: `${infoRequest.customer.firstName}`,
         lastName: `${infoRequest.customer.lastName}`,
         email: `${infoRequest.customer.email}`,
@@ -116,20 +116,14 @@ export default function AccountProvider({ children }) {
     }
   }
 
-  const updateUserName = async (inputData) => {
-    let input = {
-      firstName: inputData[0].value,
-      lastName: inputData[1].value,
-      userName: `${inputData[0].value} ${inputData[1].value}`,
-      token: `${userInfo.token}`,
+  const updateCustomer = async (inputData) => {
+    const input = {
+      customer: inputData,
+      customerAccessToken: `${userInfo.token}`,
     };
-    let token = await updateUserNameReq(input);
-    updateUserValue({
-      firstName: inputData[0].value,
-      lastName: inputData[1].value,
-      userName: `${inputData[0].value} ${inputData[1].value}`,
-      token: `${token}`,
-    });
+
+    let token = await updateCustomerReq(input);
+    updateUserValue({ ...inputData, ...{ token: `${token}` } });
     // store token in local storage
     localStorage.setItem("accountToken", `${token}`);
   };
@@ -139,7 +133,8 @@ export default function AccountProvider({ children }) {
 
     setUserInfo({
       userType: "",
-      userName: "",
+      firstName: "",
+      lastName: "",
       listerCode: "",
       email: "",
       password: "",
@@ -163,7 +158,7 @@ export default function AccountProvider({ children }) {
         sendUserRequest,
         sendRecoveryRequest,
         updateUserValue,
-        updateUserName,
+        updateCustomer,
         logout,
       }}
     >

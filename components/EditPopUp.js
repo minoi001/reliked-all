@@ -5,38 +5,17 @@ import { PencilIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 export default function PopUp({ open, setOpen, content }) {
-  const {
-    userInfo,
-    updatePassword,
-    updateUserName,
-    updateEmail,
-    updatePhone,
-    updateAddress,
-  } = useContext(AccountContext);
+  const { userInfo, updateCustomer } = useContext(AccountContext);
 
   // need to set error message to blank on load
-  let [inputData, setInputData] = useState([]);
+  let [inputData, setInputData] = useState({});
   let [errorMessage, setErrorMessage] = useState("");
+  let [newInputData, setNewInputData] = useState({});
 
   const cancelButtonRef = useRef(null);
 
-  function handleInput(label, value) {
-    // setInputData([...inputData, { [label]: value }]);
-
-    const newInput = { label: label, value: value };
-
-    const updatedInputs = inputData.map((item) => {
-      if (item.label === newInput.label) {
-        return newInput;
-      }
-      return item;
-    });
-
-    if (!updatedInputs.some((item) => item.label === newInput.label)) {
-      updatedInputs.push(newInput);
-    }
-
-    setInputData(updatedInputs);
+  function handleInput(key, value) {
+    setInputData({ ...inputData, ...{ [key]: value } });
   }
 
   const handleUpdate = async (event, functionName) => {
@@ -48,7 +27,7 @@ export default function PopUp({ open, setOpen, content }) {
       setErrorMessage("Passwords do not match");
     } else {
       setOpen(false);
-      eval(functionName + "(inputData)");
+      updateCustomer(inputData);
       setErrorMessage("");
       setInputData([]);
     }
