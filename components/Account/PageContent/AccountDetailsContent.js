@@ -1,8 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AccountContext } from "../../../context/accountContext";
 import { PencilIcon } from "@heroicons/react/24/outline";
+import PopUp from "../../PopUp";
+
 export default function AccountDetailsContent() {
   const { userInfo } = useContext(AccountContext);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [popupContent, setPopupContent] = useState();
+
+  function editButton(content) {
+    setPopupContent(content);
+    setPopupOpen(true);
+  }
 
   return (
     <div className="block ml-12">
@@ -16,7 +25,28 @@ export default function AccountDetailsContent() {
             <div className="col-span-1">
               <p>
                 {userInfo.userName}{" "}
-                <button>
+                <button
+                  onClick={(event) =>
+                    editButton({
+                      type: "userName",
+                      title: "Edit your name",
+                      fields: [
+                        {
+                          label: "firstName",
+                          title: "First Name",
+                          type: "text",
+                          value: userInfo.firstName,
+                        },
+                        {
+                          label: "lastName",
+                          title: "Last Name",
+                          type: "text",
+                          value: userInfo.lastName,
+                        },
+                      ],
+                    })
+                  }
+                >
                   <PencilIcon
                     className="h-3 w-3 text-almostBlack group-hover:text-taupe"
                     aria-hidden="true"
@@ -94,6 +124,7 @@ export default function AccountDetailsContent() {
           );
         })}
       </div>
+      <PopUp open={popupOpen} setOpen={setPopupOpen} content={popupContent} />
       {/* <p className="md:px-24 font-h text-lg">Happy Shopping!</p>
       <p className="p-2 md:px-24 font-h text-lg">Reliked x</p> */}
     </div>
