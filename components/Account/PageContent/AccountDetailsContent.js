@@ -30,18 +30,17 @@ export default function AccountDetailsContent() {
                     editButton({
                       type: "userName",
                       title: "Edit your name",
+                      functionName: "updateUserName",
                       fields: [
                         {
                           label: "firstName",
                           title: "First Name",
                           type: "text",
-                          value: userInfo.firstName,
                         },
                         {
                           label: "lastName",
                           title: "Last Name",
                           type: "text",
-                          value: userInfo.lastName,
                         },
                       ],
                     })
@@ -62,7 +61,22 @@ export default function AccountDetailsContent() {
             <div className="col-span-1">
               <div>
                 {userInfo.email}{" "}
-                <button>
+                <button
+                  onClick={(event) =>
+                    editButton({
+                      type: "email",
+                      title: "Edit your email address",
+                      functionName: "updateEmail",
+                      fields: [
+                        {
+                          label: "email",
+                          title: "Email",
+                          type: "email",
+                        },
+                      ],
+                    })
+                  }
+                >
                   <PencilIcon
                     className="h-3 w-3 text-almostBlack group-hover:text-taupe"
                     aria-hidden="true"
@@ -77,7 +91,27 @@ export default function AccountDetailsContent() {
             <div className="col-span-1 uppercase text-sm">Password</div>
             <div className="col-span-1">
               ********{" "}
-              <button>
+              <button
+                onClick={(event) =>
+                  editButton({
+                    type: "password",
+                    title: "Edit your password",
+                    functionName: "updatePassword",
+                    fields: [
+                      {
+                        label: "password",
+                        title: "Password",
+                        type: "password",
+                      },
+                      {
+                        label: "confirmPassword",
+                        title: "Confirm Password",
+                        type: "password",
+                      },
+                    ],
+                  })
+                }
+              >
                 <PencilIcon
                   className="h-3 w-3 text-almostBlack group-hover:text-taupe"
                   aria-hidden="true"

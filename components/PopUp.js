@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export default function PopUp({ open, setOpen, content }) {
   let [inputData, setInputData] = useState([]);
-  let [loadComponent, setLoadComponent] = useState(false);
+  let [errorMessage, setErrorMessage] = useState("");
 
-  function updateUserName(params) {
+  function updatePassword(params) {
     console.log(params[0].value);
   }
 
@@ -34,8 +34,16 @@ export default function PopUp({ open, setOpen, content }) {
 
   const handleUpdate = async (event, functionName) => {
     event.preventDefault();
-    setOpen(false);
-    eval(functionName + "(inputData)");
+    if (
+      functionName === "updatePassword" &&
+      inputData[0].value !== inputData[1].value
+    ) {
+      setErrorMessage("Passwords do not match");
+    } else {
+      setOpen(false);
+      eval(functionName + "(inputData)");
+      setErrorMessage("");
+    }
   };
 
   return (
@@ -85,13 +93,14 @@ export default function PopUp({ open, setOpen, content }) {
                       >
                         {content ? content.title : ""}
                       </Dialog.Title>
+                      <p>{errorMessage} </p>
                       <div className="mt-2">
                         <form
                           className=""
                           action="#"
                           method="POST"
                           onSubmit={(event) =>
-                            handleUpdate(event, "updateUserName")
+                            handleUpdate(event, content.functionName)
                           }
                         >
                           <input
@@ -115,7 +124,7 @@ export default function PopUp({ open, setOpen, content }) {
                                     <input
                                       id={field.label}
                                       name={field.label}
-                                      type="text"
+                                      type={field.type}
                                       autoComplete={field.label}
                                       required
                                       className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-taupe sm:text-sm sm:leading-6"
