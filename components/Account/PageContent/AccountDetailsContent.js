@@ -31,6 +31,7 @@ export default function AccountDetailsContent() {
                       type: "userName",
                       title: "Edit your name",
                       functionName: "updateUserName",
+                      confirm: false,
                       fields: [
                         {
                           label: "firstName",
@@ -67,10 +68,16 @@ export default function AccountDetailsContent() {
                       type: "email",
                       title: "Edit your email address",
                       functionName: "updateEmail",
+                      confirm: true,
                       fields: [
                         {
                           label: "email",
                           title: "Email",
+                          type: "email",
+                        },
+                        {
+                          label: "confirmEmail",
+                          title: "Confirm Email",
                           type: "email",
                         },
                       ],
@@ -97,6 +104,7 @@ export default function AccountDetailsContent() {
                     type: "password",
                     title: "Edit your password",
                     functionName: "updatePassword",
+                    confirm: true,
                     fields: [
                       {
                         label: "password",

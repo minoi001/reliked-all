@@ -20,11 +20,20 @@ export default function PopUp({ open, setOpen, content }) {
 
   const handleUpdate = async (event, functionName) => {
     event.preventDefault();
-    if (functionName === "updatePassword") {
-      if (inputData.password !== inputData.confirmPassword) {
-        setErrorMessage("Passwords do not match");
+    if (content.confirm) {
+      if (Object.values(inputData)[0] !== Object.values(inputData)[1]) {
+        setErrorMessage(`${content.fields[0].title}s do not match.`);
+        return;
       } else {
-        setInputData({ password: inputData.password });
+        const updatedObject = inputData;
+
+        for (const key in updatedObject) {
+          if (key.includes("confirm")) {
+            delete updatedObject[key];
+          }
+        }
+
+        setInputData(updatedObject);
       }
     }
     setOpen(false);
