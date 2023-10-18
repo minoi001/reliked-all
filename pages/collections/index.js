@@ -35,7 +35,7 @@ export default function Collections() {
         <title>Collections</title>
       </Head>
       <div className="sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
-        <div className="flex justify-between align-middle">
+        <div className="flex justify-center align-middle">
           <div className="inline-flex py-4 text-center">
             <h1 className={`font-h text-3xl text-center`}>Shop by</h1>
 
@@ -45,7 +45,7 @@ export default function Collections() {
             />
           </div>
         </div>
-        {/*//TODO: Readd the search bar*/}
+        {/*//TODO: Re-add the search bar*/}
         <div
           className={`
             grid grid-cols-2 ${

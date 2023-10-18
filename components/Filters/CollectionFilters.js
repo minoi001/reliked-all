@@ -43,10 +43,6 @@ function Dropdown({ updateCollections, collectionType }) {
         <ChevronDownIcon className="flex w-5 h-5 p-1" />
       </button>
 
-      <p className="text-center">
-        Can we please make this text and the title above centered
-      </p>
-
       {isOpen && (
         <div
           className="absolute z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
