@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useRelatedProducts } from "@algolia/recommend-react";
 import recommend from "@algolia/recommend";
 import ProductCard from "../Products/ProductCard";
+import { getSimilarProducts } from "../../algoliaConfig";
 
 const recommendClient = recommend(
   process.env.ALGOLIA_APP_ID,
@@ -9,12 +10,23 @@ const recommendClient = recommend(
 );
 const indexName = "shopify_products";
 
-export default function RelatedProductsSection({ currentObjectID }) {
+export default function RelatedProductsSection({ currentObjectID, product }) {
+  const [products, setProducts] = useState([]);
+
   const { recommendations } = useRelatedProducts({
     recommendClient,
     indexName,
     objectIDs: [currentObjectID],
   });
+
+  useEffect(() => {
+    if (recommendations.length > 0) {
+      setProducts(recommendations);
+    } else {
+      getSimilarProducts(product.brand).then((r) => setProducts(r));
+    }
+  }, [recommendations, product.brand]);
+
   return (
     <div>
       {/*TODO: We don't yet have the conversion events to enable this*/}
@@ -35,7 +47,7 @@ export default function RelatedProductsSection({ currentObjectID }) {
         You may also like...
       </h2>
 
-      <ProductCarousel recommendations={recommendations} />
+      <ProductCarousel recommendations={products} />
     </div>
   );
 }

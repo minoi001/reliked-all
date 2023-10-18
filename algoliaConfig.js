@@ -49,6 +49,19 @@ async function getNewestProducts() {
   }
 }
 
+async function getSimilarProducts(handle) {
+  try {
+    const { hits } = await productIndex.search(handle, {
+      filters: "collections:in-stock",
+      hitsPerPage: 10,
+    });
+    return hits;
+  } catch (error) {
+    console.error("***Error fetching Algolia data (NewIn):", error);
+    return null;
+  }
+}
+
 async function getCollections(type, page = 0) {
   try {
     const { hits, nbPages } = await collctionIndex.search("", {
@@ -69,4 +82,5 @@ export {
   getObjectIDByProductHandle,
   getNewestProducts,
   getCollections,
+  getSimilarProducts,
 };

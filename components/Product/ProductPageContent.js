@@ -29,7 +29,7 @@ export default function ProductPageContent({ product, id }) {
           </div>
         </div>
         <div className="w-full">
-          <RelatedProductsSection currentObjectID={id} />
+          <RelatedProductsSection currentObjectID={id} product={product} />
         </div>
       </div>
     </div>
