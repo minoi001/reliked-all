@@ -17,6 +17,7 @@ export default function RelatedProductsSection({ currentObjectID, product }) {
     recommendClient,
     indexName,
     objectIDs: [currentObjectID],
+    maxRecommendations: 10,
   });
 
   useEffect(() => {
@@ -43,53 +44,27 @@ export default function RelatedProductsSection({ currentObjectID, product }) {
       {/*  }}*/}
       {/*/>*/}
 
-      <h2 className="font-h mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8 text-3xl font-extrabold text-gray-900 mt-6">
-        You may also like...
-      </h2>
-
-      <ProductCarousel recommendations={products} />
+      <YouMayAlsoLike recommendations={products} />
     </div>
   );
 }
 
-const ProductCarousel = ({ recommendations }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handleNextClick = () => {
-    setCurrentIndex(currentIndex + 1);
-  };
-  const handlePrevClick = () => {
-    setCurrentIndex(currentIndex - 1);
-  };
-
-  const doNothing = () => {};
-
+const YouMayAlsoLike = ({ recommendations }) => {
   return (
-    <div className="flex items-center justify-center mb-12">
-      <div
-        className={"px-1"}
-        onClick={currentIndex > 0 ? handlePrevClick : doNothing}
-      >
-        <ChevronLeft colour={currentIndex > 0 ? "black" : "white"} />
-      </div>
-
-      <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 xl:gap-4">
-        {recommendations
-          .slice(currentIndex, currentIndex + 4)
-          .map((recommendation, index) => (
+    <>
+      <h2 className="font-h mx-auto my-4 max-w-7xl px-4 sm:px-6 lg:px-8 text-3xl font-extrabold text-gray-900 mt-6">
+        You may also like...
+      </h2>
+      <div className="flex items-center justify-center mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 xl:gap-4">
+          {recommendations.map((recommendation, index) => (
             <div key={index}>
               <ProductCard hit={recommendation} key={recommendation.objectID} />
             </div>
           ))}
+        </div>
       </div>
-
-      <div
-        className={"px-1"}
-        onClick={currentIndex < 2 ? handleNextClick : doNothing}
-      >
-        <ChevronRight colour={currentIndex < 2 ? "black" : "white"} />
-      </div>
-    </div>
+    </>
   );
 };
 
