@@ -114,25 +114,6 @@ lr-simple-btn {
   font-family: Questrial, sans-serif;
 }
 
-.credits {
-  display: none;
-}
-
-.my-config {
-  --cfg-pubkey: "9371e1e21ff6cdffe0b2";
-  --cfg-img-only: 1;
-  --cfg-multiple: 1;
-  --cfg-max-local-file-size-bytes: 10737418240;
-  --cfg-multiple-max: 10;
-  --cfg-use-cloud-image-editor: 1;
-  --cfg-source-list: "local, url, camera, facebook, instagram";
-  --darkmode: 0;
-  --h-accent: 9;
-  --s-accent: 13%;
-  --l-accent: 61%;
-  --border-radius-element: 0;
-}
-
 .slider {
   background-color: black;
   height: 5px;
@@ -149,4 +130,38 @@ lr-simple-btn {
   border-radius: 0px;
   border: 2px solid #ec516b;
   top: -2px;
+}
+
+.image-container {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-image {
+  max-height: 90vh;
+  max-width: 90vw;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
 }
