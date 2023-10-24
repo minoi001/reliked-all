@@ -4,6 +4,8 @@ import {
   getUserInfo,
   recoverUserAccount,
   updateCustomerReq,
+  updateCustomerAddressReq,
+  deleteCustomerAddressReq,
 } from "../lib/shopify";
 
 const AccountContext = createContext();
@@ -128,6 +130,43 @@ export default function AccountProvider({ children }) {
     localStorage.setItem("accountToken", `${token}`);
   };
 
+  const updateCustomerAddress = async (inputData, addressID, addressKey) => {
+    const input = {
+      address: inputData,
+      customerAccessToken: `${userInfo.token}`,
+      id: `${addressID}`,
+    };
+
+    let newAddress = await updateCustomerAddressReq(input);
+
+    const updatedObject = { ...userInfo };
+
+    updatedObject.addresses.edges[addressKey] = { node: newAddress };
+
+    setUserInfo((userInfo) => ({
+      ...userInfo,
+      userInfo: updatedObject,
+    }));
+  };
+
+  const deleteCustomerAddress = async (addressID, addressKey) => {
+    const input = {
+      customerAccessToken: `${userInfo.token}`,
+      id: `${addressID}`,
+    };
+
+    let newAddress = await deleteCustomerAddressReq(input);
+
+    const updatedObject = { ...userInfo };
+
+    updatedObject.addresses.edges.splice(addressKey, 1);
+
+    setUserInfo((userInfo) => ({
+      ...userInfo,
+      userInfo: updatedObject,
+    }));
+  };
+
   const logout = async () => {
     localStorage.removeItem("accountToken");
 
@@ -159,6 +198,8 @@ export default function AccountProvider({ children }) {
         sendRecoveryRequest,
         updateUserValue,
         updateCustomer,
+        updateCustomerAddress,
+        deleteCustomerAddress,
         logout,
       }}
     >

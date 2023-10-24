@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import AccountPageTemplate from "../../components/Account/AccountPageTemplate.js";
 import AccountHomeContent from "../../components/Account/PageContent/AccountHomeContent.js";
+import Login from "../../components/Account/Login";
 export default function AccountPage({ account }) {
   const { userInfo, logout } = useContext(AccountContext);
   const { push } = useRouter();
@@ -11,12 +12,6 @@ export default function AccountPage({ account }) {
   const Content = () => {
     return <AccountHomeContent />;
   };
-
-  useEffect(() => {
-    if (!userInfo.loginStatus) {
-      push("/account/login");
-    }
-  }, [push, userInfo.loginStatus]);
 
   return (
     <div>
@@ -28,7 +23,9 @@ export default function AccountPage({ account }) {
           <AccountPageTemplate Content={Content} />
         </div>
       ) : (
-        <div></div>
+        <div>
+          <Login />
+        </div>
       )}
     </div>
   );

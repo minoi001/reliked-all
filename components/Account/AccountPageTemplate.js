@@ -11,8 +11,8 @@ export default function AccountPageTemplate({ Content }) {
     getUserInfo,
     sendUserRequest,
     updateUserValue,
+    logout,
   } = useContext(AccountContext);
-  console.log(Content);
 
   return (
     <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
@@ -47,6 +47,11 @@ export default function AccountPageTemplate({ Content }) {
                 Wishlist
               </p>
             </Link>
+            <div onClick={logout} className="hover:cursor-pointer">
+              <p className={`m-1 font-medium text-sm px-4 py-2.5 bg-offWhite`}>
+                Logout
+              </p>
+            </div>
           </div>
           <div className="col-span-4 text-center">
             <Content />

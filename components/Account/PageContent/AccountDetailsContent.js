@@ -1,16 +1,23 @@
 import { useContext, useState } from "react";
 import { AccountContext } from "../../../context/accountContext";
-import { PencilIcon } from "@heroicons/react/24/outline";
-import PopUp from "../../EditPopUp";
+import { PencilIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import EditPopUp from "../../EditPopUp";
+import WarningPopUp from "../../WarningPopUp";
 
 export default function AccountDetailsContent() {
   const { userInfo } = useContext(AccountContext);
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupContent, setPopupContent] = useState();
-
+  const [wPopupOpen, setWPopupOpen] = useState(false);
+  const [wPopupContent, setWPopupContent] = useState();
   function editButton(content) {
     setPopupContent(content);
     setPopupOpen(true);
+  }
+
+  function deleteButton(content) {
+    setWPopupContent(content);
+    setWPopupOpen(true);
   }
 
   return (
@@ -30,8 +37,9 @@ export default function AccountDetailsContent() {
                     editButton({
                       type: "userName",
                       title: "Edit your name",
-                      functionName: "updateUserName",
+                      functionName: "updateCustomer",
                       confirm: false,
+                      pattern: null,
                       fields: [
                         {
                           label: "firstName",
@@ -67,18 +75,21 @@ export default function AccountDetailsContent() {
                     editButton({
                       type: "email",
                       title: "Edit your email address",
-                      functionName: "updateEmail",
+                      functionName: "updateCustomer",
                       confirm: true,
+                      pattern: null,
                       fields: [
                         {
                           label: "email",
                           title: "Email",
                           type: "email",
+                          required: true,
                         },
                         {
                           label: "confirmEmail",
                           title: "Confirm Email",
                           type: "email",
+                          required: true,
                         },
                       ],
                     })
@@ -103,18 +114,21 @@ export default function AccountDetailsContent() {
                   editButton({
                     type: "password",
                     title: "Edit your password",
-                    functionName: "updatePassword",
+                    functionName: "updateCustomer",
                     confirm: true,
+                    pattern: null,
                     fields: [
                       {
                         label: "password",
                         title: "Password",
                         type: "password",
+                        required: true,
                       },
                       {
                         label: "confirmPassword",
                         title: "Confirm Password",
                         type: "password",
+                        required: true,
                       },
                     ],
                   })
@@ -131,7 +145,34 @@ export default function AccountDetailsContent() {
             <div className="col-span-1 uppercase text-sm">Phone</div>
             <div className="col-span-1">
               {userInfo.phone}
-              <button>
+              <button
+                onClick={(event) =>
+                  editButton({
+                    type: "phone",
+                    title: "Phone Number",
+                    functionName: "updateCustomer",
+                    confirm: true,
+                    fields: [
+                      {
+                        label: "phone",
+                        title: "Phone Number",
+                        type: "tel",
+                        pattern: "[0-9]{11}",
+                        patternMessage: "Please enter a valid phone number",
+                        required: true,
+                      },
+                      {
+                        label: "confirmPhone",
+                        title: "Confirm Phone No.",
+                        type: "tel",
+                        pattern: "[0-9]{11}",
+                        patternMessage: "Please enter a valid phone number",
+                        required: true,
+                      },
+                    ],
+                  })
+                }
+              >
                 <PencilIcon
                   className="h-3 w-3 text-almostBlack group-hover:text-taupe"
                   aria-hidden="true"
@@ -153,11 +194,120 @@ export default function AccountDetailsContent() {
                   </div>
                 );
               })}
-              <div className="inline bg-cream p-1 text-xs uppercase">
-                <button className="inline">
+              <div className="inline bg-cream p-1 text-xs uppercase mx-1">
+                <button
+                  className="inline"
+                  onClick={(event) =>
+                    editButton({
+                      id: address.node.id,
+                      i: i,
+                      type: "address",
+                      title: "Edit your address",
+                      functionName: "updateCustomerAddress",
+                      confirm: false,
+                      pattern: null,
+                      fields: [
+                        {
+                          label: "firstName",
+                          title: "First Name",
+                          type: "firstName",
+                          pattern: null,
+                          required: true,
+                        },
+                        {
+                          label: "lastName",
+                          title: "Last Name",
+                          type: "lastName",
+                          pattern: null,
+                          required: true,
+                        },
+                        {
+                          label: "company",
+                          title: "Company",
+                          type: "company",
+                          pattern: null,
+                          required: false,
+                        },
+                        {
+                          label: "phone",
+                          title: "Phone",
+                          type: "phone",
+                          pattern: null,
+                          required: false,
+                        },
+                        {
+                          label: "address1",
+                          title: "Line 1",
+                          type: "address1",
+                          pattern: null,
+                          required: true,
+                        },
+                        {
+                          label: "address2",
+                          title: "Line 2",
+                          type: "address2",
+                          pattern: null,
+                          required: false,
+                        },
+                        {
+                          label: "city",
+                          title: "City",
+                          type: "city",
+                          pattern: null,
+                          required: true,
+                        },
+
+                        {
+                          label: "country",
+                          title: "Country",
+                          type: "country",
+                          pattern: null,
+                          required: true,
+                        },
+
+                        {
+                          label: "province",
+                          title: "County/Province",
+                          type: "province",
+                          pattern: null,
+                          required: true,
+                        },
+                        {
+                          label: "zip",
+                          title: "Post Code",
+                          type: "zip",
+                          pattern: null,
+                          required: true,
+                        },
+                      ],
+                    })
+                  }
+                >
                   Edit{" "}
                   <PencilIcon
                     className="h-3 w-3 text-almostBlack group-hover:text-taupe inline"
+                    aria-hidden="true"
+                  />
+                </button>
+              </div>
+              <div className="inline bg-taupe p-1 text-xs uppercase mx-1 text-white">
+                <button
+                  className="inline"
+                  onClick={(event) =>
+                    deleteButton({
+                      id: address.node.id,
+                      i: i,
+                      type: "address",
+                      title: "Are you sure you want to delete this address?",
+                      functionName: "deleteCustomerAddress",
+                      confirm: false,
+                      pattern: null,
+                    })
+                  }
+                >
+                  Delete{" "}
+                  <XMarkIcon
+                    className="h-3 w-3 text-white group-hover:text-taupe inline"
                     aria-hidden="true"
                   />
                 </button>
@@ -166,7 +316,17 @@ export default function AccountDetailsContent() {
           );
         })}
       </div>
-      <PopUp open={popupOpen} setOpen={setPopupOpen} content={popupContent} />
+      <EditPopUp
+        open={popupOpen}
+        setOpen={setPopupOpen}
+        content={popupContent}
+      />
+      <WarningPopUp
+        open={wPopupOpen}
+        setOpen={setWPopupOpen}
+        content={wPopupContent}
+      />
+
       {/* <p className="md:px-24 font-h text-lg">Happy Shopping!</p>
       <p className="p-2 md:px-24 font-h text-lg">Reliked x</p> */}
     </div>

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import AccountPageTemplate from "../../components/Account/AccountPageTemplate.js";
 import AccountDetailsContent from "../../components/Account/PageContent/AccountDetailsContent.js";
+import Login from "../../components/Account/Login";
 
 export default function AccountDetailsPage({ account }) {
   const { userInfo, logout } = useContext(AccountContext);
@@ -12,12 +13,6 @@ export default function AccountDetailsPage({ account }) {
   const Content = () => {
     return <AccountDetailsContent />;
   };
-
-  useEffect(() => {
-    if (!userInfo.loginStatus) {
-      push("/account/login");
-    }
-  }, [push, userInfo.loginStatus]);
 
   return (
     <div>
@@ -29,7 +24,9 @@ export default function AccountDetailsPage({ account }) {
           <AccountPageTemplate Content={Content} />
         </div>
       ) : (
-        <div></div>
+        <div>
+          <Login />
+        </div>
       )}
     </div>
   );

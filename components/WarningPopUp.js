@@ -1,12 +1,11 @@
 import { Fragment, useEffect, useRef, useState, useContext } from "react";
 import { AccountContext } from "../context/accountContext";
 import { Dialog, Transition } from "@headlessui/react";
-import { PencilIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-export default function EditPopUp({ open, setOpen, content }) {
-  const { userInfo, updateCustomer, updateCustomerAddress } =
-    useContext(AccountContext);
+export default function WarningPopUp({ open, setOpen, content }) {
+  const { deleteCustomerAddress } = useContext(AccountContext);
 
   // need to set error message to blank on load
   let [inputData, setInputData] = useState({});
@@ -15,35 +14,10 @@ export default function EditPopUp({ open, setOpen, content }) {
 
   const cancelButtonRef = useRef(null);
 
-  function handleInput(key, value) {
-    console.log(content.id);
-    setInputData({ ...inputData, ...{ [key]: value } });
-  }
-
   const handleUpdate = async (event, functionName) => {
     event.preventDefault();
-    if (content.confirm) {
-      if (Object.values(inputData)[0] !== Object.values(inputData)[1]) {
-        setErrorMessage(`${content.fields[0].title}s do not match.`);
-        return;
-      } else {
-        const updatedObject = inputData;
-
-        for (const key in updatedObject) {
-          if (key.includes("confirm")) {
-            delete updatedObject[key];
-          }
-        }
-
-        setInputData(updatedObject);
-      }
-    }
-    setOpen(false);
-    if (functionName === "updateCustomer") {
-      updateCustomer(inputData);
-    } else if (functionName === "updateCustomerAddress") {
-      updateCustomerAddress(inputData, content.id, content.i);
-    }
+    console.log(content.id);
+    deleteCustomerAddress(content.id, content.i);
     setErrorMessage("");
     setInputData([]);
   };
@@ -83,7 +57,7 @@ export default function EditPopUp({ open, setOpen, content }) {
                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
                     <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-cream sm:mx-0 sm:h-10 sm:w-10">
-                      <PencilIcon
+                      <XMarkIcon
                         className="h-6 w-6 text-taupe"
                         aria-hidden="true"
                       />
@@ -110,50 +84,12 @@ export default function EditPopUp({ open, setOpen, content }) {
                             )
                           }
                         >
-                          <input
-                            type="hidden"
-                            name="remember"
-                            defaultValue="true"
-                          />
-                          <div className="bg-white px-4 py-3 sm:px-0 grid grid-cols-2">
-                            {content && content.fields
-                              ? content.fields.map((field) => (
-                                  <div
-                                    key={field.label}
-                                    className="p-1 inline-block"
-                                  >
-                                    <label
-                                      htmlFor={field.label}
-                                      className="sr-only"
-                                    >
-                                      {field.title}
-                                    </label>
-                                    <input
-                                      id={field.label}
-                                      name={field.label}
-                                      type={field.type}
-                                      autoComplete={field.label}
-                                      pattern={field.pattern}
-                                      required={field.required}
-                                      className="relative block w-full border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-taupe sm:text-sm sm:leading-6"
-                                      placeholder={field.title}
-                                      onChange={(event) =>
-                                        handleInput(
-                                          field.label,
-                                          event.target.value
-                                        )
-                                      }
-                                    />
-                                  </div>
-                                ))
-                              : ""}
-                          </div>
                           <div className="bg-white px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                             <button
                               type="submit"
-                              className="inline-flex w-full justify-center bg-mint px-3 py-2 text-sm font-semibold text-almostBlack shadow-sm hover:bg-almostBlack hover:text-white sm:ml-3 sm:w-auto"
+                              className="inline-flex w-full justify-center bg-rose px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-almostBlack hover:text-white sm:ml-3 sm:w-auto"
                             >
-                              Update
+                              Delete
                             </button>
                             <button
                               type="button"
