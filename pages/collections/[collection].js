@@ -1,12 +1,22 @@
 import { Configure, Hits } from "react-instantsearch";
 import ProductCard from "../../components/Products/ProductCard";
 import ProductFilters from "../../components/Filters/ProductFilters";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SlideOut from "../../components/SlideOut";
 import Head from "next/head";
 import { SortBy, Pagination } from "react-instantsearch";
+import { getCollection } from "../../lib/shopify";
 
 export default function CollectionPage({ collection }) {
+  const [collectionInfo, setCollectionInfo] = useState("");
+
+  // set collection info in product context and pull that way
+
+  // useEffect(() => {
+
+  //   setCollectionInfo(getCollection(collection));
+  // }, []);
+
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
 
   function toggleSlideover() {
@@ -35,7 +45,16 @@ export default function CollectionPage({ collection }) {
             toggleSlideover={toggleSlideover}
           />
         </div>
-        <Hits hitComponent={ProductCard} collection={collection} />
+        <Hits
+          hitComponent={(hit) => (
+            <ProductCard
+              hit={hit}
+              collection={collection}
+              collectionInfo={collectionInfo}
+            />
+          )}
+        />
+        {/* <Hits hitComponent={ProductCard} collection={collection} /> */}
         <Pagination
           className="mb-3 mt-12"
           translations={{
