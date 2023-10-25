@@ -4,9 +4,9 @@ import { formatter } from "../../utils/helpers";
 import { event } from "../../lib/ga";
 import {
   InformationCircleIcon,
-  CurrencyPoundIcon,
+  QuestionMarkCircleIcon,
   SunIcon,
-  BanknotesIcon,
+  CheckBadgeIcon,
 } from "@heroicons/react/24/outline";
 
 const ProductCard = ({ hit }) => {
@@ -81,7 +81,7 @@ const ProductCard = ({ hit }) => {
                     <div className="group flex relative">
                       <span className="bg-offWhite text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
                         Sold Anonymously
-                        <BanknotesIcon
+                        <QuestionMarkCircleIcon
                           color="black"
                           className="h-6 w-6 inline pb-0.5 pl-1"
                         />
@@ -100,8 +100,8 @@ const ProductCard = ({ hit }) => {
               ) : (
                 <div className="group flex relative">
                   <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
-                    {hit.meta.custom.influencer}
-                    <BanknotesIcon
+                    Sold by {hit.meta.custom.influencer}
+                    <CheckBadgeIcon
                       color="black"
                       className="h-6 w-6 inline pb-0.5 pl-1"
                     />
