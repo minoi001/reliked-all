@@ -10,10 +10,11 @@ import {
 } from "@heroicons/react/24/outline";
 
 import { useEffect } from "react";
+import CollectionPage from "../../pages/collections/[collection]";
 
 const ProductCard = ({ hit, collection, collectionInfo }) => {
   useEffect(() => {
-    console.log(hit.hit);
+    console.log(collectionInfo);
   }, []);
 
   const { handle, title, objectID } = hit.hit ? hit.hit : hit;
@@ -60,111 +61,97 @@ const ProductCard = ({ hit, collection, collectionInfo }) => {
             </div>
           </div>
 
-          {hit.hit.meta.custom && collectionInfo && collectionInfo.type && (
-            <div>
-              {collectionInfo.type.value !== "Vendor" ? (
-                ""
-              ) : collectionInfo.vendor.value !== hit.hit.vendor ||
-                hit.hit.meta.custom.influencer === "Anonymous" ||
-                hit.hit.tags.includes("Anonymous") ? (
+          {/* logic
+          if the hit has loaded 
+          if there's no collection OR the collection isn't a vendor collection show who it's sold by
+          otherwise, if it's a vendor collection show you may also like on ASO item
+
+      */}
+
+          {hit.hit.meta.custom ? (
+            !collectionInfo?.title ||
+            collectionInfo?.type?.value !== "Vendor" ? (
+              hit.hit.meta.custom.influencer === "Anonymous" ||
+              hit.hit.tags.includes("Anonymous") ||
+              hit.hit.tags.includes("Beauty") ||
+              hit.hit.tags.includes("HideVendor") ? (
                 <div className="group flex relative">
-                  <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
-                    You might also like
-                    <SunIcon
-                      color="black"
-                      className="h-6 w-6 inline pb-0.5 pl-1"
-                    />
-                  </span>
-                  <span
-                    className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
--translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
-                  >
-                    This item is sold by another private seller but our
-                    algorithm thinks you might still like it!
+                  <span className="bg-offWhite text-offWhite px-2 py-0.5 w-full pl-3 text-sm">
+                    Sold by a private seller.
+                    <CheckBadgeIcon className="h-6 w-6 inline pb-0.5" />
                   </span>
                 </div>
               ) : (
                 <div className="group flex relative">
                   <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
                     Sold by{" "}
-                    {collectionInfo.title.split(" ").slice(0, 2).join(" ") +
-                      " "}
+                    {hit.hit.meta.custom.influencer
+                      ? hit.hit.meta.custom.influencer
+                          .split(" ")
+                          .slice(0, 2)
+                          .join(" ") + " "
+                      : ""}
                     <CheckBadgeIcon
                       color="black"
-                      className="h-6 w-6 inline pb-0.5 pl-1"
+                      className="h-6 w-6 inline pb-0.5"
                     />
                   </span>
                   <span
                     className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
-    -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
+  -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
                   >
                     We are a preowned marketplace, so this item is sold by{" "}
-                    {collectionInfo.title.split(" ").slice(0, 2).join(" ") +
-                      " "}
+                    {hit.hit.meta.custom.influencer
+                      ? hit.hit.meta.custom.influencer
+                          .split(" ")
+                          .slice(0, 2)
+                          .join(" ") + " "
+                      : ""}
                     (a private seller).
                   </span>
                 </div>
-              )}
-              {/* { collectionInfo.type !== "Vendor" ||
-              hit.hit.tags.toString().includes("HideVendor") ? (
-                <div>
-                  {title.includes("Black") ? (
-                    <div className="group flex relative">
-                      <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
-                        You might also like
-                        <SunIcon
-                          color="black"
-                          className="h-6 w-6 inline pb-0.5 pl-1"
-                        />
-                      </span>
-                      <span
-                        className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
-    -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
-                      >
-                        This item isn{"'"}t owned by{" "}
-                        {hit.hit.meta.custom.influencer}
-                        but our algorithm thinks you might still like it!
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="group flex relative">
-                      <span className="bg-offWhite text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
-                        Sold Anonymously
-                        <QuestionMarkCircleIcon
-                          color="black"
-                          className="h-6 w-6 inline pb-0.5 pl-1"
-                        />
-                      </span>
-                      <span
-                        className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
-    -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
-                      >
-                        We are a preowned marketplace, so this item is sold by a
-                        private seller.
-                      </span>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div className="group flex relative">
-                  <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
-                    Sold by {hit.hit.meta.custom.influencer}
-                    <CheckBadgeIcon
-                      color="black"
-                      className="h-6 w-6 inline pb-0.5 pl-1"
-                    />
-                  </span>
-                  <span
-                    className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
-    -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
-                  >
-                    We are a preowned marketplace, so this item is sold by{" "}
-                    {hit.hit.meta.custom.influencer} (a private seller).
-                  </span>
-                </div>
-              )} */}
-            </div>
+              )
+            ) : collectionInfo?.vendor?.value !== hit.hit.vendor ||
+              hit.hit.meta.custom.influencer === "Anonymous" ||
+              hit.hit.tags.includes("Anonymous") ? (
+              <div className="group flex relative">
+                <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
+                  You might also like
+                  <SunIcon color="black" className="h-6 w-6 inline pb-0.5" />
+                </span>
+                <span
+                  className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
+-translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
+                >
+                  This item is sold by another private seller but our algorithm
+                  thinks you might still like it!
+                </span>
+              </div>
+            ) : (
+              <div className="group flex relative">
+                <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
+                  Sold by{" "}
+                  {collectionInfo.title.split(" ").slice(0, 2).join(" ") + " "}
+                  <CheckBadgeIcon
+                    color="black"
+                    className="h-6 w-6 inline pb-0.5"
+                  />
+                </span>
+                <span
+                  className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
+  -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
+                >
+                  We are a preowned marketplace, so this item is sold by{" "}
+                  {collectionInfo.title.split(" ").slice(0, 2).join(" ") + " "}
+                  (a private seller).
+                </span>
+              </div>
+            )
+          ) : (
+            // hit not loaded
+            ""
           )}
+
           <h3 className="mt-2 text-mg font-medium text-gray-900 px-1">
             {title}
           </h3>
