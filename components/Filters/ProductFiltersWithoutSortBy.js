@@ -2,8 +2,12 @@ import React from "react";
 import { CustomRefinementList } from "./CustomRefinementList";
 import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomToggleRefinement } from "./CustomToggle";
+import { useEffect } from "react";
+function ProductFiltersWithoutSortBy({ format, collectionInfo }) {
+  useEffect(() => {
+    console.log(collectionInfo);
+  }, []);
 
-function ProductFiltersWithoutSortBy({ format }) {
   return (
     <div
       className={
@@ -12,13 +16,19 @@ function ProductFiltersWithoutSortBy({ format }) {
           : `bg-offWhite flex flex-col px-8 py-8 h-full`
       }
     >
-      <CustomRefinementList
-        attribute="meta.custom.influencer"
-        showMore={true}
-        showMoreLimit={500}
-        format={format}
-        title="Influencer"
-      />
+      {collectionInfo?.type?.value === "Vendor" ||
+      collectionInfo?.category?.value === "Beauty" ? (
+        ""
+      ) : (
+        <CustomRefinementList
+          attribute="meta.custom.influencer"
+          showMore={true}
+          showMoreLimit={500}
+          format={format}
+          title="Influencer"
+        />
+      )}
+
       <CustomRangeSlider attribute="price" format={format} title="Price" />
       <CustomRefinementList
         attribute="meta.custom_fields.size"

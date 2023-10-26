@@ -7,15 +7,14 @@ import Head from "next/head";
 import { SortBy, Pagination } from "react-instantsearch";
 import { getCollection } from "../../lib/shopify";
 
-export default function CollectionPage({ collection }) {
-  const [collectionInfo, setCollectionInfo] = useState("");
+export default function CollectionPage({ collection, collectionInfo }) {
+  // const [collectionInfo, setCollectionInfo] = useState("");
 
   // set collection info in product context and pull that way
 
-  // useEffect(() => {
-
-  //   setCollectionInfo(getCollection(collection));
-  // }, []);
+  useEffect(() => {
+    console.log(collectionInfo);
+  }, []);
 
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
 
@@ -29,20 +28,45 @@ export default function CollectionPage({ collection }) {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Head>
-        <title>{`${formatCollection(collection)} | Shop ${formatCollection(
-          collection
-        )}'s Preloved Clothes`}</title>
+        <title>
+          {collectionInfo.seo.title
+            ? collectionInfo.seo.title
+            : `${formatCollection(collection)} | Shop ${formatCollection(
+                collection
+              )}'s Preloved Clothes`}
+        </title>
+        <meta
+          name="description"
+          content={
+            collectionInfo.seo.description
+              ? collectionInfo.seo.description
+              : collectionInfo.description
+              ? collection.description
+              : collectionInfo.title
+          }
+        />
       </Head>
       <div className="sm:px-12 align-middle p-2 w-full bg-white shadow-lg">
         <h1 className={`p-4 text-3xl capitalize font-h text-center`}>
-          {formatCollection(collection)}
+          {collectionInfo.title}
         </h1>
+        {/* Button for collection description */}
+        {/* <div
+          className="pt-6 pb-4 items-center"
+          dangerouslySetInnerHTML={{
+            __html: collectionInfo.descriptionHtml,
+          }}
+        ></div> */}
         <Configure {...searchParameters} />
         <div className="flex flex-row justify-between">
-          <ProductFilters toggleSlideover={toggleSlideover} />
+          <ProductFilters
+            toggleSlideover={toggleSlideover}
+            collectionInfo={collectionInfo}
+          />
           <SlideOut
             isSlideOverOpen={isSlideOverOpen}
             toggleSlideover={toggleSlideover}
+            collectionInfo={collectionInfo}
           />
         </div>
         <Hits
@@ -73,9 +97,11 @@ export default function CollectionPage({ collection }) {
   );
 }
 export async function getServerSideProps({ params }) {
+  const collectionInfo = await getCollection(params.collection);
   return {
     props: {
       collection: params.collection,
+      collectionInfo: collectionInfo,
     },
   };
 }

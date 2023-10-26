@@ -59,7 +59,10 @@ const YouMayAlsoLike = ({ recommendations }) => {
         <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 xl:gap-4">
           {recommendations.map((recommendation, index) => (
             <div key={index}>
-              <ProductCard hit={recommendation} key={recommendation.objectID} />
+              <ProductCard
+                hit={{ hit: recommendation }}
+                key={recommendation.objectID}
+              />
             </div>
           ))}
         </div>

@@ -13,10 +13,10 @@ import { useEffect } from "react";
 
 const ProductCard = ({ hit, collection, collectionInfo }) => {
   useEffect(() => {
-    console.log(collectionInfo);
+    console.log(hit.hit);
   }, []);
 
-  const { handle, title, objectID } = hit.hit;
+  const { handle, title, objectID } = hit.hit ? hit.hit : hit;
   const image = hit.hit.image
     ? hit.hit.image
     : hit.hit.images?.edges[0]
@@ -60,12 +60,54 @@ const ProductCard = ({ hit, collection, collectionInfo }) => {
             </div>
           </div>
 
-          {hit.hit.meta.custom && (
+          {hit.hit.meta.custom && collectionInfo && collectionInfo.type && (
             <div>
-              {hit.hit.tags.toString().includes("Anonymous") ||
+              {collectionInfo.type.value !== "Vendor" ? (
+                ""
+              ) : collectionInfo.vendor.value !== hit.hit.vendor ||
+                hit.hit.meta.custom.influencer === "Anonymous" ||
+                hit.hit.tags.includes("Anonymous") ? (
+                <div className="group flex relative">
+                  <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
+                    You might also like
+                    <SunIcon
+                      color="black"
+                      className="h-6 w-6 inline pb-0.5 pl-1"
+                    />
+                  </span>
+                  <span
+                    className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
+-translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
+                  >
+                    This item is sold by another private seller but our
+                    algorithm thinks you might still like it!
+                  </span>
+                </div>
+              ) : (
+                <div className="group flex relative">
+                  <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
+                    Sold by{" "}
+                    {collectionInfo.title.split(" ").slice(0, 2).join(" ") +
+                      " "}
+                    <CheckBadgeIcon
+                      color="black"
+                      className="h-6 w-6 inline pb-0.5 pl-1"
+                    />
+                  </span>
+                  <span
+                    className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
+    -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
+                  >
+                    We are a preowned marketplace, so this item is sold by{" "}
+                    {collectionInfo.title.split(" ").slice(0, 2).join(" ") +
+                      " "}
+                    (a private seller).
+                  </span>
+                </div>
+              )}
+              {/* { collectionInfo.type !== "Vendor" ||
               hit.hit.tags.toString().includes("HideVendor") ? (
                 <div>
-                  {/* only show you may also like on influencer collections */}
                   {title.includes("Black") ? (
                     <div className="group flex relative">
                       <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
@@ -79,7 +121,6 @@ const ProductCard = ({ hit, collection, collectionInfo }) => {
                         className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
     -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
                       >
-                        {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
                         This item isn{"'"}t owned by{" "}
                         {hit.hit.meta.custom.influencer}
                         but our algorithm thinks you might still like it!
@@ -98,7 +139,6 @@ const ProductCard = ({ hit, collection, collectionInfo }) => {
                         className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
     -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
                       >
-                        {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
                         We are a preowned marketplace, so this item is sold by a
                         private seller.
                       </span>
@@ -118,12 +158,11 @@ const ProductCard = ({ hit, collection, collectionInfo }) => {
                     className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
     -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
                   >
-                    {/* Need to access collection title somehow and only if you hover on the mint box, not above it */}
                     We are a preowned marketplace, so this item is sold by{" "}
                     {hit.hit.meta.custom.influencer} (a private seller).
                   </span>
                 </div>
-              )}
+              )} */}
             </div>
           )}
           <h3 className="mt-2 text-mg font-medium text-gray-900 px-1">

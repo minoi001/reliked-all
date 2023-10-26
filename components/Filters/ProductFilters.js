@@ -2,7 +2,12 @@ import ProductFiltersWithoutSortBy from "./ProductFiltersWithoutSortBy";
 import CustomSortBy from "./CustomSortBy";
 import { useState } from "react";
 
-const ProductFilters = ({ toggleSlideover, isFromSearch, refine }) => {
+const ProductFilters = ({
+  toggleSlideover,
+  collectionInfo,
+  isFromSearch,
+  refine,
+}) => {
   const [isSortByOpen, setIsSortByOpen] = useState();
   return (
     // Also need to add a fixed height to the dropdown menus and add a scroll, preferably with an apply button fixed at the bottom of the dropdown menu which closes it
@@ -26,7 +31,10 @@ const ProductFilters = ({ toggleSlideover, isFromSearch, refine }) => {
         />
       </div>
       <div className="hidden xl:block">
-        <ProductFiltersWithoutSortBy format={"row"} />
+        <ProductFiltersWithoutSortBy
+          format={"row"}
+          collectionInfo={collectionInfo}
+        />
       </div>
       <div className="xl:hidden justify-center">
         <div onClick={toggleSlideover} className="ais-SortBy-select px-2 ">

@@ -1,7 +1,11 @@
 import React from "react";
 import ProductFiltersWithoutSortBy from "./Filters/ProductFiltersWithoutSortBy";
 
-export default function SlideOut({ isSlideOverOpen, toggleSlideover }) {
+export default function SlideOut({
+  isSlideOverOpen,
+  toggleSlideover,
+  collectionInfo,
+}) {
   return (
     <div
       id="slideover-container"
@@ -44,7 +48,10 @@ export default function SlideOut({ isSlideOverOpen, toggleSlideover }) {
           </svg>
         </div>
 
-        <ProductFiltersWithoutSortBy format="column" />
+        <ProductFiltersWithoutSortBy
+          format="column"
+          collectionInfo={collectionInfo}
+        />
       </div>
     </div>
   );

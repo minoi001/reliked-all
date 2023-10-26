@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { AccountContext } from "../../../context/accountContext";
 import { PencilIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import EditPopUp from "../../EditPopUp";
-import WarningPopUp from "../../WarningPopUp";
+import EditPopUp from "../../PopUps/EditPopUp";
+import WarningPopUp from "../../PopUps/WarningPopUp";
 
 export default function AccountDetailsContent() {
   const { userInfo } = useContext(AccountContext);
