@@ -11,6 +11,7 @@ export default function ProductPageContent({ product, id }) {
       <div className="md:px-12 align-middle p-2 py-2 w-full bg-white shadow-lg">
         <div className="md:flex">
           <ImageZoom product={product} />
+
           <div className="md:w-3/5 p-4 px-8 md:p-12">
             <ProductForm product={product} />
           </div>
