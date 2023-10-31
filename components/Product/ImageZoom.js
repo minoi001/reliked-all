@@ -6,17 +6,20 @@ function ImageZoom({ product }) {
   const [placeholderImage, setPlaceholderImage] = useState(
     "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018"
   );
-  const [focusImage, setFocusImage] = useState(
-    product?.images?.edges[0]?.node?.url
-      .replace(".png", "_1000x1000.png")
-      .replace(".jpg", "_1000x1000.jpg")
-  );
 
   const formatImageUrl = (url) => {
-    return url
-      .replace(".png", "_1000x1000.png")
-      .replace(".jpg", "_1000x1000.jpg");
+    if (url) {
+      return url
+        .replace(".png?", "_1000x1000.png?")
+        .replace(".jpg?", "_1000x1000.jpg?");
+    } else {
+      return;
+    }
   };
+
+  const [focusImage, setFocusImage] = useState(
+    formatImageUrl(product?.images?.edges[0]?.node?.url)
+  );
 
   const openModal = () => {
     setModalOpen(true);
@@ -41,7 +44,7 @@ function ImageZoom({ product }) {
           loading="eager"
         />
       </div>
-      {product.images.edges.length > 1 ? (
+      {product?.images?.edges?.length > 1 ? (
         <div
           alt="images carousel"
           className="list-none overflow-y-hidden flex max-h-36 px-3 overflow-x-scroll"

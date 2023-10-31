@@ -3,6 +3,7 @@ import { AccountContext } from "../../../context/accountContext";
 import { PencilIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import EditPopUp from "../../PopUps/EditPopUp";
 import WarningPopUp from "../../PopUps/WarningPopUp";
+import { get } from "http";
 
 export default function AccountDetailsContent() {
   const { userInfo } = useContext(AccountContext);

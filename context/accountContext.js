@@ -161,10 +161,7 @@ export default function AccountProvider({ children }) {
 
     updatedObject.addresses.edges.splice(addressKey, 1);
 
-    setUserInfo((userInfo) => ({
-      ...userInfo,
-      userInfo: updatedObject,
-    }));
+    sendUserRequest();
   };
 
   const logout = async () => {

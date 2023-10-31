@@ -30,7 +30,7 @@ AddToCartButton.propTypes = {
 export default function ProductForm({ product }) {
   const { addToCart, setCartOpen } = useContext(ShopContext);
 
-  const allVariantOptions = product.variants.edges?.map((variant) => {
+  const allVariantOptions = product.variants?.edges?.map((variant) => {
     const allOptions = {};
     variant.node.selectedOptions.map((item) => {
       allOptions[item.name] = item.value;
@@ -52,7 +52,7 @@ export default function ProductForm({ product }) {
   });
 
   const defaultValues = {};
-  product.options.map((item) => {
+  product.options?.map((item) => {
     defaultValues[item.name] = item.values[0];
   });
 
@@ -90,7 +90,7 @@ export default function ProductForm({ product }) {
       {/* <div className="text-center font-bold underline text-sm uppercase">
         Read more
       </div> */}
-      <div className="sm:flex"> 
+      <div className="sm:flex">
         {product.options.map(({ name, values }) => (
           <ProductOptions
             key={`key-${name}`}

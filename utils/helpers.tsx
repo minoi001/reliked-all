@@ -3,3 +3,4 @@ export const formatter = new Intl.NumberFormat("en-GB", {
   currency: "GBP",
   minimumFractionDigits: 2,
 });
+
