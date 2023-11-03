@@ -9,6 +9,8 @@ import {
   CheckBadgeIcon,
 } from "@heroicons/react/24/outline";
 
+import { formatImageUrl } from "../../utils/helpers";
+
 import { useEffect } from "react";
 import CollectionPage from "../../pages/collections/[collection]";
 
@@ -18,11 +20,14 @@ const ProductCard = ({ hit, collection, collectionInfo }) => {
   }, []);
 
   const { handle, title, objectID } = hit.hit ? hit.hit : hit;
-  const image = hit.hit.image
-    ? hit.hit.image
-    : hit.hit.images?.edges[0]
-    ? hit.hit.images?.edges[0].node.originalSrc
-    : "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018";
+  const image = formatImageUrl(
+    hit.hit.image
+      ? hit.hit.image
+      : hit.hit.images?.edges[0]
+      ? hit.hit.images?.edges[0].node.originalSrc
+      : "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018",
+    "500"
+  );
   const altText = hit.hit.body_html_safe ? hit.hit.body_html_safe : "image";
 
   const price = hit.hit ? hit.hit.price : 1000;

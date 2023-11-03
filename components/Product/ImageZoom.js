@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { formatImageUrl } from "../../utils/helpers";
 
 function ImageZoom({ product }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -7,18 +8,8 @@ function ImageZoom({ product }) {
     "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018"
   );
 
-  const formatImageUrl = (url) => {
-    if (url) {
-      return url
-        .replace(".png?", "_1000x1000.png?")
-        .replace(".jpg?", "_1000x1000.jpg?");
-    } else {
-      return;
-    }
-  };
-
   const [focusImage, setFocusImage] = useState(
-    formatImageUrl(product?.images?.edges[0]?.node?.url)
+    formatImageUrl(product?.images?.edges[0]?.node?.url, "1000")
   );
 
   const openModal = () => {
@@ -54,7 +45,7 @@ function ImageZoom({ product }) {
               <Image
                 src={
                   image.node.url
-                    ? formatImageUrl(image.node.url)
+                    ? formatImageUrl(image.node.url, "1000")
                     : placeholderImage
                 }
                 alt={image.alt}
@@ -62,7 +53,9 @@ function ImageZoom({ product }) {
                 width="1000"
                 sizes="(max-width: 768px) 80vw, (max-width: 1200px) 33vw, 15vw"
                 className="w-full aspect-11/12 object-contain p-2 bg-offWhite hover:cursor-pointer"
-                onClick={() => setFocusImage(formatImageUrl(image.node.url))}
+                onClick={() =>
+                  setFocusImage(formatImageUrl(image.node.url, "1000"))
+                }
               />
             </div>
           ))}
