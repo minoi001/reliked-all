@@ -9,7 +9,6 @@ describe("ProductForm", () => {
       setCartOpen: () => {},
     });
     expect(queryByText("Make an offer")).toBeTruthy();
-    screen.logTestingPlaygroundURL();
   });
 });
 

@@ -45,6 +45,7 @@
     "sharp": "^0.32.4"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.11",
     "@types/node": "18.15.0",
     "@types/react": "18.0.28",
     "autoprefixer": "^10.4.14",
