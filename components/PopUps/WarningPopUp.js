@@ -16,7 +16,6 @@ export default function WarningPopUp({ open, setOpen, content }) {
 
   const handleUpdate = async (event, functionName) => {
     event.preventDefault();
-    console.log(content.id);
     deleteCustomerAddress(content.id, content.i);
     setErrorMessage("");
     setInputData([]);

@@ -8,14 +8,6 @@ import { SortBy, Pagination } from "react-instantsearch";
 import { getCollection } from "../../lib/shopify";
 
 export default function CollectionPage({ collection, collectionInfo }) {
-  // const [collectionInfo, setCollectionInfo] = useState("");
-
-  // set collection info in product context and pull that way
-
-  useEffect(() => {
-    console.log(collectionInfo);
-  }, []);
-
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
 
   function toggleSlideover() {

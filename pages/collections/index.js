@@ -24,7 +24,6 @@ export default function Collections() {
       const { hits, nbPages } = await getCollections(collectionType, page);
       setData(data.concat(hits));
       setMaxPage(nbPages);
-      console.log(hits, "hits");
     };
     fetchData();
   }, [collectionType, page]);
