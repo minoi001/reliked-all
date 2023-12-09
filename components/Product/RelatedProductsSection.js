@@ -18,6 +18,7 @@ export default function RelatedProductsSection({ currentObjectID, product }) {
     indexName,
     objectIDs: [currentObjectID],
     maxRecommendations: 10,
+    filters: "collections:in-stock",
   });
 
   useEffect(() => {
