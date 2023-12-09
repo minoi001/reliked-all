@@ -1,22 +1,34 @@
-import { Configure, Hits } from "react-instantsearch";
 import ProductCard from "../../components/Products/ProductCard";
 import ProductFilters from "../../components/Filters/ProductFilters";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import SlideOut from "../../components/SlideOut";
 import Head from "next/head";
-import { SortBy, Pagination } from "react-instantsearch";
 import { getCollection } from "../../lib/shopify";
+import { getProducts } from "../../algoliaConfig";
 
 export default function CollectionPage({ collection, collectionInfo }) {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
+  const [maxPage, setMaxPage] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { hits, nbPages } = await getProducts("", collection, page);
+      setData(data.concat(hits));
+      setMaxPage(nbPages);
+    };
+    fetchData();
+  }, [collection, page]);
 
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
   }
-  const searchParameters = {
-    query: "",
-    filters: `collections:"${collection}"`,
-  };
+
+  function loadMore() {
+    if (page < maxPage - 1) setPage(page + 1);
+  }
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Head>
@@ -49,7 +61,7 @@ export default function CollectionPage({ collection, collectionInfo }) {
             __html: collectionInfo.descriptionHtml,
           }}
         ></div> */}
-        <Configure {...searchParameters} />
+
         <div className="flex flex-row justify-between">
           <ProductFilters
             toggleSlideover={toggleSlideover}
@@ -61,29 +73,19 @@ export default function CollectionPage({ collection, collectionInfo }) {
             collectionInfo={collectionInfo}
           />
         </div>
-        <Hits
-          hitComponent={(hit) => (
-            <ProductCard
-              hit={hit}
-              collection={collection}
-              collectionInfo={collectionInfo}
-            />
-          )}
-        />
-        {/* <Hits hitComponent={ProductCard} collection={collection} /> */}
-        <Pagination
-          className="mb-3 mt-12"
-          translations={{
-            previous: "Previous",
-            next: "Next",
-            first: "First",
-            last: "Last",
-            page(currentRefinement) {
-              return currentRefinement;
-            },
-          }}
-          showLast={true}
-        />
+        <div className={"ais-Hits-list"}>
+          {data.map((product) => (
+            <ProductCard hit={product} key={product.id} />
+          ))}
+        </div>
+        {page < maxPage - 1 && (
+          <button
+            className={"font-h text-2xl w-full justify-center"}
+            onClick={loadMore}
+          >
+            Load More
+          </button>
+        )}
       </div>
     </div>
   );

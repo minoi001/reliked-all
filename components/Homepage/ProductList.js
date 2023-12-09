@@ -18,7 +18,7 @@ const ProductList = ({ query }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { hits, nbPages } = await getProducts(query, page);
+      const { hits, nbPages } = await getProducts(query, "", page);
       setData(data.concat(hits));
       setMaxPage(nbPages);
     };
@@ -29,14 +29,9 @@ const ProductList = ({ query }) => {
     if (page < maxPage - 1) setPage(page + 1);
   }
 
-  const { results } = useInstantSearch();
-
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
   }
-  const searchParameters = {
-    query: query.get("q") || "",
-  };
 
   return (
     <div>
@@ -47,11 +42,11 @@ const ProductList = ({ query }) => {
           toggleSlideover={toggleSlideover}
         />
       </div>
-      {results.hits.length > 0 ? (
+      {data.length > 0 ? (
         <>
           <div className={"ais-Hits-list"}>
             {data.map((product) => (
-              <ProductCard hit={{ hit: product }} key={product.id} />
+              <ProductCard hit={product} key={product.id} />
             ))}
           </div>
           {page < maxPage - 1 && (

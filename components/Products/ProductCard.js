@@ -5,15 +5,15 @@ import { event } from "../../lib/ga";
 import { CheckBadgeIcon, SunIcon } from "@heroicons/react/24/outline";
 
 const ProductCard = ({ hit, collectionInfo }) => {
-  const { handle, title, objectID } = hit.hit ? hit.hit : hit;
+  const { handle, title, objectID } = hit;
   const image = formatImageUrl(
-    hit.hit.image ??
+    hit.image ??
       "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018",
     "500"
   );
-  const altText = hit.body_html_safe ? hit.hit.body_html_safe : "image";
+  const altText = hit.body_html_safe ?? "image";
 
-  const price = hit.hit ? hit.hit.price : 1000;
+  const price = hit.price ?? 1000;
 
   return (
     <div>
@@ -21,8 +21,7 @@ const ProductCard = ({ hit, collectionInfo }) => {
         href={{ pathname: `/products/${handle}` }}
         onClick={() =>
           event("view_item", {
-            currency:
-              hit.hit.priceRange?.minVariantPrice?.currencyCode ?? "GBP",
+            currency: "GBP",
             value: price,
             items: [
               {
@@ -56,13 +55,13 @@ const ProductCard = ({ hit, collectionInfo }) => {
 
       */}
 
-          {hit.hit.meta.custom ? (
+          {hit.meta?.custom ? (
             !collectionInfo?.title ||
             collectionInfo?.type?.value !== "Vendor" ? (
-              hit.hit.meta.custom.influencer === "Anonymous" ||
-              hit.hit.tags.includes("Anonymous") ||
-              hit.hit.tags.includes("Beauty") ||
-              hit.hit.tags.includes("HideVendor") ? (
+              hit.meta.custom.influencer === "Anonymous" ||
+              hit.tags.includes("Anonymous") ||
+              hit.tags.includes("Beauty") ||
+              hit.tags.includes("HideVendor") ? (
                 <div className="group flex relative">
                   <span className="bg-offWhite text-offWhite px-2 py-0.5 w-full pl-3 text-sm">
                     Sold by a private seller.
@@ -73,8 +72,8 @@ const ProductCard = ({ hit, collectionInfo }) => {
                 <div className="group flex relative">
                   <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
                     Sold by{" "}
-                    {hit.hit.meta.custom.influencer
-                      ? hit.hit.meta.custom.influencer
+                    {hit.meta?.custom?.influencer
+                      ? hit.meta.custom.influencer
                           .split(" ")
                           .slice(0, 2)
                           .join(" ") + " "
@@ -89,8 +88,8 @@ const ProductCard = ({ hit, collectionInfo }) => {
   -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
                   >
                     We are a preowned marketplace, so this item is sold by{" "}
-                    {hit.hit.meta.custom.influencer
-                      ? hit.hit.meta.custom.influencer
+                    {hit.meta?.custom.influencer
+                      ? hit.meta.custom.influencer
                           .split(" ")
                           .slice(0, 2)
                           .join(" ") + " "
@@ -99,9 +98,9 @@ const ProductCard = ({ hit, collectionInfo }) => {
                   </span>
                 </div>
               )
-            ) : collectionInfo?.vendor?.value !== hit.hit.vendor ||
-              hit.hit.meta.custom.influencer === "Anonymous" ||
-              hit.hit.tags.includes("Anonymous") ? (
+            ) : collectionInfo?.vendor?.value !== hit.vendor ||
+              hit.meta?.custom?.influencer === "Anonymous" ||
+              hit.tags.includes("Anonymous") ? (
               <div className="group flex relative">
                 <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
                   You might also like
