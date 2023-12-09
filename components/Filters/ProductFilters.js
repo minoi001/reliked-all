@@ -2,13 +2,7 @@ import ProductFiltersWithoutSortBy from "./ProductFiltersWithoutSortBy";
 import CustomSortBy from "./CustomSortBy";
 import { useState } from "react";
 
-const ProductFilters = ({
-  toggleSlideover,
-  collectionInfo,
-  isFromSearch,
-  refine,
-}) => {
-  const [isSortByOpen, setIsSortByOpen] = useState();
+const ProductFilters = ({ toggleSlideover, collectionInfo }) => {
   return (
     // Also need to add a fixed height to the dropdown menus and add a scroll, preferably with an apply button fixed at the bottom of the dropdown menu which closes it
     // styling on algolia dropdown menu needs to be full width of the refinements/range inputs
