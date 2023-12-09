@@ -50,12 +50,16 @@ const ProductList = ({ query }) => {
             ))}
           </div>
           {page < maxPage - 1 && (
-            <button
-              className={"font-h text-2xl w-full justify-center"}
-              onClick={loadMore}
-            >
-              Load More
-            </button>
+            <div className={"w-full text-center p-4"}>
+              <button
+                className={
+                  "font-h text-2xl w-40 justify-center text-white bg-rose"
+                }
+                onClick={loadMore}
+              >
+                Load More
+              </button>
+            </div>
           )}
         </>
       ) : (
