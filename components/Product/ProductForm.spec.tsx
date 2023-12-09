@@ -17,6 +17,7 @@ const renderProductForm = (value) => {
     <ShopContext.Provider value={value}>
       <ProductForm
         product={{
+          availableForSale: true,
           descriptionHtml: "<p>test</p>",
           condition: {
             value: "New",

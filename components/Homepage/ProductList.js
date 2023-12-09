@@ -11,6 +11,7 @@ import SlideOut from "../SlideOut";
 import { getProducts } from "../../algoliaConfig";
 
 const ProductList = ({ query }) => {
+  console.log("query", query.get("q"));
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
@@ -18,7 +19,11 @@ const ProductList = ({ query }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { hits, nbPages } = await getProducts(query, "", page);
+      const { hits, nbPages } = await getProducts(
+        query.get("q") ?? "",
+        "",
+        page
+      );
       setData(data.concat(hits));
       setMaxPage(nbPages);
     };
