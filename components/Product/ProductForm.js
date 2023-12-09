@@ -7,7 +7,6 @@ import { event } from "../../lib/ga";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as PropTypes from "prop-types";
 
 function AddToCartButton(props) {
   return (
@@ -23,10 +22,6 @@ function AddToCartButton(props) {
   );
 }
 
-AddToCartButton.propTypes = {
-  availableForSale: PropTypes.any,
-  onClick: PropTypes.func,
-};
 export default function ProductForm({ product }) {
   const { addToCart, setCartOpen } = useContext(ShopContext);
 
