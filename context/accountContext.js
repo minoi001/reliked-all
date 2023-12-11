@@ -23,6 +23,7 @@ export default function AccountProvider({ children }) {
     token: "",
     checkingLogin: true,
     successMessage: "",
+    orderHistory: [],
   });
 
   function updateUserValue(valuesObject) {
@@ -106,6 +107,7 @@ export default function AccountProvider({ children }) {
         errorMessage: null,
         addresses: infoRequest.customer.addresses,
         token: localStorage.accountToken,
+        orderHistory: infoRequest.customer.orders.edges,
       });
       // token invalid, set error message and login status to false
     } else {
