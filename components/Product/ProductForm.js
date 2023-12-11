@@ -7,26 +7,21 @@ import { event } from "../../lib/ga";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as PropTypes from "prop-types";
 
-function AddToCartButton(props) {
+function AddToCartButton({ availableForSale, onClick }) {
   return (
     <button
       className={`inline-flex ${
-        props.availableForSale ? "bg-taupe" : "bg-almostBlack"
+        availableForSale ? "bg-taupe" : "bg-almostBlack"
       } p-3 text-center w-full text-white hover:bg-almostBlack`}
-      onClick={props.onClick}
-      disabled={!props.availableForSale}
+      onClick={onClick}
+      disabled={!availableForSale}
     >
-      {props.availableForSale ? "Add to Cart" : "Unavailable"}
+      {availableForSale ? "Add to Cart" : "Unavailable"}
     </button>
   );
 }
 
-AddToCartButton.propTypes = {
-  availableForSale: PropTypes.any,
-  onClick: PropTypes.func,
-};
 export default function ProductForm({ product }) {
   const { addToCart, setCartOpen } = useContext(ShopContext);
 
@@ -163,8 +158,9 @@ export default function ProductForm({ product }) {
           Now {formatter.format(product.variants.edges[0].node.priceV2.amount)}
         </div>
       </div>
-      {/* ATTEMPT 3 */}
-      {product.tags.toString().includes("MakeAnOffer") ? (
+
+      {product.tags.toString().includes("MakeAnOffer") &&
+      product.availableForSale ? (
         <div className="mt-6 text-center">
           <div className="lg:inline text-center">
             <button className="lg:inline-flex w-full lg:w-1/2 cursor-auto bg-white text-center">

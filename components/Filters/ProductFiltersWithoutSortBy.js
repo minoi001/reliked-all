@@ -2,12 +2,7 @@ import React from "react";
 import { CustomRefinementList } from "./CustomRefinementList";
 import { CustomRangeSlider } from "./CustomRangeSlider";
 import { CustomToggleRefinement } from "./CustomToggle";
-import { useEffect } from "react";
 function ProductFiltersWithoutSortBy({ format, collectionInfo }) {
-  useEffect(() => {
-    console.log(collectionInfo);
-  }, []);
-
   return (
     <div
       className={

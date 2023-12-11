@@ -1,36 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
-import { formatter } from "../../utils/helpers";
+import { formatImageUrl, formatter } from "../../utils/helpers";
 import { event } from "../../lib/ga";
-import {
-  InformationCircleIcon,
-  QuestionMarkCircleIcon,
-  SunIcon,
-  CheckBadgeIcon,
-} from "@heroicons/react/24/outline";
+import { CheckBadgeIcon, SunIcon } from "@heroicons/react/24/outline";
 
-import { formatImageUrl } from "../../utils/helpers";
-
-import { useEffect } from "react";
-import CollectionPage from "../../pages/collections/[collection]";
-
-const ProductCard = ({ hit, collection, collectionInfo }) => {
-  useEffect(() => {
-    console.log(collectionInfo);
-  }, []);
-
-  const { handle, title, objectID } = hit.hit ? hit.hit : hit;
+const ProductCard = ({ hit, collectionInfo }) => {
+  const { handle, title, objectID } = hit;
   const image = formatImageUrl(
-    hit.hit.image
-      ? hit.hit.image
-      : hit.hit.images?.edges[0]
-      ? hit.hit.images?.edges[0].node.originalSrc
-      : "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018",
+    hit.image ??
+      "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018",
     "500"
   );
-  const altText = hit.hit.body_html_safe ? hit.hit.body_html_safe : "image";
+  const altText = hit.body_html_safe ?? "image";
 
-  const price = hit.hit ? hit.hit.price : 1000;
+  const price = hit.price ?? 1000;
 
   return (
     <div>
@@ -38,8 +21,7 @@ const ProductCard = ({ hit, collection, collectionInfo }) => {
         href={{ pathname: `/products/${handle}` }}
         onClick={() =>
           event("view_item", {
-            currency:
-              hit.hit.priceRange?.minVariantPrice?.currencyCode ?? "GBP",
+            currency: "GBP",
             value: price,
             items: [
               {
@@ -67,19 +49,19 @@ const ProductCard = ({ hit, collection, collectionInfo }) => {
           </div>
 
           {/* logic
-          if the hit has loaded 
+          if the hit has loaded
           if there's no collection OR the collection isn't a vendor collection show who it's sold by
           otherwise, if it's a vendor collection show you may also like on ASO item
 
       */}
 
-          {hit.hit.meta.custom ? (
+          {hit.meta?.custom ? (
             !collectionInfo?.title ||
             collectionInfo?.type?.value !== "Vendor" ? (
-              hit.hit.meta.custom.influencer === "Anonymous" ||
-              hit.hit.tags.includes("Anonymous") ||
-              hit.hit.tags.includes("Beauty") ||
-              hit.hit.tags.includes("HideVendor") ? (
+              hit.meta.custom.influencer === "Anonymous" ||
+              hit.tags.includes("Anonymous") ||
+              hit.tags.includes("Beauty") ||
+              hit.tags.includes("HideVendor") ? (
                 <div className="group flex relative">
                   <span className="bg-offWhite text-offWhite px-2 py-0.5 w-full pl-3 text-sm">
                     Sold by a private seller.
@@ -90,8 +72,8 @@ const ProductCard = ({ hit, collection, collectionInfo }) => {
                 <div className="group flex relative">
                   <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
                     Sold by{" "}
-                    {hit.hit.meta.custom.influencer
-                      ? hit.hit.meta.custom.influencer
+                    {hit.meta?.custom?.influencer
+                      ? hit.meta.custom.influencer
                           .split(" ")
                           .slice(0, 2)
                           .join(" ") + " "
@@ -106,8 +88,8 @@ const ProductCard = ({ hit, collection, collectionInfo }) => {
   -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
                   >
                     We are a preowned marketplace, so this item is sold by{" "}
-                    {hit.hit.meta.custom.influencer
-                      ? hit.hit.meta.custom.influencer
+                    {hit.meta?.custom.influencer
+                      ? hit.meta.custom.influencer
                           .split(" ")
                           .slice(0, 2)
                           .join(" ") + " "
@@ -116,9 +98,9 @@ const ProductCard = ({ hit, collection, collectionInfo }) => {
                   </span>
                 </div>
               )
-            ) : collectionInfo?.vendor?.value !== hit.hit.vendor ||
-              hit.hit.meta.custom.influencer === "Anonymous" ||
-              hit.hit.tags.includes("Anonymous") ? (
+            ) : collectionInfo?.vendor?.value !== hit.vendor ||
+              hit.meta?.custom?.influencer === "Anonymous" ||
+              hit.tags.includes("Anonymous") ? (
               <div className="group flex relative">
                 <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
                   You might also like

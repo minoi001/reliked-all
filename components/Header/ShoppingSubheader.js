@@ -37,7 +37,6 @@ export default function ShoppingSubheader(props) {
   }
 
   function navSubItemClick(categoryIndex, subcategoryIndex, subcategory) {
-    console.log(categoryIndex, subcategoryIndex);
     navSubItemVisible(categoryIndex, subcategoryIndex, !subcategory.hidden);
     setUpdateMenu(!updateMenu);
   }

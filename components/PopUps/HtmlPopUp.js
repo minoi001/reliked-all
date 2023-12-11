@@ -16,7 +16,6 @@ export default function HtmlPopUp({ open, setOpen, content }) {
   const cancelButtonRef = useRef(null);
 
   function handleInput(key, value) {
-    console.log(content.id);
     setInputData({ ...inputData, ...{ [key]: value } });
   }
 

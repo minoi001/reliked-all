@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "../Products/ProductCard";
 import {
   Configure,
@@ -8,17 +8,35 @@ import {
 } from "react-instantsearch";
 import ProductFilters from "../Filters/ProductFilters";
 import SlideOut from "../SlideOut";
+import { getProducts } from "../../algoliaConfig";
 
 const ProductList = ({ query }) => {
+  console.log("query", query.get("q"));
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
-  const { results } = useInstantSearch();
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
+  const [maxPage, setMaxPage] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { hits, nbPages } = await getProducts(
+        query.get("q") ?? "",
+        "",
+        page
+      );
+      setData(data.concat(hits));
+      setMaxPage(nbPages);
+    };
+    fetchData();
+  }, [query, page]);
+
+  function loadMore() {
+    if (page < maxPage - 1) setPage(page + 1);
+  }
 
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
   }
-  const searchParameters = {
-    query: query.get("q") || "",
-  };
 
   return (
     <div>
@@ -29,24 +47,25 @@ const ProductList = ({ query }) => {
           toggleSlideover={toggleSlideover}
         />
       </div>
-      {results.hits.length > 0 ? (
+      {data.length > 0 ? (
         <>
-          <Configure {...searchParameters} />
-          <Hits hitComponent={(hit) => <ProductCard hit={hit} />} />
-          <div className="py-12 md:p-12">
-            <Pagination
-              translations={{
-                previous: "Previous",
-                next: "Next",
-                first: "First",
-                last: "Last",
-                page(currentRefinement) {
-                  return currentRefinement;
-                },
-              }}
-              showLast={true}
-            />
+          <div className={"ais-Hits-list"}>
+            {data.map((product) => (
+              <ProductCard hit={product} key={product.id} />
+            ))}
           </div>
+          {page < maxPage - 1 && (
+            <div className={"w-full text-center p-4"}>
+              <button
+                className={
+                  "font-h text-2xl w-40 justify-center text-white bg-rose"
+                }
+                onClick={loadMore}
+              >
+                Load More
+              </button>
+            </div>
+          )}
         </>
       ) : (
         <h1 className={`font-h text-4xl text-center p-4`}>
