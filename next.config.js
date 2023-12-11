@@ -25,6 +25,9 @@ module.exports = withBundleAnalyzer({
     ALGOLIA_APP_ID: process.env.ALGOLIA_APP_ID,
     ALGOLIA_API_KEY: process.env.ALGOLIA_API_KEY,
     ANALYZE: process.env.ANALYZE,
+    SWYM_API_KEY: process.env.SWYM_API_KEY,
+    SWYM_ENDPOINT: process.env.SWYM_ENDPOINT,
+    SWYM_PID: process.env.SWYM_PID,
   },
   images: {
     domains: [
