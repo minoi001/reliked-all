@@ -79,6 +79,7 @@ async function getCollections(type, page = 0) {
 async function getProducts(query, collection = "", page = 0) {
   try {
     const { hits, nbPages } = await productIndex.search(query, {
+      filters: `collections:${collection}`,
       hitsPerPage: 40,
       page: page,
     });

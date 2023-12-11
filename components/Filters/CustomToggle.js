@@ -2,6 +2,7 @@ import { useToggleRefinement } from "react-instantsearch";
 import React, { useEffect, useRef, useState } from "react";
 import { ChevronDown, Cross } from "../AlgoliaDropdownMenu";
 
+//So Beauty Stuff "So Complete" Luxury Vegan
 export const CustomToggleRefinement = (props) => {
   const dropdownsRef = useRef(null);
   const handleClickOutside = (event) => {
