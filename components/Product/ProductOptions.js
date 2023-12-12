@@ -46,6 +46,7 @@ export default function ProductOptions({
             id={name}
             value={selectedOptions.name}
             onChange={(e) => handleSelectChange(e, name)}
+            className="border-none py-0 ring-0 focus:ring-0"
           >
             {values.map((value) => {
               const id = `option-${name}-${value}`;

@@ -187,8 +187,8 @@ export default function AccountProvider({ children }) {
 
   useEffect(() => {
     checkLoginStatus();
-    getWishlist();
-  }, []);
+    getWishlist(userInfo.email);
+  }, [userInfo.email]);
 
   return (
     <AccountContext.Provider
