@@ -1,17 +1,10 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../Products/ProductCard";
-import {
-  Configure,
-  Hits,
-  Pagination,
-  useInstantSearch,
-} from "react-instantsearch";
 import ProductFilters from "../Filters/ProductFilters";
 import SlideOut from "../SlideOut";
 import { getProducts } from "../../algoliaConfig";
 
 const ProductList = ({ query }) => {
-  console.log("query", query.get("q"));
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
@@ -69,7 +62,7 @@ const ProductList = ({ query }) => {
         </>
       ) : (
         <h1 className={`font-h text-4xl text-center p-4`}>
-          No results have been found for {`''`}
+          No results have been found for {query.get("q")}
         </h1>
       )}
     </div>
