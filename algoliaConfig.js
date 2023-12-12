@@ -77,11 +77,19 @@ async function getCollections(type, page = 0) {
 }
 
 async function getProducts(query, collection = "", page = 0) {
+  const options = collection
+    ? {
+        filters: `collections:${collection}`,
+        hitsPerPage: 40,
+        page: page,
+      }
+    : {
+        hitsPerPage: 40,
+        page: page,
+      };
+
   try {
-    const { hits, nbPages } = await productIndex.search(query, {
-      hitsPerPage: 40,
-      page: page,
-    });
+    const { hits, nbPages } = await productIndex.search(query, options);
     return { hits, nbPages };
   } catch (error) {
     console.error("***Error fetching Algolia data (NewIn):", error);
