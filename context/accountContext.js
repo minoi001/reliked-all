@@ -8,6 +8,8 @@ import {
   deleteCustomerAddressReq,
 } from "../lib/shopify";
 
+import { getWishlist } from "../lib/swym";
+
 const AccountContext = createContext();
 
 export default function AccountProvider({ children }) {
@@ -185,6 +187,7 @@ export default function AccountProvider({ children }) {
 
   useEffect(() => {
     checkLoginStatus();
+    getWishlist();
   }, []);
 
   return (
