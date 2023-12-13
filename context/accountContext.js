@@ -8,7 +8,7 @@ import {
   deleteCustomerAddressReq,
 } from "../lib/shopify";
 
-import { getRegId } from "../lib/swym";
+import { getRegId, getWishlists } from "../lib/swym";
 
 const AccountContext = createContext();
 
@@ -176,17 +176,36 @@ export default function AccountProvider({ children }) {
 
   const getWishlistRegId = async () => {
     let data = "";
-    if (userInfo.email && localStorage.wishlistRegid === "undefined") {
-      data = await getRegId(
-        `/api/swym/regid?useragenttype=headlessSite&useremail=${userInfo.email}`
-      );
+    if (
+      data !== "sdhjfnolejkmlsndkf"
+      // !localStorage.wishlistRegid ||
+      // localStorage.wishlistRegid === "undefined" ||
+      // !localStorage.wishlistSessionid ||
+      // localStorage.wishlistSessionid === "undefined"
+    ) {
+      if (userInfo.email) {
+        data = await getRegId(
+          `/api/swym/regid?useragenttype=headlessSite&useremail=${userInfo.email}`
+        );
+      } else if (userInfo.uuid) {
+        data = await getRegId(
+          `/api/swym/regid?useragenttype=headlessSite&useruuid=${userInfo.uuid}`
+        );
+      }
+      console.log(data);
       localStorage.setItem("wishlistRegid", data.regid);
-    } else if (userInfo.uuid && localStorage.wishlistRegid === "undefined") {
-      data = await getRegId(
-        `/api/swym/regid?useragenttype=headlessSite&useruuid=${userInfo.uuid}`
-      );
-      localStorage.setItem("wishlistRegid", data.regid);
+      localStorage.setItem("wishlistSessionid", data.sessionid);
+      return { wishlistRegid: data.regid, wishlistSessionid: data.sessionid };
     }
+  };
+
+  const getSwymWishlists = async (wishlistIds) => {
+    console.log(wishlistIds);
+    let data = await getWishlists(
+      wishlistIds.wishlistRegid,
+      wishlistIds.wishlistSessionid
+    );
+    console.log(data);
   };
 
   const logout = async () => {
@@ -214,8 +233,10 @@ export default function AccountProvider({ children }) {
 
   useEffect(() => {
     checkLoginStatus();
-    getWishlistRegId();
-  }, [userInfo.email]);
+    let wishlistIds = getWishlistRegId().then((wishlistIds) =>
+      getSwymWishlists(wishlistIds)
+    );
+  }, [userInfo.email, localStorage]);
 
   return (
     <AccountContext.Provider

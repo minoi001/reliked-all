@@ -7,23 +7,24 @@ const apiKey = process.env.SWYM_API_KEY;
 const credentials = `${pid}:${apiKey}`;
 const encodedCredentials = Buffer.from(credentials).toString("base64");
 
-export default async function GET(req, res) {
+export default async function POST(req, res) {
   const { searchParams } = new URL("http://localhost:3000/" + req.url);
-  const useremail = searchParams.get("useremail");
-  const useragenttype = searchParams.get("useragenttype");
-
+  const regid = searchParams.get("regid");
+  const sessionid = searchParams.get("sessionid");
+  console.log(regid, sessionid);
   var data = qs.stringify({
-    useremail: useremail,
-    useragenttype: useragenttype,
+    regid: regid,
+    sessionid: sessionid,
   });
 
   var config = {
     method: "post",
-    url: `${endpoint}/storeadmin/v3/user/generate-regid`,
+    url: `${endpoint}/api/v3/lists/fetch-user-lists?pid=${Buffer.from(
+      pid
+    ).toString("base64")}`,
     headers: {
-      Authorization: `Basic ${encodedCredentials}`,
+      Accept: "application/json",
       "Content-Type": "application/x-www-form-urlencoded",
-      "Access-Control-Allow-Origin": "http://localhost:3000",
     },
     data: data,
   };
@@ -39,6 +40,6 @@ export default async function GET(req, res) {
       console.log(error);
       return error;
     });
-
+  console.log(response);
   res.send(response);
 }
