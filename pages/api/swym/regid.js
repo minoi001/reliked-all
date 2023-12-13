@@ -7,10 +7,14 @@ const apiKey = process.env.SWYM_API_KEY;
 const credentials = `${pid}:${apiKey}`;
 const encodedCredentials = Buffer.from(credentials).toString("base64");
 
-export default async function handler(req, res) {
+export default async function POST(req, res) {
+  const { searchParams } = new URL("http://localhost:3000/" + req.url);
+  const useremail = searchParams.get("useremail");
+  const useragenttype = searchParams.get("useragenttype");
+
   var data = qs.stringify({
-    useragenttype: "headlessSite",
-    useremail: "imo@reliked.com",
+    useremail: useremail,
+    useragenttype: useragenttype,
   });
 
   var config = {
@@ -24,13 +28,17 @@ export default async function handler(req, res) {
     data: data,
   };
 
-  const wishlist = await axios(config)
+  // console.log({ data: data });
+  // return;
+
+  const response = await axios(config)
     .then(function (response) {
-      return JSON.stringify(response.data);
+      return response.data;
     })
     .catch(function (error) {
       console.log(error);
+      return error;
     });
 
-  res.send(wishlist);
+  res.send(response);
 }

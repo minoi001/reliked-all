@@ -8,7 +8,7 @@ import {
   deleteCustomerAddressReq,
 } from "../lib/shopify";
 
-import { getWishlist } from "../lib/swym";
+import { getRegId } from "../lib/swym";
 
 const AccountContext = createContext();
 
@@ -22,10 +22,16 @@ export default function AccountProvider({ children }) {
     password: "",
     errorMessage: "",
     loginStatus: false,
+    uuid: "",
     token: "",
     checkingLogin: true,
     successMessage: "",
     orderHistory: [],
+    wishlist: {
+      regid: "",
+      sessionId: "",
+      lineItems: [],
+    },
   });
 
   function updateUserValue(valuesObject) {
@@ -168,6 +174,21 @@ export default function AccountProvider({ children }) {
     sendUserRequest();
   };
 
+  const getWishlistRegId = async () => {
+    let data = "";
+    if (userInfo.email && localStorage.wishlistRegid === "undefined") {
+      data = await getRegId(
+        `/api/swym/regid?useragenttype=headlessSite&useremail=${userInfo.email}`
+      );
+      localStorage.setItem("wishlistRegid", data.regid);
+    } else if (userInfo.uuid && localStorage.wishlistRegid === "undefined") {
+      data = await getRegId(
+        `/api/swym/regid?useragenttype=headlessSite&useruuid=${userInfo.uuid}`
+      );
+      localStorage.setItem("wishlistRegid", data.regid);
+    }
+  };
+
   const logout = async () => {
     localStorage.removeItem("accountToken");
 
@@ -180,14 +201,20 @@ export default function AccountProvider({ children }) {
       password: "",
       errorMessage: "",
       loginStatus: false,
+      uuid: "",
       token: "",
-      checkingLogin: false,
+      checkingLogin: true,
+      successMessage: "",
+      orderHistory: [],
+      wishlist: {
+        regid: "",
+      },
     });
   };
 
   useEffect(() => {
     checkLoginStatus();
-    getWishlist(userInfo.email);
+    getWishlistRegId();
   }, [userInfo.email]);
 
   return (
