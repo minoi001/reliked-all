@@ -1,32 +1,21 @@
 import ProductCard from "../../components/Products/ProductCard";
 import ProductFilters from "../../components/Filters/ProductFilters";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SlideOut from "../../components/SlideOut";
 import Head from "next/head";
 import { getCollection } from "../../lib/shopify";
-import { getProducts } from "../../algoliaConfig";
+import { Configure, InfiniteHits } from "react-instantsearch";
 
 export default function CollectionPage({ collection, collectionInfo }) {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
-  const [data, setData] = useState([]);
-  const [page, setPage] = useState(0);
-  const [maxPage, setMaxPage] = useState(0);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const { hits, nbPages } = await getProducts("", collection, page);
-      setData(data.concat(hits));
-      setMaxPage(nbPages);
-    };
-    fetchData();
-  }, [collection, page]);
+  const searchParameters = {
+    query: "",
+    filters: `collections:"${collection}"`,
+  };
 
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
-  }
-
-  function loadMore() {
-    if (page < maxPage - 1) setPage(page + 1);
   }
 
   return (
@@ -61,7 +50,7 @@ export default function CollectionPage({ collection, collectionInfo }) {
             __html: collectionInfo.descriptionHtml,
           }}
         ></div> */}
-
+        <Configure {...searchParameters} />
         <div className="flex flex-row justify-between">
           <ProductFilters
             toggleSlideover={toggleSlideover}
@@ -73,23 +62,19 @@ export default function CollectionPage({ collection, collectionInfo }) {
             collectionInfo={collectionInfo}
           />
         </div>
-        <div className={"ais-Hits-list"}>
-          {data.map((product) => (
-            <ProductCard hit={product} key={product.id} />
-          ))}
-        </div>
-        {page < maxPage - 1 && (
-          <div className={"w-full text-center p-4"}>
-            <button
-              className={
-                "font-h text-2xl w-40 justify-center text-white bg-rose"
-              }
-              onClick={loadMore}
-            >
-              Load More
-            </button>
-          </div>
-        )}
+        <InfiniteHits
+          hitComponent={(hit) => (
+            <ProductCard
+              hit={hit.hit}
+              collection={collection}
+              collectionInfo={collectionInfo}
+            />
+          )}
+          translations={{
+            showMoreButtonText: "Load more",
+          }}
+          showPrevious={false}
+        />
       </div>
     </div>
   );

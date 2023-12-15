@@ -5,6 +5,7 @@ import { event } from "../../lib/ga";
 import { CheckBadgeIcon, SunIcon } from "@heroicons/react/24/outline";
 
 const ProductCard = ({ hit, collectionInfo }) => {
+  console.log(hit);
   const { handle, title, objectID } = hit;
   const image = formatImageUrl(
     hit.image ??

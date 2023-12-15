@@ -1,6 +1,5 @@
 import ProductFiltersWithoutSortBy from "./ProductFiltersWithoutSortBy";
 import CustomSortBy from "./CustomSortBy";
-import { useState } from "react";
 
 const ProductFilters = ({ toggleSlideover, collectionInfo }) => {
   return (

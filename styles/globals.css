@@ -19,6 +19,14 @@
   @apply grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8;
 }
 
+.ais-InfiniteHits-list {
+  @apply grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8;
+}
+
+.ais-InfiniteHits-loadMore {
+  @apply font-h text-2xl w-40 justify-center text-white bg-rose;
+}
+
 .ais-Pagination-list {
   @apply flex justify-between md:justify-center md:items-center md:gap-x-6;
 }
