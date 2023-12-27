@@ -19,8 +19,11 @@ export const Search = () => {
   };
 
   return (
-    <div>
-      <SearchBox onSubmit={onSubmit} onReset={onReset} placeholder="Search" />
-    </div>
+    <SearchBox
+      onSubmit={onSubmit}
+      onReset={onReset}
+      searchAsYouType={false}
+      placeholder="Search"
+    />
   );
 };

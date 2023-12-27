@@ -6,7 +6,8 @@ import SlideOut from "../SlideOut";
 
 const ProductList = ({ query }) => {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
-  const { results } = useInstantSearch();
+  const { results, status } = useInstantSearch();
+  console.log("status", status);
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
   }
@@ -34,6 +35,8 @@ const ProductList = ({ query }) => {
             }}
           />
         </>
+      ) : status === "loading" ? (
+        <h1 className={`font-h text-4xl text-center p-4`}>Loading...</h1>
       ) : (
         <h1 className={`font-h text-4xl text-center p-4`}>
           No results have been found for {query.get("q")}
