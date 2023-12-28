@@ -23,7 +23,6 @@ function ImageZoom({ product }) {
   return (
     <div className="w-full md:w-2/5">
       <div className="px-4 py-1 image-container" onClick={openModal}>
-        {" "}
         <Image
           src={focusImage ? focusImage : placeholderImage}
           alt={product.title}
@@ -40,15 +39,15 @@ function ImageZoom({ product }) {
           alt="images carousel"
           className="list-none overflow-y-hidden flex max-h-36 px-3 overflow-x-scroll"
         >
-          {product.images?.edges?.map((image) => (
-            <div key={image.alt} className="p-1 w-1/4 inline-block">
+          {product.images?.edges?.map((image, i) => (
+            <div className="p-1 w-1/4 inline-block" key={i}>
               <Image
                 src={
                   image.node.url
                     ? formatImageUrl(image.node.url, "1000")
                     : placeholderImage
                 }
-                alt={image.alt}
+                alt={image.alt ?? product.title}
                 height="1000"
                 width="1000"
                 sizes="(max-width: 768px) 80vw, (max-width: 1200px) 33vw, 15vw"
