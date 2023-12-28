@@ -1,17 +1,29 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Configure, InfiniteHits, useInstantSearch } from "react-instantsearch";
 import ProductCard from "../Products/ProductCard";
 import ProductFilters from "../Filters/ProductFilters";
 import SlideOut from "../SlideOut";
 import { Loading } from "../Loading";
+import { ProductContext } from "../../context/productContext";
 
 const ProductList = ({ query }) => {
+  const { scrollPosition, setScrollPosition } = useContext(ProductContext);
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
+
+  useEffect(() => {
+    console.log("scrolling to ", scrollPosition);
+    window.scrollTo(0, scrollPosition);
+  }, [scrollPosition]);
+
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
   }
   const searchParameters = {
     query: query.get("q") || "",
+  };
+  const handleHitClick = () => {
+    console.log("setting scroll position ", window.scrollY);
+    setScrollPosition(window.scrollY);
   };
 
   return (
@@ -33,6 +45,7 @@ const ProductList = ({ query }) => {
             translations={{
               showMoreButtonText: "Load more",
             }}
+            onClick={handleHitClick}
           />
         </NoResultsBoundary>
       </>

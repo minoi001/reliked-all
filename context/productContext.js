@@ -134,6 +134,8 @@ export default function ProductProvider({ children }) {
     setListingVariables({ ...listingVariables, ...valuesObject });
   }
 
+  const [scrollPosition, setScrollPosition] = useState(0);
+
   return (
     <ProductContext.Provider
       value={{
@@ -144,6 +146,8 @@ export default function ProductProvider({ children }) {
         setListingVariables,
         getListingVariables,
         resetProductInfo,
+        scrollPosition,
+        setScrollPosition,
       }}
     >
       {children}
