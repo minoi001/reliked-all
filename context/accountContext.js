@@ -7,6 +7,7 @@ import {
   updateCustomerAddressReq,
   deleteCustomerAddressReq,
 } from "../lib/shopify";
+import { v4 as uuidv4 } from "uuid";
 
 import { getRegId, getWishlists } from "../lib/swym";
 
@@ -45,6 +46,8 @@ export default function AccountProvider({ children }) {
       await sendUserRequest();
     } else {
       updateUserValue({ checkingLogin: false });
+      localStorage.setItem("wishlistUuid", `${uuidv4()}`);
+      // console.log(localStorage.getItem("wishlistUuid"));
     }
   };
 
@@ -97,6 +100,7 @@ export default function AccountProvider({ children }) {
           "accountToken",
           `${tokenRequest.customerAccessTokenCreate.customerAccessToken.accessToken}`
         );
+        localStorage.removeItem("wishlistUuid");
       }
     }
     // request user info using token
@@ -174,36 +178,36 @@ export default function AccountProvider({ children }) {
     sendUserRequest();
   };
 
+  const getUuid = async () => {};
+
   const getWishlistRegId = async () => {
     let data = "";
-    if (
-      data !== "sdhjfnolejkmlsndkf"
-      // !localStorage.wishlistRegid ||
-      // localStorage.wishlistRegid === "undefined" ||
-      // !localStorage.wishlistSessionid ||
-      // localStorage.wishlistSessionid === "undefined"
-    ) {
-      if (userInfo.email) {
-        data = await getRegId(
-          `/api/swym/regid?useragenttype=headlessSite&useremail=${userInfo.email}`
-        );
-      } else if (userInfo.uuid) {
-        data = await getRegId(
-          `/api/swym/regid?useragenttype=headlessSite&useruuid=${userInfo.uuid}`
-        );
-      }
-      console.log(data);
-      localStorage.setItem("wishlistRegid", data.regid);
-      localStorage.setItem("wishlistSessionid", data.sessionid);
-      return { wishlistRegid: data.regid, wishlistSessionid: data.sessionid };
-    }
+    // if (
+    //   !localStorage.wishlistRegid ||
+    //   localStorage.wishlistRegid === "undefined" ||
+    //   !localStorage.wishlistSessionid ||
+    //   localStorage.wishlistSessionid === "undefined"
+    // ) {
+
+    data = await getRegId(
+      "headlessSite",
+      userInfo.email,
+      localStorage.wishlistUuid
+    );
+
+    console.log(data);
+    localStorage.setItem("wishlistRegid", data.regid);
+    localStorage.setItem("wishlistSessionid", data.sessionid);
+    return { wishlistRegid: data.regid, wishlistSessionid: data.sessionid };
+    // }
+    // console.log(localStorage.wishlistRegid);
   };
 
   const getSwymWishlists = async (wishlistIds) => {
-    console.log(wishlistIds);
+    // console.log(wishlistIds);
     let data = await getWishlists(
-      wishlistIds.wishlistRegid,
-      wishlistIds.wishlistSessionid
+      localStorage.wishlistRegid,
+      localStorage.wishlistSessionid
     );
     console.log(data);
   };
@@ -232,10 +236,9 @@ export default function AccountProvider({ children }) {
   };
 
   useEffect(() => {
-    checkLoginStatus();
-    let wishlistIds = getWishlistRegId().then((wishlistIds) =>
-      getSwymWishlists(wishlistIds)
-    );
+    checkLoginStatus().then(() => {
+      getWishlistRegId().then((wishlistIds) => getSwymWishlists(wishlistIds));
+    });
   }, [userInfo.email, localStorage]);
 
   return (

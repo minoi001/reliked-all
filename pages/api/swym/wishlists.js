@@ -4,7 +4,7 @@ const endpoint = process.env.SWYM_ENDPOINT;
 const pid = process.env.SWYM_PID;
 const apiKey = process.env.SWYM_API_KEY;
 
-const credentials = `${pid}:${apiKey}`;
+const credentials = `${pid}`;
 const encodedCredentials = Buffer.from(credentials).toString("base64");
 
 export default async function POST(req, res) {
@@ -12,34 +12,21 @@ export default async function POST(req, res) {
   const regid = searchParams.get("regid");
   const sessionid = searchParams.get("sessionid");
   console.log(regid, sessionid);
-  var data = qs.stringify({
-    regid: regid,
-    sessionid: sessionid,
-  });
 
-  var config = {
-    method: "post",
-    url: `${endpoint}/api/v3/lists/fetch-user-lists?pid=${Buffer.from(
-      pid
-    ).toString("base64")}`,
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    data: data,
-  };
+  const response = await axios.post(
+    `${endpoint}/api/v3/lists/fetch-user-lists?pid=${encodedCredentials}`,
+    new URLSearchParams({
+      sessionid: `${sessionid}`,
+      regid: `${regid}`,
+    }),
+    {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    }
+  );
 
-  // console.log({ data: data });
-  // return;
-
-  const response = await axios(config)
-    .then(function (response) {
-      return response.data;
-    })
-    .catch(function (error) {
-      console.log(error);
-      return error;
-    });
   console.log(response);
   res.send(response);
 }

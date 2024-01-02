@@ -11,11 +11,21 @@ export default async function GET(req, res) {
   const { searchParams } = new URL("http://localhost:3000/" + req.url);
   const useremail = searchParams.get("useremail");
   const useragenttype = searchParams.get("useragenttype");
+  const useruuid = searchParams.get("useruuid");
 
-  var data = qs.stringify({
-    useremail: useremail,
-    useragenttype: useragenttype,
-  });
+  var data = "";
+
+  if (useremail) {
+    data = qs.stringify({
+      useremail: useremail,
+      useragenttype: useragenttype,
+    });
+  } else {
+    data = qs.stringify({
+      useragenttype: useragenttype,
+      uuid: useruuid,
+    });
+  }
 
   var config = {
     method: "post",
@@ -28,7 +38,7 @@ export default async function GET(req, res) {
     data: data,
   };
 
-  // console.log({ data: data });
+  console.log({ inputData: data });
   // return;
 
   const response = await axios(config)
