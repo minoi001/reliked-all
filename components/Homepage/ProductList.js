@@ -1,16 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import {
-  Configure,
-  Hits,
-  Pagination,
-  useInstantSearch,
-} from "react-instantsearch";
+import { Configure, Hits, useInstantSearch } from "react-instantsearch";
 import ProductCard from "../Products/ProductCard";
 import ProductFilters from "../Filters/ProductFilters";
 import SlideOut from "../SlideOut";
 import { Loading } from "../Loading";
 import { ProductContext } from "../../context/productContext";
-import CustomPagination from "../Pagination";
+import { CustomPagination } from "../Pagination";
 
 const ProductList = ({ query }) => {
   const { scrollPosition, setScrollPosition } = useContext(ProductContext);

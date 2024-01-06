@@ -1,32 +1,29 @@
-import React, { useState } from "react";
-import { Pagination } from "react-instantsearch";
-
-const CustomPagination = () => {
-  const [currentPage, setCurrentPage] = useState(0);
-
-  const handlePageChange = (event) => {
-    console.log("page change", event);
-    // Update the current page
-    setCurrentPage(event.selected);
-
-    // Scroll to the top of the page
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", // You can change this to 'auto' for instant scrolling
-    });
-  };
+import { usePagination } from "react-instantsearch";
+export const CustomPagination = (props) => {
+  const { pages, refine, currentRefinement } = usePagination(props);
 
   return (
-    <div>
-      {/* Your other Algolia components go here */}
-      <Pagination
-        showLast={false}
-        totalPages={10} // Replace with the actual total number of pages
-        currentRefinement={currentPage}
-        onPageChange={handlePageChange}
-      />
-    </div>
+    <ul className="ais-Pagination-list">
+      {pages.map((page) => (
+        <li
+          key={page}
+          className={
+            currentRefinement === page
+              ? "ais-Pagination-item--selected"
+              : "ais-Pagination-item"
+          }
+        >
+          <a
+            onClick={(event) => {
+              event.preventDefault();
+              window.scrollTo(0, 0);
+              refine(page);
+            }}
+          >
+            {page + 1}
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 };
-
-export default CustomPagination;
