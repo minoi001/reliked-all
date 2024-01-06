@@ -58,16 +58,22 @@ function MyApp({ Component, pageProps }) {
           stateMapping: {
             stateToRoute(uiState) {
               const indexUiState = uiState[indexNames.products];
+              const isSearchPage = location.pathname === "/search";
+              if (!indexUiState || !isSearchPage) return false;
               return {
                 q: indexUiState.query,
                 sort_by: indexToRoute(indexUiState.sortBy),
+                page: indexUiState.page,
               };
             },
             routeToState(routeState) {
+              const isSearchPage = location.pathname === "/search";
+              if (!isSearchPage) return false;
               return {
                 [indexNames.products]: {
                   query: routeState.q,
                   sortBy: routeToIndex(routeState.sort_by),
+                  page: routeState.page,
                 },
               };
             },

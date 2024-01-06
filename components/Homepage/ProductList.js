@@ -1,10 +1,16 @@
 import { useContext, useEffect, useState } from "react";
-import { Configure, InfiniteHits, useInstantSearch } from "react-instantsearch";
+import {
+  Configure,
+  Hits,
+  Pagination,
+  useInstantSearch,
+} from "react-instantsearch";
 import ProductCard from "../Products/ProductCard";
 import ProductFilters from "../Filters/ProductFilters";
 import SlideOut from "../SlideOut";
 import { Loading } from "../Loading";
 import { ProductContext } from "../../context/productContext";
+import CustomPagination from "../Pagination";
 
 const ProductList = ({ query }) => {
   const { scrollPosition, setScrollPosition } = useContext(ProductContext);
@@ -21,10 +27,6 @@ const ProductList = ({ query }) => {
   const searchParameters = {
     query: query.get("q") || "",
   };
-  const handleHitClick = () => {
-    console.log("setting scroll position ", window.scrollY);
-    setScrollPosition(window.scrollY);
-  };
 
   return (
     <>
@@ -39,15 +41,16 @@ const ProductList = ({ query }) => {
         <Loading />
         <Configure {...searchParameters} />
         <NoResultsBoundary fallback={<NoResults />}>
-          <InfiniteHits
-            hitComponent={(hit) => <ProductCard hit={hit.hit} />}
-            showPrevious={false}
-            translations={{
-              showMoreButtonText: "Load more",
-            }}
-            onClick={handleHitClick}
+          <Hits
+            hitComponent={(hit) => (
+              <ProductCard
+                hit={hit.hit}
+                setScrollPosition={setScrollPosition}
+              />
+            )}
           />
         </NoResultsBoundary>
+        <CustomPagination />
       </>
     </>
   );

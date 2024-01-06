@@ -4,7 +4,7 @@ import { formatImageUrl, formatter } from "../../utils/helpers";
 import { event } from "../../lib/ga";
 import { CheckBadgeIcon, SunIcon } from "@heroicons/react/24/outline";
 
-const ProductCard = ({ hit, collectionInfo }) => {
+const ProductCard = ({ hit, collectionInfo, setScrollPosition }) => {
   const { handle, title, objectID } = hit;
   const image = formatImageUrl(
     hit.image ??
@@ -15,110 +15,73 @@ const ProductCard = ({ hit, collectionInfo }) => {
 
   const price = hit.price ?? 1000;
 
-  return (
-    <div>
-      <Link
-        href={{ pathname: `/products/${handle}` }}
-        onClick={() =>
-          event("view_item", {
-            currency: "GBP",
-            value: price,
-            items: [
-              {
-                item_id: objectID,
-                item_name: title,
-              },
-            ],
-            ecomm_pagetype: "product",
-          })
-        }
-      >
-        <div>
-          <div className="group w-full bg-offWhite overflow-hidden ">
-            <div className="grid group-hover:opacity-75-20 w-full aspect-4/5 p-3 place-items-center">
-              <Image
-                sizes="(max-width: 768px) 17vw, (max-width: 1200px) 15vw, 7vw"
-                src={image}
-                alt={altText}
-                width="446"
-                height="533"
-                className="object-contain w-36 max-h-12 xxs:max-h-24 xs:max-h-48 sm:max-h-60"
-                priority
-              />
-            </div>
-          </div>
+  const handleHitClick = () => {
+    console.log("setting scroll position ", window.scrollY);
+    setScrollPosition(window.scrollY);
+  };
 
-          {/* logic
+  return (
+    <Link
+      href={{ pathname: `/products/${handle}` }}
+      onClick={() => {
+        event("view_item", {
+          currency: "GBP",
+          value: price,
+          items: [
+            {
+              item_id: objectID,
+              item_name: title,
+            },
+          ],
+          ecomm_pagetype: "product",
+        });
+        handleHitClick();
+      }}
+    >
+      <div>
+        <div className="group w-full bg-offWhite overflow-hidden ">
+          <div className="grid group-hover:opacity-75-20 w-full aspect-4/5 p-3 place-items-center">
+            <Image
+              sizes="(max-width: 768px) 17vw, (max-width: 1200px) 15vw, 7vw"
+              src={image}
+              alt={altText}
+              width="446"
+              height="533"
+              className="object-contain w-36 max-h-12 xxs:max-h-24 xs:max-h-48 sm:max-h-60"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* logic
           if the hit has loaded
           if there's no collection OR the collection isn't a vendor collection show who it's sold by
           otherwise, if it's a vendor collection show you may also like on ASO item
 
       */}
 
-          {hit.meta?.custom ? (
-            !collectionInfo?.title ||
-            collectionInfo?.type?.value !== "Vendor" ? (
-              hit.meta.custom.influencer === "Anonymous" ||
-              hit.tags.includes("Anonymous") ||
-              hit.tags.includes("Beauty") ||
-              hit.tags.includes("HideVendor") ? (
-                <div className="group flex relative">
-                  <span className="bg-offWhite text-offWhite px-2 py-0.5 w-full pl-3 text-sm">
-                    Sold by a private seller.
-                    <CheckBadgeIcon className="h-6 w-6 inline pb-0.5" />
-                  </span>
-                </div>
-              ) : (
-                <div className="group flex relative">
-                  <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
-                    Sold by{" "}
-                    {hit.meta?.custom?.influencer
-                      ? hit.meta.custom.influencer
-                          .split(" ")
-                          .slice(0, 2)
-                          .join(" ") + " "
-                      : ""}
-                    <CheckBadgeIcon
-                      color="black"
-                      className="h-6 w-6 inline pb-0.5"
-                    />
-                  </span>
-                  <span
-                    className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
-  -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
-                  >
-                    We are a preowned marketplace, so this item is sold by{" "}
-                    {hit.meta?.custom.influencer
-                      ? hit.meta.custom.influencer
-                          .split(" ")
-                          .slice(0, 2)
-                          .join(" ") + " "
-                      : ""}
-                    (a private seller).
-                  </span>
-                </div>
-              )
-            ) : collectionInfo?.vendor?.value !== hit.vendor ||
-              hit.meta?.custom?.influencer === "Anonymous" ||
-              hit.tags.includes("Anonymous") ? (
+        {hit.meta?.custom ? (
+          !collectionInfo?.title || collectionInfo?.type?.value !== "Vendor" ? (
+            hit.meta.custom.influencer === "Anonymous" ||
+            hit.tags.includes("Anonymous") ||
+            hit.tags.includes("Beauty") ||
+            hit.tags.includes("HideVendor") ? (
               <div className="group flex relative">
-                <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
-                  You might also like
-                  <SunIcon color="black" className="h-6 w-6 inline pb-0.5" />
-                </span>
-                <span
-                  className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
--translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
-                >
-                  This item is sold by another private seller but our algorithm
-                  thinks you might still like it!
+                <span className="bg-offWhite text-offWhite px-2 py-0.5 w-full pl-3 text-sm">
+                  Sold by a private seller.
+                  <CheckBadgeIcon className="h-6 w-6 inline pb-0.5" />
                 </span>
               </div>
             ) : (
               <div className="group flex relative">
                 <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
                   Sold by{" "}
-                  {collectionInfo.title.split(" ").slice(0, 2).join(" ") + " "}
+                  {hit.meta?.custom?.influencer
+                    ? hit.meta.custom.influencer
+                        .split(" ")
+                        .slice(0, 2)
+                        .join(" ") + " "
+                    : ""}
                   <CheckBadgeIcon
                     color="black"
                     className="h-6 w-6 inline pb-0.5"
@@ -129,25 +92,63 @@ const ProductCard = ({ hit, collectionInfo }) => {
   -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
                 >
                   We are a preowned marketplace, so this item is sold by{" "}
-                  {collectionInfo.title.split(" ").slice(0, 2).join(" ") + " "}
+                  {hit.meta?.custom.influencer
+                    ? hit.meta.custom.influencer
+                        .split(" ")
+                        .slice(0, 2)
+                        .join(" ") + " "
+                    : ""}
                   (a private seller).
                 </span>
               </div>
             )
+          ) : collectionInfo?.vendor?.value !== hit.vendor ||
+            hit.meta?.custom?.influencer === "Anonymous" ||
+            hit.tags.includes("Anonymous") ? (
+            <div className="group flex relative">
+              <span className="bg-mint text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
+                You might also like
+                <SunIcon color="black" className="h-6 w-6 inline pb-0.5" />
+              </span>
+              <span
+                className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
+-translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
+              >
+                This item is sold by another private seller but our algorithm
+                thinks you might still like it!
+              </span>
+            </div>
           ) : (
-            // hit not loaded
-            ""
-          )}
+            <div className="group flex relative">
+              <span className="bg-cream text-almostBlack px-2 py-0.5 w-full pl-3 text-sm hover:cursor-help">
+                Sold by{" "}
+                {collectionInfo.title.split(" ").slice(0, 2).join(" ") + " "}
+                <CheckBadgeIcon
+                  color="black"
+                  className="h-6 w-6 inline pb-0.5"
+                />
+              </span>
+              <span
+                className="group-hover:opacity-100 transition-opacity absolute bg-almostBlack pl-3 py-1 text-sm text-white w-full  left-1/2
+  -translate-x-1/2 -translate-y-full opacity-0 px-2 mx-auto -mb-5 "
+              >
+                We are a preowned marketplace, so this item is sold by{" "}
+                {collectionInfo.title.split(" ").slice(0, 2).join(" ") + " "}
+                (a private seller).
+              </span>
+            </div>
+          )
+        ) : (
+          // hit not loaded
+          ""
+        )}
 
-          <h3 className="mt-2 text-mg font-medium text-gray-900 px-1">
-            {title}
-          </h3>
-          <h4 className="mt-2 text-md font-medium text-gray-900 px-0">
-            {formatter.format(price)}
-          </h4>
-        </div>
-      </Link>
-    </div>
+        <h3 className="mt-2 text-mg font-medium text-gray-900 px-1">{title}</h3>
+        <h4 className="mt-2 text-md font-medium text-gray-900 px-0">
+          {formatter.format(price)}
+        </h4>
+      </div>
+    </Link>
   );
 };
 
