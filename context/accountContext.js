@@ -195,7 +195,6 @@ export default function AccountProvider({ children }) {
       localStorage.wishlistUuid
     );
 
-    console.log(data);
     localStorage.setItem("wishlistRegid", data.regid);
     localStorage.setItem("wishlistSessionid", data.sessionid);
     return { wishlistRegid: data.regid, wishlistSessionid: data.sessionid };
@@ -209,6 +208,7 @@ export default function AccountProvider({ children }) {
       localStorage.wishlistRegid,
       localStorage.wishlistSessionid
     );
+
     console.log(data);
   };
 

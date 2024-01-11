@@ -5,16 +5,16 @@ const pid = process.env.SWYM_PID;
 const apiKey = process.env.SWYM_API_KEY;
 
 const credentials = `${pid}`;
-const encodedCredentials = Buffer.from(credentials).toString("base64");
+// const encodedCredentials = Buffer.from(credentials).toString("urlencoded");
+// pid needs to be url encoded
 
 export default async function POST(req, res) {
   const { searchParams } = new URL("http://localhost:3000/" + req.url);
   const regid = searchParams.get("regid");
   const sessionid = searchParams.get("sessionid");
-  console.log(regid, sessionid);
 
   const response = await axios.post(
-    `${endpoint}/api/v3/lists/fetch-user-lists?pid=${encodedCredentials}`,
+    `${endpoint}/api/v3/lists/fetch-user-lists?pid=${encodeURIComponent(pid)}`,
     new URLSearchParams({
       sessionid: `${sessionid}`,
       regid: `${regid}`,
@@ -27,6 +27,6 @@ export default async function POST(req, res) {
     }
   );
 
-  console.log(response);
-  res.send(response);
+  console.log(response.data);
+  res.send(response.data);
 }
