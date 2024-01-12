@@ -3,49 +3,31 @@ import { AccountContext } from "../../../context/accountContext";
 
 import Image from "next/image";
 import Link from "next/link";
+import ProductCard from "../../Products/ProductCard";
 
 export default function AccountWishlistContent() {
   const { userInfo } = useContext(AccountContext);
 
   return (
-    <div className="">
+    <div className="md:pl-6">
       <h1 className="font-h text-3xl text-center py-3">Wishlist</h1>
-      {userInfo.wishlist.lineItems.map((item, index) => (
-        <div key={index} className="inline-flex w-1/6">
-          <div className="inline">
-            <Link
-              href={`/products/${item.du.replace(
-                "https://reliked.com/products/",
-                ""
-              )}`}
-            >
-              <center>
-                <Image
-                  className="h-36 object-contain p-6 bg-offWhite m-2"
-                  src={item.iu}
-                  alt={item.dt}
-                  width="120"
-                  height="120"
-                />
-                <h2 className="inline px-2">{item.dt}</h2>
-              </center>
-            </Link>
+      <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
+        {userInfo.wishlist.lineItems.map((item, index) => (
+          <div key={index}>
+            <ProductCard
+              className="m-2"
+              hit={{
+                title: item.dt,
+                image: item.iu,
+                price: item.pr,
+                handle: item.du.replace("https://reliked.com/products/", ""),
+                body_html_safe: "",
+                objectID: "",
+              }}
+            />
           </div>
-          {/* <div className="mb-2">
-            <div key={index} className="inline-flex overflow-x-scroll">
-              <center>
-                <Image
-                  className="h-36 object-contain p-6 bg-offWhite m-2"
-                  src={item.iu}
-                  alt={item.dt}
-                  width="120"
-                  height="120"
-                />
-              </center>
-            </div>
-          </div> */}
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
