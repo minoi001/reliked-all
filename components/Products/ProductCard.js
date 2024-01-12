@@ -6,13 +6,11 @@ import { CheckBadgeIcon, SunIcon } from "@heroicons/react/24/outline";
 
 const ProductCard = ({ hit, collectionInfo, setScrollPosition }) => {
   const { handle, title, objectID } = hit;
-  console.log(hit.image);
   const image = formatImageUrl(
     hit.image.replace("_620x620", "") ??
       "https://cdn.shopify.com/s/files/1/2481/5934/files/Loading_icon_70beb786-4ca6-4438-89a3-810f9c41ac15.gif?v=1674579018",
     "500"
   );
-  console.log(image);
   const altText = hit.body_html_safe ?? "image";
 
   const price = hit.price ?? 1000;
