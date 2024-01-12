@@ -9,7 +9,7 @@ import {
 } from "../lib/shopify";
 import { v4 as uuidv4 } from "uuid";
 
-import { getRegId, getWishlists } from "../lib/swym";
+import { getRegId, getWishlists, getWishlistItems } from "../lib/swym";
 
 const AccountContext = createContext();
 
@@ -29,8 +29,7 @@ export default function AccountProvider({ children }) {
     successMessage: "",
     orderHistory: [],
     wishlist: {
-      regid: "",
-      sessionId: "",
+      status: false,
       lineItems: [],
     },
   });
@@ -207,9 +206,28 @@ export default function AccountProvider({ children }) {
     let data = await getWishlists(
       localStorage.wishlistRegid,
       localStorage.wishlistSessionid
+    ).then((res) => {
+      localStorage.setItem("wishlistId", res.data[0].lid);
+      console.log("lid= " + res.data[0].lid);
+      getSwymWishlistItems(res.data[0].lid);
+    });
+  };
+
+  const getSwymWishlistItems = async (wishlistId) => {
+    // console.log(wishlistIds);
+    let data = await getWishlistItems(
+      localStorage.wishlistSessionid,
+      localStorage.wishlistRegid,
+      wishlistId
     );
 
-    console.log(data);
+    console.log(data.items);
+    updateUserValue({
+      wishlist: {
+        status: true,
+        lineItems: data.items,
+      },
+    });
   };
 
   const logout = async () => {
