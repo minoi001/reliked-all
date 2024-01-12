@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { AccountContext } from "../../../context/accountContext";
 
 import Image from "next/image";
+import ProductCard from "../../Products/ProductCard";
+import { getProductHandleByVariant } from "../../../lib/shopify";
 
 export default function AccountOrdersContent() {
   const { userInfo } = useContext(AccountContext);
@@ -9,38 +11,51 @@ export default function AccountOrdersContent() {
   return (
     <div className="">
       <h1 className="font-h text-3xl text-center py-3">Order History</h1>
-      {userInfo.orderHistory.map((order, index) => (
-        <div key={index}>
-          <div className="inline">
-            <h2 className="inline px-2">Order ID: {order.node.name}</h2>
-            <p className="inline px-2">
-              Date: {new Date(order.node.createdAt).toLocaleDateString()}
-            </p>
-            <p className="inline px-2">
-              Total Price: {order.node.totalPriceV2.amount}{" "}
-              {order.node.totalPriceV2.currencyCode}
-            </p>
+      {userInfo.orderHistory.map((order, index) => {
+        return (
+          <div key={index}>
+            <div className="inline">
+              <h2 className="inline px-2">Order ID: {order.node.name}</h2>
+              <p className="inline px-2">
+                Date: {new Date(order.node.createdAt).toLocaleDateString()}
+              </p>
+              <p className="inline px-2">
+                Total Price: {order.node.totalPriceV2.amount}{" "}
+                {order.node.totalPriceV2.currencyCode}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 xl:gap-x-8 ">
+              {order.node.lineItems.edges.map((item, index) => {
+                console.log(item.node.variant.id);
+                console.log(getProductHandleByVariant());
+                return (
+                  <div key={index} className="">
+                    <ProductCard
+                      className="m-2"
+                      hit={{
+                        title: item.node.title,
+                        image: item.node.variant.image.src,
+                        price: item.node.discountedTotalPrice.amount,
+                        handle: item.node.title
+                          .toLowerCase()
+                          .replaceAll("  ", " ")
+                          .replaceAll(" ", "-")
+                          .replace(
+                            /[!@#$%^&*()_+={}\[\]:;<>,.?\/\\|`\s]/g,
+                            "-"
+                          ),
+                        body_html_safe: "",
+                        objectID: "",
+                      }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <div className="mb-2">
-            {order.node.lineItems.edges.map((item, index) => (
-              <div key={index} className="inline-flex overflow-x-scroll">
-                <center>
-                  <Image
-                    className="h-36 object-contain p-6 bg-offWhite m-2"
-                    src={item.node.variant.image.src}
-                    alt={item.node.title}
-                    width="120"
-                    height="120"
-                  />
-                </center>
-                {/* <h3>{item.node.title}</h3>
-                <p>Quantity: {item.node.quantity}</p>
-                <p>Price: {item.node.discountedTotalPrice.amount}</p> */}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
