@@ -42,6 +42,7 @@
     "react-instantsearch": "^7.0.1",
     "react-select": "^5.7.2",
     "react-slider": "^2.0.5",
+    "react-svg": "^16.1.32",
     "react-tailwindcss-select": "^1.8.5",
     "sharp": "^0.32.4",
     "uuid": "^9.0.1"
