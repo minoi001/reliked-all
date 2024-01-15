@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { formatImageUrl } from "../../utils/helpers";
+import BookmarkIcon from "../Assets/Wishlist-Bookmark.svg"; // relative path to image
+import { ReactSVG } from "react-svg";
 
 function ImageZoom({ product }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -22,7 +24,10 @@ function ImageZoom({ product }) {
 
   return (
     <div className="w-full md:w-2/5">
-      <div className="px-4 py-1 image-container" onClick={openModal}>
+      <div
+        className="group w-full overflow-hidden flex items-start pl-6 pt-6"
+        onClick={openModal}
+      >
         <Image
           src={focusImage ? focusImage : placeholderImage}
           alt={product.title}
@@ -33,7 +38,19 @@ function ImageZoom({ product }) {
           priority={"true"}
           loading="eager"
         />
+        <div className="ml-auto p-4">
+          <ReactSVG
+            src={BookmarkIcon.src}
+            className="w-6 h-6 fill-current text-white -mt-60 cursor-pointer -ml-16 "
+            beforeInjection={(svg) => {
+              svg.classList.add("svg-class-name");
+              svg.setAttribute("style", "width: 30px");
+            }}
+            onClick={"hi"}
+          />
+        </div>
       </div>
+
       {product?.images?.edges?.length > 1 ? (
         <div
           alt="images carousel"

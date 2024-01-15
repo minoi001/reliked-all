@@ -9,13 +9,14 @@ export default function AccountOrdersContent() {
   const { userInfo } = useContext(AccountContext);
 
   return (
-    <div className="">
+    <div className="md:pl-6">
       <h1 className="font-h text-3xl text-center py-3">Order History</h1>
       {userInfo.orderHistory.map((order, index) => {
         return (
-          <div key={index}>
-            <div className="inline">
-              <h2 className="inline px-2">Order ID: {order.node.name}</h2>
+          <div key={index} className="">
+            <div className="py-4">
+              {" "}
+              <h2 className="inline px-2 pt ">Order ID: {order.node.name}</h2>
               <p className="inline px-2">
                 Date: {new Date(order.node.createdAt).toLocaleDateString()}
               </p>
@@ -24,8 +25,7 @@ export default function AccountOrdersContent() {
                 {order.node.totalPriceV2.currencyCode}
               </p>
             </div>
-
-            <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 xl:gap-x-8 ">
+            <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
               {order.node.lineItems.edges.map((item, index) => {
                 console.log(item.node.variant.id);
                 console.log(getProductHandleByVariant());

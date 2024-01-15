@@ -63,7 +63,7 @@ const ProductCard = ({ hit, collectionInfo, setScrollPosition }) => {
         <div className="ml-auto p-4">
           <ReactSVG
             src={BookmarkIcon.src}
-            className="w-6 h-6 fill-current text-white -mt-60 "
+            className="w-6 h-6 fill-current text-white -mt-60 cursor-pointer"
             beforeInjection={(svg) => {
               svg.classList.add("svg-class-name");
               svg.setAttribute("style", "width: 30px");
