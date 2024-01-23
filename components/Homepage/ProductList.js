@@ -7,25 +7,29 @@ import { Loading } from "../Loading";
 import { ProductContext } from "../../context/productContext";
 import { CustomPagination } from "../Pagination";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
 
 const ProductList = () => {
-  const query = useSearchParams();
   const { scrollPosition, setScrollPosition } = useContext(ProductContext);
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
+  const [searchParameters, setSearchParameters] = useState({});
+
+  //get page number from url
+  const router = useRouter();
+  const { query } = router;
+  const pageNumber = Number(query.page) || 0;
 
   useEffect(() => {
-    console.log("scrolling to ", scrollPosition);
-
     window.scrollTo(0, scrollPosition);
+    setSearchParameters({
+      query: query.q || "",
+      page: pageNumber ? pageNumber - 1 : 0,
+    });
   }, [scrollPosition]);
 
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
   }
-  const searchParameters = {
-    query: query.get("q") || "",
-    page: +query.get("page") - 1 || 0,
-  };
 
   return (
     <>
@@ -49,7 +53,7 @@ const ProductList = () => {
             )}
           />
         </NoResultsBoundary>
-        <CustomPagination />
+        <CustomPagination setScrollPosition={setScrollPosition} />
       </>
     </>
   );

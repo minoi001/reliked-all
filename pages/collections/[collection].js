@@ -22,7 +22,7 @@ export default function CollectionPage({ collection, collectionInfo }) {
   useEffect(() => {
     setSearchParameters({
       filters: `collections:"${collection}"`,
-      page: pageNumber - 1,
+      page: pageNumber ? pageNumber - 1 : 0,
     });
 
     window.scrollTo(0, scrollPosition);
