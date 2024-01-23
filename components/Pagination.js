@@ -1,29 +1,36 @@
 import { usePagination } from "react-instantsearch";
+import { useRouter } from "next/router";
+
 export const CustomPagination = (props) => {
-  const { pages, refine, currentRefinement } = usePagination(props);
+  const { pages, currentRefinement } = usePagination(props);
+  const router = useRouter();
+  const { page, ...otherQueryParams } = router.query;
+
+  const handleOnClick = (event, page) => {
+    event.preventDefault();
+    props.setScrollPosition(0);
+    router.push({
+      pathname: router.pathname,
+      query: { ...otherQueryParams, page: page + 1 },
+    });
+  };
 
   return (
     <ul className="ais-Pagination-list">
-      {pages.map((page) => (
-        <li
-          key={page}
-          className={
-            currentRefinement === page
-              ? "ais-Pagination-item--selected"
-              : "ais-Pagination-item"
-          }
-        >
-          <a
-            onClick={(event) => {
-              event.preventDefault();
-              window.scrollTo(0, 0);
-              refine(page);
-            }}
+      {pages.map((page) => {
+        return (
+          <li
+            key={page}
+            className={
+              currentRefinement === page
+                ? "ais-Pagination-item--selected"
+                : "ais-Pagination-item"
+            }
           >
-            {page + 1}
-          </a>
-        </li>
-      ))}
+            <button onClick={(e) => handleOnClick(e, page)}>{page + 1}</button>
+          </li>
+        );
+      })}
     </ul>
   );
 };

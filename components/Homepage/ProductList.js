@@ -6,13 +6,16 @@ import SlideOut from "../SlideOut";
 import { Loading } from "../Loading";
 import { ProductContext } from "../../context/productContext";
 import { CustomPagination } from "../Pagination";
+import { useSearchParams } from "next/navigation";
 
-const ProductList = ({ query }) => {
+const ProductList = () => {
+  const query = useSearchParams();
   const { scrollPosition, setScrollPosition } = useContext(ProductContext);
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
 
   useEffect(() => {
     console.log("scrolling to ", scrollPosition);
+
     window.scrollTo(0, scrollPosition);
   }, [scrollPosition]);
 
@@ -21,6 +24,7 @@ const ProductList = ({ query }) => {
   }
   const searchParameters = {
     query: query.get("q") || "",
+    page: +query.get("page") - 1 || 0,
   };
 
   return (

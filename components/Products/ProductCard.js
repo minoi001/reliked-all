@@ -18,8 +18,9 @@ const ProductCard = ({ hit, collectionInfo, setScrollPosition }) => {
   const price = hit.price ?? 1000;
 
   const handleHitClick = () => {
-    console.log("setting scroll position ", window.scrollY);
-    setScrollPosition(window.scrollY);
+    if (setScrollPosition) {
+      setScrollPosition(window.scrollY);
+    }
   };
 
   const wishlistButton = () => {

@@ -1,18 +1,32 @@
 import ProductCard from "../../components/Products/ProductCard";
 import ProductFilters from "../../components/Filters/ProductFilters";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SlideOut from "../../components/SlideOut";
 import Head from "next/head";
 import { getCollection } from "../../lib/shopify";
-import { Configure, InfiniteHits } from "react-instantsearch";
+import { Configure, Hits } from "react-instantsearch";
+import { ProductContext } from "../../context/productContext";
+import { CustomPagination } from "../../components/Pagination";
+import { useRouter } from "next/router";
 
 export default function CollectionPage({ collection, collectionInfo }) {
+  const { scrollPosition, setScrollPosition } = useContext(ProductContext);
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
+  const [searchParameters, setSearchParameters] = useState({});
 
-  const searchParameters = {
-    query: "",
-    filters: `collections:"${collection}"`,
-  };
+  //get page number from url
+  const router = useRouter();
+  const { query } = router;
+  const pageNumber = Number(query.page) || 0;
+
+  useEffect(() => {
+    setSearchParameters({
+      filters: `collections:"${collection}"`,
+      page: pageNumber - 1,
+    });
+
+    window.scrollTo(0, scrollPosition);
+  }, []);
 
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
@@ -43,13 +57,6 @@ export default function CollectionPage({ collection, collectionInfo }) {
         <h1 className={`p-4 text-3xl capitalize font-h text-center`}>
           {collectionInfo.title}
         </h1>
-        {/* Button for collection description */}
-        {/* <div
-          className="pt-6 pb-4 items-center"
-          dangerouslySetInnerHTML={{
-            __html: collectionInfo.descriptionHtml,
-          }}
-        ></div> */}
         <Configure {...searchParameters} />
         <div className="flex flex-row justify-between">
           <ProductFilters
@@ -62,19 +69,17 @@ export default function CollectionPage({ collection, collectionInfo }) {
             collectionInfo={collectionInfo}
           />
         </div>
-        <InfiniteHits
+        <Hits
           hitComponent={(hit) => (
             <ProductCard
               hit={hit.hit}
               collection={collection}
               collectionInfo={collectionInfo}
+              setScrollPosition={setScrollPosition}
             />
           )}
-          translations={{
-            showMoreButtonText: "Load more",
-          }}
-          showPrevious={false}
         />
+        <CustomPagination setScrollPosition={setScrollPosition} />
       </div>
     </div>
   );

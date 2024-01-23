@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Reset from "../../../../components/Account/Recovery/Reset";
-import { useParams } from "next/navigation";
 
 export default function ResetPage({ reset, id, url }) {
   return (
