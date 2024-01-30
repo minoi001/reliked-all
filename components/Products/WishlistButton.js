@@ -7,9 +7,9 @@ import Image from "next/image";
 
 const WishlistButton = ({ itemInfo }) => {
   const { userInfo } = useContext(AccountContext);
-  console.log(userInfo.wishlist.lineItemIds);
-  console.log(itemInfo);
-  console.log(InWishlist.src, AddToWishlist.src);
+  //   console.log(userInfo.wishlist.lineItemIds);
+  //   console.log(itemInfo);
+  //   console.log(InWishlist.src, AddToWishlist.src);
   const wishlistButton = () => {
     console.log("wishlist button clicked");
   };
