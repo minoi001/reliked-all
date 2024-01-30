@@ -19,7 +19,9 @@ export default function AccountWishlistContent() {
                 title: item.dt,
                 image: item.iu,
                 price: item.pr,
-                handle: item.du.replace("https://reliked.com/products/", ""),
+                handle: item.du
+                  .replace("https://reliked.com/products/", "")
+                  .split("?")[0],
                 body_html_safe: "",
                 objectID: item.epi,
                 id: item.empi,

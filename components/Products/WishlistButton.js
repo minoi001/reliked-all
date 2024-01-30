@@ -1,9 +1,9 @@
 import React from "react";
-import { ReactSVG } from "react-svg";
-import AddToWishlist from "../Assets/Wishlist-Bookmark.svg"; // relative path to image
+import AddToWishlist from "../Assets/AddToWishlist.svg"; // relative path to image
 import InWishlist from "../Assets/InWishlist.svg"; // relative path
 import { useContext } from "react";
 import { AccountContext } from "../../context/accountContext";
+import Image from "next/image";
 
 const WishlistButton = ({ itemInfo }) => {
   const { userInfo } = useContext(AccountContext);
@@ -17,17 +17,19 @@ const WishlistButton = ({ itemInfo }) => {
     <div>
       <div className="ml-auto p-4">
         {userInfo.wishlist.lineItemIds.includes(itemInfo.productId) ? (
-          <ReactSVG
+          <Image
             src={InWishlist.src}
-            className="w-6 h-6 -mt-60 cursor-pointer"
-            beforeInjection={(svg) => {
-              svg.classList.add("svg-class-name");
-              svg.setAttribute("style", "width: 30px");
-            }}
-            onClick={wishlistButton}
+            width="30"
+            height="30"
+            alt={itemInfo.productId}
           />
         ) : (
-          "item not in wishlist"
+          <Image
+            src={AddToWishlist.src}
+            width="30"
+            height="30"
+            alt={itemInfo.productId}
+          />
         )}
       </div>
     </div>
