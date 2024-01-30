@@ -58,11 +58,9 @@ const ProductCard = ({ hit, collectionInfo, setScrollPosition }) => {
 
         <WishlistButton
           itemInfo={{
-            itemInfo: {
-              variantId: hit.objectID,
-              productId: hit.id,
-              handle: hit.handle.split("?")[0],
-            },
+            variantId: hit.objectID,
+            productId: hit.id,
+            handle: hit.handle.split("?")[0],
           }}
         />
       </div>
