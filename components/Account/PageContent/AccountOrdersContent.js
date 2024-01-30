@@ -27,8 +27,6 @@ export default function AccountOrdersContent() {
             </div>
             <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
               {order.node.lineItems.edges.map((item, index) => {
-                console.log(item.node.variant.id);
-                console.log(getProductHandleByVariant());
                 return (
                   <div key={index} className="">
                     <ProductCard
@@ -46,7 +44,8 @@ export default function AccountOrdersContent() {
                             "-"
                           ),
                         body_html_safe: "",
-                        objectID: "",
+                        objectID: item.node.id,
+                        id: item.node.variant.id,
                       }}
                     />
                   </div>

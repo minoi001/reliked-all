@@ -38,7 +38,7 @@ export default async function GET(req, res) {
     data: data,
   };
 
-  console.log({ inputData: data });
+  // console.log({ inputData: data });
   // return;
 
   const response = await axios(config)

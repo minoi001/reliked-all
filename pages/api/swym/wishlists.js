@@ -27,6 +27,6 @@ export default async function POST(req, res) {
     }
   );
 
-  console.log(response.data);
+  // console.log(response.data);
   res.send(response.data);
 }

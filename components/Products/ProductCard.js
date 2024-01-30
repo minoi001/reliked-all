@@ -3,8 +3,7 @@ import Image from "next/image";
 import { formatImageUrl, formatter } from "../../utils/helpers";
 import { event } from "../../lib/ga";
 import { CheckBadgeIcon, SunIcon } from "@heroicons/react/24/outline";
-import BookmarkIcon from "../Assets/Wishlist-Bookmark.svg"; // relative path to image
-import { ReactSVG } from "react-svg";
+import WishlistButton from "./WishlistButton";
 
 const ProductCard = ({ hit, collectionInfo, setScrollPosition }) => {
   const { handle, title, objectID } = hit;
@@ -21,10 +20,6 @@ const ProductCard = ({ hit, collectionInfo, setScrollPosition }) => {
     if (setScrollPosition) {
       setScrollPosition(window.scrollY);
     }
-  };
-
-  const wishlistButton = () => {
-    console.log("wishlist button clicked");
   };
 
   return (
@@ -61,17 +56,15 @@ const ProductCard = ({ hit, collectionInfo, setScrollPosition }) => {
         </Link>
         {/* SVG icon */}
 
-        <div className="ml-auto p-4">
-          <ReactSVG
-            src={BookmarkIcon.src}
-            className="w-6 h-6 fill-current text-white -mt-60 cursor-pointer"
-            beforeInjection={(svg) => {
-              svg.classList.add("svg-class-name");
-              svg.setAttribute("style", "width: 30px");
-            }}
-            onClick={wishlistButton}
-          />
-        </div>
+        <WishlistButton
+          itemInfo={{
+            itemInfo: {
+              variantId: hit.objectID,
+              productId: hit.id,
+              handle: hit.handle.split("?")[0],
+            },
+          }}
+        />
       </div>
 
       {/* logic

@@ -17,7 +17,7 @@ export default function Search() {
         <h1 className={`p-4 text-3xl font-h text-center`}>
           Search results for {query}
         </h1>
-        <ProductList />
+        <ProductList paramsQuery={searchParams.get("q")} />
       </div>
     </div>
   );

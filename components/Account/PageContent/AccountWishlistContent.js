@@ -7,7 +7,6 @@ import ProductCard from "../../Products/ProductCard";
 
 export default function AccountWishlistContent() {
   const { userInfo } = useContext(AccountContext);
-
   return (
     <div className="md:pl-6">
       <h1 className="font-h text-3xl text-center py-3">Wishlist</h1>
@@ -22,7 +21,8 @@ export default function AccountWishlistContent() {
                 price: item.pr,
                 handle: item.du.replace("https://reliked.com/products/", ""),
                 body_html_safe: "",
-                objectID: "",
+                objectID: item.epi,
+                id: item.empi,
               }}
             />
           </div>

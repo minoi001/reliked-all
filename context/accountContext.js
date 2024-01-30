@@ -31,6 +31,7 @@ export default function AccountProvider({ children }) {
     wishlist: {
       status: false,
       lineItems: [],
+      lineItemIds: [],
     },
   });
 
@@ -208,7 +209,7 @@ export default function AccountProvider({ children }) {
       localStorage.wishlistSessionid
     ).then((res) => {
       localStorage.setItem("wishlistId", res.data[0].lid);
-      console.log("lid= " + res.data[0].lid);
+      // console.log("lid= " + res.data[0].lid);
       getSwymWishlistItems(res.data[0].lid);
     });
   };
@@ -220,12 +221,17 @@ export default function AccountProvider({ children }) {
       localStorage.wishlistRegid,
       wishlistId
     );
+    let itemsArray = [];
+    for (let item of data.items) {
+      itemsArray.push(item.empi);
+    }
 
-    console.log(data.items);
+    // console.log(data.items);
     updateUserValue({
       wishlist: {
         status: true,
         lineItems: data.items,
+        lineItemIds: itemsArray,
       },
     });
   };

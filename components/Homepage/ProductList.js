@@ -9,7 +9,7 @@ import { CustomPagination } from "../Pagination";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 
-const ProductList = () => {
+const ProductList = ({ paramsQuery }) => {
   const { scrollPosition, setScrollPosition } = useContext(ProductContext);
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
   const [searchParameters, setSearchParameters] = useState({});
@@ -22,10 +22,10 @@ const ProductList = () => {
   useEffect(() => {
     window.scrollTo(0, scrollPosition);
     setSearchParameters({
-      query: query.q || "",
+      query: query.q ? query.q : "",
       page: pageNumber ? pageNumber - 1 : 0,
     });
-  }, [scrollPosition]);
+  }, [query]);
 
   function toggleSlideover() {
     setIsSlideOverOpen(!isSlideOverOpen);
