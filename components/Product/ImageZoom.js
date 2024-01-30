@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { formatImageUrl } from "../../utils/helpers";
-import BookmarkIcon from "../Assets/Wishlist-Bookmark.svg"; // relative path to image
-import { ReactSVG } from "react-svg";
+import WishlistButton from "../Products/WishlistButton";
 
 function ImageZoom({ product }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -39,15 +38,15 @@ function ImageZoom({ product }) {
           loading="eager"
         />
         <div className="ml-auto p-4">
-          <ReactSVG
-            src={BookmarkIcon.src}
-            className="w-6 h-6 fill-current text-white -mt-60 cursor-pointer -ml-16 "
-            beforeInjection={(svg) => {
-              svg.classList.add("svg-class-name");
-              svg.setAttribute("style", "width: 30px");
-            }}
-            onClick={"hi"}
-          />
+          <div className=" fill-black text-white cursor-pointer -ml-16 ">
+            <WishlistButton
+              itemInfo={{
+                productId: parseFloat(product.id.slice(-13)),
+                variantId: product.variants.edges[0].node.id.slice(-13),
+                handle: product.handle,
+              }}
+            />
+          </div>
         </div>
       </div>
 

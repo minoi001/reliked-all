@@ -55,14 +55,15 @@ const ProductCard = ({ hit, collectionInfo, setScrollPosition }) => {
           />
         </Link>
         {/* SVG icon */}
-
-        <WishlistButton
-          itemInfo={{
-            variantId: hit.objectID,
-            productId: hit.id,
-            handle: hit.handle.split("?")[0],
-          }}
-        />
+        <div className="ml-auto p-4">
+          <WishlistButton
+            itemInfo={{
+              variantId: hit.objectID,
+              productId: hit.id,
+              handle: hit.handle.split("?")[0],
+            }}
+          />
+        </div>
       </div>
 
       {/* logic
