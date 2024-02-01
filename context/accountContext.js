@@ -9,7 +9,12 @@ import {
 } from "../lib/shopify";
 import { v4 as uuidv4 } from "uuid";
 
-import { getRegId, getWishlists, getWishlistItems } from "../lib/swym";
+import {
+  getRegId,
+  getWishlists,
+  getWishlistItems,
+  wishlistItemUpdate,
+} from "../lib/swym";
 
 const AccountContext = createContext();
 
@@ -236,6 +241,26 @@ export default function AccountProvider({ children }) {
     });
   };
 
+  const updateWishlistItem = async (request) => {
+    // console.log(wishlistIds);
+    let update = await wishlistItemUpdate(
+      localStorage.wishlistSessionid,
+      localStorage.wishlistRegid,
+      localStorage.wishlistId,
+      request
+    ).then(() => {});
+    let data = await getSwymWishlistItems(request);
+
+    console.log(data);
+    updateUserValue({
+      wishlist: {
+        status: true,
+        lineItems: data.items,
+        lineItemIds: itemsArray,
+      },
+    });
+  };
+
   const logout = async () => {
     localStorage.removeItem("accountToken");
 
@@ -277,6 +302,7 @@ export default function AccountProvider({ children }) {
         updateCustomer,
         updateCustomerAddress,
         deleteCustomerAddress,
+        updateWishlistItem,
         logout,
       }}
     >
