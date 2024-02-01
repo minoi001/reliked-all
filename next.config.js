@@ -29,6 +29,9 @@ module.exports = withBundleAnalyzer({
     SWYM_ENDPOINT: process.env.SWYM_ENDPOINT,
     SWYM_PID: process.env.SWYM_PID,
   },
+  experimental: {
+    scrollRestoration: true,
+  },
   images: {
     domains: [
       `cdn.shopify.com`,
