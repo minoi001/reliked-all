@@ -34,7 +34,7 @@ export default async function POST(req, res) {
           "user-agent": "headlessSite",
         },
         params: JSON.stringify({
-          a: [
+          [request.reqType]: [
             {
               epi: request.variantId,
               empi: request.productId,
