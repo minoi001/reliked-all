@@ -249,16 +249,8 @@ export default function AccountProvider({ children }) {
       localStorage.wishlistId,
       request
     ).then(() => {});
-    let data = await getSwymWishlistItems(request);
-
-    console.log(data);
-    updateUserValue({
-      wishlist: {
-        status: true,
-        lineItems: data.items,
-        lineItemIds: itemsArray,
-      },
-    });
+    console.log(update);
+    getSwymWishlistItems(localStorage.wishlistId);
   };
 
   const logout = async () => {
