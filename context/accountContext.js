@@ -99,6 +99,7 @@ export default function AccountProvider({ children }) {
       } else {
         updateUserValue({
           token: `${tokenRequest.customerAccessTokenCreate.customerAccessToken.accessToken}`,
+          checkingLogin: false,
         });
         // store token in local storage
         localStorage.setItem(
@@ -185,62 +186,6 @@ export default function AccountProvider({ children }) {
 
   const getUuid = async () => {};
 
-  const getWishlistRegId = async () => {
-    let data = "";
-    // if (
-    //   !localStorage.wishlistRegid ||
-    //   localStorage.wishlistRegid === "undefined" ||
-    //   !localStorage.wishlistSessionid ||
-    //   localStorage.wishlistSessionid === "undefined"
-    // ) {
-
-    data = await getRegId(
-      "headlessSite",
-      userInfo.email,
-      localStorage.wishlistUuid
-    );
-
-    localStorage.setItem("wishlistRegid", data.regid);
-    localStorage.setItem("wishlistSessionid", data.sessionid);
-    return { wishlistRegid: data.regid, wishlistSessionid: data.sessionid };
-    // }
-    // console.log(localStorage.wishlistRegid);
-  };
-
-  const getSwymWishlists = async (wishlistIds) => {
-    // console.log(wishlistIds);
-    let data = await getWishlists(
-      localStorage.wishlistRegid,
-      localStorage.wishlistSessionid
-    ).then((res) => {
-      localStorage.setItem("wishlistId", res.data[0].lid);
-      // console.log("lid= " + res.data[0].lid);
-      getSwymWishlistItems(res.data[0].lid);
-    });
-  };
-
-  const getSwymWishlistItems = async (wishlistId) => {
-    // console.log(wishlistIds);
-    let data = await getWishlistItems(
-      localStorage.wishlistSessionid,
-      localStorage.wishlistRegid,
-      wishlistId
-    );
-    let itemsArray = [];
-    for (let item of data.items) {
-      itemsArray.push(item.empi);
-    }
-
-    // console.log(data.items);
-    updateUserValue({
-      wishlist: {
-        status: true,
-        lineItems: data.items,
-        lineItemIds: itemsArray,
-      },
-    });
-  };
-
   const updateWishlistItem = async (request) => {
     // console.log(wishlistIds);
     let update = await wishlistItemUpdate(
@@ -249,12 +194,117 @@ export default function AccountProvider({ children }) {
       localStorage.wishlistId,
       request
     ).then(() => {});
-    console.log(update);
-    getSwymWishlistItems(localStorage.wishlistId);
+    getWishlistItemsInfo();
+  };
+
+  const getUserWishlistRegid = async () => {
+    const regIdData = await getRegId("headlessSite", userInfo.email);
+    localStorage.setItem("wishlistRegid", regIdData.regid);
+    localStorage.setItem("wishlistSessionid", regIdData.sessionid);
+  };
+  const getGuestWishlistRegid = async () => {
+    const regIdData = await getRegId(
+      "headlessSite",
+      null,
+      localStorage.wishlistUuid
+    );
+    localStorage.setItem("wishlistRegid", regIdData.regid);
+    localStorage.setItem("wishlistSessionid", regIdData.sessionid);
+  };
+  const getWishlistIds = async () => {
+    const wishlistsData = await getWishlists(
+      localStorage.wishlistRegid,
+      localStorage.wishlistSessionid
+    );
+    localStorage.setItem("wishlistId", wishlistsData.data[0].lid);
+  };
+  const getWishlistItemsInfo = async () => {
+    const wishlistItemData = await getWishlistItems(
+      localStorage.wishlistSessionid,
+      localStorage.wishlistRegid,
+      localStorage.wishlistId
+    );
+
+    // console.log(wishlistItemData);
+    let itemsArray = [];
+    for (let item of wishlistItemData.items) {
+      itemsArray.push(item.empi);
+    }
+    updateUserValue({
+      wishlist: {
+        status: true,
+        lineItems: wishlistItemData.items,
+        lineItemIds: itemsArray,
+      },
+    });
+  };
+
+  const loginToWishlist = async () => {
+    if (userInfo.loginStatus) {
+      if (
+        localStorage.wishlistRegid &&
+        localStorage.wishlistId &&
+        localStorage.wishlistSessionid
+      ) {
+        console.log("Just fetching wishlist items");
+        getWishlistItemsInfo();
+      } else if (localStorage.wishlistRegid && localStorage.wishlistSessionid) {
+        console.log("Just fetching wishlist id and items");
+
+        getWishlistIds().then(getWishlistItemsInfo);
+      } else {
+        console.log("Full login to wishlist");
+        getUserWishlistRegid()
+          .then(getWishlistIds())
+          .then(getWishlistItemsInfo);
+      }
+      if (localStorage.tempWishlistItems) {
+        console.log(
+          localStorage.tempWishlistItems,
+          `${localStorage.tempWishlistItems}`
+        );
+        updateWishlistItem({
+          items: `${localStorage.tempWishlistItems}`,
+          reqType: "a",
+        });
+      }
+    } else {
+      if (
+        localStorage.wishlistRegid &&
+        localStorage.wishlistId &&
+        localStorage.wishlistSessionid
+      ) {
+        // console.log("Just fetching wishlist items");
+        // getWishlistItemsInfo();
+      } else if (localStorage.wishlistRegid && localStorage.wishlistSessionid) {
+        // console.log("Just fetching wishlist id and items");
+        // getWishlistIds().then(getWishlistItemsInfo);
+      } else {
+        // console.log("Full login to wishlist");
+        getGuestWishlistRegid();
+        // .then(getWishlistIds())
+        // .then(getWishlistItemsInfo);
+      }
+      if (localStorage.tempWishlistItems) {
+        console.log(JSON.parse(localStorage.tempWishlistItems));
+        let itemsArray = [];
+        for (let item of JSON.parse(localStorage.tempWishlistItems).wishlist
+          .lineItems) {
+          itemsArray.push(item.id);
+        }
+        updateUserValue(JSON.parse(localStorage.tempWishlistItems));
+      }
+    }
+
+    // create new functions for guest users
   };
 
   const logout = async () => {
+    console.log("logged out");
     localStorage.removeItem("accountToken");
+    localStorage.removeItem("wishlistId");
+    localStorage.removeItem("wishlistRegid");
+    localStorage.removeItem("wishlistSessionid");
 
     setUserInfo({
       userType: "",
@@ -278,8 +328,11 @@ export default function AccountProvider({ children }) {
 
   useEffect(() => {
     checkLoginStatus().then(() => {
-      getWishlistRegId().then((wishlistIds) => getSwymWishlists(wishlistIds));
+      loginToWishlist();
     });
+    // .then(() => {
+    //   updateUserValue({ checkingLogin: false });
+    // });
   }, [userInfo.email, localStorage]);
 
   return (

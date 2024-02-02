@@ -24,7 +24,7 @@ export default function AccountWishlistPage({ account }) {
         </div>
       ) : (
         <div>
-          <Login />
+          <AccountPageTemplate Content={Content} />
         </div>
       )}
     </div>

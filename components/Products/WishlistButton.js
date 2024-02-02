@@ -6,19 +6,47 @@ import { AccountContext } from "../../context/accountContext";
 import Image from "next/image";
 import { VALID_LOADERS } from "next/dist/shared/lib/image-config";
 
-const WishlistButton = ({ itemInfo }) => {
-  const { userInfo, updateWishlistItem } = useContext(AccountContext);
+const WishlistButton = ({ itemInfo, productInfo }) => {
+  const { userInfo, updateWishlistItem, updateUserValue } =
+    useContext(AccountContext);
   //   console.log(userInfo.wishlist.lineItemIds);
   //   console.log(itemInfo);
   //   console.log(InWishlist.src, AddToWishlist.src);
   const wishlistButton = (itemInfo, reqType) => {
-    const request = {
-      productId: Number(itemInfo.productId),
-      variantId: Number(itemInfo.variantId),
-      handle: itemInfo.handle,
-      reqType: reqType,
-    };
-    updateWishlistItem(request);
+    if (userInfo.loginStatus) {
+      const request = {
+        items: `[{"epi":${Number(itemInfo.variantId)},"empi":${Number(
+          itemInfo.productId
+        )},"du":"https://e-bloggers.myshopify.com/${itemInfo.handle}"}]`,
+        reqType: reqType,
+      };
+      updateWishlistItem(request);
+    } else {
+      let array = userInfo.wishlist.lineItems;
+      array.push(productInfo);
+      let itemsArray = [];
+      for (let item of array) {
+        itemsArray.push(item.id);
+      }
+
+      updateUserValue({
+        wishlist: {
+          status: true,
+          lineItems: array,
+          lineItemIds: itemsArray,
+        },
+      });
+      localStorage.setItem(
+        "tempWishlistItems",
+        JSON.stringify({
+          wishlist: {
+            status: true,
+            lineItems: array,
+            lineItemIds: itemsArray,
+          },
+        })
+      );
+    }
   };
 
   return (

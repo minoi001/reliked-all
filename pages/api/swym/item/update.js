@@ -9,8 +9,9 @@ const credentials = `${pid}`;
 export default async function POST(req, res) {
   const { searchParams } = new URL("http://localhost:3000/" + req.url);
   let request = JSON.parse(req.body);
+  console.log(request.items);
   let data = qs.stringify({
-    [request.reqType]: `[{"epi":${request.variantId},"empi":${request.productId},"du":"https://e-bloggers.myshopify.com/${request.handle}"}]`,
+    [request.reqType]: request.items,
     regid: searchParams.get("regid"),
     sessionid: searchParams.get("sessionid"),
     lid: searchParams.get("lid"),
