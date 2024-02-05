@@ -23,10 +23,7 @@ function ImageZoom({ product }) {
 
   return (
     <div className="w-full md:w-2/5">
-      <div
-        className="group w-full overflow-hidden flex items-start pl-6 pt-6"
-        onClick={openModal}
-      >
+      <div className="group w-full overflow-hidden flex items-start pl-6 pt-6">
         <Image
           src={focusImage ? focusImage : placeholderImage}
           alt={product.title}
@@ -36,13 +33,14 @@ function ImageZoom({ product }) {
           className="w-full aspect-11/12 object-contain p-12 bg-offWhite bg-off"
           priority={"true"}
           loading="eager"
+          onClick={openModal}
         />
         <div className="ml-auto p-4">
           <div className=" fill-black text-white cursor-pointer -ml-16 ">
             <WishlistButton
               itemInfo={{
                 productId: parseFloat(product.id.slice(-13)),
-                variantId: product.variants.edges[0].node.id.slice(-13),
+                variantId: product.variants.edges[0].node.id.slice(-14),
                 handle: product.handle,
               }}
               productInfo={product}

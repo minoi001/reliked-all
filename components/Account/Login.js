@@ -46,7 +46,6 @@ export default function Login() {
     event.preventDefault();
 
     if (!userInfo.email || !userInfo.password) {
-      console.log(userInfo.email, userInfo.password);
       updateUserValue({
         errorMessage: `Please enter a valid email address and password.`,
       });

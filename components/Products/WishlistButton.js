@@ -20,7 +20,6 @@ const WishlistButton = ({ itemInfo, productInfo }) => {
           itemInfo.productId
         )},"du":"https://e-bloggers.myshopify.com/${itemInfo.handle}"}]`,
       };
-      // console.log(request);
       updateWishlistItem(request);
     } else {
       let array = userInfo.wishlist.lineItems;
