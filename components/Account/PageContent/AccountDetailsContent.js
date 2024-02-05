@@ -185,7 +185,7 @@ export default function AccountDetailsContent() {
       </div>
       <p className="uppercase text-sm mt-12 text-center">Addresses</p>
       <div className="grid grid-cols-4 mt-2">
-        {userInfo.addresses.edges.map((address, i) => {
+        {userInfo.addresses.edges?.map((address, i) => {
           return (
             <div className="m-2" key={i}>
               {address.node.formatted.map((line, ind) => {

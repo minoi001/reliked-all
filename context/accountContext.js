@@ -33,6 +33,7 @@ export default function AccountProvider({ children }) {
     checkingLogin: true,
     successMessage: "",
     orderHistory: [],
+    addresses: [],
     wishlist: {
       status: false,
       lineItems: [],
@@ -40,21 +41,30 @@ export default function AccountProvider({ children }) {
     },
   });
 
-  function updateUserValue(valuesObject) {
-    setUserInfo({ ...userInfo, ...valuesObject });
-
-    return valuesObject;
+  async function loginUser() {
+    let authData = await getUserAccessToken(userInfo.email, userInfo.password);
+    if (authData?.customerAccessTokenCreate?.customerAccessToken?.accessToken) {
+      localStorage.setItem(
+        "accountToken",
+        authData.customerAccessTokenCreate.customerAccessToken.accessToken
+      );
+      let userData = await retrieveUser();
+    } else {
+      updateUserValue({
+        errorMessage:
+          "We couldn't log you in with those details, please try again or reset your password.",
+        loginStatus: false,
+        checkingLogin: false,
+      });
+    }
   }
 
-  const checkLoginStatus = async () => {
-    if (localStorage.accountToken) {
-      await sendUserRequest();
-    } else {
-      updateUserValue({ checkingLogin: false });
-      localStorage.setItem("wishlistUuid", `${uuidv4()}`);
-      // console.log(localStorage.getItem("wishlistUuid"));
-    }
-  };
+  function updateUserValue(valuesObject) {
+    console.log(valuesObject);
+    setUserInfo({ ...userInfo, ...valuesObject });
+    console.log(userInfo);
+    return valuesObject;
+  }
 
   async function sendRecoveryRequest(event) {
     if (event) {
@@ -74,67 +84,6 @@ export default function AccountProvider({ children }) {
           "If there is an account registered with us under that email address, you will receive an email shortly to update your password.",
         errorsMessage: "",
       });
-    }
-  }
-
-  async function sendUserRequest(event) {
-    if (event) {
-      event.preventDefault();
-    }
-    // if no token, get token & user info, otherwise, just get user info
-    if (!localStorage.accountToken) {
-      const tokenRequest = await getUserAccessToken(
-        userInfo.email,
-        userInfo.password
-      );
-      // if credentials fail to produce token, set error message and login status to false
-      if (!tokenRequest.customerAccessTokenCreate.customerAccessToken) {
-        updateUserValue({
-          errorMessage: "Sorry, we couldn't log you in with those details.",
-          false: "errorMessage",
-          checkingLogin: false,
-        });
-        return;
-        // if token, update user info with token
-      } else {
-        updateUserValue({
-          token: `${tokenRequest.customerAccessTokenCreate.customerAccessToken.accessToken}`,
-          checkingLogin: false,
-        });
-        // store token in local storage
-        localStorage.setItem(
-          "accountToken",
-          `${tokenRequest.customerAccessTokenCreate.customerAccessToken.accessToken}`
-        );
-        localStorage.removeItem("wishlistUuid");
-      }
-    }
-    // request user info using token
-    const infoRequest = await getUserInfo(localStorage.accountToken);
-    // if token value, set user info values
-    if (infoRequest.customer != null) {
-      updateUserValue({
-        firstName: `${infoRequest.customer.firstName}`,
-        lastName: `${infoRequest.customer.lastName}`,
-        email: `${infoRequest.customer.email}`,
-        phone: `${infoRequest.customer.phone}`,
-        userType: `${infoRequest.customer.userType.value}`,
-        listerCode: `${infoRequest.customer.userCode.value}`,
-        loginStatus: true,
-        checkingLogin: false,
-        errorMessage: null,
-        addresses: infoRequest.customer.addresses,
-        token: localStorage.accountToken,
-        orderHistory: infoRequest.customer.orders.edges,
-      });
-      // token invalid, set error message and login status to false
-    } else {
-      updateUserValue({
-        errorMessage: "Your session has expired, please login again.",
-        loginStatus: false,
-        checkingLogin: false,
-      });
-      localStorage.removeItem("accountToken");
     }
   }
 
@@ -181,7 +130,7 @@ export default function AccountProvider({ children }) {
 
     updatedObject.addresses.edges.splice(addressKey, 1);
 
-    sendUserRequest();
+    retrieveUser();
   };
 
   const getUuid = async () => {};
@@ -197,12 +146,18 @@ export default function AccountProvider({ children }) {
     getWishlistItemsInfo();
   };
 
-  const getUserWishlistRegid = async () => {
+  const getUserWishlistRegid = async (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     const regIdData = await getRegId("headlessSite", userInfo.email);
     localStorage.setItem("wishlistRegid", regIdData.regid);
     localStorage.setItem("wishlistSessionid", regIdData.sessionid);
   };
-  const getGuestWishlistRegid = async () => {
+  const getGuestWishlistRegid = async (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     const regIdData = await getRegId(
       "headlessSite",
       null,
@@ -211,14 +166,20 @@ export default function AccountProvider({ children }) {
     localStorage.setItem("wishlistRegid", regIdData.regid);
     localStorage.setItem("wishlistSessionid", regIdData.sessionid);
   };
-  const getWishlistIds = async () => {
+  const getWishlistIds = async (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     const wishlistsData = await getWishlists(
       localStorage.wishlistRegid,
       localStorage.wishlistSessionid
     );
     localStorage.setItem("wishlistId", wishlistsData.data[0].lid);
   };
-  const getWishlistItemsInfo = async () => {
+  const getWishlistItemsInfo = async (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     const wishlistItemData = await getWishlistItems(
       localStorage.wishlistSessionid,
       localStorage.wishlistRegid,
@@ -239,61 +200,37 @@ export default function AccountProvider({ children }) {
     });
   };
 
-  const loginToWishlist = async () => {
-    if (userInfo.loginStatus) {
-      if (
-        localStorage.wishlistRegid &&
-        localStorage.wishlistId &&
-        localStorage.wishlistSessionid
-      ) {
-        console.log("Just fetching wishlist items");
-        getWishlistItemsInfo();
-      } else if (localStorage.wishlistRegid && localStorage.wishlistSessionid) {
-        console.log("Just fetching wishlist id and items");
+  const loginToWishlist = async (event) => {
+    if (event) {
+      event.preventDefault();
+    }
+    console.log(userInfo);
+    // something in this is resetting the checkinglogin to true
+    if (
+      localStorage.wishlistRegid &&
+      localStorage.wishlistId &&
+      localStorage.wishlistSessionid
+    ) {
+      console.log("Just fetching wishlist items");
+      getWishlistItemsInfo();
+    } else if (localStorage.wishlistRegid && localStorage.wishlistSessionid) {
+      console.log("Just fetching wishlist id and items");
 
-        getWishlistIds().then(getWishlistItemsInfo);
-      } else {
-        console.log("Full login to wishlist");
-        getUserWishlistRegid()
-          .then(getWishlistIds())
-          .then(getWishlistItemsInfo);
-      }
-      if (localStorage.tempWishlistItems) {
-        console.log(
-          localStorage.tempWishlistItems,
-          `${localStorage.tempWishlistItems}`
-        );
-        updateWishlistItem({
-          items: `${localStorage.tempWishlistItems}`,
-          reqType: "a",
-        });
-      }
+      getWishlistIds().then(getWishlistItemsInfo);
     } else {
-      if (
-        localStorage.wishlistRegid &&
-        localStorage.wishlistId &&
-        localStorage.wishlistSessionid
-      ) {
-        // console.log("Just fetching wishlist items");
-        // getWishlistItemsInfo();
-      } else if (localStorage.wishlistRegid && localStorage.wishlistSessionid) {
-        // console.log("Just fetching wishlist id and items");
-        // getWishlistIds().then(getWishlistItemsInfo);
-      } else {
-        // console.log("Full login to wishlist");
-        getGuestWishlistRegid();
-        // .then(getWishlistIds())
-        // .then(getWishlistItemsInfo);
-      }
-      if (localStorage.tempWishlistItems) {
-        console.log(JSON.parse(localStorage.tempWishlistItems));
-        let itemsArray = [];
-        for (let item of JSON.parse(localStorage.tempWishlistItems).wishlist
-          .lineItems) {
-          itemsArray.push(item.id);
-        }
-        updateUserValue(JSON.parse(localStorage.tempWishlistItems));
-      }
+      console.log("Full login to wishlist");
+      getUserWishlistRegid().then(getWishlistIds()).then(getWishlistItemsInfo);
+    }
+    if (localStorage.tempWishlistItems) {
+      console.log(
+        localStorage.tempWishlistItems,
+        `${localStorage.tempWishlistItems}`
+      );
+      updateWishlistItem({
+        items: `${localStorage.tempWishlistItems}`,
+        reqType: "a",
+      });
+      localStorage.removeItem("tempWishlistItems");
     }
 
     // create new functions for guest users
@@ -317,7 +254,7 @@ export default function AccountProvider({ children }) {
       loginStatus: false,
       uuid: "",
       token: "",
-      checkingLogin: true,
+      checkingLogin: false,
       successMessage: "",
       orderHistory: [],
       wishlist: {
@@ -326,22 +263,64 @@ export default function AccountProvider({ children }) {
     });
   };
 
+  async function retrieveUser(event) {
+    // prevent page reload
+    if (event) {
+      event.preventDefault();
+    }
+    const infoRequest = await getUserInfo(localStorage.accountToken);
+    // if token value, set user info values
+    if (infoRequest.customer != null) {
+      updateUserValue({
+        firstName: `${infoRequest.customer.firstName}`,
+        lastName: `${infoRequest.customer.lastName}`,
+        email: `${infoRequest.customer.email}`,
+        phone: `${infoRequest.customer.phone}`,
+        userType: `${infoRequest.customer.userType.value}`,
+        listerCode: `${infoRequest.customer.userCode.value}`,
+        loginStatus: true,
+        checkingLogin: false,
+        errorMessage: null,
+        addresses: infoRequest.customer.addresses,
+        token: localStorage.accountToken,
+        orderHistory: infoRequest.customer.orders.edges,
+      });
+    } else {
+      // token invalid, set error message and login status to false
+      updateUserValue({
+        errorMessage: "Your session has expired, please login again.",
+        loginStatus: false,
+        checkingLogin: false,
+      });
+      localStorage.removeItem("accountToken");
+    }
+  }
+
   useEffect(() => {
-    checkLoginStatus().then(() => {
-      loginToWishlist();
-    });
-    // .then(() => {
-    //   updateUserValue({ checkingLogin: false });
-    // });
-  }, [userInfo.email, localStorage]);
+    const userLogin = async (event) => {
+      if (event) {
+        event.preventDefault();
+      }
+      let userInfoData = await retrieveUser();
+      let wishlistData = await loginToWishlist();
+    };
+    // check if there is a valid token
+    if (localStorage.accountToken) {
+      // if there is, retrieve user info (including to wishlist)
+      userLogin();
+    } else {
+      // if not, set checkingLogin status to false
+      updateUserValue({ checkingLogin: false });
+    }
+  }, [localStorage]);
 
   return (
     <AccountContext.Provider
       value={{
         userInfo,
+        loginUser,
         setUserInfo,
         getUserInfo,
-        sendUserRequest,
         sendRecoveryRequest,
         updateUserValue,
         updateCustomer,

@@ -1,6 +1,6 @@
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AccountContext } from "../../context/accountContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -8,29 +8,50 @@ import { useRouter } from "next/navigation";
 export default function Login() {
   const { push } = useRouter();
 
-  const {
-    userInfo,
-    setUserInfo,
-    getUserInfo,
-    sendUserRequest,
-    updateUserValue,
-  } = useContext(AccountContext);
+  const { userInfo, loginUser, updateUserValue } = useContext(AccountContext);
 
-  const formInput = async (event) => {
-    updateUserValue({
-      [event.nativeEvent.srcElement.name]: `${event.target.value}`,
-    });
-  };
+  useEffect(() => {
+    const form = document.getElementById("loginForm");
+
+    const handleFormSubmit = (e) => {
+      e.preventDefault();
+      // Your form submission logic here
+    };
+
+    if (form) {
+      form.addEventListener("submit", handleFormSubmit);
+    }
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      if (form) {
+        form.removeEventListener("submit", handleFormSubmit);
+      }
+    };
+  }, []); // Empty dependency array means this effect runs once after the initial render
+
+  // const formInput = (name, value) => {
+  //   console.log({
+  //     [name]: value,
+  //   });
+  //   updateUserValue({
+  //     [name]: value,
+  //   });
+  //   updateUserValue({
+  //     [name]: value,
+  //   });
+  // };
 
   const buttonClick = async (event) => {
     event.preventDefault();
 
     if (!userInfo.email || !userInfo.password) {
+      console.log(userInfo.email, userInfo.password);
       updateUserValue({
         errorMessage: `Please enter a valid email address and password.`,
       });
     } else {
-      let response = await sendUserRequest();
+      let response = await loginUser();
       if (userInfo.loginStatus) {
         push("/account");
       }
@@ -50,15 +71,16 @@ export default function Login() {
               <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
                 Sign in to your account
               </h2>
-              {/* <p className="mt-2 text-center text-sm text-gray-600">
+              <p className="mt-2 text-center text-sm text-gray-600">
                 Or
                 <a
                   href="#"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
-                  start your 14-day free trial
+                  {" "}
+                  create an account
                 </a>
-              </p> */}
+              </p>
               {userInfo.errorMessage ? (
                 <h4 className="mt-6 text-center text-1xl font-bold tracking-tight text-gray-900 bg-red-300 text-red-700">
                   {userInfo.errorMessage}
@@ -67,7 +89,13 @@ export default function Login() {
                 ""
               )}
             </div>
-            <form className="mt-8 space-y-6" action="#" method="POST">
+            <form
+              className="mt-8 space-y-6"
+              action="#"
+              method="POST"
+              id="loginForm"
+              onSubmit={buttonClick}
+            >
               <input type="hidden" name="remember" defaultValue="true" />
               <div className="-space-y-px shadow-sm">
                 <div>
@@ -82,7 +110,13 @@ export default function Login() {
                     required
                     className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-taupe sm:text-sm sm:leading-6"
                     placeholder="Email address"
-                    onChange={formInput}
+                    onChange={(event) => {
+                      event.preventDefault();
+                      updateUserValue({
+                        email: event.target.value,
+                      });
+                    }}
+                    defaultValue={userInfo.email}
                   />
                 </div>
                 <div>
@@ -97,7 +131,13 @@ export default function Login() {
                     required
                     className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-taupe sm:text-sm sm:leading-6"
                     placeholder="Password"
-                    onChange={formInput}
+                    onChange={(event) => {
+                      event.preventDefault();
+                      updateUserValue({
+                        password: event.target.value,
+                      });
+                    }}
+                    defaultValue={userInfo.password}
                   />
                 </div>
               </div>
@@ -123,7 +163,6 @@ export default function Login() {
                 <button
                   type="submit"
                   className="group relative flex w-full justify-center bg-taupe py-2 px-3 text-sm font-semibold text-white hover:bg-almostBlack focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-taupe"
-                  onClick={buttonClick}
                 >
                   <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                     <LockClosedIcon
