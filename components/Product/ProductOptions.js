@@ -29,7 +29,7 @@ export default function ProductOptions({
                     value={value}
                     checked={checked}
                     onChange={() => {
-                      console.log(name, value);
+                      // console.log(name, value);
                       setOptions(name, value);
                     }}
                   />

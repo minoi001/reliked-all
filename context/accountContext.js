@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useCallback } from "react";
 import {
   getUserAccessToken,
   getUserInfo,
@@ -60,9 +60,7 @@ export default function AccountProvider({ children }) {
   }
 
   function updateUserValue(valuesObject) {
-    console.log(valuesObject);
     setUserInfo({ ...userInfo, ...valuesObject });
-    console.log(userInfo);
     return valuesObject;
   }
 
@@ -200,36 +198,37 @@ export default function AccountProvider({ children }) {
     });
   };
 
-  const loginToWishlist = async (event) => {
-    if (event) {
-      event.preventDefault();
-    }
-    console.log(userInfo);
+  const loginToWishlist = async (userInfo) => {
+    // if (event) {
+    //   event.preventDefault();
+    // }
     // something in this is resetting the checkinglogin to true
     if (
       localStorage.wishlistRegid &&
       localStorage.wishlistId &&
       localStorage.wishlistSessionid
     ) {
-      console.log("Just fetching wishlist items");
       getWishlistItemsInfo();
     } else if (localStorage.wishlistRegid && localStorage.wishlistSessionid) {
-      console.log("Just fetching wishlist id and items");
-
       getWishlistIds().then(getWishlistItemsInfo);
     } else {
-      console.log("Full login to wishlist");
       getUserWishlistRegid().then(getWishlistIds()).then(getWishlistItemsInfo);
     }
     if (localStorage.tempWishlistItems) {
-      console.log(
-        localStorage.tempWishlistItems,
-        `${localStorage.tempWishlistItems}`
-      );
+      let itemsArray = [];
+      for (let item of JSON.parse(localStorage.tempWishlistItems).wishlist
+        .lineItems) {
+        itemsArray.push(
+          `{"epi":${Number(item.objectID)},"empi":${Number(
+            item.id
+          )},"du":"https://e-bloggers.myshopify.com/${item.handle}"}`
+        );
+      }
       updateWishlistItem({
-        items: `${localStorage.tempWishlistItems}`,
-        reqType: "a",
+        type: "a",
+        string: `[${itemsArray.join(",")}]`,
       });
+
       localStorage.removeItem("tempWishlistItems");
     }
 
@@ -237,7 +236,7 @@ export default function AccountProvider({ children }) {
   };
 
   const logout = async () => {
-    console.log("logged out");
+    // console.log("logged out");
     localStorage.removeItem("accountToken");
     localStorage.removeItem("wishlistId");
     localStorage.removeItem("wishlistRegid");
@@ -312,7 +311,7 @@ export default function AccountProvider({ children }) {
       // if not, set checkingLogin status to false
       updateUserValue({ checkingLogin: false });
     }
-  }, [localStorage]);
+  }, [localStorage.accountToken]);
 
   return (
     <AccountContext.Provider

@@ -13,13 +13,14 @@ const WishlistButton = ({ itemInfo, productInfo }) => {
   //   console.log(itemInfo);
   //   console.log(InWishlist.src, AddToWishlist.src);
   const wishlistButton = (itemInfo, reqType) => {
-    if (userInfo.loginStatus) {
+    if (localStorage.wishlistId) {
       const request = {
-        items: `[{"epi":${Number(itemInfo.variantId)},"empi":${Number(
+        type: `${reqType}`,
+        string: `[{"epi":${Number(itemInfo.variantId)},"empi":${Number(
           itemInfo.productId
         )},"du":"https://e-bloggers.myshopify.com/${itemInfo.handle}"}]`,
-        reqType: reqType,
       };
+      // console.log(request);
       updateWishlistItem(request);
     } else {
       let array = userInfo.wishlist.lineItems;

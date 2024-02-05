@@ -9,9 +9,8 @@ const credentials = `${pid}`;
 export default async function POST(req, res) {
   const { searchParams } = new URL("http://localhost:3000/" + req.url);
   let request = JSON.parse(req.body);
-  console.log(request.items);
   let data = qs.stringify({
-    [request.reqType]: request.items,
+    [request.type]: `${request.string}`,
     regid: searchParams.get("regid"),
     sessionid: searchParams.get("sessionid"),
     lid: searchParams.get("lid"),
@@ -30,10 +29,10 @@ export default async function POST(req, res) {
   let response = await axios
     .request(config)
     .then((response) => {
-      console.log(JSON.stringify(response.data));
+      // console.log(JSON.stringify(response.data));
     })
     .catch((error) => {
-      console.log(error);
+      // console.log(error);
     });
 
   res.send(response);
