@@ -30,7 +30,7 @@ function ImageZoom({ product }) {
           height="1000"
           width="1000"
           sizes="(max-width: 768px) 80vw, (max-width: 1200px) 33vw, 15vw"
-          className="w-full aspect-11/12 object-contain p-12 bg-offWhite bg-off"
+          className="w-full aspect-11/12 object-contain p-12 bg-offWhite bg-off cursor-pointer"
           priority={"true"}
           loading="eager"
           onClick={openModal}

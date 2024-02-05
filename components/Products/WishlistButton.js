@@ -50,7 +50,7 @@ const WishlistButton = ({ itemInfo, productInfo }) => {
   };
 
   return (
-    <div>
+    <div className="cursor-pointer">
       {userInfo.wishlist.lineItemIds.includes(itemInfo.productId) ? (
         <Image
           src={InWishlist.src}
