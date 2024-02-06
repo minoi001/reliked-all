@@ -50,7 +50,7 @@ export default function AccountProvider({ children }) {
         "accountToken",
         authData.customerAccessTokenCreate.customerAccessToken.accessToken
       );
-      await retrieveUser()
+      await retrieveUser();
     } else {
       updateUserValue({
         errorMessage:
@@ -157,7 +157,6 @@ export default function AccountProvider({ children }) {
         lineItemIds: wishlistItemData.items?.map((item) => item.empi),
       },
     });
-    console.log("User value", userInfo);
   };
 
   const loginToWishlist = async () => {
@@ -232,8 +231,8 @@ export default function AccountProvider({ children }) {
         token: localStorage.accountToken,
         orderHistory: customer.orders.edges,
         rewardsScheme: {
-          active: customer.rewardScheme.value,
-          points: customer.rewardPoints.value,
+          active: customer.rewardScheme?.value,
+          points: customer.rewardPoints?.value,
         },
       });
       // Get and store the wishlist info

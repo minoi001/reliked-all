@@ -13,6 +13,8 @@ export default function AccountPage({ account }) {
     return <AccountHomeContent />;
   };
 
+  console.log("userInfo.loginStatus", userInfo.loginStatus);
+
   return (
     <div>
       <Head>
