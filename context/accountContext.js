@@ -137,6 +137,8 @@ export default function AccountProvider({ children }) {
 
   const getUuid = async () => {};
 
+  const intialiseUserRewardsScheme = async () => {};
+
   const updateWishlistItem = async (request) => {
     // console.log(wishlistIds);
     let update = await wishlistItemUpdate(
@@ -293,6 +295,7 @@ export default function AccountProvider({ children }) {
           points: infoRequest.customer.rewardPoints.value,
         },
       });
+      loginToWishlist();
     } else {
       // token invalid, set error message and login status to false
       updateUserValue({
@@ -310,7 +313,8 @@ export default function AccountProvider({ children }) {
         event.preventDefault();
       }
       let userInfoData = await retrieveUser();
-      let wishlistData = await loginToWishlist();
+      // turning off wishlist until fix found
+      // let wishlistData = await loginToWishlist();
     };
     // check if there is a valid token
     if (localStorage.accountToken) {
