@@ -1,46 +1,12 @@
 import { LockClosedIcon } from "@heroicons/react/20/solid";
-import Image from "next/image";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { AccountContext } from "../../context/accountContext";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
   const { push } = useRouter();
 
   const { userInfo, loginUser, updateUserValue } = useContext(AccountContext);
-
-  useEffect(() => {
-    const form = document.getElementById("loginForm");
-
-    const handleFormSubmit = (e) => {
-      e.preventDefault();
-      // Your form submission logic here
-    };
-
-    if (form) {
-      form.addEventListener("submit", handleFormSubmit);
-    }
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      if (form) {
-        form.removeEventListener("submit", handleFormSubmit);
-      }
-    };
-  }, []); // Empty dependency array means this effect runs once after the initial render
-
-  // const formInput = (name, value) => {
-  //   console.log({
-  //     [name]: value,
-  //   });
-  //   updateUserValue({
-  //     [name]: value,
-  //   });
-  //   updateUserValue({
-  //     [name]: value,
-  //   });
-  // };
 
   const buttonClick = async (event) => {
     event.preventDefault();
@@ -50,7 +16,7 @@ export default function Login() {
         errorMessage: `Please enter a valid email address and password.`,
       });
     } else {
-      let response = await loginUser();
+      await loginUser();
       if (userInfo.loginStatus) {
         push("/account");
       }
@@ -59,9 +25,7 @@ export default function Login() {
 
   return (
     <>
-      {userInfo.checkingLogin ? (
-        "Loading"
-      ) : userInfo.loginStatus ? (
+      {userInfo.loginStatus ? (
         <div>You are logged in as {userInfo.userType}</div>
       ) : (
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

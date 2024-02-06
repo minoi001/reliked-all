@@ -4,15 +4,12 @@ import InWishlist from "../Assets/InWishlist.svg"; // relative path
 import { useContext } from "react";
 import { AccountContext } from "../../context/accountContext";
 import Image from "next/image";
-import { VALID_LOADERS } from "next/dist/shared/lib/image-config";
 
 const WishlistButton = ({ itemInfo, productInfo }) => {
   const { userInfo, updateWishlistItem, updateUserValue } =
     useContext(AccountContext);
-  //   console.log(userInfo.wishlist.lineItemIds);
-  //   console.log(itemInfo);
-  //   console.log(InWishlist.src, AddToWishlist.src);
-  const wishlistButton = (itemInfo, reqType) => {
+
+  const wishlistButton = async (itemInfo, reqType) => {
     if (localStorage.wishlistId) {
       const request = {
         type: `${reqType}`,
@@ -20,32 +17,30 @@ const WishlistButton = ({ itemInfo, productInfo }) => {
           itemInfo.productId
         )},"du":"https://e-bloggers.myshopify.com/${itemInfo.handle}"}]`,
       };
-      updateWishlistItem(request);
+      await updateWishlistItem(request);
     } else {
-      let array = userInfo.wishlist.lineItems;
-      array.push(productInfo);
-      let itemsArray = [];
-      for (let item of array) {
-        itemsArray.push(item.id);
-      }
-
-      updateUserValue({
+      const updatedWishlist = {
         wishlist: {
           status: true,
-          lineItems: array,
-          lineItemIds: itemsArray,
+          lineItems: [...userInfo.wishlist.lineItems, productInfo],
+          lineItemIds: userInfo.wishlist.lineItems.map((item) => item.id),
         },
-      });
-      localStorage.setItem(
-        "tempWishlistItems",
-        JSON.stringify({
-          wishlist: {
-            status: true,
-            lineItems: array,
-            lineItemIds: itemsArray,
-          },
-        })
-      );
+      };
+
+      updateUserValue(updatedWishlist);
+
+      const itemsArray = userInfo.wishlist.lineItems.map((item) => ({
+        epi: Number(item.objectID),
+        empi: Number(item.id),
+        du: `https://e-bloggers.myshopify.com/${item.handle}`,
+      }));
+
+      const request = {
+        type: "a",
+        string: JSON.stringify(itemsArray),
+      };
+
+      await updateWishlistItem(request);
     }
   };
 
@@ -57,7 +52,7 @@ const WishlistButton = ({ itemInfo, productInfo }) => {
           width="30"
           height="30"
           alt={itemInfo.productId}
-          onClick={() => wishlistButton(itemInfo, "d")}
+          onClick={async () => await wishlistButton(itemInfo, "d")}
         />
       ) : (
         <Image
@@ -65,7 +60,7 @@ const WishlistButton = ({ itemInfo, productInfo }) => {
           width="30"
           height="30"
           alt={itemInfo.productId}
-          onClick={() => wishlistButton(itemInfo, "a")}
+          onClick={async () => await wishlistButton(itemInfo, "a")}
         />
       )}
     </div>

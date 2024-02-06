@@ -27,26 +27,21 @@ export default async function GET(req, res) {
     });
   }
 
-  var config = {
+  const config = {
     method: "post",
     url: `${endpoint}/storeadmin/v3/user/generate-regid`,
     headers: {
       Authorization: `Basic ${encodedCredentials}`,
       "Content-Type": "application/x-www-form-urlencoded",
-      "Access-Control-Allow-Origin": "http://localhost:3000",
     },
     data: data,
   };
-
-  // console.log({ inputData: data });
-  // return;
 
   const response = await axios(config)
     .then(function (response) {
       return response.data;
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((error) => {
       return error;
     });
 
