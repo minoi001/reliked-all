@@ -296,7 +296,7 @@ export default function AccountProvider({ children }) {
           points: infoRequest.customer.rewardPoints.value,
         },
       });
-      loginToWishlist();
+      // loginToWishlist();
     } else {
       // token invalid, set error message and login status to false
       updateUserValue({
@@ -305,7 +305,7 @@ export default function AccountProvider({ children }) {
         checkingLogin: false,
       });
       localStorage.removeItem("accountToken");
-      loginToWishlist();
+      // loginToWishlist();
     }
   }
 

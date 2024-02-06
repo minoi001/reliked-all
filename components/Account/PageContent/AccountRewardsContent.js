@@ -16,12 +16,20 @@ export default function AccountRewardsContent() {
             Each point is worth 1p, so your points are worth £
             {userInfo.rewardsScheme.points / 100}.
           </p>
-
-          <p className="p-4 text-xl font-h">Ready to spend? </p>
-
-          <button className="bg-taupe text-white p-2 px-4 font-bold">
-            Get gift card
-          </button>
+          <div className="flex-cols">
+            <div className="flex">
+              <p className="p-4 text-xl font-h">Ready to spend? </p>
+              <button className="bg-taupe text-white p-2 px-4 font-bold">
+                Get gift card
+              </button>
+            </div>
+            <div className="flex">
+              <p className="p-4 text-xl font-h">Ready to spend? </p>
+              <button className="bg-taupe text-white p-2 px-4 font-bold">
+                Get gift card
+              </button>
+            </div>
+          </div>
         </div>
       ) : (
         <div>
