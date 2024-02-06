@@ -53,6 +53,7 @@ export default function AccountProvider({ children }) {
         authData.customerAccessTokenCreate.customerAccessToken.accessToken
       );
       let userData = await retrieveUser();
+      let wishlistData = await loginToWishlist();
     } else {
       updateUserValue({
         errorMessage:
@@ -304,6 +305,7 @@ export default function AccountProvider({ children }) {
         checkingLogin: false,
       });
       localStorage.removeItem("accountToken");
+      loginToWishlist();
     }
   }
 
