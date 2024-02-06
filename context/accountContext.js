@@ -39,6 +39,10 @@ export default function AccountProvider({ children }) {
       lineItems: [],
       lineItemIds: [],
     },
+    rewardsScheme: {
+      active: false,
+      points: 0,
+    },
   });
 
   async function loginUser() {
@@ -268,6 +272,7 @@ export default function AccountProvider({ children }) {
       event.preventDefault();
     }
     const infoRequest = await getUserInfo(localStorage.accountToken);
+    console.log(infoRequest);
     // if token value, set user info values
     if (infoRequest.customer != null) {
       updateUserValue({
@@ -283,6 +288,10 @@ export default function AccountProvider({ children }) {
         addresses: infoRequest.customer.addresses,
         token: localStorage.accountToken,
         orderHistory: infoRequest.customer.orders.edges,
+        rewardsScheme: {
+          active: infoRequest.customer.rewardScheme.value,
+          points: infoRequest.customer.rewardPoints.value,
+        },
       });
     } else {
       // token invalid, set error message and login status to false
