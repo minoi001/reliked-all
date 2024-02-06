@@ -39,11 +39,9 @@ export default async function GET(req, res) {
 
   const response = await axios(config)
     .then(function (response) {
-      console.log("*****", response.data, response.status);
       return response.data;
     })
     .catch((error) => {
-      console.log("*****", error);
       return error;
     });
 
