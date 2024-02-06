@@ -37,6 +37,10 @@ export default function AccountProvider({ children }) {
       lineItems: [],
       lineItemIds: [],
     },
+    rewardsScheme: {
+      active: false,
+      points: 0,
+    },
   });
 
   async function loginUser() {
@@ -46,7 +50,7 @@ export default function AccountProvider({ children }) {
         "accountToken",
         authData.customerAccessTokenCreate.customerAccessToken.accessToken
       );
-      await retrieveUser();
+      await retrieveUser()
     } else {
       updateUserValue({
         errorMessage:
@@ -126,6 +130,8 @@ export default function AccountProvider({ children }) {
 
     await retrieveUser();
   };
+
+  const intialiseUserRewardsScheme = async () => {};
 
   const updateWishlistItem = async (request) => {
     await updateSwymWishlist(
@@ -225,10 +231,13 @@ export default function AccountProvider({ children }) {
         addresses: customer.addresses,
         token: localStorage.accountToken,
         orderHistory: customer.orders.edges,
+        rewardsScheme: {
+          active: customer.rewardScheme.value,
+          points: customer.rewardPoints.value,
+        },
       });
       // Get and store the wishlist info
       await loginToWishlist();
-      // Store the email + password in local storage
     } else {
       // token invalid, set error message and login status to false
       updateUserValue({
