@@ -21,6 +21,7 @@ const AccountContext = createContext();
 export default function AccountProvider({ children }) {
   const [userInfo, setUserInfo] = useState({
     userType: "",
+    customerId: "",
     firstName: "",
     lastName: "",
     listerCode: "",
@@ -42,6 +43,8 @@ export default function AccountProvider({ children }) {
     rewardsScheme: {
       active: false,
       points: 0,
+      giftCardId: "",
+      giftCardBalance: 0,
     },
   });
 
@@ -281,6 +284,7 @@ export default function AccountProvider({ children }) {
       updateUserValue({
         firstName: `${infoRequest.customer.firstName}`,
         lastName: `${infoRequest.customer.lastName}`,
+        customerId: `${infoRequest.customer.id}`,
         email: `${infoRequest.customer.email}`,
         phone: `${infoRequest.customer.phone}`,
         userType: `${infoRequest.customer.userType.value}`,
@@ -293,7 +297,9 @@ export default function AccountProvider({ children }) {
         orderHistory: infoRequest.customer.orders.edges,
         rewardsScheme: {
           active: infoRequest.customer.rewardScheme.value,
-          points: infoRequest.customer.rewardPoints.value,
+          points: infoRequest.customer.rewardPoints?.value,
+          giftCardId: infoRequest.customer.rewardsGiftCard?.value,
+          history: infoRequest.customer.rewardsHistory?.value,
         },
       });
       // loginToWishlist();
