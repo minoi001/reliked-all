@@ -86,7 +86,7 @@ export default function ProductForm({ product }) {
         Read more
       </div> */}
       <div className="sm:flex">
-        {product.options.map(({ name, values }) => (
+        {product.options?.map(({ name, values }) => (
           <ProductOptions
             key={`key-${name}`}
             name={name}
@@ -97,20 +97,26 @@ export default function ProductForm({ product }) {
         ))}
       </div>
       <div className="sm:flex">
-        <ProductOptions
-          key={`key-${product.condition.value}`}
-          name={"Condition"}
-          values={[product.condition.value]}
-          selectedOptions={selectedOptions}
-          setOptions={setOptions}
-        />
-        <ProductOptions
-          key={`key-${product.packaging.value}`}
-          name={"Packaging"}
-          values={[product.packaging.value]}
-          selectedOptions={selectedOptions}
-          setOptions={setOptions}
-        />
+        {product.condition ? (
+          <div>
+            <ProductOptions
+              key={`key-${product.condition.value}`}
+              name={"Condition"}
+              values={[product.condition.value]}
+              selectedOptions={selectedOptions}
+              setOptions={setOptions}
+            />
+            <ProductOptions
+              key={`key-${product.packaging.value}`}
+              name={"Packaging"}
+              values={[product.packaging.value]}
+              selectedOptions={selectedOptions}
+              setOptions={setOptions}
+            />{" "}
+          </div>
+        ) : (
+          ""
+        )}
         {product.influencer ? (
           <div>
             {product.influencer.value == "Anonymous" ||

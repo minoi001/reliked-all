@@ -33,7 +33,9 @@ export default function AccountOrdersContent() {
                       className="m-2"
                       hit={{
                         title: item.node.title,
-                        image: item.node.variant.image.src,
+                        image: item.node.variant.image?.src
+                          ? item.node.variant.image.src
+                          : "https://cdn.shopify.com/s/files/1/2481/5934/files/color-gold.png?v=1613519126",
                         price: item.node.discountedTotalPrice.amount,
                         handle: item.node.title
                           .toLowerCase()

@@ -162,7 +162,10 @@ export default function AccountProvider({ children }) {
     });
   };
 
-  const loginToWishlist = async () => {
+  const loginToWishlist = async (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     if (userInfo.email) {
       const regIdData = await getRegId("headless", userInfo.email);
       localStorage.setItem("wishlistRegid", regIdData.regid);
@@ -239,7 +242,7 @@ export default function AccountProvider({ children }) {
         },
       });
       // Get and store the wishlist info
-      await loginToWishlist();
+      // await loginToWishlist();
     } else {
       // token invalid, set error message and login status to false
       updateUserValue({

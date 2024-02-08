@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getCollections } from "../../algoliaConfig";
 import Link from "next/link";
 import CollectionFilters from "../../components/Filters/CollectionFilters";
