@@ -37,7 +37,6 @@ export async function getStaticProps() {
   const homepageContent = await getHomepageContent();
   const navigation = await getNavigation();
   const footerNavigation = await getFooterNav();
-  const userInfo = await retrieveUser();
 
   return {
     props: {
