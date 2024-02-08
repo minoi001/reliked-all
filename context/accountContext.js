@@ -222,37 +222,20 @@ export default function AccountProvider({ children }) {
     // if token value, set user info values
     if (customer != null) {
       updateUserValue({
-<<<<<<< HEAD
-        firstName: `${infoRequest.customer.firstName}`,
-        lastName: `${infoRequest.customer.lastName}`,
-        customerId: `${infoRequest.customer.id}`,
-        email: `${infoRequest.customer.email}`,
-        phone: `${infoRequest.customer.phone}`,
-        userType: `${infoRequest.customer.userType.value}`,
-        listerCode: `${infoRequest.customer.userCode.value}`,
-=======
         firstName: `${customer.firstName}`,
         lastName: `${customer.lastName}`,
         email: `${customer.email}`,
         phone: `${customer.phone}`,
         userType: `${customer.userType.value}`,
         listerCode: `${customer.userCode.value}`,
->>>>>>> dcb55fb296761c4e6f6d1fe2cc669a9e054afb0c
         loginStatus: true,
         errorMessage: null,
         addresses: customer.addresses,
         token: localStorage.accountToken,
         orderHistory: customer.orders.edges,
         rewardsScheme: {
-<<<<<<< HEAD
-          active: infoRequest.customer.rewardScheme.value,
-          points: infoRequest.customer.rewardPoints?.value,
-          giftCardId: infoRequest.customer.rewardsGiftCard?.value,
-          history: infoRequest.customer.rewardsHistory?.value,
-=======
           active: customer.rewardScheme?.value,
           points: customer.rewardPoints?.value,
->>>>>>> dcb55fb296761c4e6f6d1fe2cc669a9e054afb0c
         },
       });
       // Get and store the wishlist info
