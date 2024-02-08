@@ -62,7 +62,6 @@ const ProductCard = ({ hit, collectionInfo, setScrollPosition }) => {
               productId: hit.id,
               handle: hit.handle.split("?")[0],
             }}
-            productInfo={hit}
           />
         </div>
       </div>

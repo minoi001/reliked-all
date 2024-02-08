@@ -1,17 +1,28 @@
-import { useContext } from "react";
-import { AccountContext } from "../../../context/accountContext";
+import { useEffect, useState } from "react";
 
-import Image from "next/image";
-import Link from "next/link";
 import ProductCard from "../../Products/ProductCard";
+import { getWishlistItems } from "../../../lib/swym";
 
 export default function AccountWishlistContent() {
-  const { userInfo } = useContext(AccountContext);
+  const [wishlistItems, setWishlistItems] = useState([]);
+  const fetchData = async () => {
+    const wishlistItemData = await getWishlistItems(
+      localStorage.wishlistSessionid,
+      localStorage.wishlistRegid,
+      localStorage.wishlistId
+    );
+    setWishlistItems(wishlistItemData?.items || []);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className="md:pl-6">
       <h1 className="font-h text-3xl text-center py-3">Wishlist</h1>
       <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
-        {userInfo.wishlist?.lineItems?.map((item, index) => (
+        {wishlistItems.map((item, index) => (
           <div key={index}>
             {item.empi ? (
               <div key={index}>

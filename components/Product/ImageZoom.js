@@ -43,7 +43,6 @@ function ImageZoom({ product }) {
                 variantId: product.variants.edges[0].node.id.slice(-14),
                 handle: product.handle,
               }}
-              productInfo={product}
             />
           </div>
         </div>

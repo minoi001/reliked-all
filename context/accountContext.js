@@ -8,12 +8,7 @@ import {
   updateCustomerReq,
 } from "../lib/shopify";
 
-import {
-  getRegId,
-  getWishlistItems,
-  getWishlists,
-  updateSwymWishlist,
-} from "../lib/swym";
+import { getRegId, getWishlistItems, getWishlists } from "../lib/swym";
 
 const AccountContext = createContext();
 
@@ -33,11 +28,11 @@ export default function AccountProvider({ children }) {
     successMessage: "",
     orderHistory: [],
     addresses: [],
-    wishlist: {
-      status: false,
-      lineItems: [],
-      lineItemIds: [],
-    },
+    // wishlist: {
+    //   status: false,
+    //   lineItems: [],
+    //   lineItemIds: [],
+    // },
     rewardsScheme: {
       active: false,
       points: 0,
@@ -136,38 +131,21 @@ export default function AccountProvider({ children }) {
 
   const intialiseUserRewardsScheme = async () => {};
 
-  const updateWishlistItem = async (request) => {
-    await updateSwymWishlist(
-      localStorage.wishlistSessionid,
-      localStorage.wishlistRegid,
-      localStorage.wishlistId,
-      request
-    );
-    await getWishlistItemsInfo();
-  };
-
   const getWishlistItemsInfo = async () => {
     const wishlistItemData = await getWishlistItems(
       localStorage.wishlistSessionid,
       localStorage.wishlistRegid,
       localStorage.wishlistId
     );
-
-    updateUserValue({
-      wishlist: {
-        status: true,
-        lineItems: wishlistItemData.items,
-        lineItemIds: wishlistItemData.items?.map((item) => item.empi),
-      },
-    });
   };
 
   const loginToWishlist = async (event) => {
     if (event) {
       event.preventDefault();
     }
-    if (userInfo.email) {
-      const regIdData = await getRegId("headless", userInfo.email);
+    const email = sessionStorage.getItem("email");
+    if (email) {
+      const regIdData = await getRegId("headless", email);
       localStorage.setItem("wishlistRegid", regIdData.regid);
       localStorage.setItem("wishlistSessionid", regIdData.sessionid);
     } else {
@@ -186,7 +164,11 @@ export default function AccountProvider({ children }) {
     );
     localStorage.setItem("wishlistId", wishlistsData.data[0].lid);
 
-    await getWishlistItemsInfo();
+    await getWishlistItems(
+      localStorage.wishlistSessionid,
+      localStorage.wishlistRegid,
+      localStorage.wishlistId
+    );
   };
 
   // create new functions for guest users
@@ -224,6 +206,7 @@ export default function AccountProvider({ children }) {
 
     // if token value, set user info values
     if (customer != null) {
+      sessionStorage.setItem("email", customer.email);
       updateUserValue({
         firstName: `${customer.firstName}`,
         lastName: `${customer.lastName}`,
@@ -242,7 +225,7 @@ export default function AccountProvider({ children }) {
         },
       });
       // Get and store the wishlist info
-      // await loginToWishlist();
+      await loginToWishlist();
     } else {
       // token invalid, set error message and login status to false
       updateUserValue({
@@ -265,7 +248,6 @@ export default function AccountProvider({ children }) {
         updateCustomer,
         updateCustomerAddress,
         deleteCustomerAddress,
-        updateWishlistItem,
         logout,
       }}
     >

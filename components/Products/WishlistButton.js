@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AddToWishlist from "../Assets/AddToWishlist.svg"; // relative path to image
 import InWishlist from "../Assets/InWishlist.svg"; // relative path
-import { useContext } from "react";
-import { AccountContext } from "../../context/accountContext";
 import Image from "next/image";
+import { updateSwymWishlist } from "../../lib/swym";
 
-const WishlistButton = ({ itemInfo, productInfo }) => {
-  const { userInfo, updateWishlistItem, updateUserValue } =
-    useContext(AccountContext);
+const WishlistButton = ({ itemInfo }) => {
+  const [inWishlist, setInWishlist] = useState(false);
+  const wishlistItemIds = sessionStorage.getItem("wishlistItemsIds") ?? [];
+
+  useEffect(() => {
+    setInWishlist(wishlistItemIds?.includes(itemInfo.productId));
+  }, [wishlistItemIds, itemInfo.productId]);
 
   const wishlistButton = async (itemInfo, reqType) => {
     if (localStorage.wishlistId) {
@@ -17,36 +20,20 @@ const WishlistButton = ({ itemInfo, productInfo }) => {
           itemInfo.productId
         )},"du":"https://e-bloggers.myshopify.com/${itemInfo.handle}"}]`,
       };
-      await updateWishlistItem(request);
+      await updateSwymWishlist(
+        localStorage.wishlistSessionid,
+        localStorage.wishlistRegid,
+        localStorage.wishlistId,
+        request
+      );
     } else {
-      const updatedWishlist = {
-        wishlist: {
-          status: true,
-          lineItems: [...userInfo.wishlist.lineItems, productInfo],
-          lineItemIds: userInfo.wishlist.lineItems.map((item) => item.id),
-        },
-      };
-
-      updateUserValue(updatedWishlist);
-
-      const itemsArray = userInfo.wishlist.lineItems.map((item) => ({
-        epi: Number(item.objectID),
-        empi: Number(item.id),
-        du: `https://e-bloggers.myshopify.com/${item.handle}`,
-      }));
-
-      const request = {
-        type: "a",
-        string: JSON.stringify(itemsArray),
-      };
-
-      await updateWishlistItem(request);
+      // TODO: If no wishlist exists, create one or retrieve the wishlist id
     }
   };
 
   return (
     <div className="cursor-pointer">
-      {userInfo.wishlist.lineItemIds.includes(itemInfo.productId) ? (
+      {inWishlist ? (
         <Image
           src={InWishlist.src}
           width="30"
