@@ -5,14 +5,7 @@ import Link from "next/link";
 import AccountHomeContent from "./PageContent/AccountHomeContent";
 
 export default function AccountPageTemplate({ Content }) {
-  const {
-    userInfo,
-    setUserInfo,
-    getUserInfo,
-    sendUserRequest,
-    updateUserValue,
-    logout,
-  } = useContext(AccountContext);
+  const { logout } = useContext(AccountContext);
 
   return (
     <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">

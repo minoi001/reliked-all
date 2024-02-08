@@ -33,9 +33,7 @@ export default function Request() {
 
   return (
     <>
-      {userInfo.checkingLogin ? (
-        "Loading"
-      ) : userInfo.loginStatus ? (
+      {userInfo.loginStatus ? (
         <div>You are logged in as {userInfo.userType}</div>
       ) : (
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
